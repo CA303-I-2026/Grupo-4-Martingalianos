@@ -1,0 +1,90 @@
+---
+title: "bitácora_1"
+format: html
+self-contained: True
+editor: visual
+---
+
+# Bitácora
+
+### Grupo: Los Martingalianos
+
+### Integrantes:
+
+-   Benjamín Gutiérrez Padua. C4F813.
+
+-   Sebastián Miranda
+
+-   Gabriel de Jesús Chaves Esquivel
+
+-   Kevin Calderón
+
+## Planteamiento de Problema de Investigación
+
+Redactar planteamiento de problema
+
+#### Audiencia objetivo
+
+#### Identificación de tensiones
+
+#### Posicionamiento del equipo respecto al problema de investigación
+
+#### Planteamiento de pregunta de investigación
+
+##### **Contraargumentos**
+
+Lógica
+
+Ética
+
+Emocional
+
+##### **Argumentos**
+
+Lógica
+
+Ética
+
+Emocional
+
+Concluya
+
+#### Descripción de los datos
+
+-   **Fuente de información**
+
+-   **Contexto temporal y espacial de los datos**
+
+-   **Población de estudio**
+
+-   **Muestra observada**
+
+-   **Unidad estadística o individuos**
+
+-   **Descripción de las variables de la tabla**
+
+#### Revisión bibliográfica y elaboración de fichas (en bibTex).
+
+Formato de la ficha en documento de indicaciones bitacora_1 y sugerencia a elaborarlo en obsidian
+
+#### UVE de Gowin 
+
+Observación personal, sale rentable hacerlo en CANVA e importar el archivo sencillamente
+
+## Desarrollo 
+
+Es la componente en la que se describe detalladamente el problema de investigación haciendo uso de la referencias y argumentar que se plantea realizar con la pregunta
+
+### Arco narrativo 
+
+Básicamente es reasaltar qué no se ha investigado o resuelto de modo que el trabajo nuestro aportará en dicho vacío de conocimiento
+
+### Diario de aprendizaje 
+
+Indicar qué sabemos ahora que no conocíamos antes de invicar el proyecto
+
+#### Log de contribuciones
+
+Insertar tabla y degloce de aporte de cada participante.
+
+### Borrador de propuestas
