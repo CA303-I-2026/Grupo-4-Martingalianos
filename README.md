@@ -2,11 +2,12 @@
 
 ## Integrantes del grupo
 
-| Nombre completo | Carné | Correo institucional |
-|-----------------|-------|----------------------|
-|                 |       |                      |
-|                 |       |                      |
-|                 |       |                      |
+|      Nombre completo    | Carné  |       Correo institucional        |
+|Benjamín Gutiérrez Padua | C4F813 | benjamin.gutierrezpadua@ucr.ac.cr |
+|    Sebastián Miranda    |        |                                   |
+ Gabriel Cháves Esquivel  |        |                                   |
+|    Kevin Calderón       |        |                                   |
+|                         |        |                                   |
 
 ## Descripción del proyecto
 
