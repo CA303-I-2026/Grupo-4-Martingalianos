@@ -6,7 +6,7 @@
 |Benjamín Gutiérrez Padua | C4F813 | benjamin.gutierrezpadua@ucr.ac.cr |
 |    Sebastián Miranda    |        |                                   |
  Gabriel Cháves Esquivel  |        |                                   |
-|    Kevin Calderón       |        |                                   |
+|    Kevin Calderón       | C4D511 | kevindavid.calderon@ucr.ac.cr     |
 |                         |        |                                   |
 
 ## Descripción del proyecto
