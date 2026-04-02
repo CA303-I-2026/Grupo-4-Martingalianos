@@ -5,7 +5,7 @@
 |      Nombre completo    | Carné  |       Correo institucional        |
 |Benjamín Gutiérrez Padua | C4F813 | benjamin.gutierrezpadua@ucr.ac.cr |
 |    Sebastián Miranda    |        |                                   |
- Gabriel Cháves Esquivel  |        |                                   |
+|Gabriel Cháves Esquivel  | C4E273 | gabriel.chavesesquivel@ucr.ac.cr  |
 |    Kevin Calderón       | C4D511 | kevindavid.calderon@ucr.ac.cr     |
 |                         |        |                                   |
 
