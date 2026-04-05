@@ -1,90 +1,44 @@
 ---
-title: "bitácora_1"
+title: "Bitácora 1"
+author: 
+  - "Sebastián Miranda Ramírez. C4H274"
+  - "Benjamín Gutiérrez Padua. C4F813"
+  - "Kevin David Calderón Martínez. C4D511"
+  - "Gabriel de Jesús Chaves Esquivel. C4E273"
 format: html
 self-contained: True
 editor: visual
 ---
 
-# Bitácora
+# Universidad de Costa Rica
 
-### Grupo: Los Martingalianos
+## Ciencias Actuariales
 
-### Integrantes:
+### Proyecto de investigación
 
--   Benjamín Gutiérrez Padua. C4F813.
+**Análisis de la incidencia de elementos patológicos en la mortalidad para grupos etarios en Países Centroamericanos 2015-2018.**
 
--   Sebastián Miranda
+**Profesor:** Maikol Solís Chacón\
+**Año:** 2026
 
--   Gabriel de Jesús Chaves Esquivel
+------------------------------------------------------------------------
 
--   Kevin Calderón
+# 1. Planificación
 
-## Planteamiento de Problema de Investigación
+## 1.1 Pregunta de investigación
 
-Redactar planteamiento de problema
+¿Cómo estimar los elementos de patología de base que inciden en la intensidad de la mortalidad en países centroamericanos usando datos 2015–2018 de la OMS?
 
-#### Audiencia objetivo
+------------------------------------------------------------------------
 
-#### Identificación de tensiones
+## 1.2 Definición de la idea
 
-#### Posicionamiento del equipo respecto al problema de investigación
+La Organización Mundial de la Salud o bien World Health Organization (OMS-WHO) históricamente ha confeccionado tablas de mortalidad de uso mundial establecido bajo ciertos estándares internacionales como lo supone la convención de 1967 de la OMS sobre Regulaciones de Nomenclatura para el registro de causa de muertes. 
 
-#### Planteamiento de pregunta de investigación
+Dentro de este contexto cada año países proporcionan el conjunto de datos de los registros de muertes por determinados factores a la OMS, con base en dicha información esta organización se encarga de estandarizarla.
 
-##### **Contraargumentos**
+El acercamiento que el trabajo propone es delimitar  el conjunto de países que pertenecen a la región Centroamericana; Panamá, Costa Rica, Nicaragua, El Salvador, Guatemala y Belice, dentro del intervalo temporal 2015-2018 y estudiar cierto componente de la mortalidad en  los países delimitados utilizando la WHO Mortality Database y, a partir de esa base, comparar de manera preliminar un enfoque clásico y un enfoque Bayesiano para estimar porciones de mortalidad para ciertas categorías de causa de muerte. \
+\
+No se pretende establecer desde el inicio que uno de los enfoques sea mejor en términos absolutos, sino observar si ambos producen resultados parecidos o si empiezan a diferir en contextos donde la estructura de los datos vuelve más delicada la estimación (WHO, 2026). ([World Health Organization](https://www.who.int/data/data-collection-tools/who-mortality-database?utm_source=chatgpt.com)).
 
-Lógica
-
-Ética
-
-Emocional
-
-##### **Argumentos**
-
-Lógica
-
-Ética
-
-Emocional
-
-Concluya
-
-#### Descripción de los datos
-
--   **Fuente de información**
-
--   **Contexto temporal y espacial de los datos**
-
--   **Población de estudio**
-
--   **Muestra observada**
-
--   **Unidad estadística o individuos**
-
--   **Descripción de las variables de la tabla**
-
-#### Revisión bibliográfica y elaboración de fichas (en bibTex).
-
-Formato de la ficha en documento de indicaciones bitacora_1 y sugerencia a elaborarlo en obsidian
-
-#### UVE de Gowin 
-
-Observación personal, sale rentable hacerlo en CANVA e importar el archivo sencillamente
-
-## Desarrollo 
-
-Es la componente en la que se describe detalladamente el problema de investigación haciendo uso de la referencias y argumentar que se plantea realizar con la pregunta
-
-### Arco narrativo 
-
-Básicamente es reasaltar qué no se ha investigado o resuelto de modo que el trabajo nuestro aportará en dicho vacío de conocimiento
-
-### Diario de aprendizaje 
-
-Indicar qué sabemos ahora que no conocíamos antes de invicar el proyecto
-
-#### Log de contribuciones
-
-Insertar tabla y degloce de aporte de cada participante.
-
-### Borrador de propuestas
+------------------------------------------------------------------------
