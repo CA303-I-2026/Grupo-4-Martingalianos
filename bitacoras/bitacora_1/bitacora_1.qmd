@@ -42,3 +42,11 @@ El acercamiento que el trabajo propone es delimitar  el conjunto de países que
 No se pretende establecer desde el inicio que uno de los enfoques sea mejor en términos absolutos, sino observar si ambos producen resultados parecidos o si empiezan a diferir en contextos donde la estructura de los datos vuelve más delicada la estimación (WHO, 2026). ([World Health Organization](https://www.who.int/data/data-collection-tools/who-mortality-database?utm_source=chatgpt.com)).
 
 ------------------------------------------------------------------------
+
+## 1.3 Conceptualización de la idea
+
+Con el propósito de que la idea sea más precisa, conviene reducir el alcance del problema. El centro del proyecto no sería “toda la mortalidad” ni “todas las causas ICD-10”, sino una conjunto manejable de la base, definida por causas seleccionadas y por una cantidad concreta que pueda estimarse con ambos enfoques.
+
+En este caso, una opción sensata es trabajar con porciones de mortalidad dentro de estratos definidos por país, sexo, grupo de edad y año. Esta delimitación es compatible con la guía, que pide que la idea sea específica, pero no tan cerrada como para impedir otras decisiones metodológicas posteriores. Además, el repositorio ya muestra una primera delimitación empírica: el script 01_limpieza.R une las seis partes ICD-10 y filtra Belice, Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua y Panamá para producir data_centroamerica.csv.
+
+La WHO Mortality Database es una compilación de datos de mortalidad reportados por los Estados miembros desde sus sistemas de registro civil y estadísticas vitales. La propia OMS indica que los archivos crudos no constituyen una colección “amigable” para el usuario promedio, sino un conjunto detallado de archivos, documentación y tablas de referencia orientados principalmente a investigación. También señala que los datos ICD-10 están distribuidos en seis partes y que las comparaciones entre países requieren cuidado por diferencias de cobertura y codificación (WHO, 2026). ([World Health Organization](https://www.who.int/data/data-collection-tools/who-mortality-database?utm_source=chatgpt.com)).
