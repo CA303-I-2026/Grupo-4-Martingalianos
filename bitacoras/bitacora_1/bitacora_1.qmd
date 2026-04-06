@@ -50,3 +50,17 @@ Con el propósito de que la idea sea más precisa, conviene reducir el alcance d
 En este caso, una opción sensata es trabajar con porciones de mortalidad dentro de estratos definidos por país, sexo, grupo de edad y año. Esta delimitación es compatible con la guía, que pide que la idea sea específica, pero no tan cerrada como para impedir otras decisiones metodológicas posteriores. Además, el repositorio ya muestra una primera delimitación empírica: el script 01_limpieza.R une las seis partes ICD-10 y filtra Belice, Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua y Panamá para producir data_centroamerica.csv.
 
 La WHO Mortality Database es una compilación de datos de mortalidad reportados por los Estados miembros desde sus sistemas de registro civil y estadísticas vitales. La propia OMS indica que los archivos crudos no constituyen una colección “amigable” para el usuario promedio, sino un conjunto detallado de archivos, documentación y tablas de referencia orientados principalmente a investigación. También señala que los datos ICD-10 están distribuidos en seis partes y que las comparaciones entre países requieren cuidado por diferencias de cobertura y codificación (WHO, 2026). ([World Health Organization](https://www.who.int/data/data-collection-tools/who-mortality-database?utm_source=chatgpt.com)).
+
+## Identificación de tensiones
+
+1.  Manejo de grandes volúmenes de datos Una de las primeras:
+
+    tensiones que podría tener este tema es el uso de la base de datos. Al ser una base tan amplia y con gran cantidad de datos el manejo de la misma puede de salirse fácilmente de control si no se consideran los cuidados necesarios, es por esto que es vital el reducir los datos solamente a los fundamentalmente requeridos y formular el problema sobre un subconjunto de la base.
+
+2.  Disponibilidad desigual entre países:
+
+    La segunda tensión es causada nuevamente por la base de datos, al ser un análisis de la mortalidad, se debe revisar que las enfermedades y/o causas de muerte elegidas tengan suficientes datos entre cada país, pues, sobretodo en caso de enfermedades no comunes puede ser que estén mayormente localizadas en un país y no en otro. Adicionalmente tener en cuenta efectos temporales, como lo pueden ser años con valores anormalmente bajos o altos.
+
+3.  Comparabilidad metodológica:
+
+    Comparabilidad metodológica La tercera tensión viene directamente del uso y comparación del enfoque estadístico clásico y bayesiano, puesto que hay que asegurarse que ambos se apliquen al mismo parámetro y conjunto de datos. Además, al momento de la comparación surgen problemas como el calcular la función de error de cada uno de los dos enfoques con efectividad y sus intervalos de confianza, ya que, de lo contrario podría surgir una comparación poco precisa dando resultados erróneos.
