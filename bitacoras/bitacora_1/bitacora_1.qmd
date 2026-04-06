@@ -51,7 +51,7 @@ En este caso, una opción sensata es trabajar con porciones de mortalidad dentro
 
 La WHO Mortality Database es una compilación de datos de mortalidad reportados por los Estados miembros desde sus sistemas de registro civil y estadísticas vitales. La propia OMS indica que los archivos crudos no constituyen una colección “amigable” para el usuario promedio, sino un conjunto detallado de archivos, documentación y tablas de referencia orientados principalmente a investigación. También señala que los datos ICD-10 están distribuidos en seis partes y que las comparaciones entre países requieren cuidado por diferencias de cobertura y codificación (WHO, 2026). ([World Health Organization](https://www.who.int/data/data-collection-tools/who-mortality-database?utm_source=chatgpt.com)).
 
-## Identificación de tensiones
+## 1.4 Identificación de tensiones
 
 1.  Manejo de grandes volúmenes de datos Una de las primeras:
 
@@ -64,3 +64,101 @@ La WHO Mortality Database es una compilación de datos de mortalidad reportados 
 3.  Comparabilidad metodológica:
 
     Comparabilidad metodológica La tercera tensión viene directamente del uso y comparación del enfoque estadístico clásico y bayesiano, puesto que hay que asegurarse que ambos se apliquen al mismo parámetro y conjunto de datos. Además, al momento de la comparación surgen problemas como el calcular la función de error de cada uno de los dos enfoques con efectividad y sus intervalos de confianza, ya que, de lo contrario podría surgir una comparación poco precisa dando resultados erróneos.
+
+------------------------------------------------------------------------
+
+## 1.5 Reformulación en preguntas
+
+1.  **¿Cómo se distribuye la mortalidad por causas seleccionadas en Centroamérica según país, sexo, grupo etario y año?\
+    ** Esta pregunta funciona bien como punto de partida descriptivo, porque ayuda a conocer la base y a identificar patrones generales antes de pasar a la parte inferencial.
+
+**Contraargumentos**
+
+-   **Lógica:** La amplia diversidad de factores que inciden en el estado de salud de una persona así como la espontaneidad de diferentes eventos que pueden alterar la misma hace que el análisis deba ser más denso.
+
+-   **Ética:** El limitar determinadas causas y no considerar en conjunto todos los factores de mortalidad puede inducir al sesgo al modelar la distribución.
+
+-   **Emocional:** Descomponer el agregado de datos puede distorsionar la variabilidad real de las muertes por categoría y la acumulación de porción efectiva entre clasificaciones, lo que podría derivar en una malinterpretación de la distribución de mortalidad y desvincularse de estimaciones sensatas.
+
+**Argumentos**
+
+-   **Lógica:** El hacer un compendium por características en común para delimitar ciertas clases de análisis facultan la sencillez de la modelación e interpretabilidad de resultados.
+
+-   **Ética:** Siguiendo estándares institucionales previamente definidos se puede producir conjuntos de datos consistentes que reflejen de manera fiable la naturaleza de los datos.
+
+-   **Emocional:** La producción de conjuntos de datos manejables basados en estandarizaciones internacionalmente consensuadas y técnicamente consistentes facilita la modelación de la distribución y amplía el alcance de acción para diferentes instrumentos de análisis. 
+
+**Concluya**
+
+Si bien delimitar y transmutar el conjunto de datos según por compendiums de características comunes puede suponer un factor desafiante, la articulación adecuada de esta dinámica permite generar resultados con los que hacer análisis con los qué comprender cuáles elementos inciden de forma más significativa en la mortalidad de determinados grupos de personas.
+
+2.  **¿Cómo puede estimarse, desde un enfoque frecuentista clásico, una tasa de mortalidad por causas seleccionadas en distintos estratos de la base?\
+    ** Esta pregunta concentra la atención en una sola metodología y permitiría construir un punto de referencia claro para la comparación posterior.
+
+**Contraargumentos**
+
+-   **Lógica:** Delimitar desde el enfoque frecuentista clásico puede introducir limitaciones dogmáticas al momento de abordar problemas que demandan actitud pragmática.
+
+-   **Ética:** ¿Supone el método frecuentista el acercamiento más fidedigno para modelar la evolución de la tasa de mortalidad para diferentes estratos de la base o más bien introduce sesgos?.
+
+-   **Emocional:** El enfoque frecuentista principalmente basado en la observación de las diferentes realizaciones que toma una variable aleatoria puede arrastrar factores temporales inmanentes en los datos que no necesariamente representan la condición actual para las variables e introducir un sesgo.
+
+**Argumentos**
+
+-   **Lógica:** Mediante la observación de la evolución histórica de las variables de estudio se puede conjeturar una estimación sensata de la tasa de mortalidad para los grupos de diferentes estratos de la base.
+
+-   **Ética:** El enfoque frecuentista está atenido a la realización determinista de la variable aleatoria, no introduce sesgos y preserva la objetividad de la estimación.
+
+-   **Emocional:** El abordaje metodológico frecuentista es un estándar dentro de la inferencia estadística, permitiendo generar suposiciones y afirmaciones razonadas con base a la observación histórica de los datos.
+
+**Concluya**
+
+	El enfoque frecuentista tradicional pilar de la inferencia estadística es una metodología clave con la cual conjeturar las estimaciones para hallar la distribución adecuada de la tasa de mortalidad en los países delimitados de Centroamérica.
+
+3.  **¿Cómo puede estimarse, desde un enfoque bayesiano, esa misma tasa de mortalidad y qué cambia en la interpretación de los resultados?\
+    ** Esta formulación permite introducir la dimensión bayesiana sin salir del mismo parámetro de interés, lo cual vuelve la comparación más limpia.
+
+**Contraargumentos**
+
+-   **Lógica:** Introducir una hipótesis de partida no adecuada puede auspiciar la malinterpretación de los datos y desconectarse de la naturaleza intrínseca de las variables de estudio.
+
+-   **Ética:** El definir una hipótesis no objetivamente sensata puede suscitar sesgos que alteren la credibilidad de la información.
+
+-   **Emocional:** Condicionar la naturaleza de los datos a ciertos supuestos que no necesariamente sean los más adecuados para estimar la tasa puede derivar en fallas metodológicas graves de implementación que deriven en una estimación incorrecta.
+
+**Argumentos**
+
+-   **Lógica:** El enfoque bayesiano es un énfasis que permite la actualización continua de las hipótesis de partida mediante comparaciones a través de la función de verosimilitud.
+
+-   **Ética:** El ajuste continuo de la distribución de probabilidad de la hipótesis de partida faculta la objetivización de los resultados a obtener.
+
+-   **Emocional:** La propuesta metodológica bayesiana supone un marco de acción sistematizado para la estimación oportuna de la tasa de mortalidad partiendo que es un modelo que puede refinarse a través de la actualización de su distribución de probabilidad.
+
+**Concluya**
+
+El marco metodológico bayesiano proporciona herramientas de análisis propicias para la estimación oportuna de las tasas de mortalidad en los países delimitados de Centroamérica. 
+
+4.  **¿En qué situaciones de esta base de datos resulta más razonable trabajar con un enfoque frecuentista o con uno bayesiano para estimar tasas de mortalidad?\
+    ** Esta pregunta integra la dimensión descriptiva, la comparación metodológica y la necesidad de justificar la elección del método según el contexto empírico.
+
+**Contraargumentos**
+
+-   **Lógica:** Ambos acercamientos metodológicos constituyen disposiciones procedurales teóricas adecuadas para determinados diferentes contextos, por lo cual reducirlas a una prueba aplicada determinada opaca la efectividad de una u otra en diferentes entornos de aplicación.
+
+-   **Ética:** La redirección sesgada de las pruebas puede favorecer una sobre otra metodología, lo cual supone una falacia académica considerando los marcos de aplicabilidad de cada una.
+
+-   **Emocional:** Se puede introducir opiniones de valor malintencionadas sobre una u otra metodología para la estimación de parámetros, cuando cada una responde a necesidades diferentes según el objeto de estudio.
+
+**Argumentos**
+
+-   **Lógica:** El implementar en conjunto ambas metodologías auspicia un espacio de comprensión e isnteriorización de los márgenes de aplicabilidad de cada sistema.
+
+-   **Ética:** Se suscita un espacio en el que se puede comparar objetivamente cada metodología con el propósito de hallar la más adecuada con el tipo de estudio que se realiza.
+
+-   **Emocional:** El estimular la conciencia y comprensión de estas metodologías puede permitir a diferentes actores interesados en el tema el reconocer los beneficios de cada acercamiento metodológico.
+
+**Concluya**
+
+La aplicación conjunta de ambas metodologías, desde la conjetura con base a las observaciones de iteraciones sostenidas de experimentos hasta la configuración de la distribución de probabilidad entre la priori y la posteriori suponen un acercamiento objetivo académico a ambas metodologías en simultáneo, permitiendo valorar los beneficios y dificultades de aplicación y escalabilidad de cada una.
+
+------------------------------------------------------------------------
