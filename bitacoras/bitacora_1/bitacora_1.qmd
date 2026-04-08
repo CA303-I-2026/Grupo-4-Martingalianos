@@ -27,7 +27,36 @@ editor: visual
 
 ## 1.1 Pregunta de investigación
 
+<<<<<<< HEAD
 ## 1.1.1 Definición de la idea
+=======
+### 1.1.1 Definición de la idea
+
+La Organización Mundial de la Salud (WHO, por sus siglas en inglés) ha desempeñado históricamente un papel central en la estandarización internacional de las estadísticas de mortalidad y de las causas de muerte. En este marco, los países remiten datos provenientes de sus sistemas de registro civil y la OMS los compila y armoniza conforme a estándares internacionales, en particular los vinculados a la Clasificación Internacional de Enfermedades (ICD, por sus siglas en inglés) y a las Regulaciones de Nomenclatura de 1967.  (World Health Organization [WHO], 2026).
+
+De esta forma, la idea inicial del proyecto consiste en *analizar cómo cambia la probabilidad de decremento por categorías de causas seleccionadas según grupos de edad en países de Centroamérica entre 2015-2018, utilizando la WHO Mortality Database y trabajando con las categorías de la ICD-10.* En particular, el interés se centra en estudiar el objeto actuarial ${}_{n}q_{x}^{(c)}$, entendido como la probabilidad de que una persona de edad $x$ muera en el intervalo $(x, x+n]$ debido a la causa $c$, en presencia de otras causas competidoras. Para este fin, se utilizarán tanto el enfoque clásico como el enfoque bayesiano, con el propósito de analizar si ambos producen estimaciones semejantes o si comienzan a diferir. 
+
+La elección de este enfoque también responde a antecedentes empíricos. En América Latina, la literatura reciente, en particular Calazans y Queiroz (2020), sugiere que, aunque existen patrones comunes en la mortalidad adulta por causa de muerte, sus cambios a lo largo del tiempo no son idénticos en todos los países. No obstante, estos estudios no analizan la evolución de una edad a otra, sino la mortalidad adulta en un rango agregado de edades. Esto vuelve razonable seguir estudiando el fenómeno con mayor detalle y desde un punto de vista de evolución de una edad a otra, lo que vuelve aún más adecuado el objeto ${}_{n}q_{x}^{(c)}$.
+
+
+### 1.1.2 Conceptualización de la idea 
+
+La idea a conceptualizar es: analizar cómo cambia la probabilidad de decremento por categorías de causas seleccionadas de la ICD-10 según grupos etarios en países de Centroamérica, utilizando la WHO Mortality Database y trabajando con las categorías de la ICD-10.
+
+Según el Diccionario de la lengua española, analizar significa someter algo a un análisis, y análisis se entiende como un estudio detallado de algo. Segundo, probabilidad se define como cálculo o determinación cuantitativa de la posibilidad de que se verifique un suceso. Decremento significa, en su uso general, disminución; causa es aquello que se considera fundamento u origen de algo; edad es el tiempo que ha vivido una persona y también cada uno de los períodos en que se divide la vida; grupo es una pluralidad de seres o cosas que forman un conjunto; categoría es cada una de las clases establecidas dentro de una actividad; y determinado alude a algo particular o específico.
+
+Asimismo, categorías de causas seleccionadas de la ICD-10 significa, en términos prácticos, usar la Mortality Tabulation List 1 de la documentación de la WHO, por ejemplo, categorías como diabetes mellitus (1052), enfermedades isquémicas del corazón (1067), enfermedades cerebrovasculares (1069), enfermedades respiratorias crónicas inferiores (1076) y causas externas (1095), que son bastante más manejables que la lista detallada de tres o cuatro caracteres.  Por otro lado, según grupos de edad es una frase importante, porque la base de la OMS no entrega una cohorte individual seguida en el tiempo, sino conteos agregados por edades o grupos de edad, con formatos etarios que pueden variar entre países y años. Finalmente, utilizar la WHO Mortality Database se refiere a trabajar con los datos agregados por país proporcionados de manera estandarizada por la WHO.
+
+Con algunos conceptos llevados al contexto del proyecto, es importante diferenciar lo siguiente: que probabilidad se entenderá como una magnitud entre 0 y 1 que expresa la proporción esperada de veces que ocurrirá un evento. Decremento no se usará en el sentido coloquial de simple disminución, sino en su sentido actuarial; la salida de una vida del estado inicial por una causa específica, basado en la terminología de la Society of Actuaries, la cual define tablas de múltiples decrementos como aquellas que registran vidas, número de decrementos y probabilidades de decremento y supervivencia para más de una causa. En este caso, los decrementos de interés serán las muertes por causas mutuamente excluyentes.
+
+### 1.1.3 Identificación de tensiones 
+
+Una de las primeras tensiones que podría tener este tema es el uso de la base de datos. Al ser una base tan amplia y con gran cantidad de datos el manejo de la misma puede de salirse fácilmente de control si no se consideran los cuidados necesarios, es por esto que es vital el reducir los datos solamente a los fundamentalmente requeridos y formular el problema sobre un subconjunto de la base.
+
+La segunda tensión es actuarial. La cantidad ${}_{n}q_{x}^{(c)}$ no viene observada directamente en la base de la OMS. Lo que la base ofrece son conteos de muertes por causa y edad, y poblaciones de referencia por edad. Por tanto, el proyecto tendrá que decidir cómo pasar de esos conteos a una estimación de decremento por causas.
+
+La tercera tensión viene directamente del uso y comparación del enfoque estadístico clásico y bayesiano, puesto que hay que asegurarse que ambos se apliquen al mismo parámetro y conjunto de datos. Además, al momento de la comparación surgen problemas como el calcular la función de error de cada uno de los dos enfoques con efectividad y sus intervalos de confianza, ya que, de lo contrario podría surgir una comparación poco precisa dando resultados erróneos.
+>>>>>>> f6609f9 (docs: se agregan secciones 1.1.1, 1.1.2, 1.1.3 completas)
 
 La Organización Mundial de la Salud (WHO, por sus siglas en inglés) ha desempeñado históricamente un papel central en la estandarización internacional de las estadísticas de mortalidad y de las causas de muerte. En este marco, los países remiten datos provenientes de sus sistemas de registro civil y la OMS los compila y armoniza conforme a estándares internacionales, en particular los vinculados a la Clasificación Internacional de Enfermedades (ICD, por sus siglas en inglés) y a las Regulaciones de Nomenclatura de 1967. (World Health Organization \[WHO\], 2026).
 
