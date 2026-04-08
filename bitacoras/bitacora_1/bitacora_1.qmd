@@ -4,8 +4,9 @@ author:
   - "Sebastián Miranda Ramírez. C4H274"
   - "Benjamín Gutiérrez Padua. C4F813"
   - "Kevin David Calderón Martínez. C4D511"
-  - "Gabriel de Jesús Chaves Esquivel. C4E273"
-format: html
+format:
+  html: default
+  pdf: default
 self-contained: True
 editor: visual
 ---
@@ -31,7 +32,7 @@ editor: visual
 
 La Organización Mundial de la Salud (WHO, por sus siglas en inglés) ha desempeñado históricamente un papel central en la estandarización internacional de las estadísticas de mortalidad y de las causas de muerte. En este marco, los países remiten datos provenientes de sus sistemas de registro civil y la OMS los compila y armoniza conforme a estándares internacionales, en particular los vinculados a la Clasificación Internacional de Enfermedades (ICD, por sus siglas en inglés) y a las Regulaciones de Nomenclatura de 1967. (World Health Organization \[WHO\], 2026).
 
-De esta forma, la idea inicial del proyecto consiste en *analizar cómo cambia la probabilidad de decremento por categorías de causas seleccionadas según grupos de edad en países de Centroamérica entre 2015-2018, utilizando la WHO Mortality Database y trabajando con las categorías de la ICD-10.* En particular, el interés se centra en estudiar el objeto actuarial ${}_{n}q_{x}^{(c)}$, entendido como la probabilidad de que una persona de edad $x$ muera en el intervalo $(x, x+n]$ debido a la causa $c$, en presencia de otras causas competidoras. Para este fin, se utilizarán tanto el enfoque clásico como el enfoque bayesiano, con el propósito de analizar si ambos producen estimaciones semejantes o si comienzan a diferir.
+De esta forma, la idea inicial del proyecto consiste en **analizar cómo cambia la probabilidad de decremento por categorías de causas seleccionadas según grupos de edad en países de Centroamérica entre 2015-2018, utilizando la WHO Mortality Database y trabajando con las categorías de la ICD-10.** En particular, el interés se centra en estudiar el objeto actuarial ${}_{n}q_{x}^{(c)}$, entendido como la probabilidad de que una persona de edad $x$ muera en el intervalo $(x, x+n]$ debido a la causa $c$, en presencia de otras causas competidoras. Para este fin, se utilizarán tanto el enfoque clásico como el enfoque bayesiano, con el propósito de analizar si ambos producen estimaciones semejantes o si comienzan a diferir.
 
 La elección de este enfoque también responde a antecedentes empíricos. En América Latina, la literatura reciente, en particular Calazans y Queiroz (2020), sugiere que, aunque existen patrones comunes en la mortalidad adulta por causa de muerte, sus cambios a lo largo del tiempo no son idénticos en todos los países. No obstante, estos estudios no analizan la evolución de una edad a otra, sino la mortalidad adulta en un rango agregado de edades. Esto vuelve razonable seguir estudiando el fenómeno con mayor detalle y desde un punto de vista de evolución de una edad a otra, lo que vuelve aún más adecuado el objeto ${}_{n}q_{x}^{(c)}$.
 
