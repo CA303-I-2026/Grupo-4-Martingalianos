@@ -27,138 +27,28 @@ editor: visual
 
 ## 1.1 Pregunta de investigación
 
-¿Cómo estimar los elementos de patología de base que inciden en la intensidad de la mortalidad en países centroamericanos usando datos 2015–2018 de la OMS?
+## 1.1.1 Definición de la idea
 
-------------------------------------------------------------------------
+La Organización Mundial de la Salud (WHO, por sus siglas en inglés) ha desempeñado históricamente un papel central en la estandarización internacional de las estadísticas de mortalidad y de las causas de muerte. En este marco, los países remiten datos provenientes de sus sistemas de registro civil y la OMS los compila y armoniza conforme a estándares internacionales, en particular los vinculados a la Clasificación Internacional de Enfermedades (ICD, por sus siglas en inglés) y a las Regulaciones de Nomenclatura de 1967. (World Health Organization \[WHO\], 2026).
 
-## 1.2 Definición de la idea
+De esta forma, la idea inicial del proyecto consiste en analizar cómo cambia la probabilidad de decremento por categorías de causas seleccionadas según grupos de edad en países de Centroamérica entre 2015-2018, utilizando la WHO Mortality Database y trabajando con las categorías de la ICD-10. En particular, el interés se centra en estudiar el objeto actuarial ${}_{n}q_{x}^{(c)}$, entendido como la probabilidad de que una persona de edad $x$ muera en el intervalo $(x, x+n]$ debido a la causa $c$, en presencia de otras causas competidoras. Para este fin, se utilizarán tanto el enfoque clásico como el enfoque bayesiano, con el propósito de analizar si ambos producen estimaciones semejantes o si comienzan a diferir.
 
-La Organización Mundial de la Salud o bien World Health Organization (OMS-WHO) históricamente ha confeccionado tablas de mortalidad de uso mundial establecido bajo ciertos estándares internacionales como lo supone la convención de 1967 de la OMS sobre Regulaciones de Nomenclatura para el registro de causa de muertes. 
+La elección de este enfoque también responde a antecedentes empíricos. En América Latina, la literatura reciente, en particular Calazans y Queiroz (2020), sugiere que, aunque existen patrones comunes en la mortalidad adulta por causa de muerte, sus cambios a lo largo del tiempo no son idénticos en todos los países. No obstante, estos estudios no analizan la evolución de una edad a otra, sino la mortalidad adulta en un rango agregado de edades. Esto vuelve razonable seguir estudiando el fenómeno con mayor detalle y desde un punto de vista de evolución de una edad a otra, lo que vuelve aún más adecuado el objeto $q^{(c)}_{x}$
 
-Dentro de este contexto cada año países proporcionan el conjunto de datos de los registros de muertes por determinados factores a la OMS, con base en dicha información esta organización se encarga de estandarizarla.
+#1.1.2 Conceptualización de la idea
 
-El acercamiento que el trabajo propone es delimitar  el conjunto de países que pertenecen a la región Centroamericana; Panamá, Costa Rica, Nicaragua, El Salvador, Guatemala y Belice, dentro del intervalo temporal 2015-2018 y estudiar cierto componente de la mortalidad en  los países delimitados utilizando la WHO Mortality Database y, a partir de esa base, comparar de manera preliminar un enfoque clásico y un enfoque Bayesiano para estimar porciones de mortalidad para ciertas categorías de causa de muerte. \
-\
-No se pretende establecer desde el inicio que uno de los enfoques sea mejor en términos absolutos, sino observar si ambos producen resultados parecidos o si empiezan a diferir en contextos donde la estructura de los datos vuelve más delicada la estimación (WHO, 2026). ([World Health Organization](https://www.who.int/data/data-collection-tools/who-mortality-database?utm_source=chatgpt.com)).
+La idea a conceptualizar es: analizar cómo cambia la probabilidad de decremento por categorías de causas seleccionadas de la ICD-10 según grupos etarios en países de Centroamérica, utilizando la WHO Mortality Database y trabajando con las categorías de la ICD-10.
 
-------------------------------------------------------------------------
+Según el Diccionario de la lengua española, analizar significa someter algo a un análisis, y análisis se entiende como un estudio detallado de algo. Segundo, probabilidad se define como cálculo o determinación cuantitativa de la posibilidad de que se verifique un suceso. Decremento significa, en su uso general, disminución; causa es aquello que se considera fundamento u origen de algo; edad es el tiempo que ha vivido una persona y también cada uno de los períodos en que se divide la vida; grupo es una pluralidad de seres o cosas que forman un conjunto; categoría es cada una de las clases establecidas dentro de una actividad; y determinado alude a algo particular o específico.
 
-## 1.3 Conceptualización de la idea
+Asimismo, categorías de causas seleccionadas de la ICD-10 significa, en términos prácticos, usar las clasificaciones generales de enfermedades que proporciona la OMS, como (I) Enfermedades infecciosas y parasitarias O (II) Tumores, que son bastante más manejables que la lista detallada de tres o cuatro caracteres. Por otro lado, según grupos de edad es una frase importante, porque la base de la OMS no entrega una cohorte individual seguida en el tiempo, sino conteos agregados por edades o grupos de edad, con formatos etarios que pueden variar entre países y años. Finalmente, utilizar la WHO Mortality Database se refiere a trabajar con los datos agregados por país proporcionados de manera estandarizada por la WHO.
 
-Con el propósito de que la idea sea más precisa, conviene reducir el alcance del problema. El centro del proyecto no sería “toda la mortalidad” ni “todas las causas ICD-10”, sino una conjunto manejable de la base, definida por causas seleccionadas y por una cantidad concreta que pueda estimarse con ambos enfoques.
+Con algunos conceptos llevados al contexto del proyecto, es importante diferenciar lo siguiente: que probabilidad se entenderá como una magnitud entre 0 y 1 que expresa la proporción esperada de veces que ocurrirá un evento. Decremento no se usará en el sentido coloquial de simple disminución, sino en su sentido actuarial; la salida de una vida del estado inicial por una causa específica, basado en la terminología de la Society of Actuaries, la cual define tablas de múltiples decrementos como aquellas que registran vidas, número de decrementos y probabilidades de decremento y supervivencia para más de una causa. En este caso, los decrementos de interés serán las muertes por causas mutuamente excluyentes.
 
-En este caso, una opción sensata es trabajar con porciones de mortalidad dentro de estratos definidos por país, sexo, grupo de edad y año. Esta delimitación es compatible con la guía, que pide que la idea sea específica, pero no tan cerrada como para impedir otras decisiones metodológicas posteriores. Además, el repositorio ya muestra una primera delimitación empírica: el script 01_limpieza.R une las seis partes ICD-10 y filtra Belice, Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua y Panamá para producir data_centroamerica.csv.
+### 1.1.3 Identificación de tensiones
 
-La WHO Mortality Database es una compilación de datos de mortalidad reportados por los Estados miembros desde sus sistemas de registro civil y estadísticas vitales. La propia OMS indica que los archivos crudos no constituyen una colección “amigable” para el usuario promedio, sino un conjunto detallado de archivos, documentación y tablas de referencia orientados principalmente a investigación. También señala que los datos ICD-10 están distribuidos en seis partes y que las comparaciones entre países requieren cuidado por diferencias de cobertura y codificación (WHO, 2026). ([World Health Organization](https://www.who.int/data/data-collection-tools/who-mortality-database?utm_source=chatgpt.com)).
+Una de las primeras tensiones que podría tener este tema es el uso de la base de datos. Al ser una base tan amplia y con gran cantidad de datos el manejo de la misma puede salirse fácilmente de control si no se consideran los cuidados necesarios, es por esto que es vital el reducir los datos solamente a los fundamentalmente requeridos y formular el problema sobre un subconjunto de la base. Además de agrupar los datos por las categorías de enfermedades que se van a utilizar, siempre en base a la ICD-10.
 
-## 1.4 Identificación de tensiones
+La segunda tensión es actuarial. La cantidad $q^{(c)}_{x}$ no viene observada directamente en la base de la OMS. Lo que la base ofrece son conteos de muertes por causa y edad, y poblaciones de referencia por edad. Por tanto, el proyecto tendrá que decidir cómo pasar de esos conteos a una estimación de decremento por causas.
 
-1.  Manejo de grandes volúmenes de datos Una de las primeras:
-
-    tensiones que podría tener este tema es el uso de la base de datos. Al ser una base tan amplia y con gran cantidad de datos el manejo de la misma puede de salirse fácilmente de control si no se consideran los cuidados necesarios, es por esto que es vital el reducir los datos solamente a los fundamentalmente requeridos y formular el problema sobre un subconjunto de la base.
-
-2.  Disponibilidad desigual entre países:
-
-    La segunda tensión es causada nuevamente por la base de datos, al ser un análisis de la mortalidad, se debe revisar que las enfermedades y/o causas de muerte elegidas tengan suficientes datos entre cada país, pues, sobretodo en caso de enfermedades no comunes puede ser que estén mayormente localizadas en un país y no en otro. Adicionalmente tener en cuenta efectos temporales, como lo pueden ser años con valores anormalmente bajos o altos.
-
-3.  Comparabilidad metodológica:
-
-    Comparabilidad metodológica La tercera tensión viene directamente del uso y comparación del enfoque estadístico clásico y bayesiano, puesto que hay que asegurarse que ambos se apliquen al mismo parámetro y conjunto de datos. Además, al momento de la comparación surgen problemas como el calcular la función de error de cada uno de los dos enfoques con efectividad y sus intervalos de confianza, ya que, de lo contrario podría surgir una comparación poco precisa dando resultados erróneos.
-
-------------------------------------------------------------------------
-
-## 1.5 Reformulación en preguntas
-
-1.  **¿Cómo se distribuye la mortalidad por causas seleccionadas en Centroamérica según país, sexo, grupo etario y año?\
-    ** Esta pregunta funciona bien como punto de partida descriptivo, porque ayuda a conocer la base y a identificar patrones generales antes de pasar a la parte inferencial.
-
-**Contraargumentos**
-
--   **Lógica:** La amplia diversidad de factores que inciden en el estado de salud de una persona así como la espontaneidad de diferentes eventos que pueden alterar la misma hace que el análisis deba ser más denso.
-
--   **Ética:** El limitar determinadas causas y no considerar en conjunto todos los factores de mortalidad puede inducir al sesgo al modelar la distribución.
-
--   **Emocional:** Descomponer el agregado de datos puede distorsionar la variabilidad real de las muertes por categoría y la acumulación de porción efectiva entre clasificaciones, lo que podría derivar en una malinterpretación de la distribución de mortalidad y desvincularse de estimaciones sensatas.
-
-**Argumentos**
-
--   **Lógica:** El hacer un compendium por características en común para delimitar ciertas clases de análisis facultan la sencillez de la modelación e interpretabilidad de resultados.
-
--   **Ética:** Siguiendo estándares institucionales previamente definidos se puede producir conjuntos de datos consistentes que reflejen de manera fiable la naturaleza de los datos.
-
--   **Emocional:** La producción de conjuntos de datos manejables basados en estandarizaciones internacionalmente consensuadas y técnicamente consistentes facilita la modelación de la distribución y amplía el alcance de acción para diferentes instrumentos de análisis. 
-
-**Concluya**
-
-Si bien delimitar y transmutar el conjunto de datos según por compendiums de características comunes puede suponer un factor desafiante, la articulación adecuada de esta dinámica permite generar resultados con los que hacer análisis con los qué comprender cuáles elementos inciden de forma más significativa en la mortalidad de determinados grupos de personas.
-
-2.  **¿Cómo puede estimarse, desde un enfoque frecuentista clásico, una tasa de mortalidad por causas seleccionadas en distintos estratos de la base?\
-    ** Esta pregunta concentra la atención en una sola metodología y permitiría construir un punto de referencia claro para la comparación posterior.
-
-**Contraargumentos**
-
--   **Lógica:** Delimitar desde el enfoque frecuentista clásico puede introducir limitaciones dogmáticas al momento de abordar problemas que demandan actitud pragmática.
-
--   **Ética:** ¿Supone el método frecuentista el acercamiento más fidedigno para modelar la evolución de la tasa de mortalidad para diferentes estratos de la base o más bien introduce sesgos?.
-
--   **Emocional:** El enfoque frecuentista principalmente basado en la observación de las diferentes realizaciones que toma una variable aleatoria puede arrastrar factores temporales inmanentes en los datos que no necesariamente representan la condición actual para las variables e introducir un sesgo.
-
-**Argumentos**
-
--   **Lógica:** Mediante la observación de la evolución histórica de las variables de estudio se puede conjeturar una estimación sensata de la tasa de mortalidad para los grupos de diferentes estratos de la base.
-
--   **Ética:** El enfoque frecuentista está atenido a la realización determinista de la variable aleatoria, no introduce sesgos y preserva la objetividad de la estimación.
-
--   **Emocional:** El abordaje metodológico frecuentista es un estándar dentro de la inferencia estadística, permitiendo generar suposiciones y afirmaciones razonadas con base a la observación histórica de los datos.
-
-**Concluya**
-
-	El enfoque frecuentista tradicional pilar de la inferencia estadística es una metodología clave con la cual conjeturar las estimaciones para hallar la distribución adecuada de la tasa de mortalidad en los países delimitados de Centroamérica.
-
-3.  **¿Cómo puede estimarse, desde un enfoque bayesiano, esa misma tasa de mortalidad y qué cambia en la interpretación de los resultados?\
-    ** Esta formulación permite introducir la dimensión bayesiana sin salir del mismo parámetro de interés, lo cual vuelve la comparación más limpia.
-
-**Contraargumentos**
-
--   **Lógica:** Introducir una hipótesis de partida no adecuada puede auspiciar la malinterpretación de los datos y desconectarse de la naturaleza intrínseca de las variables de estudio.
-
--   **Ética:** El definir una hipótesis no objetivamente sensata puede suscitar sesgos que alteren la credibilidad de la información.
-
--   **Emocional:** Condicionar la naturaleza de los datos a ciertos supuestos que no necesariamente sean los más adecuados para estimar la tasa puede derivar en fallas metodológicas graves de implementación que deriven en una estimación incorrecta.
-
-**Argumentos**
-
--   **Lógica:** El enfoque bayesiano es un énfasis que permite la actualización continua de las hipótesis de partida mediante comparaciones a través de la función de verosimilitud.
-
--   **Ética:** El ajuste continuo de la distribución de probabilidad de la hipótesis de partida faculta la objetivización de los resultados a obtener.
-
--   **Emocional:** La propuesta metodológica bayesiana supone un marco de acción sistematizado para la estimación oportuna de la tasa de mortalidad partiendo que es un modelo que puede refinarse a través de la actualización de su distribución de probabilidad.
-
-**Concluya**
-
-El marco metodológico bayesiano proporciona herramientas de análisis propicias para la estimación oportuna de las tasas de mortalidad en los países delimitados de Centroamérica. 
-
-4.  **¿En qué situaciones de esta base de datos resulta más razonable trabajar con un enfoque frecuentista o con uno bayesiano para estimar tasas de mortalidad?\
-    ** Esta pregunta integra la dimensión descriptiva, la comparación metodológica y la necesidad de justificar la elección del método según el contexto empírico.
-
-**Contraargumentos**
-
--   **Lógica:** Ambos acercamientos metodológicos constituyen disposiciones procedurales teóricas adecuadas para determinados diferentes contextos, por lo cual reducirlas a una prueba aplicada determinada opaca la efectividad de una u otra en diferentes entornos de aplicación.
-
--   **Ética:** La redirección sesgada de las pruebas puede favorecer una sobre otra metodología, lo cual supone una falacia académica considerando los marcos de aplicabilidad de cada una.
-
--   **Emocional:** Se puede introducir opiniones de valor malintencionadas sobre una u otra metodología para la estimación de parámetros, cuando cada una responde a necesidades diferentes según el objeto de estudio.
-
-**Argumentos**
-
--   **Lógica:** El implementar en conjunto ambas metodologías auspicia un espacio de comprensión e isnteriorización de los márgenes de aplicabilidad de cada sistema.
-
--   **Ética:** Se suscita un espacio en el que se puede comparar objetivamente cada metodología con el propósito de hallar la más adecuada con el tipo de estudio que se realiza.
-
--   **Emocional:** El estimular la conciencia y comprensión de estas metodologías puede permitir a diferentes actores interesados en el tema el reconocer los beneficios de cada acercamiento metodológico.
-
-**Concluya**
-
-La aplicación conjunta de ambas metodologías, desde la conjetura con base a las observaciones de iteraciones sostenidas de experimentos hasta la configuración de la distribución de probabilidad entre la priori y la posteriori suponen un acercamiento objetivo académico a ambas metodologías en simultáneo, permitiendo valorar los beneficios y dificultades de aplicación y escalabilidad de cada una.
-
-------------------------------------------------------------------------
+La tercera tensión viene directamente del uso y comparación del enfoque estadístico clásico y bayesiano, puesto que hay que asegurarse que ambos se apliquen al mismo parámetro y conjunto de datos. Además, al momento de la comparación surgen problemas como el calcular la función de error de cada uno de los dos enfoques con efectividad y sus intervalos de confianza, ya que, de lo contrario podría surgir una comparación poco precisa dando resultados erróneos.
