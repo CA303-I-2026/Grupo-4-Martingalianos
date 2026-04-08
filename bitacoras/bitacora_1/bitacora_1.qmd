@@ -48,8 +48,98 @@ Con algunos conceptos llevados al contexto del proyecto, es importante diferenci
 
 ### 1.1.3 Identificación de tensiones
 
+### 1.1.3 Identificación
+
 Una de las primeras tensiones que podría tener este tema es el uso de la base de datos. Al ser una base tan amplia y con gran cantidad de datos el manejo de la misma puede de salirse fácilmente de control si no se consideran los cuidados necesarios, es por esto que es vital el reducir los datos solamente a los fundamentalmente requeridos y formular el problema sobre un subconjunto de la base.
 
 La segunda tensión es actuarial. La cantidad ${}_{n}q_{x}^{(c)}$ no viene observada directamente en la base de la OMS. Lo que la base ofrece son conteos de muertes por causa y edad, y poblaciones de referencia por edad. Por tanto, el proyecto tendrá que decidir cómo pasar de esos conteos a una estimación de decremento por causas.
 
 La tercera tensión viene directamente del uso y comparación del enfoque estadístico clásico y bayesiano, puesto que hay que asegurarse que ambos se apliquen al mismo parámetro y conjunto de datos. Además, al momento de la comparación surgen problemas como el calcular la función de error de cada uno de los dos enfoques con efectividad y sus intervalos de confianza, ya que, de lo contrario podría surgir una comparación poco precisa dando resultados erróneos.
+
+### 1.1.4 Reformulación de la idea en modo de pregunta
+
+1 ¿Cómo **estimar** los elementos de **patología de base** que inciden en la **intensidad** de la **mortalidad** en la **población** de ciertos **Países Centroamericanos** tomando de referencia los datos de 2015-2018 de la OMS? 
+
+2 ¿Qué **patrones de variabilidad** se pueden **estimar** en la **probabilidad de decremento** nqx(c) por c**ategoría de causas** de la ICD-10 en **Países Centroamericanos** en los años 2015-2018?
+
+3 ¿Cómo se **distribuyen** las **muertes** por **categorías de causas** de la ICD-10 según **grupos de etario**s en **Países de Centroamérica** entre 2015 y 2018?
+
+4 ¿Cómo puede **estimarse** desde un **enfoque frecuentista y uno bayesiano**, una tasa de **mortalidad** por causas seleccionadas en **distintos estratos de la base**?
+
+Se determinó que la pregunta 2 encapsula de modo más integral los objetivos que se desean alcanzar en la consumación del proyecto, mientras que las otras tres preguntas se descartan como eje principal por razones de alcance y pertinencia. La primera es útil para la parte conceptual del agregado de categorías de causas de muerte, pero por sí sola no alcanza a estudiar el cambio de la probabilidad de decremento. La tercera cuenta con un enfoque más descriptivo y se centra en el uso de herramientas probabilísticas que suponen más un medio que un fin con los objetivos de la investigación.La cuarta, por su parte, sí aborda de manera directa la comparación entre el enfoque clásico y el enfoque bayesiano, pero convierte lo convierte en un tema principal que, dentro del proyecto, funciona más bien como apoyo metodológico que como objetivo sustantivo central. Por ello, la segunda pregunta resulta la más viable y coherente con los datos disponibles, con el objeto de estudio escogido y con el interés de investigación ya planteado.
+
+### **1.1.5 Argumentación de la pregunta**
+
+1 ¿Cómo **estimar** los elementos de **patología de base** que inciden en la **intensidad** de la **mortalidad** en la **población** de ciertos **Países Centroamericanos** tomando de referencia los datos de 2015-2018 de la OMS? 
+
+**Contraargumentos**
+
+-   **Lógica:** Se podría cuestionar que el delimitar a cierto intervalo temporal inciden negativamente en la calidad de la generalización sobre las observaciones realizadas.
+
+-   **Ética:** Partir de factores patológicos dados no canaliza la espontaneidad de eventos que repercuten en la variabilidad de causas de muerte posibles.
+
+-   **Emocional:** Los factores patológicos más significativos de los que se ha demostrado su incidencia en la mortalidad para personas supone un componente previamente investigado, por lo que el enfoque no aporta al público una perspectiva de estudio novedosa.
+
+**Argumentos**
+
+-   **Lógica:** El modelar elementos que inciden en la intensidad de la mortalidad para ciertas clasificaciones de causas de perecimiento permite reconocer de qué manera se ve intensificada la mortalidad por características del grupo delimitado.
+
+-   **Ética:** Se puede establecer un marco de referencia para el análisis para la evolución de la incidencia de ciertas enfermedades en diferentes edades de las personas.
+
+-   **Emocional:** Se genera material para el análisis para el estudio y toma de decisiones por autoridades competentes para la prevención de determinados factores que suscitan el perecimiento de personas.
+
+2 ¿Qué **patrones de variabilidad** se pueden **estimar** en la **probabilidad de decremento** nqx(c) por c**ategoría de causas** de la ICD-10 en **Países Centroamericanos** en los años 2015-2018?
+
+**Contraargumentos**
+
+-   **Lógica:** La probabilidad de decrementos puede ser un objeto matemáticamente difícil de construir si no se modela adecuadamente la cadena de Markov para diferentes estados.
+
+-   **Ética:** El identificar patrones de cambio entre intervalos de edad puede involucrar la interpretación subjetiva del investigador.
+
+-   **Emocional:** La facultad de apertura e interpretabilidad pueden verse afectadas para personas no especializadas en los temas abordados. 
+
+**Argumentos**
+
+-   **Lógica:** Se estima con un enfoque sólido teórico el comportamiento de la evolución de la mortalidad para diferentes intervalos de edad.
+
+-   **Ética:  F**aculta la descripción de la causa de mortalidad entre grupos de etarios.
+
+-   **Emocional:** El enfoque le proporciona a personas especializadas una gama de datos, en específico las probabilidades de decremento, para entender cómo evolucionan las características para diferentes grupos etarios de determinadas causas de mortalidad.
+
+3 ¿Cómo se **distribuyen** las **muertes** por **categorías de causas** de la ICD-10 según **grupos de etario**s en **Países de Centroamérica** entre 2015 y 2018?
+
+**Contraargumentos**
+
+-   **Lógica:** Al indexar una diversidad de factores de patología de base dentro de un solo mancomunado conjunto elimina la heterogeneidad de los datos y puede  asignar proporciones de muertes no realistas para ciertas patologías estudiadas por individual.
+
+-   **Ética: S**e pierde la distribución marginal característica para cada respectiva causa de muerte.
+
+-   **Emocional:** La construcción del agregado de factores de muerte y su justificación puede estimular una opacidad al momento de interpretar los resultados para personas no especializadas. 
+
+**Argumentos**
+
+-   **Lógica:** Faculta la descripción intuitiva de qué elementos inciden mayoritariamente en mortalidad para diferentes estratos de edad.
+
+-   **Ética:** Promueve el análisis de determinadas categorías de causa de muerte para población en diferentes grupos de etarios. 
+
+-   **Emocional:** Proporciona una herramienta intuitiva para que personas no necesariamente especializadas o capacitadas en menesteres técnicos comprendan factores que inciden en la mortalidad en distintos intervalos de edad.
+
+4 ¿Cómo puede **estimarse** desde un **enfoque frecuentista y uno bayesiano**, una tasa de **mortalidad** por causas seleccionadas en **distintos estratos de la base**?
+
+ **Contraargumentos**
+
+-   **Lógica:** La simple estimación de una tasa puede desaprovechar las herramientas metodológicas que permiten los enfoques frecuentista y bayesiano.
+
+-   **Ética:** Podría suscitarse que al tener resultados ligeramente distintos por el cambio de metodología se genere una opinión de valor inadecuada en la que se exalte una metodología sobre otra cuando ambas son lógicamente válidas pero más convenientes cada una para diferentes contextos.
+
+-   **Emocional:** Una población no especializada podría interpretar la diferencia de resultados como que una metodología es más adecuada que otra.
+
+**Argumentos**
+
+-   **Lógica:** Determinar la tasa de mortalidad brinda una comprensión intuitiva de la distribución de la proporción de muerte entre causas.
+
+-   **Ética:** Clarificar la concentración de fallecimientos por determinadas causas de muerte.
+
+-   **Emocional:** Estimar una tasa de mortalidad para determinadas causas permite tener un estadístico que representa las proporciones de mortalidad por categoría de forma intuitiva para personas no especializadas.
+
+De estas cuatro formulaciones, la segunda se considera la más adecuada como pregunta principal. Esto se debe a que recoge mejor el núcleo del proyecto: no solamente describir cómo se distribuyen las muertes por causa, sino estudiar e interpretar cómo cambia la probabilidad de decremento por categorías de causas a lo largo de los grupos de edad. Además, mantiene de forma moderada la comparación entre enfoque clásico y bayesiano, pero sin desplazar el interés principal hacia una discusión puramente metodológica. Así, la pregunta central sigue estando en el comportamiento e interpretación de nqx(c) , que es precisamente el objeto actuarial que se había definido desde el inicio.
