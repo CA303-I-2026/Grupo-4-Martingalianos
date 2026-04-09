@@ -671,3 +671,7 @@ Finalmente, se utilizó para la búsqueda orientada y comparación de referencia
 ### Audiencia del proyecto
 
 El proyecto se dirige principalmente a una persona interesada en estadística aplicada y salud pública, especialmente para las personas interesadas en análisis novedosos sobre la calidad de tiempo vivido y no solamente en la esperanza de vida, pues este es uno de los enfoques más importantes y distintos a los demás trabajos ya hechos que presenta esta investigación.
+
+### Posicionamiento del equipo
+
+Somos el equipo adecuado para liderar este proyecto, debido a que tenemos la suficiente base teórica actuarial para construir los modelos de mortalidad utilizando la probabilidad de decremento múltiples, distribuciones de probabilidad y cadenas de markov. Además, en base a investigaciones previas, somos los únicos que realmente han tenido un interés en analizar la probabilidad de decrementos en categorías de enfermedades en Centroamérica.
