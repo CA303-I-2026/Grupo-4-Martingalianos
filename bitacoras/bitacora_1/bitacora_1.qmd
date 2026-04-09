@@ -488,7 +488,7 @@ Se ha realizado las siguientes combinaciones de palabras clave:
 
 -   **Resumen argumentativo:** El documento muestra que se puede mejorar la estimación de la mortalidad en edades avanzadas transmutando los modelos de inferencia clásicos y bayesianos. Esta diferencia resulta útil para estimar tablas de mortalidad para observaciones individuales. Sin embargo, se limita a contextos de observaciones agregadas como grupos de edad y a condiciones extras como causas de muerte. Por ende, este documento muestra que es posible y viable construir las porciones de mortalidad bajo estos modelos, argumento clave para la fundamentación de este trabajo. Para efectos del mismo, se va a adaptar la metodología propuesta en el paper, pues sigue un patrón similar a la idea central.
 
-### 1.3 Construcción de UVE de Gowin
+### 1.3 UVE de Gowin
 
 #### Pregunta de investigación
 
@@ -538,7 +538,7 @@ Se ha realizado las siguientes combinaciones de palabras clave:
 
 El objeto de estudio de la investigación es la probabilidad de decremento ${}_n q_x^{(c)}$ por categorías de causas de la ICD-10, considerando su comportamiento por grupos de edad y país en Centroamérica durante el período 2015-2018.
 
-### 1.3 Parte escrita
+# 3. Parte escrita
 
 La pregunta delimitada para el trabajo de investigación constituye ser: **¿Qué patrones de variabilidad se pueden estimar en la probabilidad de decremento** ${}_{n}q_{x}^{(c)}$ **por categoría de causas de la ICD-10 en países centroamericanos en los años 2015-2018?** De forma directa, se puede afirmar que variables clave para la estimación de ${}_n q_x^{(c)}$ constituyen ser:
 
@@ -563,6 +563,14 @@ Cabe indicar que realizando ciertos supuestos tales como que al condicionar el e
 Por otro lado el establecimiento de un modelo multiestado para representar las probabilidades de decremento viene motivada porque según afirma Goerlich Gisbert (2012) a “estudios que tratan de ajustar la esperanza de vida por estados de salud están muy limitados por la escasa disponibilidad de información estadística y las dificultades de comparación intertemporal” (p. 6) , está crítica está fundamentada esencialmente en que la esperanza de vida es una medida dispersión muy asimétrica, aunado a su vez que la $E[T_{x}]$ es, sencillamente, el tiempo medio que falta para la muerte de una persona de edad $x$, es decir, cuántos años se espera que le falten por vivir y no aporta información detallada que especifique las causas que ocasionan el perecimiento ni mucho menos el cómo cambian estas.
 
 En este sentido, extendiendo las tablas de mortalidad de decrementos únicos a tablas por decrementos múltiples, es decir la representación de las probabilidades de transición a un estado absorbente {y} por múltiples causas comprendidas en la ICD-10, se permite comprender cómo han variado las probabilidades de mortalidad entre grupos etarios al considerar diferentes patologías de base de la cohorte de estudio; para este fin se seguirán los lineamientos metodológicos sugeridos por Goerlich Gisbert en Tablas de vida de decrementos múltiples: Mortalidad por causas en España (1975–2008) (Goerlich Gisbert, 2012), pero enfocándonos en una perspectiva centroamericana.
+
+# 4. Arco narrativo del proyecto
+
+El problema que nadie ha resuelto completamente aún es cómo decidir, en un conjunto real y heterogéneo de datos de mortalidad, cuándo una estimación clásica es suficiente y cuándo un enfoque bayesiano puede ofrecer una ventaja metodológica o interpretativa.
+
+* 5. Diario de aprendizaje
+
+	Ahora, se sabe que la mortalidad por causa no puede analizarse sólo por proporciones de muertes, sino que debe de entenderse como un problema con varios riesgos implicados, como el caso de las causas de muertes. Se comprende que la probabilidad de decremento por causa no se observa directamente de los datos, si no que se debe construir a base de condiciones. Finalmente, se aprendió que los modelos clásicos y bayesianos pueden producir resultados distintos, y en especial en poblaciones con pocas observaciones, esto mismo refuerza la idea de comparar ambas inferencias.
 
 \newpage
 
@@ -611,7 +619,7 @@ En este sentido, extendiendo las tablas de mortalidad de decrementos únicos a t
 |                                  |                                                                                                    |
 |                                  | -   Registro de uso de IA (Anexo).                                                                 |
 |                                  |                                                                                                    |
-|                                  | -                                                                                                  |
+|                                  | -   Diseño UVE de Gowin en LaTex (3).                                                              |
 +----------------------------------+----------------------------------------------------------------------------------------------------+
 | Benjamín Gutiérrez Padua         | -   Pregunta de investigación (1.1).                                                               |
 |                                  |                                                                                                    |
