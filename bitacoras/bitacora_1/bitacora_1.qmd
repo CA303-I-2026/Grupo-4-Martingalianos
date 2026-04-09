@@ -4,6 +4,7 @@ author:
   - "Sebastián Miranda Ramírez. C4H274"
   - "Benjamín Gutiérrez Padua. C4F813"
   - "Kevin David Calderón Martínez. C4D511"
+  - "Gabriel de Jesús Chaves ESquivel C4E273"
 format:
   html: default
   pdf: default
@@ -68,7 +69,7 @@ La tercera tensión viene directamente del uso y comparación del enfoque estad�
 
 Se determinó que la pregunta 2 encapsula de modo más integral los objetivos que se desean alcanzar en la consumación del proyecto, mientras que las otras tres preguntas se descartan como eje principal por razones de alcance y pertinencia. La primera es útil para la parte conceptual del agregado de categorías de causas de muerte, pero por sí sola no alcanza a estudiar el cambio de la probabilidad de decremento. La tercera cuenta con un enfoque más descriptivo y se centra en el uso de herramientas probabilísticas que suponen más un medio que un fin con los objetivos de la investigación.La cuarta, por su parte, sí aborda de manera directa la comparación entre el enfoque clásico y el enfoque bayesiano, pero convierte lo convierte en un tema principal que, dentro del proyecto, funciona más bien como apoyo metodológico que como objetivo sustantivo central. Por ello, la segunda pregunta resulta la más viable y coherente con los datos disponibles, con el objeto de estudio escogido y con el interés de investigación ya planteado.
 
-### **1.1.5 Argumentación de la pregunta**
+### 1.1.5 Argumentación de la pregunta
 
 1 ¿Cómo **estimar** los elementos de **patología de base** que inciden en la **intensidad** de la **mortalidad** en la **población** de ciertos **Países Centroamericanos** tomando de referencia los datos de 2015-2018 de la OMS? 
 
@@ -143,3 +144,58 @@ Se determinó que la pregunta 2 encapsula de modo más integral los objetivos qu
 -   **Emocional:** Estimar una tasa de mortalidad para determinadas causas permite tener un estadístico que representa las proporciones de mortalidad por categoría de forma intuitiva para personas no especializadas.
 
 De estas cuatro formulaciones, la segunda se considera la más adecuada como pregunta principal. Esto se debe a que recoge mejor el núcleo del proyecto: no solamente describir cómo se distribuyen las muertes por causa, sino estudiar e interpretar cómo cambia la probabilidad de decremento por categorías de causas a lo largo de los grupos de edad. Además, mantiene de forma moderada la comparación entre enfoque clásico y bayesiano, pero sin desplazar el interés principal hacia una discusión puramente metodológica. Así, la pregunta central sigue estando en el comportamiento e interpretación de nqx(c) , que es precisamente el objeto actuarial que se había definido desde el inicio.
+
+### 1.1.6 Argumentación a través de los datos
+
+Los datos utilizados para este trabajo provienen de la base de mortalidad de la OMS (En inglés, World Health Organization Mortality Database). Está dividida en seis partes, cada una recopilando el número de defunciones clasificadas por rangos de edad y causa de muerte, de acuerdo al segundo estándar internacional de enfermedades más reciente, el ICD-10. (International Classification of Diseases).
+Fuente de información: WHO Mortality Database. Los datos fueron obtenidos por las autoridades nacionales de cada país, encargadas de contabilizar y clasificar las defunciones.
+
+**Contexto temporal y espacial:** La base de datos registra anualmente el número de defunciones por país, grupo de edad y causa de muerte, de acuerdo al ICD-10. Las seis bases unidas contienen información desde 1950 hasta el año 2023. Para efectos de este trabajo, se propone trabajar con Centroamérica (Con la aclaración de que se omite a Honduras del análisis, debido a la falta de registros recientes, llegando hasta el 2013). En el período 2015-2018.
+
+**Facilidad de obtener la información:** Las bases de mortalidad de la OMS se encuentran en su página oficial, junto a un documento que explica a detalle la dinámica de la misma. Esta guía es necesaria para interpretar correctamente el código de las causas de muerte y los rangos de edad en los que están ordenadas las observaciones.
+
+**Población de estudio:** Las defunciones registradas que forman parte de los sistemas nacionales obtenidos| de la OMS.
+
+**Muestra Observada:** La cantidad de defunciones registradas, clasificadas por: Año, país, edad y causa de muerte. Es necesario aclarar que las defunciones son el agregado de rangos de edades y no por unidades registradas. Por ende, el proyecto debe de ser interpretado desde grupos de población.
+
+**Unidad estadística o individuos:** La unidad estadística es un grupo poblacional agregado, por ejemplo: “hombres de 50–54 años, Costa Rica, 2018, que murieron por una causa determinada”.
+
+**Descripción de la tabla**
+
+La International Classification of Diseases 10 (ICD-10) es la décima estandarización de la clasificación de enfermedades propuesta por la WHO. Esta tiene como finalidad relacionar enfermedades muy complejas en clasificaciones más amplias y generales (AAPC Thought Leadership Team, 2025). La clasificación de la causa se escribe mediante cuatro caracteres:
+
+- **Primer caracter:** Es una letra, esta clasifica de manera más amplia la enfermedad.
+
+- **Segundo caracter:** Es un número. Dentro de la clasificación del primer caracter, el segundo caracter desglosa las enfermedades asociadas a la clasificación principal.
+
+- **Tercer caracter:**Es un número. Cumple la misma función que el segundo caracter.
+
+- **Cuarto caracter:** Es un número. Dentro del segundo y tercer caracter, se encuentran enfermedades más específicas, las cuales el cuarto caracter clasifica. Si la enfermedad no tiene variantes más específicas, entonces la enfermedad solo contempla los primeros tres.
+
+Por ejemplo: Las letras A y B clasifican ciertas enfermedades infecciosas y parasitarias. De esta manera se permite agrupar causas de defunciones específicas en categorías generales.
+
+```{r,  echo=FALSE }
+library(knitr)
+
+tabla <- data.frame(
+  "Primer Caracter (Letra)" = c("A-B","A","A","A","A","A","B","B","B","B"),
+  "Demás caracteres (Números)" = c("", "00-09","00","001","002","009","00-09","00","001","04"),
+  "Enfermedad" = c(
+    "Ciertas enfermedades infecciosas y parasitarias",
+    "Enfermedades infecciosas intestinales",
+    "Cólera",
+    "Cólera clásica",
+    "El Tor de cólera",
+    "Cólera no especificada",
+    "Infecciones virales por lesiones de piel y membrana mucosa",
+    "Herpes simple",
+    "Dermatitis vesicular herpética",
+    "Viruela del mono (sin variantes específicas)"
+  ), check.names = FALSE
+)
+
+kable(
+  tabla,
+  caption = "Tabla 1. Ejemplo breve de la clasificación de enfermedades de acuerdo al ICD-10. Elaboración propia"
+)
+```
