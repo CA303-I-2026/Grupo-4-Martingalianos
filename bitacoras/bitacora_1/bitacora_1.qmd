@@ -4,7 +4,7 @@ author:
   - "Sebastián Miranda Ramírez. C4H274"
   - "Benjamín Gutiérrez Padua. C4F813"
   - "Kevin David Calderón Martínez. C4D511"
-  - "Gabriel de Jesús Chaves ESquivel C4E273"
+  - "Gabriel de Jesús Chaves Esquivel C4E273"
 format:
   html: default
   pdf: default
@@ -182,10 +182,10 @@ Por ejemplo: Las letras A y B clasifican ciertas enfermedades infecciosas y para
 library(knitr)
 #INSTALAR EL ESPANIOL EN EL LATEX
 
-tabla <- data.frame(
-  "Primer Caracter (Letra)" = c("A-B","A","A","A","A","A","B","B","B","B"),
-  "Demás caracteres (Números)" = c("00-99", "00-09","00","001","002","009","00-09","00","001","04"),
-  "Enfermedad" = c(
+ejemplo <- data.frame(
+  "**Primer Caracter (Letra)**" = c("A-B","A","A","A","A","A","B","B","B","B"),
+  "**Demás caracteres (Números)**" = c("00-99", "00-09","00","001","002","009","00-09","00","001","04"),
+  "**Enfermedad**" = c(
     "Ciertas enfermedades infecciosas y parasitarias",
     "Enfermedades infecciosas intestinales",
     "Cólera",
@@ -200,8 +200,8 @@ tabla <- data.frame(
 )
 
 kable(
-  tabla,
-  caption = "*Ejemplo breve de la clasificación de enfermedades de acuerdo al ICD-10. Elaboración propia*"
+  ejemplo,
+  caption = "*Ejemplo breve de la clasificación de enfermedades de acuerdo al ICD-10. Elaboración propia.*"
 )
 ```
 
@@ -209,10 +209,10 @@ Existe una estandarización aún más general para la clasificación de enfermed
 
 ```{r, echo = FALSE}
 
-tabla <- data.frame(
-  "      Grupo     " = c("I","II","III","IV","V-VIII","IX","X","XI","XII","XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XX"),
-  "     ICD-10 " = c("A00-B99, R75", "C00-D48","D50-D89","E00-E90","F00-H95","I00-I99","J00-J99","K00-K93","L00-L99","M00-M99", "N00-N99", "O00-O99 ", "P00-P96", "Q00-Q99", "R00-R74, R76-R99, U00-U99", "V01-Y89"),
-  "Causa" = c(
+estandar <- data.frame(
+  "      **Grupo**     " = c("I","II","III","IV","V-VIII","IX","X","XI","XII","XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XX"),
+  "     **ICD-10** " = c("A00-B99, R75", "C00-D48","D50-D89","E00-E90","F00-H95","I00-I99","J00-J99","K00-K93","L00-L99","M00-M99", "N00-N99", "O00-O99 ", "P00-P96", "Q00-Q99", "R00-R74, R76-R99, U00-U99", "V01-Y89"),
+  "     **Causa**   " = c(
     "Enfermedades infecciosas y parasitarias",
     "Tumores",
     "Enfermedades de la sangre y de los órganos hematopoyéticos, y ciertos trastornos que afectan al mecanismo de la inmunidad",
@@ -233,8 +233,92 @@ tabla <- data.frame(
 )
 
 kable(
-  tabla,
+  estandar,
   caption = "*Explicación de la lista de tabulación de mortalidad de la ICD-10. Obtenido de: (Goerlich, 2012).*"
 )
 ```
+
+La siguiente tabla explica todo el contenido presente en las columnas de la base de datos de la WHO:
+
+
+```{r, echo = FALSE}
+columnas <- data.frame(
+  "**Columna**" = c(
+    "Country","Admin1","Subdiv","Year","List","Cause","Sex","Frmat","IM_Frmat","Deaths1","Deaths2","Deaths3","Deaths4","Deaths5","Deaths6",
+    "Deaths7","Deaths8","Deaths9","Deaths10","Deaths11","Deaths12","Deaths13","Deaths14","Deaths15","Deaths16","Deaths17","Deaths18","Deaths19",
+    "Deaths20","Deaths21","Deaths22","Deaths23","Deaths24","Deaths25","Deaths26","IM_deaths1","IM_deaths2","IM_deaths3","IM_deaths4","Pais"),
+  "**Contenido**" = c(
+    "Código del país.",
+    "Región específica dentro de cada país (No aplica para Centroamérica).",
+    "Tipo de víctimas (Ciudadanos, solo nacionales). No aplica para Centroamérica.",
+    "Año del dato registrado.",
+    "Lista de la edición de la ICD utilizada.",
+    "Clasificación de la muerte registrada de acuerdo al ICD-10.",
+    "1 para hombre, 2 para mujer, 9 para no especificado.",
+    "Forma de ordenamiento de rangos de edad.",
+    "Forma de ordenamiento de rangos de edad para menores de un año.",
+    "Muertes para todas las edades.",
+    "Muertes a la edad de 0 años.",
+    "Muertes a la edad de 1 año.",
+    "Muertes a la edad de 2 años.",
+    "Muertes a la edad de 3 años.",
+    "Muertes a la edad de 4 años.",
+    "Muertes en el rango de 5-9 años.",
+    "Muertes en el rango de 10-14 años.",
+    "Muertes en el rango de 15-19 años.",
+    "Muertes en el rango de 20-24 años.",
+    "Muertes en el rango de 25-29 años.",
+    "Muertes en el rango de 30-34 años.",
+    "Muertes en el rango de 35-39 años.",
+    "Muertes en el rango de 40-44 años.",
+    "Muertes en el rango de 45-49 años.",
+    "Muertes en el rango de 50-54 años.",
+    "Muertes en el rango de 55-59 años.",
+    "Muertes en el rango de 60-64 años.",
+    "Muertes en el rango de 65-69 años.",
+    "Muertes en el rango de 70-74 años.",
+    "Muertes en el rango de 75-79 años.",
+    "Muertes en el rango de 80-84 años.",
+    "Muertes en el rango de 85-89 años.",
+    "Muertes en el rango de 90-94 años.",
+    "Muertes a la edad de 95 años o más.",
+    "Muertes a una edad no especificada.",
+    "Muertes a una edad de 0 días.",
+    "Muertes a una edad de 1-6 días.",
+    "Muertes a una edad de 7-27 días.",
+    "Muertes a una edad de 28-364 días.",
+    "Nombre del país de acuerdo a su código."),
+  check.names = FALSE
+)
+
+kable(
+  columnas,
+  caption = "*Significado de las columnas de la base de datos. Obtenido de: World Health Organization (2026).*"
+)
+```
+
+A continuación, aclaraciones del cuadro anterior:
+Para la columna de Country, en la documentación de la base de datos se encuentra una lista con los códigos de los países junto a  su respectivo nombre. Con la finalidad de que el trabajo sea eficiente, se presentan sólo los códigos de Centroamérica:
+
+- Belice: 2045
+- Costa Rica: 2140
+-El Salvador: 2190
+- Guatemala: 2250
+- Nicaragua: 2340
+- Panamá: 2350
+
+Para Centroamérica, las columnas Admin1 y Subdiv vienen vacías (NA). Esto significa que todas las defunciones registradas no tienen especificación de región, son datos estandarizados a nivel nacional (World Health Organization, 2026).
+
+Para las columnas Frmat e IM_Frmat, si en estas columnas hay un 0 y un 1 respectivamente, los rangos de edad están ordenados de acuerdo a la tabla anterior. Si posee otro número (Ya sea cualquiera del 1 al 9 para Frmat, y cualquiera del 2, 8 o 9 para IM_Frmat), los rangos de edad presentan un orden distinto. Para efectos de Centroamérica, sólo Costa Rica posee datos de tipo de orden número 2 en Frmat y 8 para IM_Frmat para el año 2020. Por lo tanto, la diferencia sería la siguiente:
+
+- Frmat = 2: No existe la separación de 1,2,3,4 años. Por lo que, el agregado de todos los registros de este rango de edad recae en la columna de Deaths3 (Pasaría a ser muertes para el rango de edades de 1 a 4 años). Tampoco existen datos en las columnas Deaths24 y Deaths 25 (Es decir, 90 años en adelante). Entonces, el agregado de los registros para ese rango de edad recae en Deaths 23 (serían muertes para la edad de 85 años en adelante).
+
+- IM_Frmat = 8: No existe la separación de días para muertes en edades de menos de un año. Por lo que, cualquier muerte menor a un año recae en IM_deaths1.
+
+La columna Pais fue colocada manualmente, para reconocer cada registro por el nombre del país además de su código.
+
+Finalmente, con respecto a la relación de la tabla con la pregunta principal de investigación, tenemos que la tabla permite observar, para cada país, año, grupo de edad y categoría de causa seleccionada, cómo se comporta la probabilidad estimada de decremento ${}_{n}q_{x}^{(c)}$ y si ese comportamiento sugiere patrones de aumento, disminución o estabilidad conforme avanzan los grupos de edad, lo que responde directamente la pregunta. Además, al incorporar estimaciones obtenidas desde un enfoque clásico y uno bayesiano, la tabla también hace posible examinar si ambos marcos ofrecen lecturas semejantes o distintas de esos patrones.
+
+
+
 
