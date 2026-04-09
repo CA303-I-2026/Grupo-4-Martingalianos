@@ -652,7 +652,9 @@ kbl(
   row_spec(0, bold = TRUE, hline_after = TRUE) |>
   row_spec(1:nrow(log_cont), hline_after = TRUE)
 ```
+### Rastro de decisiones
 
+La principal decisión que tomamos fue respecto al tema a investigar, pues en un principio queríamos por recomendación del profesor realizar simplemente una comparación entre la tabla de mortalidad de las enfermedades de centroamérica utilizando el enfoque clásico contra el enfoque bayesiano, pero después de investigar decidimos finalmente investigar la probabilidad de decrementos múltiples, debido a que nos pareció un tema con menor investigación previa en el área de Centroamérica y era de mayor interés para el grupo en su totalidad. Otra decisión importante fue la de no utilizar a Honduras en la base de datos a causa de su falta de información en años recientes.
 
 ### Registro uso de IA
 
