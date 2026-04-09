@@ -10,6 +10,7 @@ format:
   pdf: default
 self-contained: True
 editor: visual
+lang: es
 ---
 
 # Universidad de Costa Rica
@@ -172,14 +173,14 @@ La International Classification of Diseases 10 (ICD-10) es la décima estandariz
 
 - **Cuarto caracter:** Es un número. Dentro del segundo y tercer caracter, se encuentran enfermedades más específicas, las cuales el cuarto caracter clasifica. Si la enfermedad no tiene variantes más específicas, entonces la enfermedad solo contempla los primeros tres.
 
-Por ejemplo: Las letras A y B clasifican ciertas enfermedades infecciosas y parasitarias. De esta manera se permite agrupar causas de defunciones específicas en categorías generales.
+Por ejemplo: Las letras A y B clasifican ciertas enfermedades infecciosas y parasitarias. De esta manera se permite agrupar causas de defunciones específicas en categorías generales:
 
 ```{r,  echo=FALSE }
 library(knitr)
 
 tabla <- data.frame(
   "Primer Caracter (Letra)" = c("A-B","A","A","A","A","A","B","B","B","B"),
-  "Demás caracteres (Números)" = c("", "00-09","00","001","002","009","00-09","00","001","04"),
+  "Demás caracteres (Números)" = c("00-99", "00-09","00","001","002","009","00-09","00","001","04"),
   "Enfermedad" = c(
     "Ciertas enfermedades infecciosas y parasitarias",
     "Enfermedades infecciosas intestinales",
@@ -196,6 +197,6 @@ tabla <- data.frame(
 
 kable(
   tabla,
-  caption = "Tabla 1. Ejemplo breve de la clasificación de enfermedades de acuerdo al ICD-10. Elaboración propia"
+  caption = "*Ejemplo breve de la clasificación de enfermedades de acuerdo al ICD-10. Elaboración propia*"
 )
 ```
