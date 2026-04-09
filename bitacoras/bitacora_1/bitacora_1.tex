@@ -1,0 +1,1099 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Listado de Figuras}
+\else
+  \newcommand\listfigurename{Listado de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Listado de Tablas}
+\else
+  \newcommand\listtablename{Listado de Tablas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Listado de Listados}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{spanish}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Bitácora 1},
+  pdflang={es},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Bitácora 1}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+
+\begin{center}
+
+\textbf{Universidad de Costa Rica}
+
+
+\vspace{0.5cm}
+
+\textbf{Escuela de Matemática}
+
+\textbf{Departamento de Matemática y Ciencias Actuariales}
+
+\vspace{0.5cm}
+
+\textbf{Proyecto de Investigación}
+
+\textbf{Análisis del cambio de la probabilidad de decremento ${}_{n}q_{x}^{(c)}$  para grupos etarios por  causas de muerte de acuerdo a la clasificación ICD-10 en países de Centroamérica [2015, 2018].}
+
+\vspace{0.5cm}
+
+\textbf{Integrantes}
+
+\textbf{Sebastián Miranda Ramírez  C4H274 }
+
+\textbf{Benjamín Gutiérrez Padua  C4F813}
+
+\textbf{Kevin David Calderón Martínez  C4D511}
+
+\textbf{Gabriel de Jesús Chaves Esquivel  C4E273}
+
+\vspace{0.5cm}
+
+\textbf{Profesor}
+
+\textbf{Maikol Solís Chacón} 
+
+\vspace{0.5cm}
+
+\textbf{2026}
+
+
+\end{center}
+
+\newpage
+
+\section{1. Planificación}\label{planificaciuxf3n}
+
+\subsection{1.1 Pregunta de
+investigación}\label{pregunta-de-investigaciuxf3n}
+
+¿Qué patrones de variabilidad se pueden estimar en la probabilidad de
+decremento \({}_{n}q_{x}^{(c)}\) por categoría de causas de la ICD-10 en
+Países Centroamericanos en los años 2015-2018?
+
+\subsubsection{1.1.1 Definición de la
+idea}\label{definiciuxf3n-de-la-idea}
+
+La Organización Mundial de la Salud (WHO, por sus siglas en inglés) ha
+desempeñado históricamente un papel central en la estandarización
+internacional de las estadísticas de mortalidad y de las causas de
+muerte. En este marco, los países remiten datos provenientes de sus
+sistemas de registro civil y la OMS los compila y armoniza conforme a
+estándares internacionales, en particular los vinculados a la
+Clasificación Internacional de Enfermedades (ICD, por sus siglas en
+inglés) y a las Regulaciones de Nomenclatura de 1967. (World Health
+Organization {[}WHO{]}, 2026).
+
+De esta forma, la idea inicial del proyecto consiste en \textbf{analizar
+cómo cambia la probabilidad de decremento por categorías de causas
+seleccionadas según grupos de edad en países de Centroamérica entre
+2015-2018, utilizando la WHO Mortality Database y trabajando con las
+categorías de la ICD-10.} En particular, el interés se centra en
+estudiar el objeto actuarial \({}_{n}q_{x}^{(c)}\), entendido como la
+probabilidad de que una persona de edad \(x\) muera en el intervalo
+\((x, x+n]\) debido a la causa \(c\), en presencia de otras causas
+competidoras. Para este fin, se utilizarán tanto el enfoque clásico como
+el enfoque bayesiano, con el propósito de analizar si ambos producen
+estimaciones semejantes o si comienzan a diferir.
+
+La elección de este enfoque también responde a antecedentes empíricos.
+En América Latina, la literatura reciente, en particular Calazans y
+Queiroz (2020), sugiere que, aunque existen patrones comunes en la
+mortalidad adulta por causa de muerte, sus cambios a lo largo del tiempo
+no son idénticos en todos los países. No obstante, estos estudios no
+analizan la evolución de una edad a otra, sino la mortalidad adulta en
+un rango agregado de edades. Esto vuelve razonable seguir estudiando el
+fenómeno con mayor detalle y desde un punto de vista de evolución de una
+edad a otra, lo que vuelve aún más adecuado el objeto
+\({}_{n}q_{x}^{(c)}\).
+
+\subsubsection{1.1.2 Conceptualización de la
+idea}\label{conceptualizaciuxf3n-de-la-idea}
+
+La idea a conceptualizar es: analizar cómo cambia la probabilidad de
+decremento por categorías de causas seleccionadas de la ICD-10 según
+grupos etarios en países de Centroamérica, utilizando la WHO Mortality
+Database y trabajando con las categorías de la ICD-10.
+
+Según el Diccionario de la lengua española, analizar significa someter
+algo a un análisis, y análisis se entiende como un estudio detallado de
+algo. Segundo, probabilidad se define como cálculo o determinación
+cuantitativa de la posibilidad de que se verifique un suceso. Decremento
+significa, en su uso general, disminución; causa es aquello que se
+considera fundamento u origen de algo; edad es el tiempo que ha vivido
+una persona y también cada uno de los períodos en que se divide la vida;
+grupo es una pluralidad de seres o cosas que forman un conjunto;
+categoría es cada una de las clases establecidas dentro de una
+actividad; y determinado alude a algo particular o específico.
+
+Asimismo, categorías de causas seleccionadas de la ICD-10 significa, en
+términos prácticos, usar las categorías amplias definidas por la WHO,
+como enfermedades infecciosas y parasitarias \textbf{(I)} o tumores
+\textbf{(II)} que son bastante más manejables que la lista detallada de
+tres o cuatro caracteres. Por otro lado, según grupos de edad es una
+frase importante, porque la base de la OMS no entrega una cohorte
+individual seguida en el tiempo, sino conteos agregados por edades o
+grupos de edad, con formatos etarios que pueden variar entre países y
+años. Finalmente, utilizar la WHO Mortality Database se refiere a
+trabajar con los datos agregados por país proporcionados de manera
+estandarizada por la WHO.
+
+Con algunos conceptos llevados al contexto del proyecto, es importante
+diferenciar lo siguiente: que probabilidad se entenderá como una
+magnitud entre 0 y 1 que expresa la proporción esperada de veces que
+ocurrirá un evento. Decremento no se usará en el sentido coloquial de
+simple disminución, sino en su sentido actuarial; la salida de una vida
+del estado inicial por una causa específica, basado en la terminología
+de la Society of Actuaries, la cual define tablas de múltiples
+decrementos como aquellas que registran vidas, número de decrementos y
+probabilidades de decremento y supervivencia para más de una causa. En
+este caso, los decrementos de interés serán las muertes por causas
+mutuamente excluyentes.
+
+\subsubsection{1.1.3 Identificación de
+tensiones}\label{identificaciuxf3n-de-tensiones}
+
+\subsubsection{1.1.3 Identificación}\label{identificaciuxf3n}
+
+Una de las primeras tensiones que podría tener este tema es el uso de la
+base de datos. Al ser una base tan amplia y con gran cantidad de datos
+el manejo de la misma puede de salirse fácilmente de control si no se
+consideran los cuidados necesarios, es por esto que es vital el reducir
+los datos solamente a los fundamentalmente requeridos y formular el
+problema sobre un subconjunto de la base.
+
+La segunda tensión es actuarial. La cantidad \({}_{n}q_{x}^{(c)}\) no
+viene observada directamente en la base de la OMS. Lo que la base ofrece
+son conteos de muertes por causa y edad, y poblaciones de referencia por
+edad. Por tanto, el proyecto tendrá que decidir cómo pasar de esos
+conteos a una estimación de decremento por causas.
+
+La tercera tensión viene directamente del uso y comparación del enfoque
+estadístico clásico y bayesiano, puesto que hay que asegurarse que ambos
+se apliquen al mismo parámetro y conjunto de datos. Además, al momento
+de la comparación surgen problemas como el calcular la función de error
+de cada uno de los dos enfoques con efectividad y sus intervalos de
+confianza, ya que, de lo contrario podría surgir una comparación poco
+precisa dando resultados erróneos.
+
+\subsubsection{1.1.4 Reformulación de la idea en modo de
+pregunta}\label{reformulaciuxf3n-de-la-idea-en-modo-de-pregunta}
+
+1 ¿Cómo \textbf{estimar} los elementos de \textbf{patología de base} que
+inciden en la \textbf{intensidad} de la \textbf{mortalidad} en la
+\textbf{población} de ciertos \textbf{Países Centroamericanos} tomando
+de referencia los datos de 2015-2018 de la OMS?~
+
+2 ¿Qué \textbf{patrones de variabilidad} se pueden \textbf{estimar} en
+la \textbf{probabilidad de decremento} nqx(c) por c\textbf{ategoría de
+causas} de la ICD-10 en \textbf{Países Centroamericanos} en los años
+2015-2018?
+
+3 ¿Cómo se \textbf{distribuyen} las \textbf{muertes} por
+\textbf{categorías de causas} de la ICD-10 según \textbf{grupos de
+etario}s en \textbf{Países de Centroamérica} entre 2015 y 2018?
+
+4 ¿Cómo puede \textbf{estimarse} desde un \textbf{enfoque frecuentista y
+uno bayesiano}, una tasa de \textbf{mortalidad} por causas seleccionadas
+en \textbf{distintos estratos de la base}?
+
+Se determinó que la pregunta 2 encapsula de modo más integral los
+objetivos que se desean alcanzar en la consumación del proyecto,
+mientras que las otras tres preguntas se descartan como eje principal
+por razones de alcance y pertinencia. La primera es útil para la parte
+conceptual del agregado de categorías de causas de muerte, pero por sí
+sola no alcanza a estudiar el cambio de la probabilidad de decremento.
+La tercera cuenta con un enfoque más descriptivo y se centra en el uso
+de herramientas probabilísticas que suponen más un medio que un fin con
+los objetivos de la investigación.La cuarta, por su parte, sí aborda de
+manera directa la comparación entre el enfoque clásico y el enfoque
+bayesiano, pero convierte lo convierte en un tema principal que, dentro
+del proyecto, funciona más bien como apoyo metodológico que como
+objetivo sustantivo central. Por ello, la segunda pregunta resulta la
+más viable y coherente con los datos disponibles, con el objeto de
+estudio escogido y con el interés de investigación ya planteado.
+
+\subsubsection{1.1.5 Argumentación de la
+pregunta}\label{argumentaciuxf3n-de-la-pregunta}
+
+1 ¿Cómo \textbf{estimar} los elementos de \textbf{patología de base} que
+inciden en la \textbf{intensidad} de la \textbf{mortalidad} en la
+\textbf{población} de ciertos \textbf{Países Centroamericanos} tomando
+de referencia los datos de 2015-2018 de la OMS?~
+
+\textbf{Contraargumentos}
+
+\begin{itemize}
+\item
+  \textbf{Lógica:} Se podría cuestionar que el delimitar a cierto
+  intervalo temporal inciden negativamente en la calidad de la
+  generalización sobre las observaciones realizadas.
+\item
+  \textbf{Ética:} Partir de factores patológicos dados no canaliza la
+  espontaneidad de eventos que repercuten en la variabilidad de causas
+  de muerte posibles.
+\item
+  \textbf{Emocional:} Los factores patológicos más significativos de los
+  que se ha demostrado su incidencia en la mortalidad para personas
+  supone un componente previamente investigado, por lo que el enfoque no
+  aporta al público una perspectiva de estudio novedosa.
+\end{itemize}
+
+\textbf{Argumentos}
+
+\begin{itemize}
+\item
+  \textbf{Lógica:} El modelar elementos que inciden en la intensidad de
+  la mortalidad para ciertas clasificaciones de causas de perecimiento
+  permite reconocer de qué manera se ve intensificada la mortalidad por
+  características del grupo delimitado.
+\item
+  \textbf{Ética:} Se puede establecer un marco de referencia para el
+  análisis para la evolución de la incidencia de ciertas enfermedades en
+  diferentes edades de las personas.
+\item
+  \textbf{Emocional:} Se genera material para el análisis para el
+  estudio y toma de decisiones por autoridades competentes para la
+  prevención de determinados factores que suscitan el perecimiento de
+  personas.
+\end{itemize}
+
+2 ¿Qué \textbf{patrones de variabilidad} se pueden \textbf{estimar} en
+la \textbf{probabilidad de decremento} nqx(c) por c\textbf{ategoría de
+causas} de la ICD-10 en \textbf{Países Centroamericanos} en los años
+2015-2018?
+
+\textbf{Contraargumentos}
+
+\begin{itemize}
+\item
+  \textbf{Lógica:} La probabilidad de decrementos puede ser un objeto
+  matemáticamente difícil de construir si no se modela adecuadamente la
+  cadena de Markov para diferentes estados.
+\item
+  \textbf{Ética:} El identificar patrones de cambio entre intervalos de
+  edad puede involucrar la interpretación subjetiva del investigador.
+\item
+  \textbf{Emocional:} La facultad de apertura e interpretabilidad pueden
+  verse afectadas para personas no especializadas en los temas
+  abordados.~
+\end{itemize}
+
+\textbf{Argumentos}
+
+\begin{itemize}
+\item
+  \textbf{Lógica:} Se estima con un enfoque sólido teórico el
+  comportamiento de la evolución de la mortalidad para diferentes
+  intervalos de edad.
+\item
+  \textbf{Ética: ~F}aculta la descripción de la causa de mortalidad
+  entre grupos de etarios.
+\item
+  \textbf{Emocional:} El enfoque le proporciona a personas
+  especializadas una gama de datos, en específico las probabilidades de
+  decremento, para entender cómo evolucionan las características para
+  diferentes grupos etarios de determinadas causas de mortalidad.
+\end{itemize}
+
+3 ¿Cómo se \textbf{distribuyen} las \textbf{muertes} por
+\textbf{categorías de causas} de la ICD-10 según \textbf{grupos de
+etario}s en \textbf{Países de Centroamérica} entre 2015 y 2018?
+
+\textbf{Contraargumentos}
+
+\begin{itemize}
+\item
+  \textbf{Lógica:} Al indexar una diversidad de factores de patología de
+  base dentro de un solo mancomunado conjunto elimina la heterogeneidad
+  de los datos y puede~ asignar proporciones de muertes no realistas
+  para ciertas patologías estudiadas por individual.
+\item
+  \textbf{Ética: S}e pierde la distribución marginal característica para
+  cada respectiva causa de muerte.
+\item
+  \textbf{Emocional:} La construcción del agregado de factores de muerte
+  y su justificación puede estimular una opacidad al momento de
+  interpretar los resultados para personas no especializadas.~
+\end{itemize}
+
+\textbf{Argumentos}
+
+\begin{itemize}
+\item
+  \textbf{Lógica:} Faculta la descripción intuitiva de qué elementos
+  inciden mayoritariamente en mortalidad para diferentes estratos de
+  edad.
+\item
+  \textbf{Ética:} Promueve el análisis de determinadas categorías de
+  causa de muerte para población en diferentes grupos de etarios.~
+\item
+  \textbf{Emocional:} Proporciona una herramienta intuitiva para que
+  personas no necesariamente especializadas o capacitadas en menesteres
+  técnicos comprendan factores que inciden en la mortalidad en distintos
+  intervalos de edad.
+\end{itemize}
+
+4 ¿Cómo puede \textbf{estimarse} desde un \textbf{enfoque frecuentista y
+uno bayesiano}, una tasa de \textbf{mortalidad} por causas seleccionadas
+en \textbf{distintos estratos de la base}?
+
+~\textbf{Contraargumentos}
+
+\begin{itemize}
+\item
+  \textbf{Lógica:} La simple estimación de una tasa puede desaprovechar
+  las herramientas metodológicas que permiten los enfoques frecuentista
+  y bayesiano.
+\item
+  \textbf{Ética:} Podría suscitarse que al tener resultados ligeramente
+  distintos por el cambio de metodología se genere una opinión de valor
+  inadecuada en la que se exalte una metodología sobre otra cuando ambas
+  son lógicamente válidas pero más convenientes cada una para diferentes
+  contextos.
+\item
+  \textbf{Emocional:} Una población no especializada podría interpretar
+  la diferencia de resultados como que una metodología es más adecuada
+  que otra.
+\end{itemize}
+
+\textbf{Argumentos}
+
+\begin{itemize}
+\item
+  \textbf{Lógica:} Determinar la tasa de mortalidad brinda una
+  comprensión intuitiva de la distribución de la proporción de muerte
+  entre causas.
+\item
+  \textbf{Ética:} Clarificar la concentración de fallecimientos por
+  determinadas causas de muerte.
+\item
+  \textbf{Emocional:} Estimar una tasa de mortalidad para determinadas
+  causas permite tener un estadístico que representa las proporciones de
+  mortalidad por categoría de forma intuitiva para personas no
+  especializadas.
+\end{itemize}
+
+De estas cuatro formulaciones, la segunda se considera la más adecuada
+como pregunta principal. Esto se debe a que recoge mejor el núcleo del
+proyecto: no solamente describir cómo se distribuyen las muertes por
+causa, sino estudiar e interpretar cómo cambia la probabilidad de
+decremento por categorías de causas a lo largo de los grupos de edad.
+Además, mantiene de forma moderada la comparación entre enfoque clásico
+y bayesiano, pero sin desplazar el interés principal hacia una discusión
+puramente metodológica. Así, la pregunta central sigue estando en el
+comportamiento e interpretación de nqx(c) , que es precisamente el
+objeto actuarial que se había definido desde el inicio.
+
+\subsubsection{1.1.6 Argumentación a través de los
+datos}\label{argumentaciuxf3n-a-travuxe9s-de-los-datos}
+
+Los datos utilizados para este trabajo provienen de la base de
+mortalidad de la OMS (En inglés, World Health Organization Mortality
+Database). Está dividida en seis partes, cada una recopilando el número
+de defunciones clasificadas por rangos de edad y causa de muerte, de
+acuerdo al segundo estándar internacional de enfermedades más reciente,
+el ICD-10. (International Classification of Diseases). Fuente de
+información: WHO Mortality Database. Los datos fueron obtenidos por las
+autoridades nacionales de cada país, encargadas de contabilizar y
+clasificar las defunciones.
+
+\textbf{Contexto temporal y espacial:} La base de datos registra
+anualmente el número de defunciones por país, grupo de edad y causa de
+muerte, de acuerdo al ICD-10. Las seis bases unidas contienen
+información desde 1950 hasta el año 2023. Para efectos de este trabajo,
+se propone trabajar con Centroamérica (Con la aclaración de que se omite
+a Honduras del análisis, debido a la falta de registros recientes,
+llegando hasta el 2013). En el período 2015-2018.
+
+\textbf{Facilidad de obtener la información:} Las bases de mortalidad de
+la OMS se encuentran en su página oficial, junto a un documento que
+explica a detalle la dinámica de la misma. Esta guía es necesaria para
+interpretar correctamente el código de las causas de muerte y los rangos
+de edad en los que están ordenadas las observaciones.
+
+\textbf{Población de estudio:} Las defunciones registradas que forman
+parte de los sistemas nacionales obtenidos\textbar{} de la OMS.
+
+\textbf{Muestra Observada:} La cantidad de defunciones registradas,
+clasificadas por: Año, país, edad y causa de muerte. Es necesario
+aclarar que las defunciones son el agregado de rangos de edades y no por
+unidades registradas. Por ende, el proyecto debe de ser interpretado
+desde grupos de población.
+
+\textbf{Unidad estadística o individuos:} La unidad estadística es un
+grupo poblacional agregado, por ejemplo: ``hombres de 50--54 años, Costa
+Rica, 2018, que murieron por una causa determinada''.
+
+\textbf{Descripción de la tabla}
+
+La International Classification of Diseases 10 (ICD-10) es la décima
+estandarización de la clasificación de enfermedades propuesta por la
+WHO. Esta tiene como finalidad relacionar enfermedades muy complejas en
+clasificaciones más amplias y generales (AAPC Thought Leadership Team,
+2025). La clasificación de la causa se escribe mediante cuatro
+caracteres:
+
+\begin{itemize}
+\item
+  \textbf{Primer caracter:} Es una letra, esta clasifica de manera más
+  amplia la enfermedad.
+\item
+  \textbf{Segundo caracter:} Es un número. Dentro de la clasificación
+  del primer caracter, el segundo caracter desglosa las enfermedades
+  asociadas a la clasificación principal.
+\item
+  \textbf{Tercer caracter:}Es un número. Cumple la misma función que el
+  segundo caracter.
+\item
+  \textbf{Cuarto caracter:} Es un número. Dentro del segundo y tercer
+  caracter, se encuentran enfermedades más específicas, las cuales el
+  cuarto caracter clasifica. Si la enfermedad no tiene variantes más
+  específicas, entonces la enfermedad solo contempla los primeros tres.
+\end{itemize}
+
+Por ejemplo: Las letras A y B clasifican ciertas enfermedades
+infecciosas y parasitarias. De esta manera se permite agrupar causas de
+defunciones específicas en categorías generales:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2373}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2627}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5000}}@{}}
+\caption{\emph{Ejemplo breve de la clasificación de enfermedades de
+acuerdo al ICD-10. Elaboración propia.}}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Primer Caracter (Letra)}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Demás caracteres (Números)}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Enfermedad}
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Primer Caracter (Letra)}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Demás caracteres (Números)}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Enfermedad}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+A-B & 00-99 & Ciertas enfermedades infecciosas y parasitarias \\
+A & 00-09 & Enfermedades infecciosas intestinales \\
+A & 00 & Cólera \\
+A & 001 & Cólera clásica \\
+A & 002 & El Tor de cólera \\
+A & 009 & Cólera no especificada \\
+B & 00-09 & Infecciones virales por lesiones de piel y membrana
+mucosa \\
+B & 00 & Herpes simple \\
+B & 001 & Dermatitis vesicular herpética \\
+B & 04 & Viruela del mono (sin variantes específicas) \\
+\end{longtable}
+
+Existe una estandarización aún más general para la clasificación de
+enfermedades utilizando cuatro dígitos, la cual fue propuesta por
+Goerlich (2012), para agrupar de manera más amplia la causa de muerte en
+el cálculo de las tablas de vida de decrementos múltiples. Para efectos
+de este trabajo, se utilizará este estándar para un mejor manejo de
+datos. A continuación una tabla que explica el estándar:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1228}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1520}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.7251}}@{}}
+\caption{\emph{Explicación de la lista de tabulación de mortalidad de la
+ICD-10. Obtenido de: (Goerlich, 2012).}}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Grupo}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{ICD-10}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Causa}
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Grupo}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{ICD-10}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Causa}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+I & A00-B99, R75 & Enfermedades infecciosas y parasitarias \\
+II & C00-D48 & Tumores \\
+III & D50-D89 & Enfermedades de la sangre y de los órganos
+hematopoyéticos, y ciertos trastornos que afectan al mecanismo de la
+inmunidad \\
+IV & E00-E90 & Enfermedades endocrinas, nutricionales y metabólicas \\
+V-VIII & F00-H95 & Trastornos mentales y del comportamiento (V) y
+Enfermedades del sistema nervioso y de los órganos de los sentidos
+(VI-VIII) \\
+IX & I00-I99 & Enfermedades del sistema circulatorio \\
+X & J00-J99 & Enfermedades del sistema respiratorio \\
+XI & K00-K93 & Enfermedades del sistema digestivo \\
+XII & L00-L99 & Enfermedades de la piel y del tejido subcutáneo \\
+XIII & M00-M99 & Enfermedades del sistema osteomuscular y del tejido
+conjuntivo \\
+XIV & N00-N99 & Enfermedades del sistema genitourinario \\
+XV & O00-O99 & Embarazo, parto y puerperio \\
+XVI & P00-P96 & Afecciones originadas en el periodo perinatal \\
+XVII & Q00-Q99 & Malformaciones congénitas, deformidades y anomalías
+cromosómicas \\
+XVIII & R00-R74, R76-R99, U00-U99 & Síntomas, signos y hallazgos
+anormales clínicos y de laboratorio, no clasificados en otra parte. \\
+XX & V01-Y89 & Causas externas de mortalidad \\
+\end{longtable}
+
+La siguiente tabla explica todo el contenido presente en las columnas de
+la base de datos de la WHO:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.1333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.8667}}@{}}
+\caption{\emph{Significado de las columnas de la base de datos. Obtenido
+de: World Health Organization (2026).}}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Columna}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Contenido}
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Columna}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Contenido}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Country & Código del país. \\
+Admin1 & Región específica dentro de cada país (No aplica para
+Centroamérica). \\
+Subdiv & Tipo de víctimas (Ciudadanos, solo nacionales). No aplica para
+Centroamérica. \\
+Year & Año del dato registrado. \\
+List & Lista de la edición de la ICD utilizada. \\
+Cause & Clasificación de la muerte registrada de acuerdo al ICD-10. \\
+Sex & 1 para hombre, 2 para mujer, 9 para no especificado. \\
+Frmat & Forma de ordenamiento de rangos de edad. \\
+IM\_Frmat & Forma de ordenamiento de rangos de edad para menores de un
+año. \\
+Deaths1 & Muertes para todas las edades. \\
+Deaths2 & Muertes a la edad de 0 años. \\
+Deaths3 & Muertes a la edad de 1 año. \\
+Deaths4 & Muertes a la edad de 2 años. \\
+Deaths5 & Muertes a la edad de 3 años. \\
+Deaths6 & Muertes a la edad de 4 años. \\
+Deaths7 & Muertes en el rango de 5-9 años. \\
+Deaths8 & Muertes en el rango de 10-14 años. \\
+Deaths9 & Muertes en el rango de 15-19 años. \\
+Deaths10 & Muertes en el rango de 20-24 años. \\
+Deaths11 & Muertes en el rango de 25-29 años. \\
+Deaths12 & Muertes en el rango de 30-34 años. \\
+Deaths13 & Muertes en el rango de 35-39 años. \\
+Deaths14 & Muertes en el rango de 40-44 años. \\
+Deaths15 & Muertes en el rango de 45-49 años. \\
+Deaths16 & Muertes en el rango de 50-54 años. \\
+Deaths17 & Muertes en el rango de 55-59 años. \\
+Deaths18 & Muertes en el rango de 60-64 años. \\
+Deaths19 & Muertes en el rango de 65-69 años. \\
+Deaths20 & Muertes en el rango de 70-74 años. \\
+Deaths21 & Muertes en el rango de 75-79 años. \\
+Deaths22 & Muertes en el rango de 80-84 años. \\
+Deaths23 & Muertes en el rango de 85-89 años. \\
+Deaths24 & Muertes en el rango de 90-94 años. \\
+Deaths25 & Muertes a la edad de 95 años o más. \\
+Deaths26 & Muertes a una edad no especificada. \\
+IM\_deaths1 & Muertes a una edad de 0 días. \\
+IM\_deaths2 & Muertes a una edad de 1-6 días. \\
+IM\_deaths3 & Muertes a una edad de 7-27 días. \\
+IM\_deaths4 & Muertes a una edad de 28-364 días. \\
+Pais & Nombre del país de acuerdo a su código. \\
+\end{longtable}
+
+A continuación, aclaraciones del cuadro anterior: Para la columna de
+Country, en la documentación de la base de datos se encuentra una lista
+con los códigos de los países junto a su respectivo nombre. Con la
+finalidad de que el trabajo sea eficiente, se presentan sólo los códigos
+de Centroamérica:
+
+\begin{itemize}
+\tightlist
+\item
+  Belice: 2045
+\item
+  Costa Rica: 2140 -El Salvador: 2190
+\item
+  Guatemala: 2250
+\item
+  Nicaragua: 2340
+\item
+  Panamá: 2350
+\end{itemize}
+
+Para Centroamérica, las columnas Admin1 y Subdiv vienen vacías (NA).
+Esto significa que todas las defunciones registradas no tienen
+especificación de región, son datos estandarizados a nivel nacional
+(World Health Organization, 2026).
+
+Para las columnas Frmat e IM\_Frmat, si en estas columnas hay un 0 y un
+1 respectivamente, los rangos de edad están ordenados de acuerdo a la
+tabla anterior. Si posee otro número (Ya sea cualquiera del 1 al 9 para
+Frmat, y cualquiera del 2, 8 o 9 para IM\_Frmat), los rangos de edad
+presentan un orden distinto. Para efectos de Centroamérica, sólo Costa
+Rica posee datos de tipo de orden número 2 en Frmat y 8 para IM\_Frmat
+para el año 2020. Por lo tanto, la diferencia sería la siguiente:
+
+\begin{itemize}
+\item
+  Frmat = 2: No existe la separación de 1,2,3,4 años. Por lo que, el
+  agregado de todos los registros de este rango de edad recae en la
+  columna de Deaths3 (Pasaría a ser muertes para el rango de edades de 1
+  a 4 años). Tampoco existen datos en las columnas Deaths24 y Deaths 25
+  (Es decir, 90 años en adelante). Entonces, el agregado de los
+  registros para ese rango de edad recae en Deaths 23 (serían muertes
+  para la edad de 85 años en adelante).
+\item
+  IM\_Frmat = 8: No existe la separación de días para muertes en edades
+  de menos de un año. Por lo que, cualquier muerte menor a un año recae
+  en IM\_deaths1.
+\end{itemize}
+
+La columna Pais fue colocada manualmente, para reconocer cada registro
+por el nombre del país además de su código.
+
+Finalmente, con respecto a la relación de la tabla con la pregunta
+principal de investigación, tenemos que la tabla permite observar, para
+cada país, año, grupo de edad y categoría de causa seleccionada, cómo se
+comporta la probabilidad estimada de decremento \({}_{n}q_{x}^{(c)}\) y
+si ese comportamiento sugiere patrones de aumento, disminución o
+estabilidad conforme avanzan los grupos de edad, lo que responde
+directamente la pregunta. Además, al incorporar estimaciones obtenidas
+desde un enfoque clásico y uno bayesiano, la tabla también hace posible
+examinar si ambos marcos ofrecen lecturas semejantes o distintas de esos
+patrones.
+
+\subsection{1.2 Revisión
+Bibliográfica}\label{revisiuxf3n-bibliogruxe1fica}
+
+\subsubsection{1.2.1 Búsqueda de
+Bibliografía}\label{buxfasqueda-de-bibliografuxeda}
+
+Se ha realizado las siguientes combinaciones de palabras clave:
+
+\begin{itemize}
+\tightlist
+\item
+  Base Mortalidad OMS + Causa de Muerte + ICD-10
+\item
+  Central America + Mortality + Diseases
+\item
+  Tablas de mortalidad + Bayesiano + Gumpertz, Makeham y Exponencial +
+  Latinoamérica
+\item
+  Probabilidad de decremento + Grupo de edad + Latinoamérica
+\item
+  Mortalidad por causa de muerte + Cohortes de edad + Latinoamérica
+\item
+  Estimación bayesiana de mortalidad + Grupo específico de edad + Causa
+  de muerte + ICD-10 + Poblaciones pequeñas
+\item
+  WHO Mortality Database + Bayesian estimation + Age-specific cause of
+  death + Central America + small populations
+\item
+  Specific cause mortality + Gompertz, Makeham and Exponential models +
+  Latin America
+\item
+  Probability of decrement + ICD-10 + Small populations
+\item
+  Bayesian mortality tables + Age groups + Latin America
+\item
+  Estimation of specific cause mortality + WHO Mortality Database +
+  Exponential models
+\end{itemize}
+
+\subsubsection{1.2.2 Construcción de fichas de
+literatura}\label{construcciuxf3n-de-fichas-de-literatura}
+
+\textbf{Estimación del riesgo de longevidad mediante distribuciones de
+supervivencia transmutadas.}
+
+\begin{itemize}
+\item
+  \textbf{Título:} Estimación del riesgo de longevidad mediante
+  distribuciones de supervivencia transmutadas.
+\item
+  \textbf{Autor:} Juan Sebastían Orozco Cortés.
+\item
+  \textbf{Año de publicación:} 2023.
+\item
+  \textbf{Nombre del tema:} Estimación y proyección de la mortalidad en
+  Colombia mediante modelos clásicos y alternativas bayesianas, aplica
+  transmutación a los modelos (Descomponer la distribución acumulada
+  para reducir los sesgos de la distribución base).
+\item
+  \textbf{Clasificación:} Metodológica, pues el paper propone un
+  procedimiento estructurado paso por paso para la estimación y
+  proyección de las tablas de mortalidad mediante modelos como
+  Gompertz-Makeham, Perks I y II, exponencial, etc.
+\item
+  \textbf{Resumen en una oración:} Propone mejorar la estimación de
+  mortalidad,con parámetros dinámicos mediante métodos
+  clásicos/bayesianos. Argumento central: El paper plantea que la
+  mortalidad se puede estimar de manera más precisa y con menos margen
+  de sesgo en edades avanzadas mediante distribuciones transmutadas,
+  tomando los parámetros de transmutación como series de tiempo.
+\item
+  \textbf{Problemas con el argumento o el tema:} Si bien se aplican los
+  modelos clásicos y bayesianos junto a las distribuciones transmutadas,
+  no compara explícitamente la aplicación de los mismos. Además, la
+  construcción de los modelos de mortalidad se realiza con observaciones
+  anuales, a diferencia de este trabajo, que utiliza observaciones bajo
+  grupos de edad y causas de muerte.
+\item
+  \textbf{Conexión con mi proyecto:} Este paper tiene una relación
+  directa con la propuesta planteada en este proyecto, pues muestra que
+  las tablas de mortalidad se pueden construir tanto mediante modelos
+  clásicos y bayesianos. Esto respalda la idea principal, la cual
+  consiste en comparar ambos métodos de inferencia. Añadido a ello, se
+  pueden construir las causas de muertes y los grupos de edad para
+  efectos de las constantes de los modelos conocidos (Gompertz-Makeham,
+  Exp) o parámetros para el caso bayesiano.
+\item
+  \textbf{Lo que NO dice el autor:} No considera problemas de
+  comparabilidad, pues solo construye las tablas de mortalidad para
+  Colombia. Además de que sus variables son observaciones individuales y
+  no variables agregadas, como los grupos de edad.
+\item
+  \textbf{Contraste con otra fuente:} En contraste con \emph{The adult
+  mortality profile by cause of death in 10 Latin American countries
+  (2000--2016)}, el estudio es más de carácter descriptivo, mostrando el
+  perfil de mortalidad para adultos mapeado en diez países de
+  Latinoamérica y no va más allá de ello, obviando por completo el
+  proceso metodológico.
+\item
+  \textbf{Evaluación de aplicabilidad: 4/5:} La metodología propuesta en
+  este documento es aplicable al proyecto, pues involucra los dos tipos
+  de inferencia ya mencionados para la estimación de las
+  constantes/parámetros. Además del factor de las observaciones
+  individuales limita que aplique de la misma forma que en el paper,
+  pero se puede adaptar a este trabajo.
+\item
+  \textbf{Pregunta que le haría al autor:} Precisamente, ¿De qué manera
+  adaptaría la propuesta metodológica de su trabajo para la construcción
+  de la mortalidad para observaciones agregadas de grupos de edad y
+  causas de muerte?
+\item
+  \textbf{Resumen argumentativo:} El documento muestra que se puede
+  mejorar la estimación de la mortalidad en edades avanzadas
+  transmutando los modelos de inferencia clásicos y bayesianos. Esta
+  diferencia resulta útil para estimar tablas de mortalidad para
+  observaciones individuales. Sin embargo, se limita a contextos de
+  observaciones agregadas como grupos de edad y a condiciones extras
+  como causas de muerte. Por ende, este documento muestra que es posible
+  y viable construir las porciones de mortalidad bajo estos modelos,
+  argumento clave para la fundamentación de este trabajo. Para efectos
+  del mismo, se va a adaptar la metodología propuesta en el paper, pues
+  sigue un patrón similar a la idea central.
+\end{itemize}
+
+\subsubsection{1.3 Construcción de UVE de
+Gowin}\label{construcciuxf3n-de-uve-de-gowin}
+
+\subsubsection{1.4 Parte escrita}\label{parte-escrita}
+
+La pregunta delimitada para el trabajo de investigación constituye ser
+\textbf{Análisis del cambio de la probabilidad de decremento}nqx(c)
+\textbf{para grupos etarios por~ causas de muerte de acuerdo a la
+clasificación ICD-10 en países de Centroamérica {[}2015, 2018{]}.} De
+forma directa, se puede afirmar que variables clave para la estimación
+de nqx(c)~ constituyen ser:
+
+\(d_x^{(c)}\)~ : Número de vidas saliendo de la población entre las
+edades (x,x+1{]}~ debido al decremento c~
+
+\(l_x^{(T)}\)~ : Cantidad de población sobreviviente a la edad exacta x.
+
+\(_nq_x^{(c)}\) : Probabilidad de que una vida de edad (x) deje el grupo
+en los siguientes n periodos como resultado de decremento por el factor
+(c)
+
+\(_nm_x^{(c)}\) : Tasa central de decremento por la causa (c), el cual
+es un promedio ponderado de la fuerza de mortalidad entre las edades
+(x,x+1{]}.~
+
+A su vez es conveniente tener presente las siguientes relaciones de
+equivalencia que facultará la estimación de la probabilidad de
+decremento múltiple; \(_nq_x^{(c)} =d_x^{(c)}/ l_x^{(T)}\). La notación
+empleada sigue los estándares actuariales internacionales del material
+literario de referencia primario Bowers et al.~(1997).~
+
+Uno de los principales desafíos supondrá la traducción de las
+frecuencias de muerte por categorías de causas para diferentes grupos
+etarios a una distribución de probabilidad asociada para lo cual se
+empleará el uso de la \(_nm_x^{(c)}\), que representa la frecuencia por
+unidad de exposición, es decir la intensidad de ocurrencia del evento.
+considerando una intensidad constante para los grupos etarios
+delimitados en la ICD-10, la acumulación de esa intensidad permite
+construir la probabilidad de ocurrencia del evento, y la descomposición
+por causa permite obtener la distribución de probabilidad marginal por
+causas de decremento.
+
+Dentro de la bibliografía empleada para sustentar las bases del aparato
+teórico-metodológico en Dirgová Luptáková y Bilíková (2014) se construye
+un modelo de decremento simple de dos estados, a saber; 0:=\{vivo\},
+1:=\{muerto\}, donde el estado \{1\} es absorbente pues representa la
+única causa de salida del sistema para un individuo de la población,
+cabe mencionar que para este modelo en particular se satisface la
+propiedad de Markov, por lo que las probabilidades condicionadas de que
+el estado futuro \(X_n=y\) solo depende del estado presente
+\(X_{n-1}=x\) , lo cual permite ciertas simplificaciones al momento de
+realizar cálculos.
+
+Sin embargo, este modelamiento se puede generalizar para más de dos
+estado introduciendo de esta forma las probabilidades de decremento
+múltiples, con esta última idea es que se persigue articular el proyecto
+de investigación propuesto, para el cual se comprenderá un modelo de
+diversas causas de salidas c que corresponderá a los estados absorbentes
+que serán las diversas causas de muerte basados en la nomenclatura de la
+ICD-10.
+
+Cabe indicar que realizando ciertos supuestos tales como que al
+condicionar el estado actual del agregado de la población de estudio y
+al grupo etario al que pertenece actualmente, el futuro no depende de
+cómo llegó ahí, es decir que se satisfaga la propiedad de Makov, se
+podría implementar las facilidades para ejecutar cálculos siempre y
+cuando estos correspondan asunciones sensatas dentro del modelo.~
+
+Por otro lado el establecimiento de un modelo multiestado para
+representar las probabilidades de decremento viene motivada porque según
+afirma Goerlich Gisbert (2012) a ``estudios que tratan de ajustar la
+esperanza de vida por estados de salud están muy limitados por la escasa
+disponibilidad de información estadística~ y las dificultades de
+comparación intertemporal'' (p.~6) , está crítica está fundamentada
+esencialmente en que la esperanza de vida es una medida dispersión muy
+asimétrica, aunado a su vez que la \(E[T_{x}]\)es sencillamente la edad
+media a la muerte, es decir cuando ocurre y no aporta información
+detallada que especifique las causas que ocasionan el perecimiento ni
+mucho menos el cómo cambian estas.
+
+En este sentido, extendiendo las tablas de mortalidad de decrementos
+únicos a tablas por decrementos múltiples, es decir la representación de
+las probabilidades de transición a un estado absorbente \{y\} por
+múltiples causas comprendidas en la ICD-10, se permite comprender cómo
+han variado las probabilidades de mortalidad entre grupos etarios al
+considerar diferentes patologías de base de la cohorte de estudio; para
+este fin se seguirán los lineamientos metodológicos sugeridos por
+Goerlich Gisbert en Tablas de vida de decrementos múltiples: Mortalidad
+por causas en España (1975--2008) (Goerlich Gisbert, 2012), pero
+enfocándonos en una perspectiva Centroamericana.
+
+\newpage
+
+\section{Anexos}\label{anexos}
+
+\subsection{Anexo 1: Preparación}\label{anexo-1-preparaciuxf3n}
+
+\subsubsection{Log de contribuciones}\label{log-de-contribuciones}
+
+\begin{verbatim}
+Warning: package 'kableExtra' was built under R version 4.5.3
+\end{verbatim}
+
+\begin{longtable*}[t]{>{\raggedright\arraybackslash}p{5cm}>{\raggedright\arraybackslash}p{10cm}}
+\toprule
+Integrante & Contribución\\
+\midrule
+Kevin David Calderón Martínez & Argumentación a través de datos. 1.1.6. Búsqueda de bibliografía 2.1.1. Fichas bibliográficas 2.1.2: Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas y The adult mortality profile by cause of death in 10 Latin American countries. Log de contribuciones (Anexo) y Diario de aprendizaje 5\\
+Gabriel de Jesús Chaves Esquivel & Identificación de tensiones 1.1.3. UVE de Gowin 1.3. Búsqueda de bibliografía 2.1.1 . Audiencia del proyecto (Anexo). Log de contribuciones (Anexo)\\
+Sebastián Miranda Ramírez & Definición de la idea 1.1.1. Conceptualización de la idea 1.1.2. Reformulación de la idea en modo pregunta 1.1.4. Búsqueda de bibliografía 2.1.1 . Registro de uso de IA (Anexo). Log de contribuciones (Anexo). Búsqueda de papers y material al respecto de las mortalidades de decrementos múltiples.\\
+Benjamín Gutiérrez Padua & Pregunta de investigación 1. Argumentación de la pregunta 1.1.5. Búsqueda de bibliografía 2.1.1. Fichas bibliográficas 2.1.2: WHO Mortability Database. Parte de escritura 3. Log de contribuciones (Anexo)\\
+\bottomrule
+\end{longtable*}
+
+
+
+
+\end{document}
