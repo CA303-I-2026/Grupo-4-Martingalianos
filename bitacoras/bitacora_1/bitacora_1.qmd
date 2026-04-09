@@ -376,6 +376,90 @@ Se ha realizado las siguientes combinaciones de palabras clave:
 
 ### 1.2.2 Construcción de fichas de literatura
 
+**Tablas de vida de decrementos múltiples: Mortalidad por causas en España (1975-2008)**
+
+-   **Título:** Tablas de vida de decrementos múltiples: Mortalidad por causas en España (1975-2008).
+
+-   **Autores:** Francisco J. Goerlich Gisbert.
+
+-   **Año de publicación:** 2012.
+
+-   **Nombre del tema:** Construcción de tablas de vida de decrementos múltiples para analizar mortalidad por causas en España.
+
+-   **Clasificación:** Metodológica. Se clasifica así porque el aporte principal del documento es proponer una forma consistente de integrar las causas de muerte en España al sistema de tablas de vida y generar diferentes gráficos afines al respecto.
+
+-   **Resumen en una oración:** Construye tablas de decrementos múltiples para estudiar mortalidad por causa, edad y tiempo.
+
+-   **Argumento central:** El documento sostiene que la mortalidad por causa debe analizarse dentro del marco de tablas de vida y no únicamente mediante tasas estandarizadas, porque el enfoque de decrementos múltiples permite estudiar de forma consistente cómo varían las probabilidades de fallecer por distintas causas según la edad, el tiempo y el territorio, mientras que los otros indicadores estandarizados tienen varias falencias.
+
+-   **Problemas con el argumento o el tema:** El documento no establece comparaciones internacionales directas ni muestra por sí solo cómo adaptar su metodología a una base como la de la OMS para países de Centroamérica. Además, trabaja con los datos observados tal como están y de allí saca las probabilidades como divisiones simples; no desarrolla sobre enfoques clásico y bayesiano ni plantea supuestos explícitos sobre la forma de la mortalidad.
+
+-   **Conexión con mi proyecto:** Goerlich muestra cómo pasar de mortalidad por causa a un esquema de tablas de decrementos múltiples donde se analizan probabilidades de fallecer por causa a través de edades y años, presentando una estructura estándar que se podrá replicar parcialmente.
+
+-   **Lo que NO dice el autor:** No responde cómo aplicar esa lógica a países de Centroamérica ni cómo manejar la comparación entre enfoque clásico y bayesiano. Además en la mayoría de métricas colapsa las edades por año, para hacer solamente la comparación temporal, lo que difiere fuertemente de nuestro enfoque en estudiar la evolución por edad de nqx(c) en años determinados. 
+
+-   **Contraste con otra fuente:** En contraste con The adult mortality profile by cause of death in 10 Latin American countries, este documento aporta mucho más en el plano metodológico, pues Goerlich enseña cómo insertar las causas de muerte en tablas de vida y construir probabilidades dentro de un marco actuarial consistente, mientras que Calazans y Queiroz sirven más como antecedente regional sobre patrones de mortalidad por causa. Se complementan, porque uno da el método y el otro justifica que sí vale la pena estudiar perfiles por causa en América Latina.
+
+**WHO mortality database documentation**
+
+-   **Título:** WHO mortality database documentation.
+
+-   **Autores:** Department of Data, Digital Health, Analytics and AI - World Health Organization.
+
+-   **Año de publicación:** 2026.
+
+-   **Nombre del tema:** Estructura, contenido y uso de la base de datos de mortalidad por causa de la OMS.
+
+-   **Clasificación:** Documento técnico de la documentación de la base de datos.
+
+-   **Resumen en una oración:** Documentación de la estructura y contenido de la base de datos de mortalidad de la OMS.
+
+-   **Argumento central:** La base de datos de mortalidad de la OMS es una compilación estandarizada de estadísticas oficiales de defunciones reportadas por los países, organizada bajo clasificaciones internacionales (la nomenclatura de la ICD), que permite comparaciones globales de mortalidad desde un determinado estándar común.
+
+-   **Problemas con el argumento o el tema:** La comparabilidad internacional no es perfecta y en muchas ocasiones engorrosa, debido a diferencias en cobertura, calidad de registro y prácticas de codificación diferentes entre países. 
+
+-   **Conexión con mi proyecto:** Es la fuente principal de datos para construir probabilidades de decremento por causa${}_n q_x^{(c)}$, ya que proporciona las muertes por causa y la desagregación por edad.
+
+-   **Lo que NO dice el autor:** No explica cómo transformar directamente los datos en probabilidades actuariales ${}_n q_x^{(c)}$. Tampoco se propone un plan de acción para representar los conteos a una distribución de probabilidad, por lo cual la implementación de un modelo estadístico queda para aquellos especializados e interesados en el tema.  
+
+-   **Contraste con otra fuente:** A diferencia de los otros artículos de investigaciones actuariales o estadística el documento describe datos, y no métodos. Por lo que la principal diferencia se ubica en que las otras fuentes empleadas se han centrado en inferir probabilidades o riesgos.
+
+-   **Evaluación de aplicabilidad:** 5/5. Supone la fuente de datos base con la que se consumará la propuesta del proyecto de investigación para la determinación del cálculo de las probabilidades por decrementos por causas múltiples ${}_n q_x^{(c)}$. 
+
+-   **Pregunta que le haría al autor:** ¿Cómo recomienda la OMS transformar estos datos agregados en medidas comparables de riesgo para la determinación de las nqx(c) centrándose en los países de Centroamérica?
+
+-   **Resumen argumentativo:** Se estandariza la codificación por causas de muerte bajo una nomenclatura común, supone una referencia clave para traducir los conteos de muertes por causas a las probabilidades de decremento ${}_n q_x^{(c)}$.
+
+-   **The adult mortality profile by cause of death in 10 Latin American countries.**
+
+    **Título:** The adult mortality profile by cause of death in 10 Latin American countries (2000-2016).
+
+    **Autores:** Júlia Almeida Calazans y Bernardo Lanza Queiroz.
+
+    **Año:** 2020
+
+    **Nombre del tema**: Perfil de mortalidad adulta (15 a 60 años) por ocho causas de muerte (Enfermedades del sistema circulatorio, Diabetes, Causas externas, SIDA y VIH, Neoplasias, Ciertas enfermedades infecciosas y parasitarias, Enfermedades del sistema respiratorio y otras causas) en diez países de Latinoamérica (Argentina, Brasil, Chile, Colombia, Costa Rica, Ecuador, México, Paraguay, Perú y Uruguay) entre los años 2000-2016).
+
+    **Clasificación:** Temática, ya que describe los patrones de mortalidad utilizando series de tiempo con la base de la World Health Organization del 2018.
+
+    **Resumen en una oración:** Muestra que la mortalidad adulta en los diez países de Latinoamérica poseen patrones similares.
+
+    **Argumento central:** Aunque los niveles de mortalidad difieren entre países, el patrón general de causas en la adultez latinoamericana muestra predominio de enfermedades crónicas degenerativas. En hombres, enfermedades del sistema circulatorio y causas externas. Y entre mujeres, enfermedades del sistema circulatorio y neoplasias.
+
+    **Problemas con el argumento o el tema:** No comparte los enfoques de inferencia propuestos en este trabajo, además de que en el paper solo Costa Rica coincide con los países de Centroamérica.
+
+    **Conexión con mi proyecto:** Este artículo justifica que la selección de causas no sea arbitraria. Si en América Latina las enfermedades circulatorias y las causas externas ya muestran un peso importante en la mortalidad adulta, entonces tiene sentido explorar cómo cambia esa composición a lo largo de la edad en Centroamérica. Además, es clave aclarar que el paper utiliza la misma base de datos que la de este trabajo.
+
+    **Lo que NO dice el autor:**   No muestra el comportamiento de la mortalidad en intervalos cortos, sino que los describe en períodos de 16 años, lo cual puede sesgar los datos, pues la mortalidad en un período de 4 años tiene menos variación y pérdida de información que en un período de más de 15 años. Además, no ratifica el  uso de modelos de inferencia para el cálculo de las mortalidades.
+
+    **Contraste con otra fuente:** En contraste con Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas (Orozco Cortés, 2023), este paper sí hace un análisis comparativo, tomando en cuenta un grupo de países, además de condicionar directamente las mortalidades junto a las respectivas causas de muerte.
+
+    **Evaluación de aplicabilidad:** 3/5. Este paper muestra que la base de datos permite realizar análisis comparativos agrupando las mortalidades de acuerdo a otras variables como la causa de muerte, o en el caso de este trabajo, de los grupos de edad. Además de que, tras haber observado el patrón de las muertes más frecuentes de acuerdo a las causas, se puede tomar como base para comparar las mortalidades en Centroamérica con esas mismas causas de defunciones en el aparato metodológico.
+
+    **Pregunta que le haría al autor:** ¿Considera usted que los resultados se podrían replicar en el contexto centroamericano?, ¿O se obtendrían frecuencias distintas por otras causas de defunciones?
+
+    **Resumen argumentativo:** El paper tiene como finalidad analizar la mortalidad en adultos por causa de ocho distintos tipos de muertes en diez países de América Latina. Agrupa la mortalidad de acuerdo a la causa de muerte, que es lo que este trabajo propone replicar. No obstante, no aplica un modelo inferencial claro. Además de que se construye en un rango de edad muy grande (15-60 años), en un período de 16 años. Es útil tener como fuente un análisis en Latinoamérica, pues adaptando el estudio a Centroamérica se puede ratificar si los patrones de las causas de muertes son los mismos o existen leves o altas variaciones.
+
 **Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas.**
 
 -   **Título:** Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas.
@@ -548,7 +632,7 @@ Durante el desarrollo de este proyecto se utilizó Chat GPT en su versión plus,
 
 Su uso principal fue ayudar a dar forma a la idea de investigación, especialmente al pasar de una propuesta más descriptiva sobre mortalidad por causa a una formulación más precisa en términos de probabilidades de decremento por causa.
 
-También se empleó para aclarar conceptos y notación actuarial que resultaban confusos, sobretodo nqx(c) , así como la explicación de diferentes supuestos que se hacen en la tabla de mortalidad (Makeham, Gompertz o Exponencial) y cómo eso se podía ver desde un enfoque clásico o bayesiano. Esto permitió comprender mejor qué cantidad se quería estimar realmente y cómo se conectaba con la base de datos utilizada.
+También se empleó para aclarar conceptos y notación actuarial que resultaban confusos, sobretodo ${}_n q_x^{(c)}$, así como la explicación de diferentes supuestos que se hacen en la tabla de mortalidad (Makeham, Gompertz o Exponencial) y cómo eso se podía ver desde un enfoque clásico o bayesiano. Esto permitió comprender mejor qué cantidad se quería estimar realmente y cómo se conectaba con la base de datos utilizada.
 
 Otro uso importante fue la traducción y explicación de artículos técnicos. Varios papers tenían un vocabulario muy avanzado en inglés o fórmulas muy complejas, por lo que se usó la IA para traducir términos complejos al español o interpretar fórmulas para una buena comprensión de las investigación más reciente acerca del objeto a estudiar, así como modelos similares aplicados a diferentes contextos reales.
 
