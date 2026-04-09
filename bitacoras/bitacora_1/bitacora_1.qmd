@@ -408,6 +408,65 @@ Se ha realizado las siguientes combinaciones de palabras clave:
 
 ### 1.3 Construcción de UVE de Gowin
 
+---
+title: "V de Gowin"
+format: pdf
+---
+
+#### Pregunta de investigación
+
+¿Qué patrones de variabilidad se pueden estimar en la probabilidad de decremento ${}_n q_x^{(c)}$ por categoría de causas de la ICD-10 en países centroamericanos en los años 2015-2018?
+
+---
+
+::: columns
+
+::: column
+##### Conceptos básicos
+
+- **Patrones de variabilidad:** este concepto conjunto está conformado por dos definiciones fundamentales, patrones y variabilidad. En primer lugar un patrón, según Wikipedia (s.f.) es “Un patrón es un tipo de tema de sucesos u objetos recurrentes, a veces como repetición periódica, a veces como combinación de un número limitado de estructuras, generando una geometría más compleja analizable en términos de elementos recurrentes más simples”. Y aunado a la definición de variabilidad en el ámbito estadístico, la cual en base a Scott (2026) se define como un grado de dispersión de los valores de un conjunto de datos. Así, ambas en conjunto hacen referencia a dispersiones de los valores de un conjunto de datos recurrentes, ya sea porque se repitan de forma periódica o sean la combinación de un número limitado de estructuras de dispersión.
+
+- **Probabilidad de decremento:** Como se mencionó en la conceptualización de la idea, probabilidad se usa bajo la definición de una magnitud entre 0 y 1 que expresa la proporción esperada de veces que ocurrirá un evento. Además a esto se le amplia la explicación que da Goerlich (2012) en la que una probabilidad de decremento múltiple es la posibilidad de transicionar del estado de vida al estado de muerte, pero en el que el estado de muerte está dividido por diferentes categorías, como lo pueden ser: enfermedades, grupos de personas, causas de muerte, etc.
+
+- **Categoría de causas:** Según la Real Academia Española una categoría es “Cada una de las clases o divisiones establecidas al clasificar algo”; mientras que, causa se define como “Aquello que se considera como fundamento u origen de algo”. Así, una categoría de causa en este contexto es la clase o división del origen de algo, en este caso las enfermedades.
+
+---
+
+##### Teorías / Principios
+
+- **Teoría de probabilidad de decrementos múltiples:** Según el libro de referencia Bowers et al. (1997) esta teoría se basa en estudiar la distribución de dos variables aleatorias de una persona, en la que una estima el tiempo de vida y la otra estima la causa de la muerte. Además menciona que a cada estado (causas de muerte) se les llama decrementos. Concluyendo con la notación siguiente:
+
+  $$ {}_n q_x^{(c)} = \text{probabilidad de morir a la edad n + x a causa de la condición c dado que estábamos vivos a la edad x } $$
+
+- **Ley de Gompertz:** La ley de Gompertz, según Bowers et al. (1997), lo que nos dice es que la fuerza de mortalidad $\mu_x$ = tasa instantánea de muerte a la edad $x$, crece exponencialmente con la edad y se puede calcular como: 
+
+  $$ \mu_x = B c^x $$
+  En este caso solo consideramos la muerte por envejecimiento.
+
+
+- **Ley de Gompertz-Makeham:** La ley de makeham es una generalización de la ley de gompertz en la que agregamos un factor A que es un riesgo de muerte independiente a la edad, de esta forma consideramos el envejecimiento y otros factores que afectan a la esperanza de vida. Lo que nos da la fórmula: 
+
+  $$ \mu_x = A + B c^x $$ (Bowers et al., 1997).
+
+:::
+
+::: column
+##### Metodologías
+
+- **Modelación actuarial del seguro de vida mediante modelos de decremento:** Una gran fuente metodológica de la presente investigación es el trabajo de Dirgová, I., & Bilíková, M. (2014) en el que explican cómo modelar un seguro de vida mediante modelos de decremento, esto sirve para entender de forma sencilla e intuitiva cómo aplicar la probabilidad de decremento a nuestra base de datos y empezar a modelar de una forma muy básica.
+
+- **Tablas de vida de decrementos múltiples. Mortalidad por causas en España:** La investigación se va a basar en gran medida en el trabajo de Goerlich (2012), en el que se realiza un análisis de la mortalidad por distintas causas en españa mediante el uso de  tablas de vida de decremento múltiples, una de las únicas diferencias realmente sustanciales con el presente proyecto (además de los años y los países a estudiar) es la novedad del enfoque clásico y bayesiano para estimar las probabilidades de decremento.
+
+:::
+
+:::
+
+---
+
+#### Objeto de estudio
+
+El objeto de estudio de la investigación es la probabilidad de decremento ${}_n q_x^{(c)}$ por categorías de causas de la ICD-10, considerando su comportamiento por grupos de edad y país en Centroamérica durante el período 2015-2018.
+
 ### 1.4 Parte escrita
 
 La pregunta delimitada para el trabajo de investigación constituye ser **Análisis del cambio de la probabilidad de decremento**nqx(c) **para grupos etarios por  causas de muerte de acuerdo a la clasificación ICD-10 en países de Centroamérica \[2015, 2018\].** De forma directa, se puede afirmar que variables clave para la estimación de nqx(c)  constituyen ser:
