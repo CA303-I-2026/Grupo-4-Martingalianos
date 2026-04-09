@@ -80,7 +80,7 @@ Sebastián Miranda Ramírez — C4H274<br> Benjamín Gutiérrez Padua — C4F813
 
 ## 1.1 Pregunta de investigación
 
-¿Qué patrones de variabilidad se pueden estimar en la probabilidad de decremento ${}_{n}q_{x}^{(c)}$ por categoría de causas de la ICD-10 en Países Centroamericanos en los años 2015-2018?
+¿Qué patrones de variabilidad se pueden estimar en la probabilidad de decremento ${}_{n}q_{x}^{(c)}$ por categoría de causas de la ICD-10 en países centroamericanos en los años 2015-2018?
 
 ### 1.1.1 Definición de la idea
 
@@ -94,7 +94,7 @@ La elección de este enfoque también responde a antecedentes empíricos. En Am�
 
 La idea a conceptualizar es: analizar cómo cambia la probabilidad de decremento por categorías de causas seleccionadas de la ICD-10 según grupos etarios en países de Centroamérica, utilizando la WHO Mortality Database y trabajando con las categorías de la ICD-10.
 
-Según el Diccionario de la lengua española, analizar significa someter algo a un análisis, y análisis se entiende como un estudio detallado de algo. Segundo, probabilidad se define como cálculo o determinación cuantitativa de la posibilidad de que se verifique un suceso. Decremento significa, en su uso general, disminución; causa es aquello que se considera fundamento u origen de algo; edad es el tiempo que ha vivido una persona y también cada uno de los períodos en que se divide la vida; grupo es una pluralidad de seres o cosas que forman un conjunto; categoría es cada una de las clases establecidas dentro de una actividad; y determinado alude a algo particular o específico.
+Según el Diccionario de la lengua española, analizar significa someter algo a un análisis, y análisis se entiende como un estudio detallado de algo. Segundo, probabilidad se define como cálculo o determinación cuantitativa de la posibilidad de que se verifique un suceso. Decremento significa, en su uso general, disminución; causa es aquello que se considera fundamento u origen de algo; edad es el tiempo que ha vivido una persona y también cada uno de los períodos en que se divide la vida; grupo es una pluralidad de seres o cosas que forman un conjunto; categoría es cada una de las clases establecidas dentro de una actividad, siendo clase definida como el Conjunto de elementos con caracteres comunes; y determinado alude a algo particular o específico.
 
 Asimismo, categorías de causas seleccionadas de la ICD-10 significa, en términos prácticos, usar las categorías amplias definidas por la WHO, como enfermedades infecciosas y parasitarias **(I)** o tumores **(II)** que son bastante más manejables que la lista detallada de tres o cuatro caracteres. Por otro lado, según grupos de edad es una frase importante, porque la base de la OMS no entrega una cohorte individual seguida en el tiempo, sino conteos agregados por edades o grupos de edad, con formatos etarios que pueden variar entre países y años. Finalmente, utilizar la WHO Mortality Database se refiere a trabajar con los datos agregados por país proporcionados de manera estandarizada por la WHO.
 
@@ -110,19 +110,19 @@ La tercera tensión viene directamente del uso y comparación del enfoque estad�
 
 ### 1.1.4 Reformulación de la idea en modo de pregunta
 
-1 ¿Cómo **estimar** los elementos de **patología de base** que inciden en la **intensidad** de la **mortalidad** en la **población** de ciertos **Países Centroamericanos** tomando de referencia los datos de 2015-2018 de la OMS? 
+1 ¿Cómo estimar los elementos de patología de base que inciden en la intensidad de la mortalidad en la población de ciertos países centroamericanos tomando de referencia los datos de 2015-2018 de la OMS? 
 
-2 ¿Qué **patrones de variabilidad** se pueden **estimar** en la **probabilidad de decremento** nqx(c) por c**ategoría de causas** de la ICD-10 en **Países Centroamericanos** en los años 2015-2018?
+2 ¿Qué patrones de variabilidad se pueden estimar en la probabilidad de decremento ${}_{n}q_{x}^{(c)}$ por categoría de causas de la ICD-10 en países centroamericanos en los años 2015-2018?
 
-3 ¿Cómo se **distribuyen** las **muertes** por **categorías de causas** de la ICD-10 según **grupos de etario**s en **Países de Centroamérica** entre 2015 y 2018?
+3 ¿Cómo se distribuyen las muertes por categorías de causas de la ICD-10 según grupos de etarios en países de Centroamérica entre 2015 y 2018?
 
-4 ¿Cómo puede **estimarse** desde un **enfoque frecuentista y uno bayesiano**, una tasa de **mortalidad** por causas seleccionadas en **distintos estratos de la base**?
+4 ¿Cómo puede estimarse desde un enfoque frecuentista y uno bayesiano, una tasa de mortalidad por causas seleccionadas en distintos estratos de la base?
 
 Se determinó que la pregunta 2 encapsula de modo más integral los objetivos que se desean alcanzar en la consumación del proyecto, mientras que las otras tres preguntas se descartan como eje principal por razones de alcance y pertinencia. La primera es útil para la parte conceptual del agregado de categorías de causas de muerte, pero por sí sola no alcanza a estudiar el cambio de la probabilidad de decremento. La tercera cuenta con un enfoque más descriptivo y se centra en el uso de herramientas probabilísticas que suponen más un medio que un fin con los objetivos de la investigación.La cuarta, por su parte, sí aborda de manera directa la comparación entre el enfoque clásico y el enfoque bayesiano, pero convierte lo convierte en un tema principal que, dentro del proyecto, funciona más bien como apoyo metodológico que como objetivo sustantivo central. Por ello, la segunda pregunta resulta la más viable y coherente con los datos disponibles, con el objeto de estudio escogido y con el interés de investigación ya planteado.
 
 ### 1.1.5 Argumentación de la pregunta
 
-1 ¿Cómo **estimar** los elementos de **patología de base** que inciden en la **intensidad** de la **mortalidad** en la **población** de ciertos **Países Centroamericanos** tomando de referencia los datos de 2015-2018 de la OMS? 
+1\. ¿Cómo estimar los elementos de patología de base que inciden en la intensidad de la mortalidad en la población de ciertos países centroamericanos tomando de referencia los datos de 2015-2018 de la OMS? 
 
 **Contraargumentos**
 
@@ -140,7 +140,7 @@ Se determinó que la pregunta 2 encapsula de modo más integral los objetivos qu
 
 -   **Emocional:** Se genera material para el análisis para el estudio y toma de decisiones por autoridades competentes para la prevención de determinados factores que suscitan el perecimiento de personas.
 
-2 ¿Qué **patrones de variabilidad** se pueden **estimar** en la **probabilidad de decremento** nqx(c) por c**ategoría de causas** de la ICD-10 en **Países Centroamericanos** en los años 2015-2018?
+2.  ¿Qué patrones de variabilidad se pueden estimar en la probabilidad de decremento ${}_{n}q_{x}^{(c)}$ por categoría de causas de la ICD-10 en países centroamericanos en los años 2015-2018?
 
 **Contraargumentos**
 
@@ -158,7 +158,7 @@ Se determinó que la pregunta 2 encapsula de modo más integral los objetivos qu
 
 -   **Emocional:** El enfoque le proporciona a personas especializadas una gama de datos, en específico las probabilidades de decremento, para entender cómo evolucionan las características para diferentes grupos etarios de determinadas causas de mortalidad.
 
-3 ¿Cómo se **distribuyen** las **muertes** por **categorías de causas** de la ICD-10 según **grupos de etario**s en **Países de Centroamérica** entre 2015 y 2018?
+3.  ¿Cómo se distribuyen las muertes por categorías de causas de la ICD-10 según grupos de etarios en países de centroamérica entre 2015 y 2018?
 
 **Contraargumentos**
 
@@ -172,13 +172,13 @@ Se determinó que la pregunta 2 encapsula de modo más integral los objetivos qu
 
 -   **Lógica:** Faculta la descripción intuitiva de qué elementos inciden mayoritariamente en mortalidad para diferentes estratos de edad.
 
--   **Ética:** Promueve el análisis de determinadas categorías de causa de muerte para población en diferentes grupos de etarios. 
+-   **Ética:** Promueve el análisis de determinadas categorías de causa de muerte para población en diferentes grupos de etarios.
 
 -   **Emocional:** Proporciona una herramienta intuitiva para que personas no necesariamente especializadas o capacitadas en menesteres técnicos comprendan factores que inciden en la mortalidad en distintos intervalos de edad.
 
-4 ¿Cómo puede **estimarse** desde un **enfoque frecuentista y uno bayesiano**, una tasa de **mortalidad** por causas seleccionadas en **distintos estratos de la base**?
+4.  ¿Cómo puede estimarse desde un enfoque frecuentista y uno bayesiano, una tasa de mortalidad por causas seleccionadas en distintos estratos de la base?
 
- **Contraargumentos**
+**Contraargumentos**
 
 -   **Lógica:** La simple estimación de una tasa puede desaprovechar las herramientas metodológicas que permiten los enfoques frecuentista y bayesiano.
 
@@ -194,11 +194,11 @@ Se determinó que la pregunta 2 encapsula de modo más integral los objetivos qu
 
 -   **Emocional:** Estimar una tasa de mortalidad para determinadas causas permite tener un estadístico que representa las proporciones de mortalidad por categoría de forma intuitiva para personas no especializadas.
 
-De estas cuatro formulaciones, la segunda se considera la más adecuada como pregunta principal. Esto se debe a que recoge mejor el núcleo del proyecto: no solamente describir cómo se distribuyen las muertes por causa, sino estudiar e interpretar cómo cambia la probabilidad de decremento por categorías de causas a lo largo de los grupos de edad. Además, mantiene de forma moderada la comparación entre enfoque clásico y bayesiano, pero sin desplazar el interés principal hacia una discusión puramente metodológica. Así, la pregunta central sigue estando en el comportamiento e interpretación de nqx(c) , que es precisamente el objeto actuarial que se había definido desde el inicio.
+De estas cuatro formulaciones, la segunda se considera la más adecuada como pregunta principal. Esto se debe a que recoge mejor el núcleo del proyecto: no solamente describir cómo se distribuyen las muertes por causa, sino estudiar e interpretar cómo cambia la probabilidad de decremento por categorías de causas a lo largo de los grupos de edad. Además, mantiene de forma moderada la comparación entre enfoque clásico y bayesiano, pero sin desplazar el interés principal hacia una discusión puramente metodológica. Así, la pregunta central sigue estando en el comportamiento e interpretación de ${}_{n}q_{x}^{(c)}$, que es precisamente el objeto actuarial que se había definido desde el inicio.
 
 ### 1.1.6 Argumentación a través de los datos
 
-Los datos utilizados para este trabajo provienen de la base de mortalidad de la OMS (En inglés, World Health Organization Mortality Database). Está dividida en seis partes, cada una recopilando el número de defunciones clasificadas por rangos de edad y causa de muerte, de acuerdo al segundo estándar internacional de enfermedades más reciente, el ICD-10. (International Classification of Diseases). Fuente de información: WHO Mortality Database. Los datos fueron obtenidos por las autoridades nacionales de cada país, encargadas de contabilizar y clasificar las defunciones.
+Los datos utilizados para este trabajo provienen de la base de mortalidad de la World Health Organization Mortality Database. Está dividida en seis partes, cada una recopilando el número de defunciones clasificadas por rangos de edad y causa de muerte, de acuerdo al segundo estándar internacional de enfermedades más reciente, el ICD-10. (International Classification of Diseases). Fuente de información: WHO Mortality Database. Los datos fueron obtenidos por las autoridades nacionales de cada país, encargadas de contabilizar y clasificar las defunciones.
 
 **Contexto temporal y espacial:** La base de datos registra anualmente el número de defunciones por país, grupo de edad y causa de muerte, de acuerdo al ICD-10. Las seis bases unidas contienen información desde 1950 hasta el año 2023. Para efectos de este trabajo, se propone trabajar con Centroamérica (Con la aclaración de que se omite a Honduras del análisis, debido a la falta de registros recientes, llegando hasta el 2013). En el período 2015-2018.
 
@@ -406,11 +406,6 @@ Se ha realizado las siguientes combinaciones de palabras clave:
 
 ### 1.3 Construcción de UVE de Gowin
 
----
-title: "V de Gowin"
-format: pdf
----
-
 #### Pregunta de investigación
 
 ¿Qué patrones de variabilidad se pueden estimar en la probabilidad de decremento ${}_n q_x^{(c)}$ por categoría de causas de la ICD-10 en países centroamericanos en los años 2015-2018?
@@ -459,19 +454,19 @@ format: pdf
 
 El objeto de estudio de la investigación es la probabilidad de decremento ${}_n q_x^{(c)}$ por categorías de causas de la ICD-10, considerando su comportamiento por grupos de edad y país en Centroamérica durante el período 2015-2018.
 
-### 1.4 Parte escrita
+### 1.3 Parte escrita
 
-La pregunta delimitada para el trabajo de investigación constituye ser **Análisis del cambio de la probabilidad de decremento**nqx(c) **para grupos etarios por  causas de muerte de acuerdo a la clasificación ICD-10 en países de Centroamérica \[2015, 2018\].** De forma directa, se puede afirmar que variables clave para la estimación de nqx(c)  constituyen ser:
+La pregunta delimitada para el trabajo de investigación constituye ser: **¿Qué patrones de variabilidad se pueden estimar en la probabilidad de decremento** ${}_{n}q_{x}^{(c)}$ **por categoría de causas de la ICD-10 en países centroamericanos en los años 2015-2018?** De forma directa, se puede afirmar que variables clave para la estimación de ${}_n q_x^{(c)}$ constituyen ser:
 
-$d_x^{(c)}$  : Número de vidas saliendo de la población entre las edades (x,x+1\]  debido al decremento c 
+$d_x^{(c)}$ : Número de vidas saliendo de la población entre las edades $(x,x+1]$ debido al decremento c.
 
-$l_x^{(T)}$  : Cantidad de población sobreviviente a la edad exacta x.
+$l_x^{(T)}$ : Cantidad de población sobreviviente a la edad exacta x.
 
 $_nq_x^{(c)}$ : Probabilidad de que una vida de edad (x) deje el grupo en los siguientes n periodos como resultado de decremento por el factor (c)
 
-$_nm_x^{(c)}$ : Tasa central de decremento por la causa (c), el cual es un promedio ponderado de la fuerza de mortalidad entre las edades (x,x+1\]. 
+$_nm_x^{(c)}$ : Tasa central de decremento por la causa (c), el cual es un promedio ponderado de la fuerza de mortalidad entre las edades $(x,x+1]$.
 
-A su vez es conveniente tener presente las siguientes relaciones de equivalencia que facultará la estimación de la probabilidad de decremento múltiple; $_nq_x^{(c)} =d_x^{(c)}/ l_x^{(T)}$. La notación empleada sigue los estándares actuariales internacionales del material literario de referencia primario Bowers et al. (1997). 
+A su vez es conveniente tener presente las siguientes relaciones de equivalencia que facultará la estimación de la probabilidad de decremento múltiple; $_nq_x^{(c)} =d_x^{(c)}/ l_x^{(T)}$. La notación empleada sigue los estándares actuariales internacionales del material literario de referencia primario Bowers et al. (1997).
 
 Uno de los principales desafíos supondrá la traducción de las frecuencias de muerte por categorías de causas para diferentes grupos etarios a una distribución de probabilidad asociada para lo cual se empleará el uso de la $_nm_x^{(c)}$, que representa la frecuencia por unidad de exposición, es decir la intensidad de ocurrencia del evento. considerando una intensidad constante para los grupos etarios delimitados en la ICD-10, la acumulación de esa intensidad permite construir la probabilidad de ocurrencia del evento, y la descomposición por causa permite obtener la distribución de probabilidad marginal por causas de decremento.
 
@@ -479,11 +474,11 @@ Dentro de la bibliografía empleada para sustentar las bases del aparato teóric
 
 Sin embargo, este modelamiento se puede generalizar para más de dos estado introduciendo de esta forma las probabilidades de decremento múltiples, con esta última idea es que se persigue articular el proyecto de investigación propuesto, para el cual se comprenderá un modelo de diversas causas de salidas c que corresponderá a los estados absorbentes que serán las diversas causas de muerte basados en la nomenclatura de la ICD-10.
 
-Cabe indicar que realizando ciertos supuestos tales como que al condicionar el estado actual del agregado de la población de estudio y al grupo etario al que pertenece actualmente, el futuro no depende de cómo llegó ahí, es decir que se satisfaga la propiedad de Makov, se podría implementar las facilidades para ejecutar cálculos siempre y cuando estos correspondan asunciones sensatas dentro del modelo. 
+Cabe indicar que realizando ciertos supuestos tales como que al condicionar el estado actual del agregado de la población de estudio y al grupo etario al que pertenece actualmente, el futuro no depende de cómo llegó ahí, es decir que se satisfaga la propiedad de Makov, se podría implementar las facilidades para ejecutar cálculos siempre y cuando estos correspondan asunciones sensatas dentro del modelo.
 
-Por otro lado el establecimiento de un modelo multiestado para representar las probabilidades de decremento viene motivada porque según afirma Goerlich Gisbert (2012) a “estudios que tratan de ajustar la esperanza de vida por estados de salud están muy limitados por la escasa disponibilidad de información estadística  y las dificultades de comparación intertemporal” (p. 6) , está crítica está fundamentada esencialmente en que la esperanza de vida es una medida dispersión muy asimétrica, aunado a su vez que la $E[T_{x}]$es sencillamente la edad media a la muerte, es decir cuando ocurre y no aporta información detallada que especifique las causas que ocasionan el perecimiento ni mucho menos el cómo cambian estas.
+Por otro lado el establecimiento de un modelo multiestado para representar las probabilidades de decremento viene motivada porque según afirma Goerlich Gisbert (2012) a “estudios que tratan de ajustar la esperanza de vida por estados de salud están muy limitados por la escasa disponibilidad de información estadística y las dificultades de comparación intertemporal” (p. 6) , está crítica está fundamentada esencialmente en que la esperanza de vida es una medida dispersión muy asimétrica, aunado a su vez que la $E[T_{x}]$ es, sencillamente, el tiempo medio que falta para la muerte de una persona de edad $x$, es decir, cuántos años se espera que le falten por vivir y no aporta información detallada que especifique las causas que ocasionan el perecimiento ni mucho menos el cómo cambian estas.
 
-En este sentido, extendiendo las tablas de mortalidad de decrementos únicos a tablas por decrementos múltiples, es decir la representación de las probabilidades de transición a un estado absorbente {y} por múltiples causas comprendidas en la ICD-10, se permite comprender cómo han variado las probabilidades de mortalidad entre grupos etarios al considerar diferentes patologías de base de la cohorte de estudio; para este fin se seguirán los lineamientos metodológicos sugeridos por Goerlich Gisbert en Tablas de vida de decrementos múltiples: Mortalidad por causas en España (1975–2008) (Goerlich Gisbert, 2012), pero enfocándonos en una perspectiva Centroamericana.
+En este sentido, extendiendo las tablas de mortalidad de decrementos únicos a tablas por decrementos múltiples, es decir la representación de las probabilidades de transición a un estado absorbente {y} por múltiples causas comprendidas en la ICD-10, se permite comprender cómo han variado las probabilidades de mortalidad entre grupos etarios al considerar diferentes patologías de base de la cohorte de estudio; para este fin se seguirán los lineamientos metodológicos sugeridos por Goerlich Gisbert en Tablas de vida de decrementos múltiples: Mortalidad por causas en España (1975–2008) (Goerlich Gisbert, 2012), pero enfocándonos en una perspectiva centroamericana.
 
 \newpage
 
@@ -493,20 +488,59 @@ En este sentido, extendiendo las tablas de mortalidad de decrementos únicos a t
 
 ### Log de contribuciones
 
-```{r, echo = FALSE}
-library(kableExtra)
-
-log_cont<- data.frame(
-  "Integrante" = c("Kevin David Calderón Martínez", "Gabriel de Jesús Chaves Esquivel", "Sebastián Miranda Ramírez ", "Benjamín Gutiérrez Padua"),
-  "Contribución" = c("Argumentación a través de datos. 1.1.6. Búsqueda de bibliografía 2.1.1. Fichas bibliográficas 2.1.2: Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas y The adult mortality profile by cause of death in 10 Latin American countries. Log de contribuciones (Anexo) y Diario de aprendizaje 5", "Identificación de tensiones 1.1.3. UVE de Gowin 1.3. Búsqueda de bibliografía 2.1.1 . Audiencia del proyecto (Anexo). Log de contribuciones (Anexo)", "Definición de la idea 1.1.1. Conceptualización de la idea 1.1.2. Reformulación de la idea en modo pregunta 1.1.4. Búsqueda de bibliografía 2.1.1 . Registro de uso de IA (Anexo). Log de contribuciones (Anexo). Búsqueda de papers y material al respecto de las mortalidades de decrementos múltiples.
-", "Pregunta de investigación 1. Argumentación de la pregunta 1.1.5. Búsqueda de bibliografía 2.1.1. Fichas bibliográficas 2.1.2: WHO Mortability Database. Parte de escritura 3. Log de contribuciones (Anexo)
-"),
-  check.names = FALSE)
-
-kable(log_cont) %>%
-  column_spec(1, width = "5cm") %>%
-  column_spec(2, width = "10cm")
-```
++----------------------------------+----------------------------------------------------------------------------------------------------+
+| Integrante                       | Contribución                                                                                       |
++==================================+====================================================================================================+
+| Kevin David Calderón Martínez    | -   Argumentación a través de datos (1.1.6).                                                       |
+|                                  |                                                                                                    |
+|                                  | -   Búsqueda de bibliografía (2.1.1).                                                              |
+|                                  |                                                                                                    |
+|                                  | -   Fichas bibliográficas (2.1.2):                                                                 |
+|                                  |                                                                                                    |
+|                                  |     -   Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas. |
+|                                  |                                                                                                    |
+|                                  |     -   The adult mortality profile by cause of death in 10 Latin American countries.              |
+|                                  |                                                                                                    |
+|                                  | -   Log de contribuciones (Anexo).                                                                 |
+|                                  |                                                                                                    |
+|                                  | -   Diario de aprendizaje (5).                                                                     |
++----------------------------------+----------------------------------------------------------------------------------------------------+
+| Gabriel de Jesús Chaves Esquivel | -   Identificación de tensiones (1.1.3).                                                           |
+|                                  |                                                                                                    |
+|                                  | -   Información UVE de Gowin (3).                                                                  |
+|                                  |                                                                                                    |
+|                                  | -   Búsqueda de bibliografía (2.1.1).                                                              |
+|                                  |                                                                                                    |
+|                                  | -   Audiendia del proyecto (Anexo).                                                                |
++----------------------------------+----------------------------------------------------------------------------------------------------+
+| Sebastián Miranda Ramírez        | -   Definición de la idea (1.1.1).                                                                 |
+|                                  |                                                                                                    |
+|                                  | -   Conceptualización de la idea (1.1.2).                                                          |
+|                                  |                                                                                                    |
+|                                  | -   Reformulación de la idea en modo pregunta (1.1.4).                                             |
+|                                  |                                                                                                    |
+|                                  | -   Búsqueda extensa de bibliografía (2.1.1).                                                      |
+|                                  |                                                                                                    |
+|                                  | -   Fichas bibliográficas (2.1.2):                                                                 |
+|                                  |                                                                                                    |
+|                                  |     -   Tablas de vida de decrementos múltiples: Mortalidad por causas en España (1975-2008).      |
+|                                  |                                                                                                    |
+|                                  | -   Registro de uso de IA (Anexo).                                                                 |
+|                                  |                                                                                                    |
+|                                  | -                                                                                                  |
++----------------------------------+----------------------------------------------------------------------------------------------------+
+| Benjamín Gutiérrez Padua         | -   Pregunta de investigación (1.1).                                                               |
+|                                  |                                                                                                    |
+|                                  | -   Argumentación de la pregunta (1.1.5).                                                          |
+|                                  |                                                                                                    |
+|                                  | -   Búsqueda de bibliografía (2.1.1).                                                              |
+|                                  |                                                                                                    |
+|                                  | -   Fichas bibliográficas (2.1.2):                                                                 |
+|                                  |                                                                                                    |
+|                                  |     -   WHO mortality database documentation.                                                      |
+|                                  |                                                                                                    |
+|                                  | -   Parte de escritura (3).                                                                        |
++----------------------------------+----------------------------------------------------------------------------------------------------+
 
 ### Registro uso de IA
 
@@ -518,7 +552,7 @@ También se empleó para aclarar conceptos y notación actuarial que resultaban 
 
 Otro uso importante fue la traducción y explicación de artículos técnicos. Varios papers tenían un vocabulario muy avanzado en inglés o fórmulas muy complejas, por lo que se usó la IA para traducir términos complejos al español o interpretar fórmulas para una buena comprensión de las investigación más reciente acerca del objeto a estudiar, así como modelos similares aplicados a diferentes contextos reales.
 
-Para efectos de la estructura del HTML y el PDF, se utilizó Chat GPT para comprender cómo estructurar la portada. Se hizo para el caso del HTML, usando el respectivo lenguaje, y el caso análogo para el PDF (LáTeX).
+Para efectos de la estructura del HTML y el PDF, se utilizó Chat GPT para comprender cómo estructurar la portada. Se hizo para el caso del HTML, usando el respectivo lenguaje, y el caso análogo para el PDF (LaTeX).
 
 Finalmente, se utilizó para la búsqueda orientada y comparación de referencias bibliográficas, identificando cuáles trabajos podían servir como base conceptual o metodológica y cuáles eran demasiado avanzados o poco aplicables al proyecto.
 
