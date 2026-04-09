@@ -337,7 +337,34 @@ Se ha realizado las siguientes combinaciones de palabras clave:
 - Bayesian mortality tables + Age groups + Latin America
 - Estimation of specific cause mortality + WHO Mortality Database + Exponential models
 
+### 1.2.2 Construcción de fichas de literatura
 
+**Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas.**
 
+- **Título:** Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas.
 
+- **Autor:** Juan Sebastían Orozco Cortés.
+
+- **Año de publicación:** 2023.
+
+- **Nombre del tema:** Estimación y proyección de la mortalidad en Colombia mediante modelos clásicos y alternativas bayesianas, aplica transmutación a los modelos (Descomponer la distribución acumulada para reducir los sesgos de la distribución base).
+
+- **Clasificación:** Metodológica, pues el paper propone un procedimiento estructurado paso por paso para la estimación y proyección de las tablas de mortalidad mediante modelos como Gompertz-Makeham, Perks I y II, exponencial, etc.
+
+- **Resumen en una oración:** Propone mejorar la estimación de mortalidad,con parámetros dinámicos mediante métodos clásicos/bayesianos.
+Argumento central: El paper plantea que la mortalidad se puede estimar de manera más precisa y con menos margen de sesgo en edades avanzadas mediante distribuciones transmutadas, tomando los parámetros de transmutación como series de tiempo. 
+
+- **Problemas con el argumento o el tema:** Si bien se aplican los modelos clásicos y bayesianos junto a las distribuciones transmutadas, no compara explícitamente la aplicación de los mismos. Además, la construcción de los modelos de mortalidad se realiza con observaciones anuales, a diferencia de este trabajo, que utiliza observaciones bajo grupos de edad y causas de muerte.
+
+- **Conexión con mi proyecto:** Este paper tiene una relación directa con la propuesta planteada en este proyecto, pues muestra que las tablas de mortalidad se pueden construir tanto mediante modelos clásicos y bayesianos. Esto respalda la idea principal, la cual consiste en comparar ambos métodos de inferencia. Añadido a ello, se pueden construir las causas de muertes y los grupos de edad para efectos de las constantes de los modelos conocidos (Gompertz-Makeham, Exp) o parámetros para el caso bayesiano.
+
+- **Lo que NO dice el autor:** No considera problemas de comparabilidad, pues solo construye las tablas de mortalidad para Colombia. Además de que sus variables son observaciones individuales y no variables agregadas, como los grupos de edad.
+
+- **Contraste con otra fuente:** En contraste con *The adult mortality profile by cause of death in 10 Latin American countries (2000–2016)*, el estudio es más de carácter descriptivo, mostrando el perfil de mortalidad para adultos mapeado en diez países de Latinoamérica y no va más allá de ello, obviando por completo el proceso metodológico.
+
+- **Evaluación de aplicabilidad:  4/5:** La metodología propuesta en este documento es aplicable al proyecto, pues involucra los dos tipos de inferencia ya mencionados para la estimación de las constantes/parámetros. Además del factor de las observaciones individuales limita que aplique de la misma forma que en el paper, pero se puede adaptar a este trabajo.
+
+- **Pregunta que le haría al autor:** Precisamente, ¿De qué manera adaptaría la propuesta metodológica de su trabajo para la construcción de la mortalidad para observaciones agregadas de grupos de edad y causas de muerte?
+
+- **Resumen argumentativo:** El documento muestra que se puede mejorar la estimación de la mortalidad en edades avanzadas transmutando los modelos de inferencia clásicos y bayesianos. Esta diferencia resulta útil para estimar tablas de mortalidad para observaciones individuales. Sin embargo, se limita a contextos de observaciones agregadas como grupos de edad y a condiciones extras como causas de muerte. Por ende, este documento muestra que es posible y viable construir las porciones de mortalidad bajo estos modelos, argumento clave para la fundamentación de este trabajo. Para efectos del mismo, se va a adaptar la metodología propuesta en el paper, pues sigue un patrón similar a la idea central.
 
