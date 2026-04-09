@@ -13,6 +13,9 @@ editor: visual
 lang: es
 ---
 
+
+
+
 # Universidad de Costa Rica
 
 ## Ciencias Actuariales
@@ -177,6 +180,7 @@ Por ejemplo: Las letras A y B clasifican ciertas enfermedades infecciosas y para
 
 ```{r,  echo=FALSE }
 library(knitr)
+#INSTALAR EL ESPANIOL EN EL LATEX
 
 tabla <- data.frame(
   "Primer Caracter (Letra)" = c("A-B","A","A","A","A","A","B","B","B","B"),
@@ -200,3 +204,37 @@ kable(
   caption = "*Ejemplo breve de la clasificación de enfermedades de acuerdo al ICD-10. Elaboración propia*"
 )
 ```
+
+Existe una estandarización aún más general para la clasificación de enfermedades utilizando cuatro dígitos, la cual fue propuesta por Goerlich (2012), para agrupar de manera más amplia la causa de muerte en el cálculo de las tablas de vida de decrementos múltiples. Para efectos de este trabajo, se utilizará este estándar para un mejor manejo de datos. A continuación una tabla que explica el estándar:
+
+```{r, echo = FALSE}
+
+tabla <- data.frame(
+  "      Grupo     " = c("I","II","III","IV","V-VIII","IX","X","XI","XII","XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XX"),
+  "     ICD-10 " = c("A00-B99, R75", "C00-D48","D50-D89","E00-E90","F00-H95","I00-I99","J00-J99","K00-K93","L00-L99","M00-M99", "N00-N99", "O00-O99 ", "P00-P96", "Q00-Q99", "R00-R74, R76-R99, U00-U99", "V01-Y89"),
+  "Causa" = c(
+    "Enfermedades infecciosas y parasitarias",
+    "Tumores",
+    "Enfermedades de la sangre y de los órganos hematopoyéticos, y ciertos trastornos que afectan al mecanismo de la inmunidad",
+    "Enfermedades endocrinas, nutricionales y metabólicas",
+    "Trastornos mentales y del comportamiento (V) y Enfermedades del sistema nervioso y de los órganos de los sentidos (VI-VIII)",
+    "Enfermedades del sistema circulatorio",
+    "Enfermedades del sistema respiratorio",
+    "Enfermedades del sistema digestivo",
+    "Enfermedades de la piel y del tejido subcutáneo",
+    "Enfermedades del sistema osteomuscular y del tejido conjuntivo",
+    "Enfermedades del sistema genitourinario",
+    "Embarazo, parto y puerperio",
+    "Afecciones originadas en el periodo perinatal",
+    "Malformaciones congénitas, deformidades y anomalías cromosómicas",
+    "Síntomas, signos y hallazgos anormales clínicos y de laboratorio, no clasificados en otra parte.",
+    "Causas externas de mortalidad"
+  ), check.names = FALSE
+)
+
+kable(
+  tabla,
+  caption = "*Explicación de la lista de tabulación de mortalidad de la ICD-10. Obtenido de: (Goerlich, 2012).*"
+)
+```
+
