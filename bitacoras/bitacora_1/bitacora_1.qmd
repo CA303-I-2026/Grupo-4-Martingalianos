@@ -319,6 +319,25 @@ La columna Pais fue colocada manualmente, para reconocer cada registro por el no
 
 Finalmente, con respecto a la relación de la tabla con la pregunta principal de investigación, tenemos que la tabla permite observar, para cada país, año, grupo de edad y categoría de causa seleccionada, cómo se comporta la probabilidad estimada de decremento ${}_{n}q_{x}^{(c)}$ y si ese comportamiento sugiere patrones de aumento, disminución o estabilidad conforme avanzan los grupos de edad, lo que responde directamente la pregunta. Además, al incorporar estimaciones obtenidas desde un enfoque clásico y uno bayesiano, la tabla también hace posible examinar si ambos marcos ofrecen lecturas semejantes o distintas de esos patrones.
 
+## 1.2 Revisión Bibliográfica 
+
+### 1.2.1 Búsqueda de Bibliografía
+
+Se ha realizado las siguientes combinaciones de palabras clave:
+
+- Base Mortalidad OMS + Causa de Muerte + ICD-10
+- Central America + Mortality + Diseases
+- Tablas de mortalidad + Bayesiano + Gumpertz, Makeham y Exponencial + Latinoamérica
+- Probabilidad de decremento + Grupo de edad + Latinoamérica
+- Mortalidad por causa de muerte + Cohortes de edad + Latinoamérica
+- Estimación bayesiana de mortalidad + Grupo específico de edad + Causa de muerte + ICD-10 + Poblaciones pequeñas 
+- WHO Mortality Database + Bayesian estimation + Age-specific cause of death + Central America + small populations
+- Specific cause mortality + Gompertz, Makeham and Exponential models + Latin America
+- Probability of decrement  + ICD-10 + Small populations 
+- Bayesian mortality tables + Age groups + Latin America
+- Estimation of specific cause mortality + WHO Mortality Database + Exponential models
+
+
 
 
 
