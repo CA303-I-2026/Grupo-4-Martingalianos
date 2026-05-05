@@ -544,7 +544,7 @@ En este sentido, extendiendo las tablas de mortalidad de decrementos únicos a t
 
 El problema que nadie ha resuelto completamente aún es cómo decidir, en un conjunto real y heterogéneo de datos de mortalidad, cuándo una estimación clásica es suficiente y cuándo un enfoque bayesiano puede ofrecer una ventaja metodológica o interpretativa.
 
-# 5.  Diario de aprendizaje
+# 5. Diario de aprendizaje
 
 Ahora, se sabe que la mortalidad por causa no puede analizarse sólo por proporciones de muertes, sino que debe de entenderse como un problema con varios riesgos implicados, como el caso de las causas de muertes. Se comprende que la probabilidad de decremento por causa no se observa directamente de los datos, si no que se debe construir a base de condiciones. Finalmente, se aprendió que los modelos clásicos y bayesianos pueden producir resultados distintos, y en especial en poblaciones con pocas observaciones, esto mismo refuerza la idea de comparar ambas inferencias.
 
@@ -562,14 +562,11 @@ Dirgová, I., & Bilíková, M. (2014). Modelación actuarial del seguro de vida 
 
 Goerlich. (2012). Tablas de vida de decrementos múltiples. Mortalidad por causas en España (1975-2008). Fundación BBVA.
 
-https://www.fbbva.es/wp-content/uploads/2017/05/dat/DT_01_12_tablas%20de%20vida.pdf
-Orozco Cortés, J. (2023). Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas [Tesis de Maestría, Universidad Nacional de Colombia]. https://bffrepositorio.unal.edu.co/server/api/core/bitstreams/776b27dd-714e-4bd7-b041-284fec93e629/content
+https://www.fbbva.es/wp-content/uploads/2017/05/dat/DT_01_12_tablas%20de%20vida.pdf Orozco Cortés, J. (2023). Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas \[Tesis de Maestría, Universidad Nacional de Colombia\]. https://bffrepositorio.unal.edu.co/server/api/core/bitstreams/776b27dd-714e-4bd7-b041-284fec93e629/content
 
 Scott, G. (2026, abril 24). Variability: Definition in statistics and finance. Investopedia. https://www.investopedia.com/terms/v/variability.asp
 
-Wikipedia. (s. f.). Patrón (estructura). https://es.wikipedia.org/wiki/Patr%C3%B3n_(estructura)
-World Health Organization. (2026). WHO Mortality Database. (World Health Organization)
-
+Wikipedia. (s. f.). Patrón (estructura). https://es.wikipedia.org/wiki/Patr%C3%B3n\_(estructura) World Health Organization. (2026). WHO Mortality Database. (World Health Organization)
 
 \newpage
 
@@ -652,6 +649,7 @@ kbl(
   row_spec(0, bold = TRUE, hline_after = TRUE) |>
   row_spec(1:nrow(log_cont), hline_after = TRUE)
 ```
+
 ### Rastro de decisiones
 
 La principal decisión que tomamos fue respecto al tema a investigar, pues en un principio queríamos por recomendación del profesor realizar simplemente una comparación entre la tabla de mortalidad de las enfermedades de centroamérica utilizando el enfoque clásico contra el enfoque bayesiano, pero después de investigar decidimos finalmente investigar la probabilidad de decrementos múltiples, debido a que nos pareció un tema con menor investigación previa en el área de Centroamérica y era de mayor interés para el grupo en su totalidad. Otra decisión importante fue la de no utilizar a Honduras en la base de datos a causa de su falta de información en años recientes.
