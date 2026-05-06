@@ -172,3 +172,37 @@ data_ca_etiquetada$icd10_code[data_ca_etiquetada$number == 999999] <-1000
 data_ca_etiquetada <- data_ca_etiquetada[!is.na(data_ca_etiquetada$icd10_code),]
 
 
+# =========================
+# 6. IMPLEMENTACION DE CALCULO DE INTENSIDADES DE MORTALIDAD DE FRECUENCIAS
+# =========================
+
+## Exlcuir a conteo general de muertes 
+data_work_0 <- data_ca_etiquetada %>% 
+  filter(icd10_code != 1000)
+# Pasar a formato  longer para tener FREQ(MUERTE)_idx{TIEMPO} es decir indexar por intervalo temporal 
+
+
+data_work_largo <- data_work_0 %>% 
+  pivot_longer(
+    cols = starts_with('Deaths') | starts_with('IM'), 
+    names_to = 'intervalo_edad',
+    values_to = 'freq_muerte'
+  ) %>%
+  group_by(Pais, icd10_code, intervalo_edad, Year) %>%  ## Incluyo year para segregar los calculos entre anios 2015, 2016, 2017, 2018
+  mutate(
+    mediana = median(freq_muerte, na.rm= TRUE),
+    media = mean(freq_muerte, na.rm = TRUE),
+    banda = 1.2 * media,
+    desviacion = freq_muerte - mediana,  
+    intesity = ifelse(freq_muerte > banda, desviacion, 0) # Si pasa la banda poner la magnitud de desviacion si no la pasa ponga 0 no interesa 
+  )
+
+
+# guardado data set procesado 
+
+write.csv(
+  data_work_largo,
+  here("datos", "procesados", "data_mortalidad_limpia.csv"),
+  row.names = FALSE
+)
+
