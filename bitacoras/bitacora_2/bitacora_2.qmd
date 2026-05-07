@@ -836,6 +836,8 @@ World Health Organization, Department of Data, Digital Health, Analytics and AI.
 
 # Anexos
 
+## Anexo 1: Fichas bibliográficas
+
 ### Mortalidad por causas en el estado de México, 2000 y 2015
 
 **Título:** Mortalidad por causas en el estado de México, 2000 y 2015
@@ -896,8 +898,6 @@ World Health Organization, Department of Data, Digital Health, Analytics and AI.
 
 **Resumen argumentativo:** El problema que resuelven Lynch y Brown es que las tablas de vida tradicionales no incorporan fácilmente covariables ni intervalos de incertidumbre para las cantidades estimadas. Su propuesta funciona porque usa MCMC para generar muchas posibles realizaciones de los parámetros del modelo y, con cada una de ellas, calcula probabilidades de transición. En el contexto del proyecto, esto permite estimar no solo ${}_n q_x$ o ${}_n q_x^{(c)}$, sino también un intervalo para esas probabilidades. Esto es importante porque las probabilidades de muerte por causa pueden variar por edad, sexo, país y año, y esa variabilidad debe reflejarse en el análisis. El enfoque bayesiano permite decir si una diferencia entre grupos parece consistente o si podría explicarse por la incertidumbre de los datos. Usaremos este artículo como respaldo metodológico para justificar la estimación de intervalos de incertidumbre en probabilidades de decremento por causa de muerte.
 
-## Anexo 1: Fichas bibliográficas
-
 ### Pricing Critical Illness Insurance from Prevalence Rates: Gompertz versus Weibull
 
 **Título:** Pricing Critical Illness Insurance from Prevalence Rates.
@@ -953,6 +953,364 @@ World Health Organization, Department of Data, Digital Health, Analytics and AI.
 **Pregunta que le haría al autor:** ¿Cómo se podría extender este enfoque computacional para incorporar modelos paramétricos de intensidades (como Gompertz o Weibull) en el cálculo de probabilidades de decremento con datos agregados?
 
 **Resumen argumentativo:** Deshmukh busca modelar las probabilidades de decrementos múltiples a partir de intensidades de transición en un modelo multiestado continuo. Esta formulación la aplica de manera computacional aplicando fórmulas matemáticas en R base. Si bien no se dispone de bases de datos reales, su implementación se fundamenta para entender el proceso programado de ${}_n q_x^{(c)}$ en un lenguaje informático. Dado el contexto de este proyecto, proporciona también la base teórica que justifica la construcción de tasas centrales de mortalidad ${}_n m_x^{(c)}$ necesarias para la discretización de los datos y así construir ${}_n q_x^{(c)}$. Por ende, el libro resulta como soporte fundamental para la correcta aplicación del modelo de decrementos múltiples y la construcción de las tablas de mortalidad.
+
+### Empirical Bayes Procedures for Stabilizing Maps of U.S. Cancer Mortality Rates.
+
+**Título:** Empirical Bayes Procedures for Stabilizing Maps of U.S. Cancer Mortality Rates.
+
+**Autor(es):** Kenneth G. Manton, Max A. Woodbury, Eric Stallard, Wilson B. Riggan, John P. Creason y Alvin C. Pellom.
+
+**Año:** 1989.
+
+**Nombre del tema:** Estimación empírico-bayesiana de tasas de mortalidad por cáncer usando conteos de muertes, exposición en personas-año y modelos Poisson-Gamma.
+
+**Clasificación:** Metodológica.\
+Se clasifica así porque sirve para justificar un modelo bayesiano aplicado a tasas de mortalidad con datos agregados de defunciones y exposición.
+
+**Resumen en una oración:**\
+Manton et al. (1989) fundamentan el enfoque bayesiano Poisson-Gamma para estimar tasas de mortalidad por causa.
+
+**Argumento central:**\
+Manton et al. (1989) parten del problema de que las tasas de mortalidad observadas pueden variar demasiado cuando se calculan en poblaciones pequeñas o con pocas defunciones. Por eso, proponen estabilizar esas tasas usando información adicional del conjunto de áreas.
+
+La parte más útil para nuestro proyecto es que los autores trabajan explícitamente con muertes y exposición. En su planteamiento, $Y_{ij}$ representa el número de muertes en la celda $(i,j)$, $n_{ij}$ representa las personas-año de exposición y $\mu_{ij}$ representa la tasa verdadera de mortalidad en la celda $(i,j)$. A partir de esto, el conteo de muertes puede aproximarse mediante un modelo Poisson:
+
+$$
+Y_{ij} \mid \mu_{ij} \sim \operatorname{Poisson}(n_{ij}\mu_{ij})
+$$
+
+Además, los autores asignan una distribución Gamma a la tasa $\mu_{ij}$ y señalan que esta familia es conjugada con la distribución Poisson. Por tanto, la distribución posterior pertenece nuevamente a la familia Gamma. En términos generales, la actualización bayesiana consiste en sumar las muertes observadas al parámetro de forma y la exposición al parámetro de tasa. Esta es la idea central que interesa para el proyecto.
+
+**Problemas con el argumento o el tema:**\
+El artículo no está escrito para decrementos múltiples actuariales, sino para mortalidad por cáncer. Por eso, no desarrolla directamente la construcción de probabilidades de decremento por causa ni trabaja con modelos actuariales de causas competitivas. Su aporte está más relacionado con la estabilización bayesiana de tasas de mortalidad a partir de conteos de muertes y exposición.
+
+**Conexión con mi proyecto:**\
+Este artículo es el respaldo más cercano para el componente bayesiano del proyecto. En la *WHO Mortality Database* se tendrán defunciones por causa y una exposición o población aproximada. La adaptación al proyecto sería:
+
+$$
+D_{x,t}^{(c)} \mid \mu_{x,t}^{(c)} \sim \operatorname{Poisson}(E_{x,t}\mu_{x,t}^{(c)})
+$$
+
+donde $D_{x,t}^{(c)}$ representa las defunciones observadas por causa $c$, $E_{x,t}$ representa la exposición o personas-año en riesgo y $\mu_{x,t}^{(c)}$ representa la tasa de mortalidad por causa $c$.
+
+Luego, se asume una previa Gamma para la tasa de mortalidad por causa:
+
+$$
+\mu_{x,t}^{(c)} \sim \operatorname{Gamma}(\alpha,\beta)
+$$
+
+Por conjugación, la distribución posterior queda:
+
+$$
+\mu_{x,t}^{(c)} \mid D_{x,t}^{(c)}, E_{x,t}
+\sim
+\operatorname{Gamma}(\alpha + D_{x,t}^{(c)}, \beta + E_{x,t})
+$$
+
+Manton et al. (1989) no escriben esta última fórmula exactamente con la notación del proyecto, pero sí utilizan la misma estructura conjugada Poisson-Gamma. Por eso, el artículo sirve como base para justificar la estimación bayesiana de tasas de mortalidad por causa antes de transformarlas en probabilidades de decremento.
+
+**Lo que NO dice el autor:**\
+El artículo no desarrolla modelos de decrementos múltiples. Tampoco transforma directamente tasas por causa en probabilidades actuariales de decremento. Su aporte está en la estimación estabilizada de tasas de mortalidad a partir de muertes y exposición, no en la construcción completa de tablas de vida de decrementos múltiples.
+
+**Contraste con otra fuente:**\
+Olivieri y Pitacco se usarán como respaldo actuarial para la parte de conteos de sobrevivientes y defunciones. Para el componente bayesiano se usará principalmente Manton et al. (1989), pues su formulación se acerca más a lo que necesita este proyecto: muertes observadas, exposición en personas-año, tasa de mortalidad y estructura Poisson-Gamma. A diferencia de Olivieri y Pitacco, Manton et al. no dependen de una tabla actuarial previa, sino que trabajan directamente con conteos observados y exposición.
+
+**Evaluación de aplicabilidad:**\
+**5/5.** La aplicabilidad es alta para la parte bayesiana del proyecto. A diferencia de Olivieri y Pitacco en *Life tables in actuarial models: from the deterministic setting to a Bayesian approach*, este artículo no depende de una tabla actuarial previa, sino que trabaja directamente con conteos de muertes y exposición. Esto se ajusta mejor a la estructura de la *WHO Mortality Database*, donde se tendrán defunciones por causa, edad, sexo, país y año.
+
+**Pregunta que le haría al autor:**\
+¿Cómo adaptaría su procedimiento si las celdas no fueran condado y edad, sino país, sexo, año, grupo de edad y causa de muerte?
+
+**Resumen argumentativo:**\
+Manton et al. (1989) es una fuente clave para el proyecto porque formula de manera aplicada la estructura que se necesita para la parte bayesiana: las muertes se modelan como conteos Poisson cuya media depende de la exposición y de una tasa de mortalidad, mientras que la tasa se modela con una distribución Gamma. Aunque el artículo trabaja con mapas de cáncer en Estados Unidos y no con decrementos múltiples, su estructura estadística se adapta bien a datos agregados como los de la *WHO Mortality Database*. Su principal aporte será justificar la estimación bayesiana de tasas de mortalidad por causa antes de convertirlas en probabilidades de decremento. Por eso, esta fuente no será usada como fundamento actuarial de los decrementos múltiples, sino como respaldo estadístico para la estabilización bayesiana de las tasas de mortalidad por causa.
+
+### Life tables in actuarial models: from the deterministic setting to a Bayesian approach
+
+**Título:** Life tables in actuarial models: from the deterministic setting to a Bayesian approach.
+
+**Autor(es):** Annamaria Olivieri y Ermanno Pitacco.
+
+**Año:** 2011.
+
+**Nombre del tema:** Uso de tablas de vida en modelos actuariales, pasando desde un enfoque determinístico clásico hacia un enfoque estocástico y bayesiano de la mortalidad.
+
+**Clasificación:** Metodológica.\
+Se clasifica así porque sirve principalmente para entender cómo una tabla de vida puede pasar de usarse como objeto determinístico a usarse dentro de un modelo con incertidumbre para una cartera de vidas.
+
+**Resumen en una oración:**\
+Olivieri y Pitacco (2011) muestran cómo tratar sobrevivientes y defunciones como variables aleatorias dentro de modelos actuariales de mortalidad.
+
+**Argumento central:**\
+El punto inicial de Olivieri y Pitacco (2011) es que el modelo actuarial clásico, aunque utiliza probabilidades como ${}_t p_x$ o $q_x$, sigue siendo determinístico porque esas probabilidades se tratan como conocidas y solo se usan para calcular valores esperados. Es decir, la tabla de vida no se cuestiona, sino que se toma como dada.
+
+Luego, el número de sobrevivientes ya no se interpreta únicamente como su valor esperado, sino como una variable aleatoria. En particular, si una cohorte inicia con $n_{x_0}$ personas, el número de sobrevivientes a la edad $x_0+t$ se puede modelar como:
+
+$$
+N_{x_0+t} \sim \operatorname{Binomial}(n_{x_0}, {}_t p_{x_0})
+$$
+
+Las defunciones entre las edades $x_0+t$ y $x_0+t+1$ se definen como:
+
+$$
+D_{x_0+t} = N_{x_0+t} - N_{x_0+t+1}
+$$
+
+Luego, condicional al número de vivos al inicio del intervalo, las defunciones se pueden modelar como binomiales y aproximarse mediante una distribución Poisson:
+
+$$
+D_{x_0+t} \mid N_{x_0+t}
+\sim
+\operatorname{Poisson}(N_{x_0+t}q_{x_0+t})
+$$
+
+Esta parte es la más útil del artículo para el proyecto, porque justifica trabajar con conteos de defunciones como variables aleatorias y no solo como proporciones observadas.
+
+**Problemas con el argumento o el tema:**\
+El artículo está pensado para rentas vitalicias y mortalidad total, no para decrementos múltiples por causa. Además, la parte bayesiana es menos directa para este proyecto, porque no estima desde cero una tasa por causa, sino que supone que ya existe una tabla de vida proyectada disponible. A partir de esa tabla, los autores introducen un parámetro $Z$ para corregir la mortalidad esperada, que es el que se estima mediante una distribución previa y una posterior.
+
+**Conexión con mi proyecto:**\
+El artículo sirve principalmente para justificar que las defunciones observadas pueden tratarse como conteos aleatorios asociados a una exposición y a una tasa de mortalidad. Esto es útil para el proyecto porque permite pasar de una lectura determinística de las tablas de vida a una interpretación donde los conteos de muertes tienen variabilidad estadística.
+
+**Lo que NO dice el autor:**\
+El artículo no trabaja con decrementos múltiples por causa. Tampoco estima directamente tasas por causa a partir de datos observados de defunciones y exposición.
+
+**Contraste con otra fuente:**\
+Olivieri y Pitacco se usarán como respaldo actuarial para la parte de conteos de sobrevivientes y defunciones. Para el componente bayesiano se usará principalmente Manton et al. (1989), pues su formulación se acerca más a lo que necesita este proyecto: muertes observadas, exposición en personas-año, tasa de mortalidad y estructura Poisson-Gamma. A diferencia de Olivieri y Pitacco, Manton et al. trabajan directamente con conteos de muertes y exposición, sin depender de una tabla actuarial previa.
+
+**Evaluación de aplicabilidad:**\
+**3/5.** La aplicabilidad es baja-media para el enfoque bayesiano, porque el artículo ajusta una tabla previa y no estima directamente tasas por causa desde datos observados. Sin embargo, su aplicabilidad es alta para justificar el paso desde una tabla de vida determinística hacia un modelo donde sobrevivientes y defunciones se tratan como variables aleatorias. Por eso, la fuente será útil como respaldo actuarial para la parte de conteos, pero no como base central del componente bayesiano del proyecto.
+
+**Pregunta que le haría al autor:**\
+¿Cómo cambiaría el modelo si no se tuviera una tabla proyectada previa y solo se contara con defunciones y exposición por edad, año, sexo y causa?
+
+**Resumen argumentativo:**\
+Olivieri y Pitacco (2011) sirven como respaldo actuarial para pasar de una tabla de vida determinística a un modelo donde sobrevivientes y defunciones se tratan como variables aleatorias. Su aporte principal para el proyecto es justificar el uso de conteos de defunciones asociados a una exposición, especialmente mediante una aproximación Poisson. Sin embargo, el artículo no trabaja con decrementos múltiples por causa ni estima directamente tasas por causa desde datos observados. Por eso, será útil como apoyo metodológico para la parte de conteos y mortalidad aleatoria, pero no como fuente central del componente bayesiano del proyecto. Para esa parte, Manton et al. (1989) resulta más adecuado, porque trabaja directamente con muertes observadas, exposición y tasas de mortalidad mediante una estructura Poisson-Gamma.
+
+### Inferring probabilities from rates: Extension to multiple decrement
+
+**Título:** Inferring probabilities from rates: Extension to multiple decrement.
+
+**Autor(es):** Nathan Keyfitz, Samuel H Preston y Robert Schoen.
+
+**Año:** 1972.
+
+**Nombre del tema:** Inferir probabilidades a partir de proporciones de muertes debido a causas segregadas en un conjunto de datos agregados.
+
+**Clasificación:** Metodológica, debido a que el trabajo se centra en describir cómo obtener probabilidades de decremento múltiple mediante proporciones dadas de muerte.
+
+**Resumen en una oración:** El artículo muestra cómo convertir tasas y proporciones de mortalidad en probabilidades de decremento múltiples consistentes. 
+
+**Argumento central:** El determinar la probabilidad de decremento ${}_n q_x^{(c)}$ no suele ser una tarea fácil como se puede creer, más allá de observar proporciones por causa de muerte, debido a que esta misma proporción observada de muertes por causa no depende únicamente de las tasas relativas de mortalidad entre causas, sino también de la estructura etaria y dinámica de la población, lo cual impide interpretar directamente dichas proporciones como probabilidades de decremento. En este sentido resulta indispensable realizar una traducción certera a probabilidades dentro de un modelo de decrementos multiestado, en el que se requiere considerar el tiempo de exposición, la competencia entre causas para salir del modelo y la variación de la cantidad de población en el intervalo temporal estudiado. 
+
+**Problemas con el argumento o el tema:** El enfoque requiere supuestos fuertes como la constancia de la fuerza de mortalidad dentro de los intervalos de edad y un crecimiento poblacional exponencial, lo cual puede no cumplirse en datos reales; además, la metodología depende de información de exposición que no siempre está disponible con precisión. 
+
+**Conexión con mi proyecto:** El trabajo de investigación supone un suministro bastante significativo con el proyecto propuesto, debido a que sustancialmente nos enfrentamos a un mismo dilema, es decir, la pregunta de ¿Cómo transformar proporciones observadas de muerte a probabilidades dentro de un modelo multiestado? Ateniéndonos al lineamiento metodológico estipulado por los autores, se podrá implementar una estrategia sensata para realizar una traducción adecuada de las frecuencias de muerte observadas para los diferentes intervalos de edad. 
+
+**Lo que no dice el autor:** ¿Cómo segregar intervalos de edad para conteos de decrementos hechos en bandas etarias?  
+
+**Contraste con otra fuente:** En relación con el trabajo articulado por Goerlich (2012) en *Tablas de vida de decrementos múltiples*, este material supone un suministro complementario adecuado debido a que Goerlich usa tablas de vida para describir probabilidades por causa, mientras que Keyfitz et al. se enfocan en cómo construir esas probabilidades correctamente a partir de las tasas observadas, es decir desde el planteamiento de Goerlich ya se asume la existencia ${}_n q_x^{(c)}$ para la construcción de las tablas de vida, mientras que Keyfitz et al. en un nivel anterior nos dice cómo construirlos.
+
+**Evaluación y aplicabilidad:** 4.5, la investigación indica de qué manera calcular probabilidades de decremento asociadas a una causa $c$, ${}_n q_x^{(c)}$, a partir de una proporción de muertes
+
+$$
+\frac{D_x^{(c)}}{D_x}
+$$
+
+donde $D_x^{(c)}$ denota la cantidad de muertes asociada a una causa $c$ y $D_x$ denota la cantidad de muertes general en el intervalo de edades $]x,x+n[$. Pero no describe cómo segregar los intervalos de edad correspondientes.
+
+**Pregunta que le haría al autor:** ¿Cómo adaptar la metodología propuesta cuando los datos disponibles están agregados en bandas etarias y no se dispone de exposición exacta ${}_n P_x$ para cada subgrupo? 
+
+**Resumen argumentativo:** El artículo delimita una metodología para abordar el problema de una traducción adecuada de proporciones de muerte asociadas a diferentes causas a probabilidades de decrementos por causas segregadas de muertes. 
+
+El aporte es sustancialmente significativo debido a que la solución planteada ofrece una ruta específica de acción para manipular un conjunto de datos agregados por frecuencias de fallecimiento. 
+
+En el contexto del proyecto, este enfoque resulta altamente útil porque proporciona una base formal para transformar los datos de mortalidad por causa provenientes de la base de la OMS en probabilidades de decremento comparables entre grupos de edad. En particular, se utilizará la idea de pasar de tasas centrales de mortalidad a probabilidades mediante supuestos de constancia en los intervalos, lo cual permitirá construir tablas de vida de decrementos múltiples.
+
+### Pricing Critical Illness Insurance Premiums Using Multiple State Continuous Markov Chain Model
+
+**Título:** Pricing Critical Illness Insurance Premiums Using Multiple State Continuous Markov Chain Model.
+
+**Autor(es):** U. S. Pasaribu et al.
+
+**Año:** 2019. 
+
+**Nombre del tema:** Tarificación de primas, en donde se asume una fuerza de mortalidad constante en un contexto multiestado.
+
+**Clasificación:** Metodológica, pues presenta una metodología compatible con la suposición de fuerza de mortalidad constante dentro de un intervalo de edad, en un modelo markoviano continuo multiestado, lo cual sería fácilmente extrapolable a un contexto de decrementos múltiples como el que se trabajará, al ser este un caso particular del modelo multiestado. 
+
+**Resumen en una oración:** Pasaribu et al. sirve como antecedente secundario sobre suma de intensidades.
+
+**Argumento central:** El artículo plantea que la evolución de un asegurado puede representarse mediante estados de salud y muerte, por ejemplo sano, enfermo crítico, muerto por enfermedad crítica y muerto por otras causas. Utilizan intensidades de transición por grupo etario y combinan las intensidades de salida desde un mismo estado para calcular probabilidades de transición y primas.
+
+**Problemas con el argumento o el tema:** El principal problema es que el artículo no explica con suficiente detalle cómo obtiene las intensidades numéricas que utiliza. Aunque menciona fuentes como CMI Working Paper 50 y trabajos asociados a Gutiérrez y Macdonald, no reconstruye claramente el paso desde esas tasas externas hasta su tabla final de intensidades. Además, el modelo está pensado para seguros de enfermedad crítica y contiene estados intermedios de enfermedad que no se observan en la WHO Mortality Database. 
+
+**Conexión con mi proyecto:** Sirve únicamente como apoyo conceptual para entender que varias intensidades de salidas desde un mismo estado pueden combinarse en una intensidad total de salida. No obstante, el modelo del proyecto no se apoyará principalmente en cadenas de Markov multiestado, sino en la estimación de tasas de mortalidad por causa y su transformación en probabilidades de decremento.
+
+**Lo que NO dice el autor:** El autor no desarrolla un modelo de decrementos múltiples por causa de muerte. Tampoco trabaja con la WHO Mortality Database, ni con categorías ICD-10, ni con datos de defunciones y exposición por país, año, sexo y edad. 
+
+**Contraste con otra fuente:** A diferencia de Pasaribu, Pitacco et al. sí son útiles para justificar el cálculo de tasas de mortalidad a partir de defunciones y exposición al riesgo. Por otro lado, Deshmukh es más directamente pertinente para el proyecto porque presenta los modelos de decrementos múltiples como modelos donde intervienen dos variables: el tiempo hasta el decremento y la causa del decremento.
+
+**Evaluación de aplicabilidad:** 2,5/5. La aplicabilidad es limitada como fundamento central, pero útil como apoyo conceptual. Sí sirve para mostrar que en modelos actuariales con varias salidas desde un estado se trabaja con intensidades específicas y una intensidad total de salida. No sirve para justificar la estimación empírica de las intensidades por causa ni para construir directamente ${}_n q_x^{(c)}$ con datos de WHO.
+
+**Pregunta que le haría al autor:** ¿Cómo se obtuvieron exactamente las intensidades reportadas en la tabla numérica y en qué unidades están expresadas?
+
+**Resumen argumentativo:** Pasaribu et al. es útil para este proyecto solo como antecedente metodológico secundario. Su aporte no está en justificar el modelo estadístico principal, sino en mostrar una aplicación actuarial donde varias intensidades de transición salen de un mismo estado y se combinan para calcular probabilidades. Esta lógica es compatible con el proyecto porque, en un modelo de decrementos múltiples, las causas de muerte también actúan como salidas competidoras desde el estado vivo. Sin embargo, la base teórica central debe venir de la literatura de decrementos múltiples, no de un modelo markoviano general.
+
+### Modelling Longevity Dynamics for Pensions and Annuity Business
+
+**Título:** Modelling Longevity Dynamics for Pensions and Annuity Business.
+
+**Autor(es):** Ermanno Pitacco et al. 
+
+**Año:** 2009.
+
+**Nombre del tema:** Libro general sobre contingencias de vida, en particular es útil su sección en estimación de tasas de mortalidad a partir de defunciones y exposición al riesgo bajo una hipótesis de fuerza de mortalidad constante por celda edad-año.
+
+**Clasificación:** Teórico central. Esta fuente sirve para justificar formalmente cómo pasar de conteos de muertes y exposición al riesgo a una estimación de la fuerza de mortalidad. En particular, el capítulo 3, especialmente las secciones 3.3.2 y 3.3.3, es útil para fundamentar el estimador $\frac{D_{x,t}}{\mathrm{ETR}_{x,t}}$ y la interpretación de las tasas crudas de mortalidad.  
+
+**Resumen en una oración:** Pitacco et al. explican cómo estudiar tendencias de mortalidad estimadas como defunciones divididas entre persona-años expuestos.
+
+**Argumento central:** El capítulo 3 estudia tendencias de mortalidad en la población general, usando datos belgas como ejemplo. En las secciones cercanas a 3.3.3, el argumento clave es que, si se asume que la fuerza de mortalidad es constante dentro de una celda edad-año, entonces la fuerza de mortalidad $\mu_x(t)$ coincide con la tasa central de mortalidad $m_x(t)$. Esto permite estimarla mediante el número de muertes observadas dividido entre la exposición al riesgo correspondiente. Los autores muestran que el estimador de máxima verosimilitud de $\mu_x(t)$ es $\frac{D_{x,t}}{\mathrm{ETR}_{x,t}}$.
+
+**Problemas con el argumento o el tema:** El texto está pensado principalmente para mortalidad total y tendencias de longevidad, no para decrementos múltiples por causa de muerte. Su aporte fuerte es la construcción de $\mu_x(t)$ mediante la proporción $\frac{D_{x,t}}{\mathrm{ETR}_{x,t}}$, pero no proporciona un aspecto metodológico directo para calcular $\mu_x^{(c)}(t)$. 
+
+**Conexión con mi proyecto:** Sirve para justificar el primer paso metodológico del proyecto: estimar intensidades o tasas de mortalidad a partir de conteos de defunciones y exposición; en el proyecto, para cada país, año, sexo, grupo etario y causa $c$, la idea sería adaptar la expresión general de Pitacco et al. a: 
+
+$$
+\mu_x^{(c)}(t) = \frac{D_{x,t}^{(c)}}{\mathrm{ETR}_{x,t}}
+$$
+
+donde $D_{x,t}^{(c)}$ son las defunciones debido a una causa para una combinación de edad $x$ en cierto año $t$, y $\mathrm{ETR}_{x,t}$ representa la exposición al riesgo para personas cuyo último año cumplido sea $x$ dentro del año $t$. 
+
+**Lo que NO dice el autor:** No desarrolla una teoría de decrementos múltiples por categorías ICD-10, tampoco compara el enfoque clásico tomado contra uno bayesiano, sin embargo da recomendaciones bibliográficas (*Life tables in actuarial models: from the deterministic setting to a Bayesian approach* (2011)) si se quiere llevar un enfoque bayesiano. 
+
+**Contraste con otra fuente:** Para la parte estrictamente actuarial de decrementos múltiples, Deshmukh es más directo, porque define el tiempo hasta decremento, la causa del decremento y la suma de fuerzas por causa. Deshmukh también muestra que la tasa central por causa es un promedio ponderado de la fuerza de decremento y que, si la fuerza por causa es constante dentro del intervalo, la tasa central coincide con esa fuerza. Sin embargo Deshmukh no toma un camino estadístico frecuentista para probar dichos resultados, como sí lo hace Pitacco et al, tomando $\mu_x^{(c)}(t)$ como el estimador de máxima verosimilitud, esa es la verdadera utilidad de este trabajo. 
+
+**Evaluación de aplicabilidad:** Aplicabilidad alta para la estimación clásica de tasas de mortalidad. Esta fuente debería ser una de las principales para justificar el cálculo de $\mu_x^{(c)}(t) = \frac{D_{x,t}^{(c)}}{\mathrm{ETR}_{x,t}}$, la noción de exposición al riesgo y la hipótesis de fuerza constante dentro de una celda edad-año. 
+
+**Pregunta que le haría al autor:** ¿Haría algún cambio a su metodología en caso de trabajar en un entorno de decrementos múltiples con causas competitivas? Si sí, ¿cuál sería y por qué?
+
+**Resumen argumentativo:** Pitacco et al. Es una fuente fundamental para el proyecto porque entrega la base técnica para estimar tasas de mortalidad desde datos agregados desde un enfoque frecuentista clásico. No obstante, el libro no debe presentarse como la fuente principal de decrementos múltiples por causa, sino como la fuente principal para la estimación de mortalidad y exposición.
+
+### Tablas de vida de decrementos múltiples: Mortalidad por causas en España (1975-2008)
+
+**Título:** Tablas de vida de decrementos múltiples: Mortalidad por causas en España (1975-2008).
+
+**Autores:** Francisco J. Goerlich Gisbert.
+
+**Año de publicación:** 2012.
+
+**Nombre del tema:** Construcción de tablas de vida de decrementos múltiples para analizar mortalidad por causas en España.
+
+**Clasificación:** Metodológica. Se clasifica así porque el aporte principal del documento es proponer una forma consistente de integrar las causas de muerte en España al sistema de tablas de vida y generar diferentes gráficos afines al respecto.
+
+**Resumen en una oración:** Construye tablas de decrementos múltiples para estudiar mortalidad por causa, edad y tiempo.
+
+**Argumento central:** El documento sostiene que la mortalidad por causa debe analizarse dentro del marco de tablas de vida y no únicamente mediante tasas estandarizadas, porque el enfoque de decrementos múltiples permite estudiar de forma consistente cómo varían las probabilidades de fallecer por distintas causas según la edad, el tiempo y el territorio, mientras que los otros indicadores estandarizados tienen varias falencias.
+
+**Problemas con el argumento o el tema:** El documento no establece comparaciones internacionales directas ni muestra por sí solo cómo adaptar su metodología a una base como la de la OMS para países de Centroamérica. Además, trabaja con los datos observados tal como están y de allí saca las probabilidades como divisiones simples; no desarrolla sobre enfoques clásico y bayesiano ni plantea supuestos explícitos sobre la forma de la mortalidad.
+
+**Conexión con mi proyecto:** Goerlich muestra cómo pasar de mortalidad por causa a un esquema de tablas de decrementos múltiples donde se analizan probabilidades de fallecer por causa a través de edades y años, presentando una estructura estándar que se podrá replicar parcialmente.
+
+**Lo que NO dice el autor:** No responde cómo aplicar esa lógica a países de Centroamérica ni cómo manejar la comparación entre enfoque clásico y bayesiano. Además en la mayoría de métricas colapsa las edades por año, para hacer solamente la comparación temporal, lo que difiere fuertemente de nuestro enfoque en estudiar la evolución por edad de ${}_n q_x^{(c)}$ en años determinados. 
+
+**Contraste con otra fuente:** En contraste con *The adult mortality profile by cause of death in 10 Latin American countries*, este documento aporta mucho más en el plano metodológico, pues Goerlich enseña cómo insertar las causas de muerte en tablas de vida y construir probabilidades dentro de un marco actuarial consistente, mientras que Calazans y Queiroz (2020) sirven más como antecedente regional sobre patrones de mortalidad por causa. Se complementan, porque uno da el método y el otro justifica que sí vale la pena estudiar perfiles por causa en América Latina.
+
+**Evaluación de aplicabilidad:** 5/5. Es muy aplicable porque el núcleo técnico del artículo coincide con el objeto actuarial del proyecto, el estudiar decrementos múltiples por causa y edad. Asimismo las deriva desde las tablas de defunciones por causa, lo que corresponde a los mismos datos que se tienen en este proyecto.
+
+**Pregunta que le haría al autor:** ¿Cómo adaptaría este trabajo a una base como la de la OMS si se quisiera comparar un enfoque clásico con uno bayesiano, y qué tipo de interpretación daría a los resultados obtenidos?
+
+**Resumen argumentativo:** El problema que Goerlich intenta resolver es que muchos indicadores habituales de mortalidad por causa quedan fuera del marco actuarial de las tablas de vida o dependen demasiado de la estructura demográfica observada. Su propuesta funciona porque incorpora las causas de muerte dentro de tablas de decrementos múltiples, lo que permite estudiar probabilidades por causa sin tener incidencia de la estructura demográfica. Aun así, el artículo no responde todo lo que este trabajo necesita, ya que no compara enfoques clásico y bayesiano ni trabaja con datos de Centroamérica tomados de la base de la OMS. Por eso, más que un modelo para copiar completo, sirve como una muy fuerte base metodológica.
+
+### WHO mortality database documentation.
+
+**Título:** WHO mortality database documentation.
+
+**Autores:** Department of Data, Digital Health, Analytics and AI – World Health Organization.
+
+**Año de publicación:** 23 de febrero 2026.
+
+**Nombre del tema:** Estructura, contenido y uso de la base de datos de mortalidad por causa de la OMS.
+
+**Clasificación:** Teórica. Documento técnico de la documentación de la base de datos.
+
+**Resumen en una oración:** Documentación de la estructura y contenido de la base de datos de mortalidad de la OMS.
+
+**Argumento central:** La base de datos de mortalidad de la OMS es una compilación estandarizada de estadísticas oficiales de defunciones reportadas por los países, organizada bajo clasificaciones internacionales, la nomenclatura de la ICD, que permite comparaciones globales de mortalidad desde un determinado estándar común.
+
+**Problemas con el argumento o el tema:** La comparabilidad internacional no es perfecta y en muchas ocasiones engorrosa, debido a diferencias en cobertura, calidad de registro y prácticas de codificación diferentes entre países. 
+
+**Conexión con mi proyecto:** Es la fuente principal de datos para construir probabilidades de decremento por causa ${}_n q_x^{(c)}$, ya que proporciona las muertes por causa y la desagregación por edad.
+
+**Lo que NO dice el autor:** No explica cómo transformar directamente los datos en probabilidades actuariales ${}_n q_x^{(c)}$. Tampoco se propone un plan de acción para representar los conteos a una distribución de probabilidad, por lo cual la implementación de un modelo estadístico queda para aquellos especializados e interesados en el tema.  
+
+**Contraste con otra fuente:** A diferencia de los otros artículos de investigaciones actuariales o estadística el documento describe datos, y no métodos. Por lo que la principal diferencia se ubica en que las otras fuentes empleadas se han centrado en inferir probabilidades o riesgos.
+
+**Evaluación de aplicabilidad:** 5, supone la fuente de datos base con la que se consumará la propuesta del proyecto de investigación para la determinación del cálculo de las probabilidades por decrementos por causas múltiples ${}_n q_x^{(c)}$. 
+
+**Pregunta que le haría al autor:** ¿Cómo recomienda la OMS transformar estos datos agregados en medidas comparables de riesgo para la determinación de las ${}_n q_x^{(c)}$ centrándose en los países de Centroamérica?
+
+**Resumen argumentativo:** Se estandariza la codificación por causas de muerte bajo una nomenclatura común, supone una referencia clave para traducir los conteos de muertes por causas a las probabilidades de decremento ${}_n q_x^{(c)}$.
+
+### The adult mortality profile by cause of death in 10 Latin American countries (2000-2016).
+
+**Título:** The adult mortality profile by cause of death in 10 Latin American countries (2000-2016).
+
+**Autores:** Júlia Almeida Calazans y Bernardo Lanza Queiroz.
+
+**Año:** 2020.
+
+**Nombre del tema:** Perfil de mortalidad adulta (15 a 60 años) por ocho causas de muerte (Enfermedades del sistema circulatorio, Diabetes, Causas externas, SIDA y VIH, Neoplasias, Ciertas enfermedades infecciosas y parasitarias, Enfermedades del sistema respiratorio y otras causas) en diez países de Latinoamérica (Argentina, Brasil, Chile, Colombia, Costa Rica, Ecuador, México, Paraguay, Perú y Uruguay) entre los años 2000-2016).
+
+**Clasificación:** Temática, ya que describe los patrones de mortalidad utilizando series de tiempo con la base de la World Health Organization del 2018. 
+
+**Resumen en una oración:** Muestra que la mortalidad adulta en los diez países de Latinoamérica poseen patrones similares.
+
+**Argumento central:** Aunque los niveles de mortalidad difieren entre países, el patrón general de causas en la adultez latinoamericana muestra predominio de enfermedades crónicas degenerativas. En hombres, enfermedades del sistema circulatorio y causas externas. Y entre mujeres, enfermedades del sistema circulatorio y neoplasias.
+
+**Problemas con el argumento o el tema:** No comparte los enfoques de inferencia propuestos en este trabajo, además de que en el paper solo Costa Rica coincide con los países de Centroamérica.
+
+**Conexión con mi proyecto:** Este artículo justifica que la selección de causas no sea arbitraria. Si en América Latina las enfermedades circulatorias y las causas externas ya muestran un peso importante en la mortalidad adulta, entonces tiene sentido explorar cómo cambia esa composición a lo largo de la edad en Centroamérica. Además, es clave aclarar que el paper utiliza la misma base de datos que la de este trabajo.
+
+**Lo que NO dice el autor:** No muestra el comportamiento de la mortalidad en intervalos cortos, sino que los describe en períodos de 16 años, lo cual puede sesgar los datos, pues la mortalidad en un período de 4 años tiene menos variación y pérdida de información que en un período de más de 15 años. Además, no ratifica el uso de modelos de inferencia para el cálculo de las mortalidades.
+
+**Contraste con otra fuente:** En contraste con *Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas* (Orozco Cortés, 2023), este paper sí hace un análisis comparativo, tomando en cuenta un grupo de países, además de condicionar directamente las mortalidades junto a las respectivas causas de muerte.
+
+**Evaluación de aplicabilidad:** 3/5: Este paper muestra que la base de datos permite realizar análisis comparativos agrupando las mortalidades de acuerdo a otras variables como la causa de muerte, o en el caso de este trabajo, de los grupos de edad. Además de que, tras haber observado el patrón de las muertes más frecuentes de acuerdo a las causas, se puede tomar como base para comparar las mortalidades en Centroamérica con esas mismas causas de defunciones en el aparato metodológico.
+
+**Pregunta que le haría al autor:** ¿Considera usted que los resultados se podrían replicar en el contexto centroamericano?, ¿O se obtendrían frecuencias distintas por otras causas de defunciones?
+
+**Resumen argumentativo:** El paper tiene como finalidad analizar la mortalidad en adultos por causa de ocho distintos tipos de muertes en diez países de América Latina. Agrupa la mortalidad de acuerdo a la causa de muerte, que es lo que este trabajo propone replicar. No obstante, no aplica un modelo inferencial claro. Además de que se construye en un rango de edad muy grande (15-60 años), en un período de 16 años. Es útil tener como fuente un análisis en Latinoamérica, pues adaptando el estudio a Centroamérica se puede ratificar si los patrones de las causas de muertes son los mismos o existen leves o altas variaciones.
+
+### Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas.
+
+**Título:** Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas.
+
+**Autor:** Juan Sebastían Orozco Cortés.
+
+**Año de publicación:** 2023.
+
+**Nombre del tema:** Estimación y proyección de la mortalidad en Colombia mediante modelos clásicos y alternativas bayesianas, aplica transmutación a los modelos (Descomponer la distribución acumulada para reducir los sesgos de la distribución base).⠀⠀⠀⠀⠀⠀⠀⠀
+
+**Clasificación:** Metodológica, pues el paper propone un procedimiento estructurado paso por paso para la estimación y proyección de las tablas de mortalidad mediante modelos como Gompertz-Makeham, Perks I y II, exponencial, etc.
+
+**Resumen en una oración:** Propone mejorar la estimación de mortalidad,con parámetros dinámicos mediante métodos clásicos/bayesianos.
+
+**Argumento central:** El paper plantea que la mortalidad se puede estimar de manera más precisa y con menos margen de sesgo en edades avanzadas mediante distribuciones transmutadas, tomando los parámetros de transmutación como series de tiempo. 
+
+**Problemas con el argumento o el tema:** Si bien se aplican los modelos clásicos y bayianos junto a las distribuciones transmutadas, no compara explícitamente la aplicación de los mismos. Además, la construcción de los modelos de mortalidad se realiza con observaciones anuales, a diferencia de este trabajo, que utiliza observaciones bajo grupos de edad y causas de muerte.
+
+**Conexión con mi proyecto:** Este paper tiene una relación directa con la propuesta planteada en este proyecto, pues muestra que las tablas de mortalidad se pueden construir tanto mediante modelos clásicos y bayesianos. Esto respalda la idea principal, la cual consiste en comparar ambos métodos de inferencia. Añadido a ello, se pueden construir las causas de muertes y los grupos de edad para efectos de las constantes de los modelos conocidos (Gompertz-Makeham, Exp) o parámetros para el caso bayesiano.
+
+**Lo que NO dice el autor:** No considera problemas de comparabilidad, pues solo construye las tablas de mortalidad para Colombia. Además de que sus variables son observaciones individuales y no variables agregadas, como los grupos de edad.
+
+**Contraste con otra fuente:** En contraste con *The adult mortality profile by cause of death in 10 Latin American countries (2000–2016)*, el estudio es más de carácter descriptivo, mostrando el perfil de mortalidad para adultos mapeado en diez países de Latinoamérica y no va más allá de ello, obviando por completo el proceso metodológico.
+
+**Evaluación de aplicabilidad:** 4/5: La metodología propuesta en este documento es aplicable al proyecto, pues involucra los dos tipos de inferencia ya mencionados para la estimación de las constantes/parámetros. Además del factor de las observaciones individuales limita que aplique de la misma forma que en el paper, pero se puede adaptar a este trabajo.
+
+**Pregunta que le haría al autor:** Precisamente, ¿De qué manera adaptaría la propuesta metodológica de su trabajo para la construcción de la mortalidad para observaciones agregadas de grupos de edad y causas de muerte?
+
+**Resumen argumentativo:** El documento muestra que se puede mejorar la estimación de la mortalidad en edades avanzadas transmutando los modelos de inferencia clásicos y bayesianos. Esta diferencia resulta útil para estimar tablas de mortalidad para observaciones individuales. Sin embargo, se limita a contextos de observaciones agregadas como grupos de edad y a condiciones extras como causas de muerte. Por ende, este documento muestra que es posible y viable construir las porciones de mortalidad bajo estos modelos, argumento clave para la fundamentación de este trabajo. Para efectos del mismo, se va a adaptar la metodología propuesta en el paper, pues sigue un patrón similar a la idea central.
 
 ## Anexo 2: Preparación
 
