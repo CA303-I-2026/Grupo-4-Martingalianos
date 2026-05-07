@@ -388,6 +388,12 @@ kbl(
   column_spec(5, width = "2.5cm")
 ```
 
+## 2. Enlaces de literatura
+
+ Baione y Levantesi (2018) proponen una metodología para estimar probabilidades de transición y primas de seguros de enfermedades críticas a partir de tasas de prevalencia, comparando los modelos de Gompertz y Weibull. El artículo busca una solución al problema de que, en muchos casos, no se dispone de datos directos de incidencia de enfermedades, por lo que se deben reconstruir las intensidades de transición usando información alternativa, como prevalencia y mortalidad. Su aporte principal es mostrar cómo un modelo multiestado puede aplicarse empíricamente con datos reales y cómo la elección del modelo paramétrico afecta las probabilidades estimadas y las primas resultantes. Este artículo se complementa con el trabajo de Jingdan Li (2019), porque ambos utilizan modelos multiestado para analizar transiciones relacionadas con salud, mortalidad y seguros. Sin embargo, Li desarrolla un marco más amplio para estudiar modelos multiestado con datos de incidencia y prevalencia, mientras que Baione y Levantesi (2018) se concentran en un problema más empírico basándose en datos reales, mostrando cómo estimar intensidades a partir de prevalencia y comparar los modelos clásicos. Li proporciona el marco conceptual y Baione y Levantesi permiten evaluar su implementación práctica y la robustez de los modelos utilizados. En este caso ahora el trabajo de (Jingdan Li, 2019) es el que sirve de base conceptual para explicar y entender artículos como el de (Baione y Levantesi, 2018), lo que contrasta y demuestra la flexibilidad e importancia de estos textos, pues conllevan una parte tanto teórica como aplicada, lo que permite el uso variado para explicar conceptos pero en ocasiones al mismo tiempo mostrar metodologías de trabajo con datos reales.
+
+ Keyfitz et al (1972) abordan el problema de cómo convertir tasas y proporciones observadas de muertes por causa en probabilidades de decremento múltiple. Su argumento central es que la proporción de defunciones asociada a una causa no puede interpretarse directamente como una probabilidad de muerte por esa causa, porque depende también de la estructura etaria, el tiempo de exposición, la mortalidad total y la competencia entre causas dentro del intervalo analizado. Este artículo complementa el trabajo de Goerlich (2012), porque ambos se relacionan con las tablas de vida de decrementos múltiples, pero se ubican en momentos metodológicos distintos. Goerlich utiliza las probabilidades de decremento para analizar cómo distintas causas afectan la esperanza de vida, mientras que Keyfitz et al. (1972) se concentran en el paso previo: cómo construir correctamente esas probabilidades a partir de tasas y proporciones observadas. Por eso, mientras Goerlich muestra cómo usar las tablas de decrementos múltiples para interpretar la mortalidad, Keyfitz et al. explican cómo obtener el insumo necesario para construirlas. Ambos artículos se complementan perfecto en este trabajo, pues el paper de (Keyfitz et al, 1972) nos explica un método posible para determinar la probabilidad de decremento ${}_n q_x^{(c)}$ y con esto se pueden construir las tablas de vida de decrementos que se analizan en el trabajo de Goerlich (2012) y de Román Sánchez et al. (2018). Por lo que el uso de ambos papers es fundamental para la metodología de este proyecto, incluso siendo posible utilizar otros papers complementarios para el cálculo de la probabilidad de decremento y otros para la construcción y el análisis de la tabla de vida de decremento.
+
 ## 3. Análisis estadísticos
 
 ## 3.1 Identidad Visual del Proyecto
@@ -638,7 +644,7 @@ Lo que quiere decir que la acumulación porcentual de muertes en El Salvador fue
 
 **Nivel analítico:**
 
-**Conexión con la pregunta de investigación:** El objetivo general del trabajo de investigación supone la estimación de las probabilidades de decremento por causas múltiples $$                                $$ $_nq_x^{(i)}$ lo anterior estimado no es una probabilidad, si no una simple tasa, sin embargo supone un suministro válido para generar una idea intuitiva de cómo estará distribuída la probabilidad de decremento.
+**Conexión con la pregunta de investigación:** El objetivo general del trabajo de investigación supone la estimación de las probabilidades de decremento por causas múltiples $$                                                                                                                                $$ $_nq_x^{(i)}$ lo anterior estimado no es una probabilidad, si no una simple tasa, sin embargo supone un suministro válido para generar una idea intuitiva de cómo estará distribuída la probabilidad de decremento.
 
 **Contraste con la literatura:** Este resultado no es una obscurencia con los elementos bibliográficos usados, es más una puntualización de una tasa relativa, en ningún momento se indica que es una probabilidad, debido a que como señalan las literaturas Multiple Decrement Models in Insurance y el trabajo *Inferring probabilities from rates: Extension to multiple decrement* el cálculo de una tasa no supone una referencia válida para estimar probabilidades pues desagregan la exposición.
 
@@ -683,7 +689,7 @@ knitr::include_graphics(here::here("figuras", "04_g5_original_top_estratos.png")
 knitr::include_graphics(here::here("figuras", "04_g8_exceso_top_estratos.png"))
 ```
 
-#### Nivel analítico: 
+#### Nivel analítico:
 
 Este resultado es más interesante que solo decir cuál causa mata más. En los datos observados, los estratos con más muertes se concentran sobre todo en edades avanzadas y en causas del sistema circulatorio, especialmente en Guatemala. Eso tiene sentido porque son grupos con mayor volumen de defunciones. Por otro lado el mayor estrato individual por exceso aparece en El Salvador, 2015, hombres de 20-24 años, causa 1102: agresiones, con un exceso de 296 muertes.
 
@@ -692,8 +698,6 @@ La diferencia importa porque muestra que el análisis de excesos no está repiti
 Por tanto hay que observar estratos donde una causa puede ser relativamente localizada, pero actuarialmente relevante por su variabilidad. En términos de decrementos múltiples, una causa puede no dominar el total de muertes, pero sí alterar de forma fuerte la probabilidad de salida en ciertos grupos de edad, sexo y país.
 
 Este resultado no explica por qué ocurrió ese exceso en El Salvador ni permite atribuirlo directamente a un evento social específico. Tampoco prueba todavía un cambio estructural, porque esta etapa sigue siendo descriptiva. Lo que sí hace es señalar que los excesos pueden aparecer en zonas muy distintas a las que dominan el total de muertes.
-
-
 
 ### Ficha del resultado 3
 
@@ -714,7 +718,6 @@ Este resultado no explica por qué ocurrió ese exceso en El Salvador ni permite
 **Lo que NO explica este resultado:** El análisis descriptivo olvida diferenciar si el aumento observado responde únicamente al envejecimiento poblacional, diferencias en tamaño poblacional entre países o variaciones reales en la intensidad de mortalidad.
 
 **Implicación para el siguiente paso:** Será necesario transformar los conteos observados en tasas centrales de mortalidad ${}_n m_x^{(c)}$ ajustadas por exposición, para posteriormente estimar probabilidades de decremento múltiple ${}_n q_x^{(c)}$. Además, este resultado sugiere que las causas circulatorias deberían modelarse separadamente en edades avanzadas debido a su peso dominante dentro de la estructura de mortalidad regional, un caso similar a las muertes por agresiones.
-
 
 ## 3.4. La imagen que cuenta la historia
 
@@ -737,8 +740,6 @@ La imagen también deja claro qué se está omitiendo. No separa país, sexo ni 
 
 Por tanto esta imagen cuenta la historia porque muestra que el problema no es solamente cuántas personas mueren, sino cómo cambia la causa de muerte según la edad.
 
-
-
 # 4. Arco narrativo del proyecto
 
 Al explorar los datos, descubrimos que las probabilidades de decremento múltiple no pueden construirse únicamente a partir de frecuencias observadas de muerte, sino que requieren considerar la exposición de la población y la competencia entre distintas causas de salida del sistema, lo que nos obliga a repensar cómo abordaremos el problema. 
@@ -749,10 +750,7 @@ Durante estas semanas entendimos mucho mejor cómo se construyen realmente las p
 
 Por otra parte, nos dimos cuenta de que en R existen muy pocas herramientas preparadas específicamente para trabajar modelos actuariales de este tipo, por lo que gran parte del proceso debe programarse manualmente desde R base. Finalmente, comprendimos que uno de los mayores retos para trabajar tablas de vida en Centroamérica no es únicamente el modelado matemático, sino también la limitada disponibilidad y calidad de los datos demográficos y de mortalidad.
 
-
-
 \newpage
-
 
 # Referencias
 
@@ -778,7 +776,7 @@ Goerlich Gisbert, F. J. (2012). *Tablas de vida de decrementos múltiples: Morta
 
 Keyfitz, N., Preston, S. H., & Schoen, R. (1972). Inferring probabilities from rates: Extension to multiple decrement. *Scandinavian Actuarial Journal, 1972*(1), 1–13. <https://doi.org/10.1080/03461238.1972.10404630>
 
-Li, J. (2019). *A multi-state model for pricing critical illness insurance products* [Master’s project, Simon Fraser University].
+Li, J. (2019). *A multi-state model for pricing critical illness insurance products* \[Master’s project, Simon Fraser University\].
 
 Lynch, S. M., & Brown, J. S. (2005). A new approach to estimating life tables with covariates and constructing interval estimates of life table quantities. *Sociological Methodology, 35*(1), 189–237. <https://doi.org/10.1111/j.0081-1750.2006.00168.x>
 
@@ -792,7 +790,7 @@ Manton, K. G., Woodbury, M. A., Stallard, E., Riggan, W. B., Creason, J. P., & P
 
 Olivieri, A., & Pitacco, E. (2012). Life tables in actuarial models: From the deterministic setting to a Bayesian approach. *AStA Advances in Statistical Analysis, 96*, 127–153. <https://doi.org/10.1007/s10182-011-0177-y>
 
-Orozco Cortés, J. S. (2023). *Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas* [Tesis de maestría, Universidad Nacional de Colombia].
+Orozco Cortés, J. S. (2023). *Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas* \[Tesis de maestría, Universidad Nacional de Colombia\].
 
 Pasaribu, U. S., Husniah, H., Sari, R. R. K. N., & Yanti, A. R. (2019). Pricing critical illness insurance premiums using multiple state continuous Markov chain model. *Journal of Physics: Conference Series, 1366*(1), 012112. <https://doi.org/10.1088/1742-6596/1366/1/012112>
 
@@ -819,7 +817,6 @@ World Health Organization. (2026). *WHO Mortality Database.* World Health Organi
 World Health Organization, Department of Data, Digital Health, Analytics and AI. (2026, 23 de febrero). *WHO Mortality Database documentation.* World Health Organization.
 
 \newpage
-
 
 # Anexos
 
@@ -891,7 +888,6 @@ Ahora, con respecto a la modelación, se pensaba trabajar con análisis descript
 
 Finalmente, se decide implementar todo el desarrollo computacional en R utilizando ggplot, y la paleta NPG de ggsci. Esta decisión fue decidida mediante votación acuerdo de la mayoría de integrantes.
 
-
 ### Registro de uso de IA
 
 **Registro de uso de IA modificación de formato.**
@@ -922,7 +918,9 @@ Adicionalmente, la literatura revisada señala que las proporciones observadas d
 
 **Prompt:**  
 
-	Algunos de los tipos de consultas que se le elevaron a la IA siguieron la siguiente estructura:  
+```         
+Algunos de los tipos de consultas que se le elevaron a la IA siguieron la siguiente estructura:  
+```
 
 -   “Ayudame a identificar respecto al artículo Inferring probabilities rates qué elementos de mi conjunto de datos están asociados a las variables descritas ” .
 
@@ -931,7 +929,7 @@ Adicionalmente, la literatura revisada señala que las proporciones observadas d
 -   “El código está presentando el error de compilación  Error: unexpected '...'  por qué está fallando la manera en que se digitan los parámetros en la función”
 
 **Respuesta de la IA:**\
-	La IA respondió principalmente con explicaciones conceptuales, apoyo metodológico y sugerencias de estructura para el análisis exploratorio de datos y el refinamiento actuarial del problema de investigación. Su uso principal estuvo orientado a clarificar cómo la estimación de probabilidades de decremento múltiple puede construirse a partir de tasas de mortalidad observadas y exposición poblacional.
+La IA respondió principalmente con explicaciones conceptuales, apoyo metodológico y sugerencias de estructura para el análisis exploratorio de datos y el refinamiento actuarial del problema de investigación. Su uso principal estuvo orientado a clarificar cómo la estimación de probabilidades de decremento múltiple puede construirse a partir de tasas de mortalidad observadas y exposición poblacional.
 
 También se utilizó para comprender con mayor precisión la relación entre las frecuencias observadas de muerte, las tasas centrales de mortalidad y las probabilidades actuariales de decremento múltiplenqx(c). En particular, ayudó a interpretar el problema desde el marco de riesgos competitivos y tablas de vida múltiples, diferenciando entre proporciones observadas de muerte y probabilidades reales de decremento.
 
@@ -947,12 +945,12 @@ Finalmente, se utilizó para redactar y estructurar fichas bibliográficas y fic
 Sin embargo, varias respuestas debieron revisarse cuidadosamente debido a que algunas explicaciones simplificaban demasiado ciertos supuestos actuariales o utilizaban notación distinta a la definida para el proyecto. Por esta razón, las respuestas no fueron utilizadas directamente, sino reinterpretadas y adaptadas según el enfoque específico del trabajo.
 
 **Modificaciones:**\
-	Se modificaron y adaptaron múltiples respuestas generadas por la IA, especialmente aquellas relacionadas con la formulación metodológica del problema y la interpretación de las probabilidades de decremento múltiple. Se ajustó la notación actuarial utilizada, se corrigieron explicaciones demasiado generales sobre mortalidad y se reestructuraron varias interpretaciones para alinearlas con el marco de riesgos competitivos trabajado en el proyecto.
+Se modificaron y adaptaron múltiples respuestas generadas por la IA, especialmente aquellas relacionadas con la formulación metodológica del problema y la interpretación de las probabilidades de decremento múltiple. Se ajustó la notación actuarial utilizada, se corrigieron explicaciones demasiado generales sobre mortalidad y se reestructuraron varias interpretaciones para alinearlas con el marco de riesgos competitivos trabajado en el proyecto.
 
 También se revisaron las explicaciones relacionadas con tasas de mortalidad y exposición poblacional, incorporando de manera más precisa la idea de que la tasa de decremento surge de la relación entre frecuencias observadas de muerte y tiempo de exposición de la población. En la parte del EDA, se adaptaron sugerencias sobre visualización y depuración de datos para ajustarlas al comportamiento específico de la base de mortalidad utilizada.
 
 **Aprendizaje:**\
-	Se aprendió a diferenciar con mayor claridad entre tasas observadas de mortalidad y probabilidades actuariales de decremento múltiple. También se comprendió mejor que la estimación de nqx(c) requiere considerar simultáneamente la exposición poblacional, la competencia entre causas de muerte y los supuestos de estabilidad dentro de los intervalos de edad.
+Se aprendió a diferenciar con mayor claridad entre tasas observadas de mortalidad y probabilidades actuariales de decremento múltiple. También se comprendió mejor que la estimación de nqx(c) requiere considerar simultáneamente la exposición poblacional, la competencia entre causas de muerte y los supuestos de estabilidad dentro de los intervalos de edad.
 
 Además, se fortaleció la comprensión sobre el papel de las tablas de vida de decrementos múltiples, la interpretación de tasas centrales de mortalidad y la forma en que los datos agregados de mortalidad pueden transformarse en probabilidades actuariales dentro de un modelo multiestado.
 
@@ -1050,6 +1048,3 @@ kbl(
   row_spec(0, bold = TRUE, hline_after = TRUE) |>
   row_spec(1:nrow(log_cont), hline_after = TRUE)
 ```
-
-
-
