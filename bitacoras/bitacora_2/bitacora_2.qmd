@@ -1,0 +1,159 @@
+---
+title: "Bitácora 2"
+format:
+  html: default
+  pdf:
+    include-in-header:
+      text: |
+        \usepackage{graphicx}
+        \usepackage{float}
+        \usepackage{pdflscape}
+        \usepackage{longtable}
+        \usepackage{booktabs}
+        \usepackage{array}
+self-contained: true
+editor: visual
+lang: es
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{center}
+
+\textbf{Universidad de Costa Rica}
+
+
+\vspace{0.5cm}
+
+\textbf{Escuela de Matemática}
+
+\textbf{Departamento de Matemática y Ciencias Actuariales}
+
+\vspace{0.5cm}
+
+\textbf{Proyecto de Investigación}
+
+\textbf{Análisis del cambio de la probabilidad de decremento ${}_{n}q_{x}^{(c)}$  para grupos etarios por  causas de muerte de acuerdo a la clasificación ICD-10 en países de Centroamérica [2015, 2018].}
+
+\vspace{0.5cm}
+
+\textbf{Integrantes}
+
+\textbf{Sebastián Miranda Ramírez  C4H274 }
+
+\textbf{Benjamín Gutiérrez Padua  C4F813}
+
+\textbf{Kevin David Calderón Martínez  C4D511}
+
+\textbf{Gabriel de Jesús Chaves Esquivel  C4E273}
+
+\vspace{0.5cm}
+
+\textbf{Profesor}
+
+\textbf{Maikol Solís Chacón} 
+
+\vspace{0.5cm}
+
+\textbf{2026}
+
+
+\end{center}
+```
+:::
+
+:::: {.content-visible when-format="html"}
+::: {style="text-align: center; margin-top: 120px;"}
+<b>Universidad de Costa Rica</b><br><br>
+
+<b>Escuela de Matemática</b><br> <b>Departamento de Matemática y Ciencias Actuariales</b><br><br>
+
+<b>Proyecto de Investigación</b><br><br>
+
+<b> Análisis del cambio de la probabilidad de decremento ${}_{n}q_{x}^{(c)}$ para grupos etarios por causas de muerte de acuerdo a la clasificación ICD-10 en países de Centroamérica \[2015, 2018\]. </b><br><br>
+
+<b>Integrantes</b><br><br>
+
+Sebastián Miranda Ramírez — C4H274<br> Benjamín Gutiérrez Padua — C4F813<br> Kevin David Calderón Martínez — C4D511<br> Gabriel de Jesús Chaves Esquivel — C4E273<br><br>
+
+<b>Profesor</b><br> Maikol Solís Chacón<br><br>
+
+<b>2026</b>
+:::
+::::
+
+\newpage
+
+# Bitácora 2.
+
+```{r}
+#| label: '1'
+#| include: false
+# Importar paquetes 
+library(tidyr)
+library(dplyr)
+library(here)
+# Defninir ruta 
+
+
+```
+
+```{r}
+#| label: '2'
+#| include: false
+#Muestra de EDA excel
+data_muestra <- read.csv(here("datos", "procesados", "muestreo_eda.csv"), sep = ",", header = TRUE)
+
+
+```
+
+### Fichas de resultados
+
+De manera introductoria aprovechando la depuración del conjunto de datos con sus respectivas etiquetas correspondientes a la ICD10, de forma descriptiva es de provecho introducir mediante un ejemplo, delimitando una cohorte de la muestra total, es posible generar una idea de la realización que tomará la estimación de $_nq_x^{(i)}$.
+
+Considerar por ejemplo, las frecuencias de mortalidades para países que efectivamente superan la banda de tolerancia respecto a su cohorte.
+
+**Factores en común:** Banda de años 2015-2018, clasificación de mortalidad por 1102 de la ICD10, que representa los perecimientos por causa asaltos, para rangos de edad enteras 0 a 25 años , este último excluído, con una intensidad, es decir, desviación respecto a la media , su medida central, diferente de 0.
+
+```{r}
+print(head(data_muestra[9 : 19 ]))
+```
+
+Notar que se puede observar que para los países que presentaron una desviación mayor a la mediana respecto a la frecuencia de mortalidad se da que El Salvador presenta la mayor acumulación de perecimientos. Es más de tomar una tasa de mortalidad de perecimiento en El Salvador para la delimitaciones hechas en la cohorte obtiene la siguiente tasa de fallecimiento
+
+```{r}
+ 
+suma_salvador <- sum(data_muestra$freq_muerte[data_muestra$Pais == 'El Salvador']) # Suma frecuencias de muertes para El Salvador
+suma_costarica <- sum(data_muestra$freq_muerte[data_muestra$Pais == 'Costa Rica'])  # Suma frecuencias de muertes para Costa Rica
+suma_belice <- sum(data_muestra$freq_muerte[data_muestra$Pais == 'Belice'])   #  # Suma frecuencias de muertes para Belice
+tasa_ejemplo <- suma_salvador/sum(suma_belice,suma_costarica,suma_salvador)
+print(tasa_ejemplo)
+```
+
+Lo que quiere decir que la acumulación porcentual de muertes en El Salvador fue de 92.85112% para las delimitaciones hechas. Esto en sí mismo no es una probabilidad de muerte para la causa asociada 1102, si no más bien un elemento que previo a la modelación nos indica que será sensato esperar que la probabilidad de fallecimiento por decrementos múltiples en específico para la causa i= icd10_1102 será significativamente mayor que la del resto de países muestrados.
+
+**Nivel descriptivo:**
+
+**Titular:** El Salvador refleja mayor índice de acumulación de tasa de mortalidad por asaltos en los Países Centroamericanos
+
+**Nombre del hallazgo/resultado:** Concentración relativa de mortalidad por causa ICD10-1102 en población joven centroamericana
+
+**Resumen en una oración:** El Salvador presentó la mayor acumulación relativa de mortalidad juvenil por asaltos entre 2015–2018.
+
+**Método o  análisis que lo produjo:** Análisis descriptivo de frecuencias relativas de mortalidad por causa específica, utilizando cohortes delimitadas por país, rango etario y clasificación ICD10. Se consideraron las observaciones correspondientes a la causa ICD10-1102 (asaltos) para edades enteras entre 0 y 25 años, durante el período 2015–2018, calculando posteriormente medidas de tendencia central y desviación respecto a la media para identificar países con intensidades de mortalidad superiores a la mediana observada.
+
+**Evidencia:** Tabla descriptiva de frecuencias relativas por país para la clasificación ICD10-1102; gráfico comparativo de tasas de mortalidad acumuladas para la cohorte 0–25 años en Centroamérica; salida de código correspondiente al cálculo de tasas relativas . En particular, El Salvador presentó una tasa acumulada aproximada de 0.9259515 dentro de las delimitaciones establecidas.
+
+**Nivel analítico:**
+
+**Conexión con la pregunta de investigación:** El objetivo general del trabajo de investigación supone la estimación de las probabilidades de decremento por causas múltiples $$ $$ $_nq_x^{(i)}$ lo anterior estimado no es una probabilidad, si no una simple tasa, sin embargo supone un suministro válido para generar una idea intuitiva de cómo estará distribuída la probabilidad de decremento.
+
+**Contraste con la literatura:** Este resultado no es una obscurencia con los elementos bibliográficos usados, es más una puntualización de una tasa relativa, en ningún momento se indica que es una probabilidad, debido a que como señalan las literaturas Multiple Decrement Models in Insurance y el trabajo *Inferring probabilities from rates: Extension to multiple decrement* el cálculo de una tasa no supone una referencia válida para estimar probabilidades pues desagregan la exposición.
+
+**Lo que NO explica este resultado:** Claramente no refleja la naturaleza de la distribución general de $_nq_x^{(i)}$ por los señalamientos previamente hechos.
+
+**Implicación para el siguiente paso:** Estimar con base en el material metodológico de *Inferring probabilities from rates: Extension to multiple decrement por parte de N. Keyfitz et al* las probabilidades de decremento no desagregadas del conjunto de datos.
