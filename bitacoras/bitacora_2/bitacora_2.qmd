@@ -91,6 +91,7 @@ Sebastián Miranda Ramírez — C4H274<br> Benjamín Gutiérrez Padua — C4F813
 # Bitácora 2
 
 ## 1. Parte de Planificación
+
 La jerarquización de las fichas bibliográficas se divide en cuatro bloques: Metodológicos, Teóricos, Metodológicos en Latinoamérica y Bibliográficos.
 
 El primer bloque de ordenamiento corresponde a todas aquellas fuentes metodológicas las cuales fundamentaron y aplicaron un modelo de decrementos en cualquier base de datos:
@@ -387,12 +388,193 @@ kbl(
   column_spec(5, width = "2.5cm")
 ```
 
-
-
 ## 3. Análisis estadísticos
 
+## 3.1 Identidad Visual del Proyecto
 
+Para el desarrollo de las figuras y gráficos del proyecto se utilizará la paleta NPG del paquete ggsci en R. Esta paleta de colores está caracterizada por presentar combinaciones visuales limpias, con una gama que diferencia la paleta, sin dejar de lado la formalidad. La elección se debe a que este proyecto se basa en comparaciones simultáneas entre países, grupos de edad y causas de mortalidad, por lo que se necesitan colores que permitan distinguir categorías sin generar saturación o similitudes entre estos, adecuado para análisis actuariales.
 
+Todos los gráficos del proyecto siguen una estructura uniforme mediante el uso de ggplot2 junto con el paquete cowplot. Debido a que se encuentran con frecuencias, los gráficos serán inicialmente histogramas y gráficos de líneas. Además, se utilizará una tipografía de al menos 12 pt en títulos, subtítulos, ejes y leyendas, con el propósito de garantizar legibilidad dentro del PDF final del proyecto. Se propone utilizar Times New Roman, para mantener la coherencia con la tipografía de la bitácora. Finalmente, la identidad visual tendrá como nombre Gráficos Submartingalianos.
+
+## 3.2. Análisis exploratorio
+
+### Análisis sobre muertes observadas originales
+
+El análisis exploratorio se construyó en dos niveles. Primero se analizaron las muertes observadas originales, con el objetivo de entender la estructura general de la mortalidad por país, año, edad y causa. Luego se analizaron los excesos descriptivos, definidos como la diferencia positiva entre las muertes observadas y la mediana del mismo estrato durante el periodo 2015-2018, esto se interpreta como una señal exploratoria para detectar combinaciones de país, año, sexo, edad y causa que se alejan de su comportamiento típico dentro del periodo.
+
+```{r}
+#| label: setup-eda-figuras
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+library(here)
+
+fig_dir <- here::here("figuras")
+
+fig <- function(nombre) {
+  file.path(fig_dir, nombre)
+}
+
+figuras_eda <- c(
+  "04_g1_original_pais_anio.png",
+  "04_g2_original_heatmap_edad_causa.png",
+  "04_g3_original_perfil_edad.png",
+  "04_g4_original_composicion_edad.png",
+  "04_g5_original_top_estratos.png",
+  "04_g6_exceso_heatmap_edad_causa.png",
+  "04_g7_exceso_perfil_edad.png",
+  "04_g8_exceso_top_estratos.png",
+  "04_g9_exceso_burbujas.png"
+)
+
+faltantes <- figuras_eda[!file.exists(fig(figuras_eda))]
+
+if (length(faltantes) > 0) {
+  stop(
+    "No se encontraron estas figuras en la carpeta figuras/: ",
+    paste(faltantes, collapse = ", ")
+  )
+}
+```
+
+### Distribución general de muertes por país y año
+
+```{r}
+#| label: fig-muertes-pais-anio
+#| echo: false
+#| fig-cap: "Muertes registradas por país y año, 2015-2018."
+#| out-width: "95%"
+
+knitr::include_graphics(fig("04_g1_original_pais_anio.png"))
+```
+
+El mapa de calor de muertes por país y año muestra que la mortalidad observada no se distribuye uniformemente entre países. El mayor volumen aparece en Guatemala durante 2018, con 76,064muertes registradas. Además, Guatemala mantiene los valores más altos durante todo el periodo 2015-2018, lo que indica que buena parte del volumen absoluto de la base está concentrado en ese país.
+
+El Salvador aparece como el segundo bloque de mayor magnitud, aunque con una reducción entre 2015 y 2018. En 2015 registra 39,382 muertes, mientras que en 2018 registra 35,350. Costa Rica, Nicaragua y Panamá presentan niveles intermedios, mientras que Belice aparece con un volumen mucho menor. Esta lectura debe hacerse con cautela, porque se están comparando conteos absolutos, no tasas ajustadas por población o exposición.
+
+### Distribución de muertes por edad y causa
+
+```{r}
+#| label: fig-muertes-edad-causa
+#| echo: false
+#| fig-cap: "Concentración de muertes observadas por edad y causa."
+#| out-width: "95%"
+
+knitr::include_graphics(fig("04_g2_original_heatmap_edad_causa.png"))
+```
+
+El mapa de calor edad-causa muestra que las muertes se concentran principalmente en edades avanzadas. La categoría dominante es 1064 · Sistema circulatorio, que acumula 159,323 muertes en el periodo. La combinación edad-causa con mayor volumen fue 85-89 años y sistema circulatorio, con 23,235 muertes.
+
+```{r}
+#| label: fig-perfil-muertes-edad
+#| echo: false
+#| fig-cap: "Perfil de muertes acumuladas según grupo de edad y causa."
+#| out-width: "95%"
+
+knitr::include_graphics(fig("04_g3_original_perfil_edad.png"))
+```
+
+El perfil etario refuerza esta lectura. Las enfermedades del sistema circulatorio aumentan de forma marcada a partir de edades adultas y alcanzan su máximo en edades avanzadas. Las neoplasias también presentan un crecimiento importante con la edad, aunque con una forma menos extrema que el sistema circulatorio. Las causas respiratorias y la categoría de síntomas y hallazgos no clasificados también ganan peso en edades avanzadas.
+
+En contraste, 1102 · Agresiones presenta un patrón etario distinto. No domina en edades avanzadas, sino que se concentra principalmente en jóvenes y adultos jóvenes. Esto es relevante porque muestra que no todas las causas siguen la misma lógica demográfica, pues algunas son propias de edades avanzadas, mientras que otras se concentran en edades tempranas o productivas.
+
+### Composición de las muertes a través de la edad
+
+```{r}
+#| label: fig-composicion-muertes-edad
+#| echo: false
+#| fig-cap: "Composición de las muertes por grupo de edad considerando todas las categorías ICD-10."
+#| out-width: "100%"
+
+knitr::include_graphics(fig("04_g4_original_composicion_edad.png"))
+```
+
+El gráfico de composición por edad, construido con todas las categorías ICD-10 disponibles, permite ver cómo cambia la estructura causal de la mortalidad conforme avanza la edad. Este gráfico es especialmente importante porque no se limita a mostrar qué causa tiene más muertes en términos absolutos, sino qué proporción representa cada causa dentro de cada grupo etario.
+
+En edades tempranas se observa una composición más fragmentada, con participación de causas respiratorias, infecciosas, congénitas, perinatales y categorías residuales. En edades jóvenes y adultas jóvenes aumentan las causas externas, especialmente agresiones y accidentes de transporte. En edades medias ganan presencia neoplasias, digestivas, genitourinarias y endocrinas. Finalmente, en edades avanzadas se vuelve dominante el sistema circulatorio.
+
+### Estratos con mayor número de muertes observadas
+
+```{r}
+#| label: fig-top-estratos-muertes
+#| echo: false
+#| fig-cap: "Estratos con mayor número de muertes registradas."
+#| out-width: "95%"
+
+knitr::include_graphics(fig("04_g5_original_top_estratos.png"))
+```
+
+El gráfico de estratos con mayor número de muertes registradas muestra que los conteos más altos corresponden principalmente a Guatemala, edades avanzadas y sistema circulatorio. Destacan combinaciones como mujeres de 85-89 años y 80-84 años por sistema circulatorio. Esto confirma que la carga absoluta de mortalidad está dominada por causas crónicas en edades mayores.
+
+Sin embargo, también aparece un estrato distinto: El Salvador, 2015, hombres de 20-24 años, agresiones, con 945 muertes observadas. Aunque el sistema circulatorio domina la mortalidad total, este estrato muestra que las agresiones tienen un peso considerable en hombres jóvenes, especialmente en El Salvador.
+
+Esta diferencia es importante para el enfoque de decrementos múltiples, porque cada causa funciona como una salida distinta desde el estado vivo. Por tanto, una causa puede no dominar el total general, pero sí ser fundamental en ciertos grupos de edad y sexo.
+
+### Análisis sobre excesos descriptivos
+
+Para complementar el análisis de muertes observadas, se construyó una medida de exceso descriptivo. Para cada combinación de país, sexo, edad y causa, se compararon las muertes observadas de cada año contra la mediana interna del periodo 2015-2018:
+
+$\text{Exceso}_t = \max(D_t - \widetilde{D}, 0)$
+
+donde $(D_t)$ representa las defunciones observadas en el año $t$ y ($\widetilde{D}$) representa la mediana de defunciones del mismo estrato durante el periodo.
+
+### Excesos por edad y causa
+
+```{r}
+#| label: fig-exceso-edad-causa
+#| echo: false
+#| fig-cap: "Concentración de excesos descriptivos por edad y causa."
+#| out-width: "95%"
+
+knitr::include_graphics(file.path(fig_dir, "04_g6_exceso_heatmap_edad_causa.png"))
+```
+
+Ahora note que la mayor combinación edad-causa por exceso fue 85-89 años y sistema circulatorio, con un exceso de 758 muertes. Esto indica que el sistema circulatorio no solo concentra el mayor número de muertes observadas, sino que también mantiene una desviación importante. También es importante ver como ahora esta más representada las agresiones en edades jóvenes y adultas jóvenes.
+
+```{r}
+#| label: fig-perfil-exceso-edad
+#| echo: false
+#| fig-cap: "Perfil del exceso descriptivo según grupo de edad y causa."
+#| out-width: "95%"
+
+knitr::include_graphics(file.path(fig_dir, "04_g7_exceso_perfil_edad.png"))
+```
+
+El perfil del exceso muestra con claridad esta doble estructura. Por un lado, el sistema circulatorio tiene un exceso creciente en edades avanzadas, con un máximo alrededor de 85-89 años. Por otro lado, las agresiones presentan un exceso fuerte en edades jóvenes, especialmente entre 15 y 39 años.
+
+### Estratos críticos de exceso
+
+```{r}
+#| label: fig-top-estratos-exceso
+#| echo: false
+#| fig-cap: "Estratos con mayor exceso descriptivo."
+#| out-width: "95%"
+
+knitr::include_graphics(file.path(fig_dir, "04_g8_exceso_top_estratos.png"))
+```
+
+El hallazgo más fuerte del análisis de excesos aparece en el gráfico de estratos críticos. El mayor estrato individual por exceso fue El Salvador, 2015, hombres de 20-24 años, agresiones, con un exceso de 296 muertes. Además, los primeros lugares del ranking de exceso incluyen varios estratos similares: hombres salvadoreños en edades 15-19, 20-24, 25-29, 30-34 y 35-39 por agresiones.
+
+Por tanto las agresiones en hombres jóvenes de El Salvador no solo son relevantes por volumen observado, sino porque también presentan desviaciones fuertes respecto a su propia mediana del periodo.
+
+```{r}
+#| label: fig-burbujas-exceso
+#| echo: false
+#| fig-cap: "Estratos críticos de exceso por país, año, sexo, edad y causa."
+#| out-width: "95%"
+
+knitr::include_graphics(file.path(fig_dir, "04_g9_exceso_burbujas.png"))
+```
+
+También aparecen excesos importantes en edades avanzadas por sistema circulatorio, principalmente en El Salvador y Guatemala, así como excesos en la categoría de síntomas y hallazgos no clasificados. Esta última categoría debe interpretarse con precaución, ya que no representa una causa clínica específica, sino una clasificación residual que puede estar asociada a problemas de registro o falta de especificidad en la codificación de la muerte.
+
+### Implicaciones para el modelo de decrementos múltiples
+
+Este análisis exploratorio respalda la necesidad de modelar la mortalidad por causa manteniendo la estratificación por edad. Las causas no tienen la misma forma etaria, pues el sistema circulatorio domina en edades avanzadas, las agresiones en edades jóvenes, las neoplasias en edades adultas y mayores, y las respiratorias tienen presencia tanto en edades tempranas como avanzadas.
+
+Para el cálculo posterior de probabilidades de decremento $_nq_x^{(c)}$., estos resultados sugieren que no basta con estimar una probabilidad agregada de muerte. Es necesario distinguir la causa $c$, el grupo de edad $x$, el país, el sexo y el año. Solo así se puede capturar adecuadamente la estructura de las distintas causas de muerte.
 
 ```{r}
 #| label: '1'
@@ -415,14 +597,7 @@ data_muestra <- read.csv(here("datos", "procesados", "muestreo_eda.csv"), sep = 
 
 ```
 
-
-
 ### Fichas de resultados
-
-Para el desarrollo de las figuras y gráficos del proyecto se utilizará la paleta NPG del paquete ggsci en R. Esta paleta de colores está caracterizada por presentar combinaciones visuales limpias, con una gama que diferencia la paleta, sin dejar de lado la formalidad. La elección se debe a que este proyecto se basa en comparaciones simultáneas entre países, grupos de edad y causas de mortalidad, por lo que se necesitan colores que permitan distinguir categorías sin generar saturación o similitudes entre estos, adecuado para análisis actuariales.
-
-Todos los gráficos del proyecto siguen una estructura uniforme mediante el uso de ggplot2 junto con el paquete cowplot. Debido a que se encuentran con frecuencias, los gráficos serán inicialmente histogramas y gráficos de líneas. Además, se utilizará una tipografía de al menos 12 pt en títulos, subtítulos, ejes y leyendas, con el propósito de garantizar legibilidad dentro del PDF final del proyecto. Se propone utilizar Times New Roman, para mantener la coherencia con la tipografía de la bitácora. Finalmente, la identidad visual tendrá como nombre Gráficos Submartingalianos.
-
 
 De manera introductoria aprovechando la depuración del conjunto de datos con sus respectivas etiquetas correspondientes a la ICD10, de forma descriptiva es de provecho introducir mediante un ejemplo, delimitando una cohorte de la muestra total, es posible generar una idea de la realización que tomará la estimación de $_nq_x^{(i)}$.
 
@@ -447,6 +622,8 @@ print(tasa_ejemplo)
 
 Lo que quiere decir que la acumulación porcentual de muertes en El Salvador fue de 92.85112% para las delimitaciones hechas. Esto en sí mismo no es una probabilidad de muerte para la causa asociada 1102, si no más bien un elemento que previo a la modelación nos indica que será sensato esperar que la probabilidad de fallecimiento por decrementos múltiples en específico para la causa i= icd10_1102 será significativamente mayor que la del resto de países muestrados.
 
+### Ficha de resultado 1
+
 **Nivel descriptivo:**
 
 **Titular:** El Salvador refleja mayor índice de acumulación de tasa de mortalidad por asaltos en los Países Centroamericanos
@@ -461,7 +638,7 @@ Lo que quiere decir que la acumulación porcentual de muertes en El Salvador fue
 
 **Nivel analítico:**
 
-**Conexión con la pregunta de investigación:** El objetivo general del trabajo de investigación supone la estimación de las probabilidades de decremento por causas múltiples $$  $$ $_nq_x^{(i)}$ lo anterior estimado no es una probabilidad, si no una simple tasa, sin embargo supone un suministro válido para generar una idea intuitiva de cómo estará distribuída la probabilidad de decremento.
+**Conexión con la pregunta de investigación:** El objetivo general del trabajo de investigación supone la estimación de las probabilidades de decremento por causas múltiples $$                                $$ $_nq_x^{(i)}$ lo anterior estimado no es una probabilidad, si no una simple tasa, sin embargo supone un suministro válido para generar una idea intuitiva de cómo estará distribuída la probabilidad de decremento.
 
 **Contraste con la literatura:** Este resultado no es una obscurencia con los elementos bibliográficos usados, es más una puntualización de una tasa relativa, en ningún momento se indica que es una probabilidad, debido a que como señalan las literaturas Multiple Decrement Models in Insurance y el trabajo *Inferring probabilities from rates: Extension to multiple decrement* el cálculo de una tasa no supone una referencia válida para estimar probabilidades pues desagregan la exposición.
 
@@ -469,6 +646,83 @@ Lo que quiere decir que la acumulación porcentual de muertes en El Salvador fue
 
 **Implicación para el siguiente paso:** Estimar con base en el material metodológico de *Inferring probabilities from rates: Extension to multiple decrement por parte de N. Keyfitz et al* las probabilidades de decremento no desagregadas del conjunto de datos.
 
+### Ficha de resultado 2
+
+**Nivel descriptivo:**
+
+**Titular:**\
+El exceso más fuerte no es donde hay más muertes.
+
+**Nombre del hallazgo/resultado:**\
+Diferencia entre concentración de muertes observadas y concentración de excesos descriptivos.
+
+**Resumen en una oración:**\
+Los mayores excesos aparecen en estratos muy específicos, no necesariamente en las causas con más muertes totales.
+
+**Método o análisis que lo produjo:**\
+Se compararon los estratos con mayor número de muertes registradas contra los estratos con mayor exceso descriptivo. El exceso se calculó comparando las muertes observadas de cada año contra la mediana del mismo estrato en el periodo 2015-2018.
+
+**Evidencia:**\
+La evidencia principal está en los gráficos de estratos con mayor número de muertes observadas y de estratos con mayor exceso descriptivo.
+
+```{r}
+#| label: fig-top-estratos-muertes
+#| echo: false
+#| fig-cap: "Estratos con mayor número de muertes registradas."
+#| out-width: "95%"
+
+knitr::include_graphics(here::here("figuras", "04_g5_original_top_estratos.png"))
+```
+
+```{r}
+#| label: fig-top-estratos-exceso
+#| echo: false
+#| fig-cap: "Estratos con mayor exceso descriptivo."
+#| out-width: "95%"
+
+knitr::include_graphics(here::here("figuras", "04_g8_exceso_top_estratos.png"))
+```
+
+#### Nivel analítico: 
+
+Este resultado es más interesante que solo decir cuál causa mata más. En los datos observados, los estratos con más muertes se concentran sobre todo en edades avanzadas y en causas del sistema circulatorio, especialmente en Guatemala. Eso tiene sentido porque son grupos con mayor volumen de defunciones. Por otro lado el mayor estrato individual por exceso aparece en El Salvador, 2015, hombres de 20-24 años, causa 1102: agresiones, con un exceso de 296 muertes.
+
+La diferencia importa porque muestra que el análisis de excesos no está repitiendo el análisis de volumen. Los conteos absolutos responden mucho al tamaño del país, la edad y la carga general de mortalidad. En cambio, el exceso descriptivo ayuda a detectar rupturas o desviaciones respecto al comportamiento típico del mismo grupo.
+
+Por tanto hay que observar estratos donde una causa puede ser relativamente localizada, pero actuarialmente relevante por su variabilidad. En términos de decrementos múltiples, una causa puede no dominar el total de muertes, pero sí alterar de forma fuerte la probabilidad de salida en ciertos grupos de edad, sexo y país.
+
+Este resultado no explica por qué ocurrió ese exceso en El Salvador ni permite atribuirlo directamente a un evento social específico. Tampoco prueba todavía un cambio estructural, porque esta etapa sigue siendo descriptiva. Lo que sí hace es señalar que los excesos pueden aparecer en zonas muy distintas a las que dominan el total de muertes.
+
+------------------------------------------------------------------------
+
+## 3.4. La imagen que cuenta la historia
+
+Elegimos como imagen central el gráfico de composición de las muertes a través de la edad, porque es el que mejor conecta el análisis descriptivo con la lógica actuarial del proyecto.
+
+```{r}
+#| label: fig-imagen-historia
+#| echo: false
+#| fig-cap: "Composición de las muertes a través de la edad."
+#| out-width: "95%"
+
+knitr::include_graphics(here::here("figuras", "04_g4_original_composicion_edad.png"))
+```
+
+Esta imagen cuenta la historia porque va mostrando para cada edad, el cómo van variando de forma continua y pasando participación de uno a otro. En edades tempranas aparecen con más fuerza ciertas causas propias de esos grupos, es notable la gran proporción y posterior disminución de las causas perinatales. En edades jóvenes y adultas jóvenes ganan presencia algunas causas externas. Luego, conforme aumenta la edad, empiezan a tomar más espacio las enfermedades crónicas, especialmente las del sistema circulatorio.
+
+Por eso esta figura funciona como puente entre el EDA y el modelo actuarial. Si las causas cambian tanto con la edad, entonces esta debe mantenerse como eje principal y cada causa debe leerse como una posible salida distinta desde el estado vivo, pero se deben de seguir considerando todas las otras variables como edad, sexo, país o año.
+
+La imagen también deja claro qué se está omitiendo. No separa país, sexo ni año; tampoco muestra tasas ni probabilidades. Entonces no sirve para cerrar el análisis. Su papel es mostrar por qué necesitamos pasar de conteos observados a tasas y probabilidades de decremento por causa.
+
+Por tanto esta imagen cuenta la historia porque muestra que el problema no es solamente cuántas personas mueren, sino cómo cambia la causa de muerte según la edad.
+
+------------------------------------------------------------------------
+
+## 4. Arco narrativo del proyecto
+
+Al explorar los datos, descubrimos que la mortalidad no solo aumenta o disminuye con edad sino también cambia de composición según combinaciones de edad, sexo, país o año. Además, vimos que los mayores excesos no siempre aparecen en las causas con más muertes.
+
+Eso nos obliga a tratar el problema con más cuidado. No basta con comparar totales ni con escoger la causa más grande. El proyecto necesita conservar la edad como eje central y estudiar cada causa como una salida distinta desde el estado vivo.
 
 \newpage
 
@@ -505,8 +759,6 @@ Lo que quiere decir que la acumulación porcentual de muertes en El Salvador fue
 **Pregunta que le haría al autor:** ¿Cómo varían los resultados del modelo si, en lugar de utilizar tasas de prevalencia, se emplearan directamente tasas de mortalidad por causa derivadas de una base de datos como la de la WHO?
 
 **Resumen argumentativo:** El artículo aborda el problema de estimar primas de seguros de enfermedades críticas cuando carece de datos de incidencia, proponiendo únicamente la aplicación mediante el uso de tasas de prevalencia. Esto permite reconstruir las intensidades de transición y calcular ${}_n q_x^{(c)}$ y $P_x^{SA}.$ No obstante, si la base de datos carece de información suficiente, los parámetros pueden sobreestimar o calcular erróneamente las intensidades de transición para el cálculo de primas. Para efectos de este proyecto, el documento muestra cómo construir de manera empírica modelos paramétricos como Gompertz y Weibull. Por lo tanto, resulta útil tomar en cuenta esta otra forma de construir la tasa de decrementos múltiples, puesto que en este artículo se carece de tasas de incidencia de enfermedades, como ocurre con la base a utilizar en este proyecto.
-
-
 
 ## Multiple Decrement Models in Insurance: An Introduction Using R
 
