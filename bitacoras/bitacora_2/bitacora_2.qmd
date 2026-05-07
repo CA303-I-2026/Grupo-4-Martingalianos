@@ -391,6 +391,9 @@ kbl(
 
 ## 3. Análisis estadísticos
 
+
+
+
 ```{r}
 #| label: '1'
 #| include: false
@@ -412,7 +415,14 @@ data_muestra <- read.csv(here("datos", "procesados", "muestreo_eda.csv"), sep = 
 
 ```
 
+
+
 ### Fichas de resultados
+
+Para el desarrollo de las figuras y gráficos del proyecto se utilizará la paleta NPG del paquete ggsci en R. Esta paleta de colores está caracterizada por presentar combinaciones visuales limpias, con una gama que diferencia la paleta, sin dejar de lado la formalidad. La elección se debe a que este proyecto se basa en comparaciones simultáneas entre países, grupos de edad y causas de mortalidad, por lo que se necesitan colores que permitan distinguir categorías sin generar saturación o similitudes entre estos, adecuado para análisis actuariales.
+
+Todos los gráficos del proyecto siguen una estructura uniforme mediante el uso de ggplot2 junto con el paquete cowplot. Debido a que se encuentran con frecuencias, los gráficos serán inicialmente histogramas y gráficos de líneas. Además, se utilizará una tipografía de al menos 12 pt en títulos, subtítulos, ejes y leyendas, con el propósito de garantizar legibilidad dentro del PDF final del proyecto. Se propone utilizar Times New Roman, para mantener la coherencia con la tipografía de la bitácora. Finalmente, la identidad visual tendrá como nombre Gráficos Submartingalianos.
+
 
 De manera introductoria aprovechando la depuración del conjunto de datos con sus respectivas etiquetas correspondientes a la ICD10, de forma descriptiva es de provecho introducir mediante un ejemplo, delimitando una cohorte de la muestra total, es posible generar una idea de la realización que tomará la estimación de $_nq_x^{(i)}$.
 
@@ -523,3 +533,84 @@ Lo que quiere decir que la acumulación porcentual de muertes en El Salvador fue
 **Pregunta que le haría al autor:** ¿Cómo se podría extender este enfoque computacional para incorporar modelos paramétricos de intensidades (como Gompertz o Weibull) en el cálculo de probabilidades de decremento con datos agregados?
 
 **Resumen argumentativo:** Deshmukh busca modelar las probabilidades de decrementos múltiples a partir de intensidades de transición en un modelo multiestado continuo. Esta formulación la aplica de manera computacional aplicando fórmulas matemáticas en R base. Si bien no se dispone de bases de datos reales, su implementación se fundamenta para entender el proceso programado de ${}_n q_x^{(c)}$ en un lenguaje informático. Dado el contexto de este proyecto, proporciona también la base teórica que justifica la construcción de tasas centrales de mortalidad ${}_n m_x^{(c)}$ necesarias para la discretización de los datos y así construir ${}_n q_x^{(c)}$. Por ende, el libro resulta como soporte fundamental para la correcta aplicación del modelo de decrementos múltiples y la construcción de las tablas de mortalidad.
+
+## Anexo 2: Preparación
+
+### Log de Contribuciones
+
+```{r}
+library(kableExtra)
+
+log_cont <- data.frame(
+  "Integrante" = c(
+    "Kevin David Calderón Martínez",
+    "Gabriel de Jesús Chaves Esquivel",
+    "Sebastián Miranda Ramírez",
+    "Benjamín Gutiérrez Padua"
+  ),
+  "Contribución" = c(
+    paste(
+      "• 1.1 Ordenamiento de la literatura.",
+      "• Ficha bibliográficas:",
+      "– Pricing Critical Illness Insurance from Prevalence Rates:  Gompertz versus Weibull.",
+      "– Multiple Decrement Models in Insurance: An Introduction Using R.",
+      "• Identidad visual del proyecto 3.1",
+      "• Rastro de desiciones",
+      "• Ficha de resultado",
+      sep = "\n"
+    ),
+    paste(
+      "•  Enlaces de la literatura",
+      "",
+      "",
+      "",
+      sep = "\n"
+    ),
+    paste(
+  
+      "• Creación de los gráficos",
+      "• limpieza de datos",
+      "• Ficha de resultado",
+      "• Fichas bibliográficas (2.1.2):",
+      "– Modelling Longevity Dynamics for Pensions and Annuity Business",
+      "– Life tables in actuarial models: from the deterministic setting to a Bayesian approach ",
+      "– Pricing Critical Illness Insurance Premiums Using Multiple State Continuous Markov Chain Model.",
+      "– Empirical Bayes Procedures for Stabilizing Maps of U.S. Cancer Mortality Rates",
+      sep = "\n"
+    ),
+    paste(
+      "• limpieza de datos",
+      "• Registro del uso de IA",
+      "• Respuesta a retroalimentación",
+      "• Audiencia del proyecto",
+      "• Arco narrativo del proyecto.",
+      "• Fichas bibliográficas:",
+      "– Inferring probabilities from rates: Extension to multiple decrement",
+      "• Ficha de resultado",
+      sep = "\n"
+    )
+  ),
+  check.names = FALSE
+)
+
+log_cont$Contribución <- linebreak(log_cont$Contribución, align = "l")
+
+kbl(
+  log_cont,
+  format = "latex",
+  booktabs = TRUE,
+  longtable = FALSE,
+  escape = FALSE,
+  align = c("l", "l"),
+  col.names = c("Integrante", "Contribución"),
+  linesep = ""
+) |>
+  kable_styling(
+    latex_options = c("hold_position"),
+    font_size = 9
+  ) |>
+  column_spec(1, width = "4.2cm") |>
+  column_spec(2, width = "10.3cm") |>
+  row_spec(0, bold = TRUE, hline_after = TRUE) |>
+  row_spec(1:nrow(log_cont), hline_after = TRUE)
+```

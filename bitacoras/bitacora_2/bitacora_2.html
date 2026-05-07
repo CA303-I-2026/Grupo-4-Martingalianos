@@ -2743,6 +2743,8 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="análisis-estadísticos">3. Análisis estadísticos</h2>
 <section id="fichas-de-resultados" class="level3">
 <h3 class="anchored" data-anchor-id="fichas-de-resultados">Fichas de resultados</h3>
+<p>Para el desarrollo de las figuras y gráficos del proyecto se utilizará la paleta NPG del paquete ggsci en R. Esta paleta de colores está caracterizada por presentar combinaciones visuales limpias, con una gama que diferencia la paleta, sin dejar de lado la formalidad. La elección se debe a que este proyecto se basa en comparaciones simultáneas entre países, grupos de edad y causas de mortalidad, por lo que se necesitan colores que permitan distinguir categorías sin generar saturación o similitudes entre estos, adecuado para análisis actuariales.</p>
+<p>Todos los gráficos del proyecto siguen una estructura uniforme mediante el uso de ggplot2 junto con el paquete cowplot. Debido a que se encuentran con frecuencias, los gráficos serán inicialmente histogramas y gráficos de líneas. Además, se utilizará una tipografía de al menos 12 pt en títulos, subtítulos, ejes y leyendas, con el propósito de garantizar legibilidad dentro del PDF final del proyecto. Se propone utilizar Times New Roman, para mantener la coherencia con la tipografía de la bitácora. Finalmente, la identidad visual tendrá como nombre Gráficos Submartingalianos.</p>
 <p>De manera introductoria aprovechando la depuración del conjunto de datos con sus respectivas etiquetas correspondientes a la ICD10, de forma descriptiva es de provecho introducir mediante un ejemplo, delimitando una cohorte de la muestra total, es posible generar una idea de la realización que tomará la estimación de <span class="math inline">\(_nq_x^{(i)}\)</span>.</p>
 <p>Considerar por ejemplo, las frecuencias de mortalidades para países que efectivamente superan la banda de tolerancia respecto a su cohorte.</p>
 <p><strong>Factores en común:</strong> Banda de años 2015-2018, clasificación de mortalidad por 1102 de la ICD10, que representa los perecimientos por causa asaltos, para rangos de edad enteras 0 a 25 años , este último excluído, con una intensidad, es decir, desviación respecto a la media , su medida central, diferente de 0.</p>
@@ -2822,6 +2824,17 @@ window.Quarto = {
 <p><strong>Evaluación de aplicabilidad:</strong> 4, es una guía altamente aplicable, pues proporciona directamente las herramientas computacionales para construir <span class="math inline">\({}_n q_x^{(c)}\)</span> a partir de bases de datos, necesario para la metodología del proyecto.</p>
 <p><strong>Pregunta que le haría al autor:</strong> ¿Cómo se podría extender este enfoque computacional para incorporar modelos paramétricos de intensidades (como Gompertz o Weibull) en el cálculo de probabilidades de decremento con datos agregados?</p>
 <p><strong>Resumen argumentativo:</strong> Deshmukh busca modelar las probabilidades de decrementos múltiples a partir de intensidades de transición en un modelo multiestado continuo. Esta formulación la aplica de manera computacional aplicando fórmulas matemáticas en R base. Si bien no se dispone de bases de datos reales, su implementación se fundamenta para entender el proceso programado de <span class="math inline">\({}_n q_x^{(c)}\)</span> en un lenguaje informático. Dado el contexto de este proyecto, proporciona también la base teórica que justifica la construcción de tasas centrales de mortalidad <span class="math inline">\({}_n m_x^{(c)}\)</span> necesarias para la discretización de los datos y así construir <span class="math inline">\({}_n q_x^{(c)}\)</span>. Por ende, el libro resulta como soporte fundamental para la correcta aplicación del modelo de decrementos múltiples y la construcción de las tablas de mortalidad.</p>
+</section>
+<section id="anexo-2-preparación" class="level2">
+<h2 class="anchored" data-anchor-id="anexo-2-preparación">Anexo 2: Preparación</h2>
+<section id="log-de-contribuciones" class="level3">
+<h3 class="anchored" data-anchor-id="log-de-contribuciones">Log de Contribuciones</h3>
+<div class="cell">
+<div class="cell-output-display">
+
+</div>
+</div>
+</section>
 </section>
 </section>
 
