@@ -184,19 +184,18 @@ data_work_0 <- data_ca_etiquetada %>%
 
 data_work_largo <- data_work_0 %>% 
   pivot_longer(
-    cols = starts_with('Deaths') | starts_with('IM'), 
-    names_to = 'intervalo_edad',
-    values_to = 'freq_muerte'
+    cols = all_of(paste0("Deaths", 2:26)),
+    names_to = "intervalo_edad",
+    values_to = "freq_muerte"
   ) %>%
-  group_by(Pais, icd10_code, intervalo_edad, Year) %>%  ## Incluyo year para segregar los calculos entre anios 2015, 2016, 2017, 2018
+  group_by(Pais, icd10_code, intervalo_edad, Year) %>%  
   mutate(
-    mediana = median(freq_muerte, na.rm= TRUE),
+    mediana = median(freq_muerte, na.rm = TRUE),
     media = mean(freq_muerte, na.rm = TRUE),
     banda = 1.2 * media,
     desviacion = freq_muerte - mediana,  
-    intesity = ifelse(freq_muerte > banda, desviacion, 0) # Si pasa la banda poner la magnitud de desviacion si no la pasa ponga 0 no interesa 
+    exceso = ifelse(freq_muerte > banda, desviacion, 0)
   )
-
 
 # guardado data set procesado 
 
