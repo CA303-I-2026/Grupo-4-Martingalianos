@@ -445,7 +445,7 @@ Lo que quiere decir que la acumulación porcentual de muertes en El Salvador fue
 
 **Resumen en una oración:** El Salvador presentó la mayor acumulación relativa de mortalidad juvenil por asaltos entre 2015–2018.
 
-**Método o  análisis que lo produjo:** Análisis descriptivo de frecuencias relativas de mortalidad por causa específica, utilizando cohortes delimitadas por país, rango etario y clasificación ICD10. Se consideraron las observaciones correspondientes a la causa ICD10-1102 (asaltos) para edades enteras entre 0 y 25 años, durante el período 2015–2018, calculando posteriormente medidas de tendencia central y desviación respecto a la media para identificar países con intensidades de mortalidad superiores a la mediana observada.
+**Método o análisis que lo produjo:** Análisis descriptivo de frecuencias relativas de mortalidad por causa específica, utilizando cohortes delimitadas por país, rango etario y clasificación ICD10. Se consideraron las observaciones correspondientes a la causa ICD10-1102 (asaltos) para edades enteras entre 0 y 25 años, durante el período 2015–2018, calculando posteriormente medidas de tendencia central y desviación respecto a la media para identificar países con intensidades de mortalidad superiores a la mediana observada.
 
 **Evidencia:** Tabla descriptiva de frecuencias relativas por país para la clasificación ICD10-1102; gráfico comparativo de tasas de mortalidad acumuladas para la cohorte 0–25 años en Centroamérica; salida de código correspondiente al cálculo de tasas relativas . En particular, El Salvador presentó una tasa acumulada aproximada de 0.9259515 dentro de las delimitaciones establecidas.
 
@@ -466,4 +466,33 @@ Lo que quiere decir que la acumulación porcentual de muertes en El Salvador fue
 
 ## Anexo 1: Fichas bibliográficas
 
+## Pricing Critical Illness Insurance from Prevalence Rates: Gompertz versus Weibull
+
+**Título:** Pricing Critical Illness Insurance from Prevalence Rates.
+
+**Autor(es):** Fabio Baione & Susanna Levantesi.
+
+**Año:** 2018
+
+**Nombre del tema:** Cálculo de primas de seguros de enfermedades críticas (CI) a partir de tasas de prevalencia, comparando los modelos de Gompertz y Weibull.
+
+**Clasificación:** Se clasifica como Metodológica, se propone un procedimiento para estimar intensidades de transición y probabilidades a partir de datos de prevalencia, aplicándolo a datos reales de una base de Italia y comparando modelos clásicos de mortalidad.
+
+**Resumen en una oración:** Modelo CI basado en prevalencia que compara Gompertz y Weibull en datos de Italia.
+
+**Argumento central:** Plantea que, en ausencia de datos de incidencia, las probabilidades de transición en un modelo de Markov de varios estados se puede estimar a partir de tasas de prevalencia combinadas con mortalidad, usando funciones paramétricas como Gompertz o Weibull para modelar las intensidades de transición ${}^{(c)}\mu_x$ y evaluando cual reproduce mejor los resultados esperados y variaciones en ${}_n q_x^{(c)}$ y las primas $P_x^{SA}.$
+
+**Problemas con el argumento o tema:** El modelo introduce incertidumbre adicional, pues omite totalmente el uso de datos directos de incidencia de enfermedades. Además, no aborda la aplicación del modelo en contexto con datos agregados de mortalidad por causa, como en la base de datos de WHO.
+
+**Conexión con mi proyecto:** Este artículo muestra cómo aplicar los modelos paramétricos ya mencionados en una base de datos real, con las tasas de prevalencia. Si bien sucede algo similar con el artículo de Jingdan Li (2019), y los modelos utilizados no se adaptan a estratos de grupos de edad, se puede aplicar la misma aproximación de las intensidades de transición de estados mediante las tasas de mortalidad central ${}_n m_x^{(c)}.$ En este sí se llega a la conclusión de que, en edades no muy altas (Como adultos mayores), Gompertz tiende a ajustar mejor las intensidades calculadas, por lo que ${}_n q_x^{(c)}$ también tiene mejor ajuste.
+
+**Lo que NO dice el autor:** El documento no considera el uso de datos de mortalidad por causa, ni mucho menos analiza la construcción de ${}_n q_x^{(c)}$ partiendo de la discretización de los datos mediante las mortalidades centrales.
+
+**Contraste con otra fuente:** El trabajo de Baione & Levatntesi se complementa con el de Jingdan Li (2019). Mientras Li desarrolla el modelo multiestado desde una perspectiva teórica y lo aplica a datos de incidencia y prevalencia, Baione y Levantesi proponen un enfoque más empírico basado en datos reales, mostrando cómo estimar intensidades a partir de prevalencia y comparar los modelos clásicos. Por ende, ambos artículos aportan una visión completa y complementada: Li proporciona el marco más conceptual del concepto del modelo de varios estados, mientras que Baione y Levantesi permiten evaluar su implementación práctica y la robustez de los modelos utilizados.
+
+**Evaluación de aplicabilidad (escala 1–5):** 3. El enfoque es aplicable en términos de metodología, pues fundamenta que se pueden comparar los modelos paramétricos utilizando bases de datos reales. Sin embargo, se limita debido al factor de los grupos de edad de este proyecto.
+
+**Pregunta que le haría al autor:** ¿Cómo varían los resultados del modelo si, en lugar de utilizar tasas de prevalencia, se emplearan directamente tasas de mortalidad por causa derivadas de una base de datos como la de la WHO?
+
+**Resumen argumentativo:** El artículo aborda el problema de estimar primas de seguros de enfermedades críticas cuando carece de datos de incidencia, proponiendo únicamente la aplicación mediante el uso de tasas de prevalencia. Esto permite reconstruir las intensidades de transición y calcular ${}_n q_x^{(c)}$ y $P_x^{SA}.$ No obstante, si la base de datos carece de información suficiente, los parámetros pueden sobreestimar o calcular erróneamente las intensidades de transición para el cálculo de primas. Para efectos de este proyecto, el documento muestra cómo construir de manera empírica modelos paramétricos como Gompertz y Weibull. Por lo tanto, resulta útil tomar en cuenta esta otra forma de construir la tasa de decrementos múltiples, puesto que en este artículo se carece de tasas de incidencia de enfermedades, como ocurre con la base a utilizar en este proyecto.
 
