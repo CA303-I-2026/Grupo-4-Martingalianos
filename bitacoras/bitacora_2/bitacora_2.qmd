@@ -88,7 +88,308 @@ Sebastián Miranda Ramírez — C4H274<br> Benjamín Gutiérrez Padua — C4F813
 
 \newpage
 
-# Bitácora 2.
+# Bitácora 2
+
+## 1. Parte de Planificación
+La jerarquización de las fichas bibliográficas se divide en cuatro bloques: Metodológicos, Teóricos, Metodológicos en Latinoamérica y Bibliográficos.
+
+El primer bloque de ordenamiento corresponde a todas aquellas fuentes metodológicas las cuales fundamentaron y aplicaron un modelo de decrementos en cualquier base de datos:
+
+```{r}
+
+library(knitr)
+library(kableExtra)
+
+tabla_metodologica <- data.frame(
+  Clasificacion = c(
+    "Metodológica",
+    "Metodológica",
+    "Metodológica",
+    "Metodológica",
+    "Metodológica"
+  ),
+  
+  Justificacion = c(
+    "Compara las distribuciones de Gompertz y Weibull para modelar decrementos múltiples en seguros de enfermedades críticas usando cadenas multiestado.",
+    
+    "Extiende modelos de decrementos múltiples partiendo de tasas observadas de datos agregados.",
+    
+    "Calcula primas de seguros de enfermedades críticas usando cadenas de Markov continuas multiestado.",
+    
+    "Construye tablas de vida de decrementos múltiples por causa, edad y tiempo.",
+    
+    "Estima tablas de vida con covariables e incertidumbre."
+  ),
+  
+  Titulo = c(
+    "Pricing Critical Illness Insurance from Prevalence Rates: Gompertz versus Weibull",
+    
+    "Inferring probabilities from rates: Extension to multiple decrement",
+    
+    "Pricing Critical Illness Insurance Premiums Using Multiple State Continuous Markov Chain Model",
+    
+    "Tablas de vida de decrementos múltiples: Mortalidad por causas en España (1975–2008)",
+    
+    "A New Approach to Estimating Life Tables with Covariates and Constructing Interval Estimates of Life Table Quantities"
+  ),
+  
+  Año = c(2018, 1972, 2019, 2012, 2005),
+  
+  Autores = c(
+    "Fabio Baione & Susana Levantesi",
+    "Nathan Keyfitz, Samuel H. Preston y Robert Schoen",
+    "U. S. Pasaribu et al.",
+    "Francisco J. Goerlich Gisbert",
+    "Scott M. Lynch y J. Scott Brown"
+  )
+)
+
+colnames(tabla_metodologica) <- c(
+  "Clasificación",
+  "Justificación breve",
+  "Título",
+  "Año",
+  "Autor(es)"
+)
+
+kbl(
+  tabla_metodologica,
+  caption = "Primer bloque del ordenamiento de la literatura. Elaboración propia.",
+  booktabs = TRUE,
+  longtable = TRUE,
+  linesep = "\\hline"
+) %>%
+  kable_styling(
+    latex_options = c("hold_position", "scale_down"),
+    font_size = 7,
+    full_width = FALSE
+  ) %>%
+  column_spec(1, width = "2cm") %>%
+  column_spec(2, width = "4.5cm") %>%
+  column_spec(3, width = "4.5cm") %>%
+  column_spec(4, width = "1cm") %>%
+  column_spec(5, width = "3cm")
+```
+
+El segundo bloque de ordenamiento conforma a las fuentes que proponen una base teórica sobre la modelación y aplicación de las probabilidades de decrementos múltiples además de su computación en R:
+
+```{r}
+library(knitr)
+library(kableExtra)
+
+tabla_teorica <- data.frame(
+  
+  Clasificacion = c(
+    "Teórica",
+    "Teórica",
+    "Teórica",
+    "Teórica"
+  ),
+  
+  Justificacion = c(
+    
+    "Muestra como pasar de conteos de muertes a una estimación de fuerza de mortalidad desde un enfoque clásico.",
+    
+    "Parametriza el número de vivientes como una variable aleatoria para modelar la mortalidad desde un enfoque bayesiano.",
+    
+    "Introduce los principios computacionales de modelos de decrementos múltiples usando R.",
+    
+    "Estima mediante conteos de muertes, la exposición de personas por año y los modelos Poisson-Gamma, desde un enfoque bayesiano, la mortalidad por cáncer."
+  ),
+  
+  Titulo = c(
+    
+    "Life tables in actuarial models: from the deterministic setting to a Bayesian approach",
+    
+    "Modelling Longevity Dynamics for Pensions and Annuity Business",
+    
+    "Multiple Decrement Models in Insurance: An Introduction Using R",
+    
+    "Empirical Bayes Procedures for Stabilizing Maps of U.S. Cancer Mortality Rates"
+  ),
+  
+  Año = c(
+    2011,
+    2009,
+    2012,
+    1989
+  ),
+  
+  Autores = c(
+    
+    "Annamaria Olivieri & Ermanno Pitacco",
+    
+    "Ermanno Pitacco et al.",
+    
+    "Shailaja Deshmukh",
+    
+    "Kenneth G. Manton, Max A. Woodbury, Eric Stallard, Wilson B. Riggan, John P. Creason & Alvin C. Pellom"
+  )
+)
+
+colnames(tabla_teorica) <- c(
+  "Clasificación",
+  "Justificación breve",
+  "Título",
+  "Año",
+  "Autor(es)"
+)
+
+kbl(
+  tabla_teorica,
+  caption = "Segundo bloque del ordenamiento de la literatura. Elaboración propia.",
+  booktabs = TRUE,
+  linesep = "\\hline"
+) %>%
+  kable_styling(
+    latex_options = c("hold_position", "scale_down"),
+    font_size = 6.5,
+    full_width = FALSE
+  ) %>%
+  column_spec(1, width = "2cm") %>%
+  column_spec(2, width = "4.5cm") %>%
+  column_spec(3, width = "4.5cm") %>%
+  column_spec(4, width = "1cm") %>%
+  column_spec(5, width = "3cm")
+```
+
+El Tercer bloque de ordenamiento corresponde a todas aquellas fuentes metodológicas las cuales fundamentaron y aplicaron un modelo de decrementos de bases de datos en América Latina:
+
+```{r}
+library(knitr)
+library(kableExtra)
+
+tabla_latam <- data.frame(
+  
+  Clasificacion = c(
+    "Teórica",
+    "Temática",
+    "Metodológica"
+  ),
+  
+  Justificacion = c(
+    
+    "Estima las distribuciones de supervivencia mediante transmutación para mejores estimaciones de riesgo de longevidad en Colombia.",
+    
+    "Describe patrones de mortalidad en adultos por ocho causas de muerte en diez países de Latinoamérica.",
+    
+    "Utiliza las tablas de vida de decrementos múltiples y estima la esperanza de vida por causa de muerte en México."
+  ),
+  
+  Titulo = c(
+    
+    "Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas",
+    
+    "The adult mortality profile by cause of death in 10 Latin American countries",
+    
+    "Mortalidad por causas en el estado de México, 2000 y 2015"
+  ),
+  
+  Año = c(
+    2023,
+    2020,
+    2018
+  ),
+  
+  Autores = c(
+    
+    "Juan Sebastián Orozco Cortés",
+    
+    "Júlia Almeida Calazans y Bernardo Lanza Queiroz",
+    
+    "Yuliana Gabriela Román Sánchez, Ana Laura Sánchez Pérez e Imelda Mendieta Zacarias"
+  )
+)
+
+colnames(tabla_latam) <- c(
+  "Clasificación",
+  "Justificación breve",
+  "Título",
+  "Año",
+  "Autor(es)"
+)
+
+kbl(
+  tabla_latam,
+  caption = "Tercer bloque del ordenamiento de la literatura. Elaboración propia.",
+  booktabs = TRUE,
+  longtable = TRUE,
+  linesep = "\\hline"
+) %>%
+  kable_styling(
+    latex_options = c("repeat_header", "scale_down"),
+    font_size = 7,
+    full_width = FALSE
+  ) %>%
+  column_spec(1, width = "2cm") %>%
+  column_spec(2, width = "4cm") %>%
+  column_spec(3, width = "4cm") %>%
+  column_spec(4, width = "1cm") %>%
+  column_spec(5, width = "2.5cm")
+```
+
+Por último, el cuarto bloque bibliográfico comprende la base de datos a utilizar para fines de este proyecto, dada por la WHO:
+
+```{r}
+library(knitr)
+library(kableExtra)
+
+tabla_fuente_datos <- data.frame(
+  
+  Clasificacion = c(
+    "Teórica"
+  ),
+  
+  Justificacion = c(
+    
+    "La base de datos de conteos de muertes por causa de muerte de acuerdo al ICD-10."
+  ),
+  
+  Titulo = c(
+    
+    "WHO mortality database documentation"
+  ),
+  
+  Año = c(
+    2026
+  ),
+  
+  Autores = c(
+    
+    "Department of Data, Digital Health, Analytics and AI – World Health Organization"
+  )
+)
+
+colnames(tabla_fuente_datos) <- c(
+  "Clasificación",
+  "Justificación breve",
+  "Título",
+  "Año",
+  "Autor(es)"
+)
+
+kbl(
+  tabla_fuente_datos,
+  caption = "Cuarto bloque del ordenamiento de la literatura. Elaboración propia.",
+  booktabs = TRUE,
+  longtable = TRUE,
+  linesep = "\\hline"
+) %>%
+  kable_styling(
+    latex_options = c("repeat_header", "scale_down"),
+    font_size = 8,
+    full_width = FALSE
+  ) %>%
+  column_spec(1, width = "2cm") %>%
+  column_spec(2, width = "4cm") %>%
+  column_spec(3, width = "4cm") %>%
+  column_spec(4, width = "1cm") %>%
+  column_spec(5, width = "2.5cm")
+```
+
+
+
+## 3. Análisis estadísticos
 
 ```{r}
 #| label: '1'
@@ -150,10 +451,19 @@ Lo que quiere decir que la acumulación porcentual de muertes en El Salvador fue
 
 **Nivel analítico:**
 
-**Conexión con la pregunta de investigación:** El objetivo general del trabajo de investigación supone la estimación de las probabilidades de decremento por causas múltiples $$ $$ $_nq_x^{(i)}$ lo anterior estimado no es una probabilidad, si no una simple tasa, sin embargo supone un suministro válido para generar una idea intuitiva de cómo estará distribuída la probabilidad de decremento.
+**Conexión con la pregunta de investigación:** El objetivo general del trabajo de investigación supone la estimación de las probabilidades de decremento por causas múltiples $$  $$ $_nq_x^{(i)}$ lo anterior estimado no es una probabilidad, si no una simple tasa, sin embargo supone un suministro válido para generar una idea intuitiva de cómo estará distribuída la probabilidad de decremento.
 
 **Contraste con la literatura:** Este resultado no es una obscurencia con los elementos bibliográficos usados, es más una puntualización de una tasa relativa, en ningún momento se indica que es una probabilidad, debido a que como señalan las literaturas Multiple Decrement Models in Insurance y el trabajo *Inferring probabilities from rates: Extension to multiple decrement* el cálculo de una tasa no supone una referencia válida para estimar probabilidades pues desagregan la exposición.
 
 **Lo que NO explica este resultado:** Claramente no refleja la naturaleza de la distribución general de $_nq_x^{(i)}$ por los señalamientos previamente hechos.
 
 **Implicación para el siguiente paso:** Estimar con base en el material metodológico de *Inferring probabilities from rates: Extension to multiple decrement por parte de N. Keyfitz et al* las probabilidades de decremento no desagregadas del conjunto de datos.
+
+
+\newpage
+
+# Anexos
+
+## Anexo 1: Fichas bibliográficas
+
+
