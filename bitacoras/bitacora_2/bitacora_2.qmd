@@ -866,3 +866,163 @@ kbl(
   row_spec(0, bold = TRUE, hline_after = TRUE) |>
   row_spec(1:nrow(log_cont), hline_after = TRUE)
 ```
+
+**Anexo 2: Preparación**
+
+**Rastro de decisiones:**
+
+Durante el desarrollo inicial del proyecto se consideraron distintas alternativas metodológicas para intentar modelar la mortalidad por causa, tanto desde el enfoque clásico como bayesiano, de la base de datos de mortalidad de la WHO bajo la ICD - 10. Inicialmente se pensaba trabajar con esta estructura, pero la WHO poseía las agrupaciones de las enfermedades con los números romanos (mencionadas ya en el inciso 1.1.6 de la Bitácora 1), así que se tomó la decisión de trabajar con esta abreviatura. Esto, debido a que con agrupaciones se pueden trabajar de manera más sencilla la limpieza de datos, y si se desea buscar especificaciones de una agrupación de enfermedad, pues se busca partiendo de la clasificación ICD-10.
+
+Ahora, con respecto a la modelación, se pensaba trabajar con análisis descriptivos y modelos clásicos de tablas de vida, utilizando tasas de mortalidad central para construir estimaciones de supervivencia. Pero, esta estimación opacaba la influencia de otras causas de muertes. Por eso es que se decide trabajar con los decrementos múltiples, dado que estos modelos permiten interpretar cada causa de muerte como un decremento específico dentro de un grupo de edad. Esta aproximación resulta más consistente habiendo encontrado la forma de usar las tasas centrales de mortalidad múltiples, mediante el cálculo de la máxima verosimilitud.
+
+Finalmente, se decide implementar todo el desarrollo computacional en R utilizando ggplot, y la paleta NPG de ggsci. Esta decisión fue decidida mediante votación acuerdo de la mayoría de integrantes.
+
+**Respuesta a retroalimentación**
+
+En respuesta a la retroalimentación recibida, se amplió el registro de decisiones metodológicas incorporando discusiones que inicialmente no habían sido documentadas con suficiente detalle. Entre ellas, se especificó por qué el proyecto no se limitó a un enfoque clásico de tablas de vida, sino que consideró también perspectivas bayesianas y modelos multiestado, debido a la necesidad de interpretar adecuadamente la incertidumbre y la competencia entre causas de muerte. Asimismo, se justificó la delimitación geográfica en Centroamérica y no Latinoamérica completa, principalmente por razones de homogeneidad regional, disponibilidad de datos y viabilidad computacional para una primera aproximación metodológica. De igual manera, se aclaró que el período 2015–2018 fue seleccionado debido a que representa uno de los intervalos con mayor consistencia y cobertura disponible en la base de mortalidad de la OMS para los países estudiados.
+
+ Además, se incorporó explícitamente una formulación dirigida a la audiencia del proyecto, indicando que: “Esta semana, le diría a una audiencia interesada en demografía actuarial y análisis de mortalidad que el principal desafío del proyecto no consiste únicamente en observar frecuencias de muerte, sino en traducirlas correctamente a probabilidades de decremento considerando exposición poblacional y competencia entre causas.”
+
+Finalmente, se fortaleció el posicionamiento del equipo dentro del proyecto, aclarando que la formación en Matemáticas Actuariales y la exposición previa a cursos relacionados con tablas de vida, modelos de supervivencia y teoría actuarial proporcionan una base técnica adecuada para abordar el problema metodológico planteado.\
+
+**Registro de uso de IA modificación de formato.**
+
+Con el propósito de ajustar la presentación del trabajo de investigación de acuerdo a los lineamientos indicados en la retroalimentación, se corrige el formato de presentación para la bitácora 1 y bitácora 2, desglosando las mismas en herramienta de inteligencia artificial usada, prompt, respuesta de la IA, evaluación modificaciones y aprendizajes. 
+
+**Audiencia del proyecto:**
+
+En esta ocasión le comunicaría a la audiencia objetivo que el principal reto en el trabajo actuarial sobre mortalidad poblacional consisten en la adecuada traducción del conjunto de datos, que no es únicamente la observación de frecuencias de muerte si no también hay que considerar la población considerando su exposición a una serie de competencia entre causas de muerte. 
+
+El trabajo se dirige a personas que cuenten un interés particular en demografía actuarial, construcción de tablas de vida, entre otros, donde la información disponible viene de manera agregada. 
+
+**Posicionamiento del equipo:**
+
+	Considerando los elementos técnicos del curso, haciendo una evaluación retrospectiva, podemos afirmar que contamos con los conocimientos adecuados para implementar la estructuración del modelo de cálculo de probabilidades por decremento múltiple, debido a que integra conocimientos del curso de contingencias de vida I, elementos de ciencias de datos abordados en cursos como herramientas 1 y 2, en simultáneo se complementa con las técnicas de estimación desde el enfoque frecuentista y bayesiano para los parámetros de las distribuciones. 
+
+Además, más allá del componente técnico, existe un interés genuino por entender cómo se construyen realmente las probabilidades actuariales a partir de datos reales y limitados, particularmente en el contexto centroamericano, donde muchas veces la información disponible no está preparada directamente para este tipo de análisis.
+
+**Restricciones de la base de datos de la OMS:**
+
+	Con base a la documentación teórica compilada se suscita que no solamente la base de datos de la OMS será suficiente sino que para la construcción de exposición se requerirá el uso de conjuntos de datos de población para la muestra delimitada, esto con 
+
+Con base en la documentación metodológica revisada, se identifica que la base de datos de mortalidad de la OMS, aunque constituye la principal fuente para los conteos de fallecimientos por causa,ahora bien está no resulta suficiente por sí sola para la construcción de probabilidades de decremento múltiple.
+
+ En particular, la estimación de probabilidades actuariales como qx(i) requiere no solamente frecuencias observadas de muerte Dx(i)​, sino también medidas adecuadas de exposición poblacionaln Px es decir los años-persona vividos nLx .
+
+En consecuencia, será necesario complementar la información de mortalidad con conjuntos de datos demográficos externos que permitan reconstruir la exposición de la población para las cohortes delimitadas por edad, sexo, país y período temporal. Esto implica incorporar estadísticas poblacionales para Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica y Panamá durante el intervalo 2015–2018, de manera que puedan construirse tasas centrales de mortalidad coherentes dentro del marco de decrementos múltiples.
+
+Adicionalmente, la literatura revisada señala que las proporciones observadas de muerte por causa no pueden interpretarse directamente como probabilidades actuariales, debido a que dependen de la estructura etaria, la dinámica poblacional y la competencia entre causas de salida del sistema. Por esta razón, la correcta estimación de la exposición poblacional constituye un elemento metodológico indispensable para la posterior traducción de tasas observadas hacia probabilidades de decremento.
+
+**Arco narrativo del proyecto**
+
+Al explorar los datos, descubrimos que las probabilidades de decremento múltiple no pueden construirse únicamente a partir de frecuencias observadas de muerte, sino que requieren considerar la exposición de la población y la competencia entre distintas causas de salida del sistema, lo que nos obliga a repensar cómo abordaremos el problema. 
+
+**Diario de aprendizaje.**
+
+Durante estas semanas entendimos mucho mejor cómo se construyen realmente las probabilidades de decremento múltiple y que estas no salen directamente de observar muertes, sino de relacionar las frecuencias de fallecimiento con la exposición de la población. También aprendimos que la fuerza de mortalidad μx(x) puede aproximarse mediante tasas centrales de mortalidad bajo ciertos supuestos, algo que al inicio del proyecto no teníamos claro.
+
+Por otra parte, nos dimos cuenta de que en R existen muy pocas herramientas preparadas específicamente para trabajar modelos actuariales de este tipo, por lo que gran parte del proceso debe programarse manualmente desde R base. Finalmente, comprendimos que uno de los mayores retos para trabajar tablas de vida en Centroamérica no es únicamente el modelado matemático, sino también la limitada disponibilidad y calidad de los datos demográficos y de mortalidad.
+
+**Registro de uso de IA bitácora 2.**
+
+**Inteligencia artificial:** CHATGPT  OpenIA
+
+**Prompt:**  
+
+	Algunos de los tipos de consultas que se le elevaron a la IA siguieron la siguiente estructura:  
+
+-   “Ayudame a identificar respecto al artículo Inferring probabilities rates qué elementos de mi conjunto de datos están asociados a las variables descritas ” .
+
+-   “De qué manera se puede implementar conceptualmente la observación teórico-metodológica de que la verosimilitud fuerza de mortalidad μx(t)converge a las tasa central de mortalidadnmx dentro del modelo frecuentista ”
+
+-   “El código está presentando el error de compilación  Error: unexpected '...'  por qué está fallando la manera en que se digitan los parámetros en la función”
+
+**Respuesta de la IA:**\
+	La IA respondió principalmente con explicaciones conceptuales, apoyo metodológico y sugerencias de estructura para el análisis exploratorio de datos y el refinamiento actuarial del problema de investigación. Su uso principal estuvo orientado a clarificar cómo la estimación de probabilidades de decremento múltiple puede construirse a partir de tasas de mortalidad observadas y exposición poblacional.
+
+También se utilizó para comprender con mayor precisión la relación entre las frecuencias observadas de muerte, las tasas centrales de mortalidad y las probabilidades actuariales de decremento múltiplenqx(c). En particular, ayudó a interpretar el problema desde el marco de riesgos competitivos y tablas de vida múltiples, diferenciando entre proporciones observadas de muerte y probabilidades reales de decremento.
+
+Otro uso importante fue la interpretación de artículos metodológicos relacionados con decrementos múltiples, especialmente trabajos como Inferring probabilities from rates: Extension to multiple decrement y Multiple Decrement Models in Insurance. La IA ayudó a traducir conceptos técnicos, interpretar notación actuarial y comprender los supuestos utilizados en modelos de mortalidad, como constancia de tasas dentro de intervalos y competencia entre causas.
+
+Además, se empleó para apoyar la limpieza y estructuración del conjunto de datos, particularmente en la identificación y clasificación de etiquetas ICD10, así como en la interpretación de resultados preliminares obtenidos mediante gráficas y análisis descriptivos del EDA.
+
+Finalmente, se utilizó para redactar y estructurar fichas bibliográficas y fichas de resultados, ayudando a conectar los hallazgos descriptivos con el marco metodológico actuarial y con la pregunta de investigación del proyecto.
+
+**Evaluación:\
+** El uso de la IA fue útil porque permitió ordenar conceptualmente el problema actuarial y comprender mejor cómo se construyen las probabilidades de decremento múltiple a partir de datos agregados de mortalidad. También facilitó la lectura de literatura técnica, la interpretación de notación actuarial y la conexión entre los resultados descriptivos del EDA y la modelación posterior.
+
+Sin embargo, varias respuestas debieron revisarse cuidadosamente debido a que algunas explicaciones simplificaban demasiado ciertos supuestos actuariales o utilizaban notación distinta a la definida para el proyecto. Por esta razón, las respuestas no fueron utilizadas directamente, sino reinterpretadas y adaptadas según el enfoque específico del trabajo.
+
+**Modificaciones:**\
+	Se modificaron y adaptaron múltiples respuestas generadas por la IA, especialmente aquellas relacionadas con la formulación metodológica del problema y la interpretación de las probabilidades de decremento múltiple. Se ajustó la notación actuarial utilizada, se corrigieron explicaciones demasiado generales sobre mortalidad y se reestructuraron varias interpretaciones para alinearlas con el marco de riesgos competitivos trabajado en el proyecto.
+
+También se revisaron las explicaciones relacionadas con tasas de mortalidad y exposición poblacional, incorporando de manera más precisa la idea de que la tasa de decremento surge de la relación entre frecuencias observadas de muerte y tiempo de exposición de la población. En la parte del EDA, se adaptaron sugerencias sobre visualización y depuración de datos para ajustarlas al comportamiento específico de la base de mortalidad utilizada.
+
+**Aprendizaje:**\
+	Se aprendió a diferenciar con mayor claridad entre tasas observadas de mortalidad y probabilidades actuariales de decremento múltiple. También se comprendió mejor que la estimación de nqx(c) requiere considerar simultáneamente la exposición poblacional, la competencia entre causas de muerte y los supuestos de estabilidad dentro de los intervalos de edad.
+
+Además, se fortaleció la comprensión sobre el papel de las tablas de vida de decrementos múltiples, la interpretación de tasas centrales de mortalidad y la forma en que los datos agregados de mortalidad pueden transformarse en probabilidades actuariales dentro de un modelo multiestado.
+
+**Referencias**
+
+AAPC Thought Leadership Team. (2025, 3 de marzo). What is ICD-10? AAPC.[ https://www.aapc.com/resources/what-is-icd-10](https://www.aapc.com/resources/what-is-icd-10)
+
+Austin, P. C., Steyerberg, E. W., & Putter, H. (2021). Fine-Gray subdistribution hazard models to simultaneously estimate the absolute risk of different event types: Cumulative total failure probability may exceed 1. Statistics in Medicine, 40(19), 4200–4212.[ https://doi.org/10.1002/sim.9023](https://doi.org/10.1002/sim.9023)
+
+Baione, F., & Levantesi, S. (2014). A health insurance pricing model based on prevalence rates: Application to critical illness insurance. Insurance: Mathematics and Economics, 58, 174–184. https://doi.org/10.1016/j.insmatheco.2014.07.005
+
+Baione, F., & Levantesi, S. (2018). Pricing critical illness insurance from prevalence rates: Gompertz versus Weibull. North American Actuarial Journal, 22(2), 270–288.[ https://doi.org/10.1080/10920277.2017.1397524](https://doi.org/10.1080/10920277.2017.1397524)
+
+Bowers, N. L., Gerber, H. U., Hickman, J. C., Jones, D. A., & Nesbitt, C. J. (1997). Actuarial mathematics (2nd ed.). Society of Actuaries.
+
+Calazans, J. A., & Queiroz, B. L. (2020). The adult mortality profile by cause of death in 10 Latin American countries (2000–2016). Revista Panamericana de Salud Pública, 44, e1.[ https://doi.org/10.26633/RPSP.2020.1](https://doi.org/10.26633/RPSP.2020.1)
+
+Deshmukh, S. (2012). Multiple decrement models in insurance: An introduction using R. Springer.[ https://doi.org/10.1007/978-81-322-0659-0](https://doi.org/10.1007/978-81-322-0659-0)
+
+Dirgová, I., & Bilíková, M. (2014). Modelación actuarial del seguro de vida mediante modelos de decremento. Journal of Applied Mathematics, Statistics and Informatics, 10(1). https://doi.org/10.2478/jamsi-2014-0008
+
+Fine, J. P., & Gray, R. J. (1999). A proportional hazards model for the subdistribution of a competing risk. Journal of the American Statistical Association, 94(446), 496–509.[ https://doi.org/10.1080/01621459.1999.10474144](https://doi.org/10.1080/01621459.1999.10474144)
+
+Goerlich Gisbert, F. J. (2012). Tablas de vida de decrementos múltiples: Mortalidad por causas en España (1975–2008) (Documento de Trabajo No. 1/2012). Fundación BBVA.
+
+Keyfitz, N., Preston, S. H., & Schoen, R. (1972). Inferring probabilities from rates: Extension to multiple decrement. Scandinavian Actuarial Journal, 1972(1), 1–13. https://doi.org/10.1080/03461238.1972.10404630
+
+Li, J. (2019). A multi-state model for pricing critical illness insurance products \[Master’s project, Simon Fraser University\].
+
+Lynch, S. M., & Brown, J. S. (2005). A new approach to estimating life tables with covariates and constructing interval estimates of life table quantities. Sociological Methodology, 35(1), 189–237.[ https://doi.org/10.1111/j.0081-1750.2006.00168.x](https://doi.org/10.1111/j.0081-1750.2006.00168.x)
+
+Macdonald, A. S. (1996). An actuarial survey of statistical models for decrement and transition data II: Competing risks, non-parametric and regression models. British Actuarial Journal, 2(2), 429–448. https://doi.org/10.1017/S1357321700003469
+
+Macdonald, A. S., & Richards, S. J. (2025). On contemporary mortality models for actuarial use II: Principles. British Actuarial Journal, 30, e19.[ https://doi.org/10.1017/S1357321725000133](https://doi.org/10.1017/S1357321725000133)
+
+Makeham, W. M. (1860). On the law of mortality and the construction of annuity tables. Journal of the Institute of Actuaries, 8(6), 301–310.[ https://doi.org/10.1017/S204616580000126X](https://doi.org/10.1017/S204616580000126X)
+
+Manton, K. G., Woodbury, M. A., Stallard, E., Riggan, W. B., Creason, J. P., & Pellom, A. C. (1989). Empirical Bayes procedures for stabilizing maps of U.S. cancer mortality rates. Journal of the American Statistical Association, 84(407), 637–650. https://doi.org/10.1080/01621459.1989.10478816
+
+Olivieri, A., & Pitacco, E. (2012). Life tables in actuarial models: From the deterministic setting to a Bayesian approach. AStA Advances in Statistical Analysis, 96, 127–153. https://doi.org/10.1007/s10182-011-0177-y
+
+Orozco Cortés, J. S. (2023). Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas \[Tesis de maestría, Universidad Nacional de Colombia\].
+
+Pasaribu, U. S., Husniah, H., Sari, R. R. K. N., & Yanti, A. R. (2019). Pricing critical illness insurance premiums using multiple state continuous Markov chain model. Journal of Physics: Conference Series, 1366(1), 012112. https://doi.org/10.1088/1742-6596/1366/1/012112
+
+Patricio, S. C., & Missov, T. (2024). Makeham mortality models as mixtures: Advancing mortality estimations through competing risks frameworks. Demographic Research, 51, 595–624. https://doi.org/10.4054/DemRes.2024.51.18
+
+Pitacco, E., Denuit, M., Haberman, S., & Olivieri, A. (2009). Modelling longevity dynamics for pensions and annuity business. Oxford University Press. https://doi.org/10.1093/oso/9780199547272.001.0001
+
+Román Sánchez, Y. G., Sánchez Pérez, A. L., & Mendieta Zacarias, I. (2018). Mortalidad por causas en el estado de México, 2000 y 2015. Novedades en Población, 14(28), 64–78.
+
+Schumacher, A. E., McCormick, T. H., Wakefield, J., Chu, Y., Perin, J., Villavicencio, F., Simon, N., & Liu, L. (2022). A flexible Bayesian framework to estimate age- and cause-specific child mortality over time from sample registration data. The Annals of Applied Statistics, 16(1), 124–143.[ https://doi.org/10.1214/21-AOAS1489](https://doi.org/10.1214/21-AOAS1489)
+
+Scott, G. (2026, 24 de abril). Variability: Definition in statistics and finance. Investopedia.[ https://www.investopedia.com/terms/v/variability.asp](https://www.investopedia.com/terms/v/variability.asp)
+
+Society of Actuaries. (2016). Experience study calculations. Society of Actuaries.
+
+Wikipedia. (s. f.). Patrón (estructura). Wikipedia. https://es.wikipedia.org/wiki/Patr%C3%B3n\_(estructura)
+
+Wolbers, M., Koller, M. T., Stel, V. S., Schaer, B., Jager, K. J., Leffondré, K., & Heinze, G. (2014). Competing risks analyses: Objectives and approaches. European Heart Journal, 35(42), 2936–2941.[ https://doi.org/10.1093/eurheartj/ehu131](https://doi.org/10.1093/eurheartj/ehu131)
+
+World Health Organization. (2026). About the WHO mortality database. World Health Organization.[ https://platform.who.int/mortality/about/about-the-who-mortality-database](https://platform.who.int/mortality/about/about-the-who-mortality-database)
+
+World Health Organization. (2026). WHO Mortality Database. World Health Organization.[ https://www.who.int/data/data-collection-tools/who-mortality-database](https://www.who.int/data/data-collection-tools/who-mortality-database)
+
+World Health Organization, Department of Data, Digital Health, Analytics and AI. (2026, 23 de febrero). WHO Mortality Database documentation. World Health Organization.
