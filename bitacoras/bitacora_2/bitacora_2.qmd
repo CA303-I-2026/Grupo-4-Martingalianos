@@ -496,3 +496,30 @@ Lo que quiere decir que la acumulación porcentual de muertes en El Salvador fue
 
 **Resumen argumentativo:** El artículo aborda el problema de estimar primas de seguros de enfermedades críticas cuando carece de datos de incidencia, proponiendo únicamente la aplicación mediante el uso de tasas de prevalencia. Esto permite reconstruir las intensidades de transición y calcular ${}_n q_x^{(c)}$ y $P_x^{SA}.$ No obstante, si la base de datos carece de información suficiente, los parámetros pueden sobreestimar o calcular erróneamente las intensidades de transición para el cálculo de primas. Para efectos de este proyecto, el documento muestra cómo construir de manera empírica modelos paramétricos como Gompertz y Weibull. Por lo tanto, resulta útil tomar en cuenta esta otra forma de construir la tasa de decrementos múltiples, puesto que en este artículo se carece de tasas de incidencia de enfermedades, como ocurre con la base a utilizar en este proyecto.
 
+
+
+## Multiple Decrement Models in Insurance: An Introduction Using R
+
+**Título:** Multiple Decrement Models in Insurance: An Introduction Using R
+
+**Autor(es):** Shailaja Deshmukh.
+
+**Año:** 2012.
+
+**Clasificación:** Teórica, porque desarrolla la formulación matemática del modelo de decrementos múltiples y muestra su implementación práctica mediante ejercicios y manejo de datos en R, sin centrarse en desarrollo teórico no antes visto.
+
+**Resumen en una oración:** Fundamenta matemáticamente los decrementos múltiples, las pensiones y su implementación práctica en R.
+
+**Argumento central:** El documento establece que las probabilidades de decremento múltiple pueden derivarse a partir de intensidades de transición mediante expresiones continuas, muestra que las tasas centrales de mortalidad ${}_n m_x^{(c)}$ pueden interpretarse como promedios de dichas intensidades ${}^{(c)}\mu_x$ al igual que la ley Fabio Baione & Susanna Levantesi. Facilita también una serie de ejercicios y ejemplos donde implementa estos modelos a bases de datos simples.
+
+**Problemas con el argumento o el tema:** El documento no aborda el uso de bases de datos reales ni el tratamiento de datos agregados como los grupos de edad obtenidos de la WHO, ni incluye herramientas computacionales avanzadas o paquetes especializados, pues utiliza R base. Su enfoque es principalmente aplicado mediante ejemplos simples, por lo que limita los análisis e interpretaciones de casos con mayores bases. Además, su objetivo es construir las bases de la modelación de decrementos múltiples, dejando de lado el uso de leyes como la de Gompertz o Weibull.
+
+**Conexión con mi proyecto:** El libro fundamenta la base matemática que justifica el uso de ${}_n m_x^{(c)}$ y ${}_n q_x^{(c)}$ para obtener las tasas de decrementos múltiples ${}_n q_x^{(c)}$ de manera computacional para Centroamérica, lo cual constituye la parte metodológica del proyecto. También muestra una serie de pasos para trabajar con estos modelos en R.
+
+**Contraste con otra fuente:** Este documento complementa los trabajos de Jingdan Li (2019). Mientras Li desarrolla y aplica modelos multiestados con datos reales y comparaciones paramétricas, este documento proporciona el fundamento matemático que permite entender el proceso computacional que hay detrás de ello. En conjunto, las fuentes cubren la construcción de ${}_n q_x^{(c)}$ y la implementación de ello en R.
+
+**Evaluación de aplicabilidad:** 4, es una guía altamente aplicable, pues proporciona directamente las herramientas computacionales para construir ${}_n q_x^{(c)}$ a partir de bases de datos, necesario para la metodología del proyecto.
+
+**Pregunta que le haría al autor:** ¿Cómo se podría extender este enfoque computacional para incorporar modelos paramétricos de intensidades (como Gompertz o Weibull) en el cálculo de probabilidades de decremento con datos agregados?
+
+**Resumen argumentativo:** Deshmukh busca modelar las probabilidades de decrementos múltiples a partir de intensidades de transición en un modelo multiestado continuo. Esta formulación la aplica de manera computacional aplicando fórmulas matemáticas en R base. Si bien no se dispone de bases de datos reales, su implementación se fundamenta para entender el proceso programado de ${}_n q_x^{(c)}$ en un lenguaje informático. Dado el contexto de este proyecto, proporciona también la base teórica que justifica la construcción de tasas centrales de mortalidad ${}_n m_x^{(c)}$ necesarias para la discretización de los datos y así construir ${}_n q_x^{(c)}$. Por ende, el libro resulta como soporte fundamental para la correcta aplicación del modelo de decrementos múltiples y la construcción de las tablas de mortalidad.
