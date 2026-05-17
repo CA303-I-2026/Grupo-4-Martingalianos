@@ -1,0 +1,477 @@
+/* =========================
+   Tipografía general
+   ========================= */
+
+.reveal {
+  font-family: "Times New Roman", Times, serif;
+  color: #f1f1f1;
+}
+
+/* =========================
+   Títulos de diapositivas
+   ========================= */
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #f8f8f8;
+}
+
+/* Títulos normales de las diapositivas */
+.reveal h2 {
+  font-size: 1.45em;
+}
+
+/* =========================
+   Portada
+   ========================= */
+
+.portada {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.titulo-portada {
+  font-family: "Times New Roman", Times, serif;
+  color: #f1f1f1;
+  font-size: 1.02em;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  text-align: center;
+  margin-top: 18px;
+}
+
+.formula-titulo {
+  font-family: "Times New Roman", Times, serif;
+  color: #f1f1f1;
+  font-size: 1.35em;
+  font-weight: 800;
+  margin: 8px 0;
+  text-align: center;
+}
+
+.autores-portada {
+  font-family: "Times New Roman", Times, serif;
+  color: #f1f1f1;
+  font-size: 0.72em;
+  font-weight: 800;
+  line-height: 1.38;
+  margin: 16px auto 14px auto;
+  text-align: center;
+}
+
+.curso-portada {
+  font-family: "Times New Roman", Times, serif;
+  color: #f1f1f1;
+  font-size: 0.62em;
+  line-height: 1.3;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* Fórmula de la portada */
+.formula-titulo mjx-container,
+.formula-titulo mjx-container * {
+  color: #f1f1f1 !important;
+}
+
+/* =========================
+   Pregunta de investigación
+   ========================= */
+
+.center-title {
+  text-align: center;
+}
+
+.pregunta-investigacion {
+  font-family: "Times New Roman", Times, serif;
+  color: #f8f8f8;
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+  max-width: 1120px;
+  margin: 88px auto 0 auto;
+  padding: 0 24px;
+}
+
+.pregunta-investigacion mjx-container,
+.pregunta-investigacion mjx-container * {
+  color: #f8f8f8 !important;
+}
+
+.pregunta-investigacion mjx-container {
+  font-size: 1.18em !important;
+}
+
+/* =========================================================
+   FILMINA: DATOS
+   ========================================================= */
+
+
+/* =========================================================
+   CENTRADO GENERAL DE LA FILMINA
+   ========================================================= */
+
+.reveal .slides section.slide-datos {
+  height: 100%;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 !important;
+}
+
+
+/* =========================================================
+   TÍTULO PRINCIPAL
+   ========================================================= */
+
+.slide-datos .titulo-datos {
+  width: 100%;
+  margin: 0 0 1.35rem 0;
+  text-align: center;
+  font-size: 2.55rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  color: #ffffff;
+  transform: translateY(-0.10rem);
+}
+
+
+/* =========================================================
+   CONTENEDOR GENERAL DE LAS DOS FILAS
+   ========================================================= */
+
+.slide-datos .datos-layout {
+  width: 92%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.05rem;
+}
+
+
+/* Cada bloque horizontal */
+.slide-datos .datos-fila {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 28% 69%;
+  column-gap: 3%;
+  align-items: center;
+}
+
+
+/* Fila ICD: subir ligeramente para compactar la composición */
+.slide-datos .fila-icd {
+  margin-top: 0;
+  align-items: center;
+  transform: translateY(-0.12rem);
+}
+
+
+/* =========================================================
+   COLUMNA IZQUIERDA: TEXTO
+   ========================================================= */
+
+.slide-datos .datos-texto {
+  text-align: left;
+  color: #ffffff;
+}
+
+.slide-datos .datos-texto h3 {
+  margin: 0 0 0.52rem 0 !important;
+  font-size: 1.95rem !important;
+  font-weight: 750;
+  line-height: 1.05;
+  color: #ffffff;
+}
+
+.slide-datos .datos-texto p {
+  margin: 0 !important;
+  max-width: 100%;
+  font-size: 0.96rem !important;
+  line-height: 1.34 !important;
+  color: rgba(255, 255, 255, 0.96);
+}
+
+
+/* =========================================================
+   COLUMNA DERECHA
+   ========================================================= */
+
+.slide-datos .datos-contenido {
+  width: 100%;
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+
+/* =========================================================
+   TABLA WHO
+   ========================================================= */
+
+.slide-datos .tabla-datos {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 0.80rem;
+  color: #ffffff;
+  background: rgba(5, 22, 45, 0.52);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  backdrop-filter: blur(3px);
+}
+
+.slide-datos .tabla-datos thead {
+  background: rgba(4, 18, 39, 0.58);
+}
+
+.slide-datos .tabla-datos th {
+  padding: 0.40rem 0.58rem;
+  font-size: 0.80rem;
+  font-weight: 700;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.85);
+  color: #ffffff;
+}
+
+.slide-datos .tabla-datos td {
+  padding: 0.37rem 0.58rem;
+  font-size: 0.78rem;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.40);
+  color: #ffffff;
+}
+
+.slide-datos .tabla-datos tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.slide-datos .tabla-datos th:first-child,
+.slide-datos .tabla-datos td:first-child {
+  width: 52%;
+}
+
+.slide-datos .tabla-datos th:last-child,
+.slide-datos .tabla-datos td:last-child {
+  width: 48%;
+}
+
+
+/* =========================================================
+   TABLA ICD-10: 
+   ========================================================= */
+
+.slide-datos .tabla-icd-ejemplo {
+  width: 100% !important;
+  margin: 0 !important;
+  border-collapse: collapse !important;
+  table-layout: fixed !important;
+
+  font-size: 0.78rem !important;
+  line-height: 1.20 !important;
+
+  color: #ffffff !important;
+  background: rgba(5, 22, 45, 0.60) !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  backdrop-filter: blur(4px);
+}
+
+/* Encabezado */
+.slide-datos .tabla-icd-ejemplo thead {
+  background: rgba(4, 18, 39, 0.78) !important;
+}
+
+.slide-datos .tabla-icd-ejemplo th {
+  padding: 0.38rem 0.48rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.44) !important;
+
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  line-height: 1.14 !important;
+  text-align: left !important;
+  vertical-align: middle !important;
+
+  color: #ffffff !important;
+  white-space: normal !important;
+}
+
+/* Celdas */
+.slide-datos .tabla-icd-ejemplo td {
+  padding: 0.29rem 0.48rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
+
+  font-size: 0.72rem !important;
+  font-weight: 400 !important;
+  line-height: 1.18 !important;
+  text-align: left !important;
+  vertical-align: middle !important;
+
+  color: rgba(255, 255, 255, 0.98) !important;
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+}
+
+/* Distribución de columnas */
+.slide-datos .tabla-icd-ejemplo th:nth-child(1),
+.slide-datos .tabla-icd-ejemplo td:nth-child(1) {
+  width: 22% !important;
+}
+
+.slide-datos .tabla-icd-ejemplo th:nth-child(2),
+.slide-datos .tabla-icd-ejemplo td:nth-child(2) {
+  width: 26% !important;
+}
+
+.slide-datos .tabla-icd-ejemplo th:nth-child(3),
+.slide-datos .tabla-icd-ejemplo td:nth-child(3) {
+  width: 52% !important;
+}
+
+
+/* =========================================================
+   ETIQUETAS BAJO LAS TABLAS 
+   ========================================================= */
+
+.reveal .slides section.slide-datos .caption-tabla,
+.reveal .slides section.slide-datos .caption-tabla strong,
+.reveal .slides section.slide-datos .caption-tabla em {
+  font-size: 0.6rem !important;
+  line-height: 1.12 !important;
+}
+
+.reveal .slides section.slide-datos .caption-tabla {
+  width: 100%;
+  display: block !important;
+  margin: 0.14rem 0 0 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+
+  text-align: left !important;
+  font-weight: 400 !important;
+  color: rgba(255, 255, 255, 0.86) !important;
+}
+
+.reveal .slides section.slide-datos .caption-tabla strong {
+  font-weight: 700 !important;
+  color: rgba(255, 255, 255, 0.96) !important;
+}
+
+.reveal .slides section.slide-datos .caption-tabla em {
+  font-style: italic !important;
+  color: rgba(255, 255, 255, 0.86) !important;
+}
+
+/* =========================================================
+   FILMINA: MODELACIÓN DE DEFUNCIONES
+   ========================================================= */
+
+.reveal .slides section.slide-poisson {
+  height: 100%;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 !important;
+}
+
+.slide-poisson .titulo-poisson {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1.8rem;
+  font-size: 2.45rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+}
+
+.slide-poisson .poisson-layout {
+  width: 86%;
+  display: grid;
+  grid-template-columns: 42% 54%;
+  column-gap: 4%;
+  align-items: center;
+}
+
+.slide-poisson .poisson-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.slide-poisson .poisson-bloque {
+  padding-left: 1rem;
+  border-left: 4px solid rgba(22, 200, 220, 0.75);
+}
+
+.slide-poisson .poisson-bloque h3 {
+  margin: 0 0 0.35rem 0 !important;
+  font-size: 1.45rem !important;
+  color: #ffffff;
+}
+
+.slide-poisson .poisson-bloque p {
+  margin: 0 !important;
+  font-size: 0.88rem !important;
+  line-height: 1.32 !important;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.slide-poisson .poisson-modelo {
+  padding: 1.35rem 1.55rem;
+  border-radius: 18px;
+  background: rgba(5, 22, 45, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+}
+
+.slide-poisson .formula-titulo {
+  margin-bottom: 0.65rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.slide-poisson .formula-poisson {
+  text-align: center;
+  margin: 0.8rem 0 0.6rem 0;
+  font-size: 1.25rem !important;
+}
+
+.slide-poisson .formula-poisson mjx-container {
+  margin: 0 !important;
+}
+
+.slide-poisson .interpretacion-poisson {
+  text-align: center;
+  margin: 0.45rem 0 0.65rem 0;
+  font-size: 1.05rem !important;
+}
+
+.slide-poisson .interpretacion-poisson mjx-container {
+  margin: 0 !important;
+}
+
+.slide-poisson .frase-clave {
+  margin-top: 0.9rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.82rem;
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.90);
+}
