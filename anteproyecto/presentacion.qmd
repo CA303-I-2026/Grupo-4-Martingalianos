@@ -221,3 +221,203 @@ El número esperado de muertes depende de la exposición poblacional y de la fue
 </div>
 
 </div>
+
+
+<!-- ACA EMPIEZA MI PARTE -->
+
+## {.slide-eda background-image="imagenes/foto_pregunta.png" background-size="cover" background-position="center"}
+
+<div class="titulo-eda">ANÁLISIS EXPLORATORIO DE DATOS</div>
+
+<div class="eda-layout">
+
+<div class="eda-ecuacion">
+
+<div class="eda-subtitulo">
+Medida de exceso
+</div>
+
+<div class="formula-eda">
+
+$$
+\begin{gathered}
+\max\left(D^{(c)}-\tilde{D}^{(c)},\,0\right) \\[0.55em]
+D^{(c)} \ge 1.2\,\bar{D}^{(c)}
+\end{gathered}
+$$
+
+</div>
+
+<div class="eda-definicion">
+$$\tilde{D}^{(c)}$$ representa la mediana de las defunciones agrupadas correspondientes a la misma causa \(c\).
+</div>
+
+<div class="eda-frase">
+<ul>
+  <li>Belice registró: 4484 excesos.</li>
+  <li>Guatemala registró: 22807 excesos.</li>
+</ul>
+</div>
+
+</div>
+
+<div class="eda-imagen">
+  <img src="imagenes/figura1.jpg" alt="Muertes registradas por país y año, 2015-2018.">
+</div>
+
+</div>
+
+
+
+## {.slide-perfil-excesos background-image="imagenes/foto_pregunta.png" background-size="cover" background-position="center"}
+
+<div class="titulo-perfil-excesos">
+PERFIL DE EXCESOS
+</div>
+
+<div class="perfil-excesos-layout">
+
+<div class="perfil-excesos-imagen">
+  <img src="imagenes/figura2.jpg" alt="Perfil de excesos por grupo etario y causa de decremento.">
+</div>
+
+<div class="perfil-excesos-notas">
+  <ul>
+    <li>
+      Para edades entre 15–55 años, las agresiones resultan la causa de decremento con mayor exceso.
+    </li>
+    <li>
+      Para los 70 años en adelante, las enfermedades degenerativas, como las asociadas al sistema circulatorio, toman mayor intensidad.
+    </li>
+  </ul>
+</div>
+
+</div>
+
+
+
+## {.slide-estratos background-image="imagenes/foto_pregunta.png" background-size="cover" background-position="center"}
+
+<div class="titulo-estratos">
+ESTRATOS DE MAYOR NÚMERO DE MUERTES Y EXCESOS
+</div>
+
+<div class="estratos-layout">
+
+<div class="estratos-imagen">
+  <img src="imagenes/figura3.jpg" alt="Estratos con mayor número de muertes registradas.">
+</div>
+
+<div class="estratos-imagen">
+  <img src="imagenes/figura4.jpg" alt="Estratos con mayor número de excesos registrados.">
+</div>
+
+</div>
+
+<div class="mensaje-estratos">
+El exceso más fuerte no necesariamente coincide con el mayor número de muertes registradas.
+</div>
+
+## {.slide-historia background-image="imagenes/foto_pregunta.png" background-size="cover" background-position="center"}
+
+<div class="titulo-historia">
+IMAGEN QUE CUENTA LA HISTORIA
+</div>
+
+<div class="historia-layout">
+
+<div class="historia-imagen">
+  <img src="imagenes/figura5.jpg" alt="Masa de acumulación de decrementos asociados a causas segregadas.">
+</div>
+
+<div class="mensaje-historia">
+  - Masa de acumulación de decrementos asociados a causas segregadas
+</div>
+
+</div>
+
+
+## {.slide-decremento background-image="imagenes/foto_pregunta.png" background-size="cover" background-position="center"}
+
+<div class="titulo-decremento">
+CONSTRUCCIÓN DE LA PROBABILIDAD DE DECREMENTO MÚLTIPLE
+</div>
+
+<div class="decremento-layout">
+
+<div class="cuadro-tasa">
+
+<div class="subtitulo-cuadro">
+Tasa central de mortalidad por causa
+</div>
+
+<div class="formula-tasa">
+
+$$
+{}_n m_{x,t}^{(c)}
+=
+\frac{
+D_{x,t}^{(c)}
+}{
+{}_n L_{x,t}
+}
+$$
+
+</div>
+
+<div class="explicacion-tasa">
+  <p>
+    \\(D_{x,t}^{(c)}\\): defunciones observadas por la causa \\(c\\).
+  </p>
+  <p>
+    \\({}_{n}L_{x,t}\\): exposición al riesgo, aproximada mediante años-persona.
+  </p>
+</div>
+
+</div>
+
+<div class="cuadro-probabilidad">
+
+<div class="subtitulo-cuadro">
+Probabilidad de decremento múltiple
+</div>
+
+<div class="formula-q">
+
+$$
+{}_n q_{x,t}^{(c)}
+=
+\underbrace{
+\frac{
+{}_n m_{x,t}^{(c)}
+}{
+{}_n m_{x,t}^{(\cdot)}
+}
+}_{\text{participación relativa de la causa }c}
+\;
+\underbrace{
+\left(
+1-e^{-n\,{}_n m_{x,t}^{(\cdot)}}
+\right)
+}_{\text{probabilidad de morir por cualquier causa}}
+$$
+
+</div>
+
+<div class="explicacion-q">
+Bajo fuerza de mortalidad constante dentro del intervalo, la probabilidad de decremento por causa se obtiene ponderando la intensidad relativa de la causa por la probabilidad total de muerte.
+</div>
+
+</div>
+
+</div>
+
+<div class="nota-decremento">
+  <ul>
+    <li>
+      El dataset de población aporta la exposición entre causas en competencia a mitad de año, lo cual facilita su uso al no requerir interpolaciones.
+    </li>
+  </ul>
+</div>
+
+
