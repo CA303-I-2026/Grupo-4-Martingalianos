@@ -13,29 +13,29 @@ execute:
   echo: false
 ---
 
-## {.title-slide background-image="imagenes/fondo_portada.png" background-size="cover" background-position="center"}
+##  {.title-slide background-image="imagenes/fondo_portada.png" background-size="cover" background-position="center"}
 
-<div class="titulo-portada">
+:::: titulo-portada
 Análisis del cambio de la probabilidad de decremento
 
-<div class="formula-titulo">
+::: formula-titulo
 ${}_n q_x^{(c)}$
-</div>
+:::
 
 para grupos etarios por causas de muerte de acuerdo con la clasificación ICD-10 en países de Centroamérica, 2015–2018
-</div>
+::::
 
-<div class="autores-portada">
-Kevin David Calderón Martínez 
+::: autores-portada
+Kevin David Calderón Martínez
 
 Gabriel de Jesús Chaves Esquivel
 
 Benjamín Gutiérrez Padua
 
-Sebastián Miranda Ramírez  
-</div>
+Sebastián Miranda Ramírez
+:::
 
-<div class="curso-portada">
+::: curso-portada
 CA0303 Estadística Actuarial
 
 Profesor Maikol Solís
@@ -43,42 +43,39 @@ Profesor Maikol Solís
 Universidad de Costa Rica
 
 I - 2026
-</div>
+:::
 
----
+------------------------------------------------------------------------
 
-## {.title-slide background-image="imagenes/foto_pregunta.png" background-size="cover" background-position="center"}
+##  {.title-slide background-image="imagenes/foto_pregunta.png" background-size="cover" background-position="center"}
 
-<div class="titulo-portada">
+::: titulo-portada
 PREGUNTA DE INVESTIGACIÓN
-</div>
+:::
 
-<div class="pregunta-investigacion">
-
-¿Qué patrones de variabilidad se pueden estimar en la probabilidad de decremento  
-${}_n q_x^{(c)}$  
+::: pregunta-investigacion
+¿Qué patrones de variabilidad se pueden estimar en la probabilidad de decremento\
+${}_n q_x^{(c)}$\
 por categoría de causas de la ICD-10 en países centroamericanos durante 2015–2018?
+:::
 
-</div>
+------------------------------------------------------------------------
 
+##  {.slide-datos background-image="imagenes/foto_who.png" background-size="cover" background-position="center"}
 
----
+::: titulo-datos
+DATOS
+:::
 
-## {.slide-datos background-image="imagenes/foto_who.png" background-size="cover" background-position="center"}
-
-<div class="titulo-datos">DATOS</div>
-
-<div class="datos-layout">
-
-<div class="datos-fila">
-
-<div class="datos-texto">
+::::::::::: datos-layout
+:::::: datos-fila
+::: datos-texto
 <h3>WHO</h3>
+
 <p>Base internacional de mortalidad por causa, edad, sexo, país y año.</p>
-</div>
+:::
 
-<div class="datos-contenido">
-
+:::: datos-contenido
 ```{r}
 #| label: resumen-base-mortalidad
 #| echo: false
@@ -109,26 +106,20 @@ kable(
 )
 ```
 
-<div class="caption-tabla">
-  <strong>Tabla 1:</strong> Significado de las columnas de la base de datos.
-  <em>Obtenido de: World Health Organization (2026).</em>
-</div>
+::: caption-tabla
+<strong>Tabla 1:</strong> Significado de las columnas de la base de datos. <em>Obtenido de: World Health Organization (2026).</em>
+:::
+::::
+::::::
 
-</div>
-</div>
-
-<div class="datos-fila fila-icd">
-
-<div class="datos-texto">
+:::::: {.datos-fila .fila-icd}
+::: datos-texto
 <h3>ICD-10</h3>
-<p>
-Clasificación internacional de enfermedades y causas de muerte utilizada
-para codificar y organizar las defunciones.
-</p>
-</div>
 
-<div class="datos-contenido">
+<p>Clasificación internacional de enfermedades y causas de muerte utilizada para codificar y organizar las defunciones.</p>
+:::
 
+:::: datos-contenido
 ```{r}
 #| label: tabla-ejemplo-icd10
 #| echo: false
@@ -158,55 +149,48 @@ kable(
 )
 ```
 
-<div class="caption-tabla">
-  <strong>Tabla 2:</strong> Ejemplo breve de la clasificación de enfermedades de acuerdo al ICD-10.
-  <em>Elaboración propia.</em>
-</div>
+::: caption-tabla
+<strong>Tabla 2:</strong> Ejemplo breve de la clasificación de enfermedades de acuerdo al ICD-10. <em>Elaboración propia.</em>
+:::
+::::
+::::::
+:::::::::::
 
-</div>
-</div>
-</div>
+##  {.slide-poisson background-image="imagenes/foto_d.png" background-size="cover" background-position="center"}
 
+::: titulo-poisson
+MODELACIÓN DE DEFUNCIONES
+:::
 
-## {.slide-poisson background-image="imagenes/foto_d.png" background-size="cover" background-position="center"}
-
-<div class="titulo-poisson">MODELACIÓN DE DEFUNCIONES</div>
-
-<div class="poisson-layout">
-
-<div class="poisson-texto">
-
-<div class="poisson-bloque">
+::::::::::: poisson-layout
+::::: poisson-texto
+::: poisson-bloque
 <h3>Observaciones agrupadas</h3>
-<p>
-Los registros no corresponden a edades individuales, sino a grupos etarios:
-<strong>0–4, 5–9, ..., 50–54</strong>.
-</p>
-</div>
 
-<div class="poisson-bloque">
+<p>Los registros no corresponden a edades individuales, sino a grupos etarios: <strong>0–4, 5–9, ..., 50–54</strong>.</p>
+:::
+
+::: poisson-bloque
 <h3>Variable de conteo</h3>
-<p>
-Definimos <strong>D<sub>x,t</sub><sup>(c)</sup></strong> como el número de defunciones
-observadas en el grupo etario <strong>x</strong>, año <strong>t</strong> y causa <strong>c</strong>. Este valor es una v.a
-</p>
-</div>
 
-</div>
+<p>Definimos <strong>D<sub>x,t</sub><sup>(c)</sup></strong> como el número de defunciones observadas en el grupo etario <strong>x</strong>, año <strong>t</strong> y causa <strong>c</strong>. Este valor es una v.a</p>
+:::
+:::::
 
-<div class="poisson-modelo">
+::::::: poisson-modelo
+::: formula-titulo
+Modelo condicional
+:::
 
-<div class="formula-titulo">Modelo condicional</div>
-
-::: {.formula-poisson}
+::: formula-poisson
 $$
-D_{x,t}^{(c)} \mid \mu_{x,t}^{(c)}, E_{x,t}
+D_{x,t}^{(c)} \mid \mu_{x,t}^{(c)}
 \sim
 \operatorname{Poisson}\!\left(E_{x,t}\mu_{x,t}^{(c)}\right)
 $$
 :::
 
-::: {.interpretacion-poisson}
+::: interpretacion-poisson
 $$
 \mathbb{E}\!\left[D_{x,t}^{(c)}\right]
 =
@@ -214,13 +198,14 @@ E_{x,t}\mu_{x,t}^{(c)}
 $$
 :::
 
-<div class="frase-clave">
+::: frase-clave
 El número esperado de muertes depende de la exposición poblacional y de la fuerza de mortalidad por causa.
-</div>
+:::
+:::::::
+:::::::::::
 
-</div>
 
-</div>
+
 
 
 <!-- ACA EMPIEZA MI PARTE -->
@@ -421,3 +406,371 @@ Bajo fuerza de mortalidad constante dentro del intervalo, la probabilidad de dec
 </div>
 
 
+
+
+
+##  {.slide-metodo .slide-lexis background-image="imagenes/foto_d.png" background-size="cover" background-position="center"}
+
+::: metodo-titulo
+METODOLOGÍA
+:::
+
+:::::::: lexis-layout
+:::: lexis-card
+<h3>Diagrama de Lexis</h3>
+
+::: lexis-diagrama
+```{=html}
+<svg class="lexis-svg" viewBox="0 0 620 420" role="img" aria-label="Diagrama de Lexis con un rectángulo edad-año sombreado">
+
+<defs> <marker id="lexisArrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"> <path d="M0,0 L0,6 L8,3 z" fill="#ffffff"></path> </marker> <pattern id="lexisHatch" patternUnits="userSpaceOnUse" width="12" height="12" patternTransform="rotate(35)"> <line x1="0" y1="0" x2="0" y2="12" stroke="#f39b7f" stroke-width="3" opacity="0.9"></line> </pattern> </defs> <line class="lexis-axis" x1="70" y1="350" x2="570" y2="350" marker-end="url(#lexisArrow)"></line> <line class="lexis-axis" x1="70" y1="350" x2="70" y2="42" marker-end="url(#lexisArrow)"></line> <text class="lexis-axis-label" x="545" y="386">Tiempo</text> <text class="lexis-axis-label" x="24" y="48">Edad</text>
+
+<line class="lexis-grid" x1="70" y1="300" x2="555" y2="300"></line> <line class="lexis-grid" x1="70" y1="175" x2="555" y2="175"></line> <line class="lexis-grid strong" x1="320" y1="70" x2="320" y2="350"></line> <line class="lexis-grid strong" x1="445" y1="70" x2="445" y2="350"></line>
+
+<line class="lexis-cohort" x1="110" y1="350" x2="455" y2="45"></line> <line class="lexis-cohort" x1="230" y1="350" x2="575" y2="45"></line> <line class="lexis-cohort" x1="350" y1="350" x2="595" y2="132"></line>
+
+<rect class="lexis-rect" x="320" y="175" width="125" height="125"></rect> <text class="lexis-rect-label" x="382" y="228">celda</text> <text class="lexis-rect-label" x="382" y="254">edad-año</text>
+
+<text class="lexis-tick" x="316" y="381">t</text> <text class="lexis-tick" x="433" y="381">t + 1</text> <text class="lexis-tick" x="42" y="304">x</text> <text class="lexis-tick" x="25" y="180">x + 1</text> <text class="lexis-note" x="465" y="195">año t</text> <text class="lexis-note" x="465" y="219">edad x</text>
+
+</svg>
+```
+:::
+::::
+
+::::: {.lexis-card .lexis-supuesto}
+::: supuesto-label
+SUPUESTO
+:::
+
+::: lexis-formula-destacada
+$$
+\begin{gathered}
+\mu_{x+\xi_1, t+\xi_2}^{(c)}
+=
+\mu_{x,t}^{(c)}\\[0.35em]
+0\le \xi_1<5\\
+0\le \xi_2<1
+\end{gathered}
+$$
+:::
+:::::
+::::::::
+
+::: notes
+La idea es conectar el modelo de Poisson con la geometría de Lexis. En el diagrama básico se visualiza un rectángulo entre una edad x y x más uno, durante un año de t a t más uno. Como nuestros datos vienen en grupos etarios, el rectángulo observado se ensancha: usamos una fuerza constante para el intervalo de edades del grupo durante ese año calendario.
+:::
+
+------------------------------------------------------------------------
+
+##  {.slide-metodo .slide-clasico background-image="imagenes/foto_d.png" background-size="cover" background-position="center"}
+
+::: metodo-titulo
+ENFOQUE CLÁSICO POR PAÍS
+:::
+
+:::::::::: {.metodo-layout .clasico-layout}
+::::: {.metodo-panel .metodo-panel-lista}
+<h3>MLE de la fuerza constante</h3>
+
+Bajo fuerza constante en la celda edad-año-causa y exposición conocida:
+
+::: formula-bloque
+$$
+\large
+D_{x,t}^{(c)} \mid \mu_{x,t}^{(c)}
+\sim
+\operatorname{Poisson}\!\left(E_{x,t}\mu_{x,t}^{(c)}\right)
+$$
+:::
+
+La log-verosimilitud, omitiendo constantes que no dependen de $\mu$, es:
+
+::: {.formula-bloque .formula-secundaria}
+$$
+\large
+\ell(\mu)
+=
+D_{x,t}^{(c)}\log(\mu)
+-
+E_{x,t}\mu
+$$
+:::
+:::::
+
+:::::: {.metodo-panel .formula-panel}
+<h3>Maximización</h3>
+
+::: {.formula-bloque .formula-emv}
+$$
+\large
+\begin{aligned}
+\frac{\partial \ell}{\partial \mu}
+&=
+\frac{D_{x,t}^{(c)}}{\mu}
+-
+E_{x,t}
+=0,\\
+\widehat{\mu}_{x,t}^{(c)}
+&=
+\frac{D_{x,t}^{(c)}}{E_{x,t}}
+=
+\widehat{m}_{x,t}^{(c)}
+\end{aligned}
+$$
+:::
+
+Donde la tasa central de mortalidad teórica es $m_{x,t}^{(c)}:=\frac{{} d_{x,t}^{(c)}}{{} L_{x,t}}.$
+
+::: {.formula-bloque .formula-destacada}
+$$
+\large
+\begin{aligned}
+\widehat{\mu}_{x,t}^{(\tau)}
+&=
+\sum_j \widehat{\mu}_{x,t}^{(j)},\\
+{}_n\widehat{q}_{x,t}^{(c)}
+&=
+\frac{\widehat{\mu}_{x,t}^{(c)}}{\widehat{\mu}_{x,t}^{(\tau)}}
+\left(1-e^{-n\widehat{\mu}_{x,t}^{(\tau)}}\right).
+\end{aligned}
+$$
+:::
+
+::: metodo-fuente
+Pitacco et al. (2009); Deshmukh (2012).
+:::
+::::::
+::::::::::
+
+::: notes
+En esta slide lo importante es justificar la división. Siguiendo el planteamiento clásico de Pitacco et al., bajo fuerza constante y exposición conocida el conteo se modela como Poisson con media E por mu. Al maximizar la log-verosimilitud, la derivada lleva a mu sombrero igual a D sobre E. Por eso D sobre E es la tasa central de mortalidad y, en este marco, el EMV de la fuerza de mortalidad. Luego se suman las fuerzas por causa y se transforma a probabilidad de decremento.
+:::
+
+------------------------------------------------------------------------
+
+##  {.slide-metodo .slide-bayes background-image="imagenes/foto_d.png" background-size="cover" background-position="center"}
+
+::: metodo-titulo
+ENFOQUE BAYESIANO POR PAÍS
+:::
+
+::::::: {.metodo-layout .bayes-layout .bayes-layout-simple}
+:::::: {.metodo-panel .bayes-formulas}
+<h3>Familia Poisson - Gamma</h3>
+
+Se mantiene el mismo modelo para las defunciones.
+
+::: formula-bloque
+$$
+\large
+\mu_{x,t}^{(c)} \sim \operatorname{Gamma}(\alpha,\beta)
+$$
+:::
+
+Por conjugación Poisson-Gamma, usando $\beta$ como parámetro de tasa:
+
+::: {.formula-bloque .formula-destacada}
+$$
+\large
+\mu_{x,t}^{(c)} \mid D_{x,t}^{(c)}
+\sim
+\operatorname{Gamma}\left(\alpha + D_{x,t}^{(c)},\ \beta + E_{x,t}\right)
+$$
+:::
+
+::: metodo-fuente
+Manton et al. (1989); Olivieri y Pitacco (2011).
+:::
+::::::
+:::::::
+
+::: notes
+La diferencia conceptual es que en Bayes mu no se trata como fijo, sino como incierto. Se usa una previa Gamma y, por conjugación con Poisson, la posterior también queda Gamma. Después no se toma una sola fuerza promedio para sustituirla en la fórmula; se calcula q para cada muestra posterior, porque q depende de una razón entre fuerzas y de una exponencial.
+:::
+
+------------------------------------------------------------------------
+
+##  {.slide-metodo .slide-bayes-sim background-image="imagenes/foto_d.png" background-size="cover" background-position="center"}
+
+::: metodo-titulo
+SIMULACIÓN
+:::
+
+::::::::::: bayes-sim-layout
+:::::: {.bayes-sim-card .sim-process-card}
+<h3>Dentro de una simulación s</h3>
+
+Para una celda fija, por ejemplo $x=60\text{-}64$, $t=2018$, Costa Rica, una simulación posterior produce simultáneamente las fuerzas de las $r$ causas:
+
+::: sim-formula-mini
+$$
+\left(
+\mu_{x,t}^{(1,s)},\mu_{x,t}^{(2,s)},\ldots,\mu_{x,t}^{(r,s)}
+\right).
+$$
+:::
+
+Luego se calcula la fuerza total de salida para esa simulación:
+
+::: sim-formula
+$$
+\mu_{x,t}^{(\tau,s)}
+=
+\sum_{j=1}^{r}\mu_{x,t}^{(j,s)}.
+$$
+:::
+
+Y después, para cada causa $c$, se transforma esa simulación de fuerzas en una probabilidad de decremento:
+
+::: sim-formula
+$$
+{}_n q_{x,t}^{(c,s)}
+=
+\frac{\mu_{x,t}^{(c,s)}}{\mu_{x,t}^{(\tau,s)}}
+\left(1-e^{-n\mu_{x,t}^{(\tau,s)}}\right).
+$$
+:::
+::: metodo-fuente
+Deshmukh (2012)
+:::
+::::::
+
+
+
+:::::: {.bayes-sim-card .sim-output-card}
+<h3>Después de S simulaciones</h3>
+
+Al repetir el cálculo, se obtiene una matriz de valores simulados de ${}_n q_{x,t}^{(c)}$:
+
+::: sim-matrix
+$$
+\begin{array}{c|cccc}
+& s=1 & s=2 & \cdots & s=S\\
+\hline
+c=1 & {}_n q_{x,t}^{(1,1)} & {}_n q_{x,t}^{(1,2)} & \cdots & {}_n q_{x,t}^{(1,S)}\\
+c=2 & {}_n q_{x,t}^{(2,1)} & {}_n q_{x,t}^{(2,2)} & \cdots & {}_n q_{x,t}^{(2,S)}\\
+\vdots & \vdots & \vdots & \ddots & \vdots\\
+c=r & {}_n q_{x,t}^{(r,1)} & {}_n q_{x,t}^{(r,2)} & \cdots & {}_n q_{x,t}^{(r,S)}
+\end{array}
+$$
+:::
+
+Para cada causa $c$, se toman sus $S$ simulaciones:
+
+::: sim-formula-mini
+$$
+{}_n q_{x,t}^{(c,1)},\ldots,{}_n q_{x,t}^{(c,S)}.
+$$
+:::
+
+Bajo pérdida cuadrática, la estimación bayesiana es la media posterior:
+
+::: sim-formula-destacada
+$$
+\widehat{{}_n q}_{x,t}^{(c)}
+=
+\mathbb{E}\!\left({}_n q_{x,t}^{(c)}\mid datos\right)
+=
+\frac{1}{S}\sum_{s=1}^{S}{}_n q_{x,t}^{(c,s)}.
+$$
+:::
+::::::
+:::::::::::
+
+::: notes
+Esta diapositiva baja la idea bayesiana a una celda concreta. Para cada simulación se tienen las fuerzas por causa, se suman para obtener la fuerza total y luego se calcula q por causa. Al final se promedia q, no mu, porque q es una función no lineal de todas las fuerzas. Con pérdida cuadrática, el promedio posterior de esos q simulados es la estimación bayesiana.
+:::
+
+------------------------------------------------------------------------
+
+##  {.slide-metodo .slide-resumen-metodo background-image="imagenes/foto_d.png" background-size="cover" background-position="center"}
+
+::: metodo-titulo
+RESUMEN METODOLÓGICO
+:::
+
+::::::::: metodo-compare
+::: compare-common
+$$
+\large
+D_{x,t}^{(c)} \mid \mu_{x,t}^{(c)},E_{x,t}
+\sim
+\operatorname{Poisson}\!\left(E_{x,t}\mu_{x,t}^{(c)}\right)
+$$
+:::
+
+::::::: compare-lanes
+:::: {.compare-lane .lane-classic}
+::: metodo-etiqueta
+clásico
+:::
+
+<h3>Punto estimado</h3>
+
+$$
+\large
+\widehat{\mu}_{x,t}^{(c)}
+=
+\frac{D_{x,t}^{(c)}}{E_{x,t}}
+=\widehat{m}_{x,t}^{(c)}
+$$
+
+Produce una estimación puntual de $\,{}_n q_{x,t}^{(c)}$ .
+::::
+
+:::: {.compare-lane .lane-bayes}
+::: metodo-etiqueta
+bayesiano
+:::
+
+<h3>Distribución posterior</h3>
+
+$$
+\large
+\mu_{x,t}^{(c)} \mid D_{x,t}^{(c)}
+\sim
+\operatorname{Gamma}(\alpha+D_{x,t}^{(c)},\beta+E_{x,t})
+$$
+
+Resume la distribución posterior de $\,{}_n q_{x,t}^{(c)}$ .
+::::
+:::::::
+:::::::::
+
+::: notes
+Esta slide debe sonar como transición hacia resultados. En clásico se obtiene una estimación puntual. En Bayes se obtiene una distribución posterior de la probabilidad de decremento, lo que permite resumir con media y variabilidad posterior. La advertencia final es que la fórmula de q no es lineal, entonces no se debe sustituir simplemente la media posterior de mu dentro de la fórmula.
+:::
+
+```{=html}
+<script>
+function escalarFormulasMetodo() {
+  const reglas = [
+    [".slide-metodo .formula-bloque .MathJax", "1.34"],
+    [".slide-metodo .formula-emv .MathJax", "1.24"],
+    [".slide-metodo .formula-destacada .MathJax", "1.24"],
+    [".slide-metodo .formula-no-lineal .MathJax", "1.30"],
+    [".slide-resumen-metodo .compare-common .MathJax", "1.24"],
+    [".slide-resumen-metodo .compare-lane .MathJax", "1.24"],
+    [".slide-resumen-metodo .compare-warning .MathJax", "1.24"]
+  ];
+
+  reglas.forEach(([selector, escala]) => {
+    document.querySelectorAll(selector).forEach((el) => {
+      el.style.display = "inline-block";
+      el.style.transform = `scale(${escala})`;
+      el.style.transformOrigin = "center center";
+    });
+  });
+}
+
+window.addEventListener("load", () => {
+  setTimeout(escalarFormulasMetodo, 800);
+  setTimeout(escalarFormulasMetodo, 1800);
+});
+
+if (window.Reveal) {
+  Reveal.on("slidechanged", () => setTimeout(escalarFormulasMetodo, 250));
+}
+</script>
+```

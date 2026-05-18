@@ -450,7 +450,7 @@
 .slide-poisson .formula-poisson {
   text-align: center;
   margin: 0.8rem 0 0.6rem 0;
-  font-size: 1.25rem !important;
+  font-size: 1.52rem !important;
 }
 
 .slide-poisson .formula-poisson mjx-container {
@@ -460,7 +460,7 @@
 .slide-poisson .interpretacion-poisson {
   text-align: center;
   margin: 0.45rem 0 0.65rem 0;
-  font-size: 1.05rem !important;
+  font-size: 1.28rem !important;
 }
 
 .slide-poisson .interpretacion-poisson mjx-container {
@@ -586,7 +586,7 @@
   border-radius: 18px;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
 }
-/* ACA TERMONA DIAP 1 EDA/ 
+/* ACA TERMONA DIAP 1 EDA*/ 
 
 
 
@@ -668,7 +668,7 @@
   margin-bottom: 0;
 }
 
-/* ACA TERMINA DIAP EDA 2 
+/* ACA TERMINA DIAP EDA 2 */
 
 /* =========================
    Diapositiva: Estratos de muertes y excesos
@@ -741,7 +741,7 @@
   backdrop-filter: blur(3px);
 }
 
-/* ACA TERMINA DIAP 3 
+/* ACA TERMINA DIAP 3 */
 
 /* =========================
    Diapositiva: Imagen que cuenta la historia
@@ -811,7 +811,7 @@
   border-radius: 16px;
   backdrop-filter: blur(3px);
 }
-/* FIN DIAP 4 
+/* FIN DIAP 4 */
 /* =========================
    Diapositiva: Construcción de decremento múltiple
    ========================= */
@@ -840,6 +840,53 @@
   height: 54%;
   display: grid;
   grid-template-columns: 40% 57%;
+}
+/* =========================================================
+   FILMINAS: METODOLOGÍA
+   Paleta NPG: #E64B35, #4DBBD5, #00A087, #3C5488, #F39B7F
+   ========================================================= */
+
+:root {
+  --npg-red: #E64B35;
+  --npg-cyan: #4DBBD5;
+  --npg-green: #00A087;
+  --npg-blue: #3C5488;
+  --npg-salmon: #F39B7F;
+}
+
+.reveal .slides section.slide-metodo {
+  height: 100%;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 !important;
+}
+
+.reveal .slides section.slide-metodo .metodo-titulo {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1.08rem;
+  font-size: 3.05rem !important;
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.reveal .slides section.slide-metodo .metodo-titulo p {
+  margin: 0 !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  font-weight: inherit !important;
+  color: inherit !important;
+}
+
+.slide-metodo .metodo-layout {
+  width: 90%;
+  display: grid;
   column-gap: 3%;
   align-items: stretch;
 }
@@ -989,4 +1036,663 @@
   line-height: 1.34;
   margin: 0;
 }
-/* aca terminan las diaps 
+/* aca terminan las diaps */
+
+
+
+.slide-metodo .clasico-layout,
+.slide-metodo .bayes-layout {
+  grid-template-columns: 47% 50%;
+}
+
+.slide-metodo .bayes-layout-simple {
+  width: 58%;
+  grid-template-columns: 1fr;
+}
+
+.slide-lexis .lexis-layout,
+.slide-bayes-sim .bayes-sim-layout {
+  width: 88%;
+  display: grid;
+  grid-template-columns: 47% 47%;
+  column-gap: 6%;
+  align-items: stretch;
+}
+
+.slide-lexis .lexis-layout {
+  width: 90%;
+  grid-template-columns: 44% 50%;
+  column-gap: 6%;
+}
+
+.slide-lexis .lexis-card,
+.slide-bayes-sim .bayes-sim-card {
+  min-height: 19.8rem;
+  padding: 0.82rem 0.95rem;
+  background: rgba(5, 22, 45, 0.64);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #ffffff;
+}
+
+.slide-lexis .lexis-card:first-child,
+.slide-bayes-sim .sim-process-card {
+  border-left: 4px solid var(--npg-cyan);
+}
+
+.slide-lexis .lexis-supuesto,
+.slide-bayes-sim .sim-output-card {
+  border-left: 4px solid var(--npg-salmon);
+}
+
+.slide-lexis .lexis-supuesto {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-height: 10.6rem;
+  align-self: center;
+  padding: 0;
+  overflow: visible;
+}
+
+.slide-lexis .lexis-diagrama {
+  width: 100%;
+  height: 16.7rem;
+  margin-top: 0.4rem;
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(3, 14, 32, 0.56);
+  border: 1px solid rgba(77, 187, 213, 0.25);
+  overflow: hidden;
+}
+
+.slide-lexis .lexis-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-lexis .lexis-axis {
+  stroke: rgba(255, 255, 255, 0.94);
+  stroke-width: 2.2;
+}
+
+.slide-lexis .lexis-grid {
+  stroke: rgba(255, 255, 255, 0.42);
+  stroke-width: 1.5;
+}
+
+.slide-lexis .lexis-grid.strong {
+  stroke: rgba(255, 255, 255, 0.74);
+  stroke-width: 1.8;
+}
+
+.slide-lexis .lexis-cohort {
+  stroke: rgba(77, 187, 213, 0.86);
+  stroke-width: 1.6;
+}
+
+.slide-lexis .lexis-rect {
+  fill: url(#lexisHatch);
+  stroke: var(--npg-salmon);
+  stroke-width: 2.2;
+}
+
+.slide-lexis .lexis-axis-label,
+.slide-lexis .lexis-tick,
+.slide-lexis .lexis-note,
+.slide-lexis .lexis-rect-label {
+  fill: #ffffff;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.slide-lexis .lexis-axis-label {
+  font-size: 1.08rem;
+  font-weight: 800;
+}
+
+.slide-lexis .lexis-tick {
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.slide-lexis .lexis-note {
+  fill: rgba(255, 255, 255, 0.78);
+  font-size: 0.76rem;
+}
+
+.slide-lexis .lexis-rect-label {
+  text-anchor: middle;
+  fill: #ffffff;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.slide-lexis .lexis-formula,
+.slide-lexis .lexis-formula-destacada,
+.slide-bayes-sim .sim-formula-mini,
+.slide-bayes-sim .sim-matrix,
+.slide-bayes-sim .sim-formula,
+.slide-bayes-sim .sim-formula-destacada {
+  margin: 0.35rem 0;
+  padding: 0.36rem 0.48rem;
+  text-align: center;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.slide-lexis .lexis-formula-destacada,
+.slide-bayes-sim .sim-formula-destacada {
+  border-left: 3px solid var(--npg-salmon);
+  background: rgba(243, 155, 127, 0.13);
+}
+
+.slide-lexis .lexis-supuesto .lexis-formula-destacada {
+  width: 100%;
+  margin: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.58rem 1.05rem 0.68rem 1.05rem;
+  border-left: none;
+  border-top: none;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.slide-lexis .supuesto-label {
+  width: 100%;
+  padding: 0.42rem 0.7rem;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 1.08rem;
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #ffffff;
+  background: rgba(243, 155, 127, 0.22);
+  border-bottom: 2px solid var(--npg-salmon);
+}
+
+.slide-lexis .lexis-formula .MathJax_Display,
+.slide-lexis .lexis-formula-destacada .MathJax_Display,
+.slide-bayes-sim .sim-formula-mini .MathJax_Display,
+.slide-bayes-sim .sim-matrix .MathJax_Display,
+.slide-bayes-sim .sim-formula .MathJax_Display,
+.slide-bayes-sim .sim-formula-destacada .MathJax_Display,
+.slide-lexis .lexis-formula mjx-container,
+.slide-lexis .lexis-formula-destacada mjx-container,
+.slide-bayes-sim .sim-formula-mini mjx-container,
+.slide-bayes-sim .sim-matrix mjx-container,
+.slide-bayes-sim .sim-formula mjx-container,
+.slide-bayes-sim .sim-formula-destacada mjx-container {
+  margin: 0 !important;
+}
+
+.slide-lexis .lexis-formula .MathJax,
+.slide-lexis .lexis-formula-destacada .MathJax,
+.slide-lexis .lexis-formula .MathJax_SVG,
+.slide-lexis .lexis-formula-destacada .MathJax_SVG,
+.slide-lexis .lexis-formula mjx-container,
+.slide-lexis .lexis-formula-destacada mjx-container {
+  font-size: 118% !important;
+}
+
+.slide-lexis .lexis-supuesto .lexis-formula-destacada .MathJax,
+.slide-lexis .lexis-supuesto .lexis-formula-destacada .MathJax_SVG,
+.slide-lexis .lexis-supuesto .lexis-formula-destacada mjx-container {
+  font-size: 66% !important;
+  transform: none !important;
+  max-width: 100% !important;
+}
+
+.slide-lexis .lexis-supuesto .lexis-formula-destacada .MathJax_Display,
+.slide-lexis .lexis-supuesto .lexis-formula-destacada .MathJax_SVG_Display,
+.slide-lexis .lexis-supuesto .lexis-formula-destacada mjx-container {
+  overflow: visible !important;
+}
+
+.slide-lexis .lexis-supuesto p,
+.slide-lexis .supuesto-label p {
+  margin: 0 !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  color: inherit !important;
+}
+
+.slide-bayes-sim .bayes-sim-card p {
+  margin: 0.24rem 0 0.28rem 0 !important;
+  font-size: 0.66rem !important;
+  line-height: 1.20 !important;
+}
+
+.slide-bayes-sim .bayes-sim-card h3 {
+  text-transform: none !important;
+}
+
+.slide-bayes-sim .sim-formula-mini .MathJax,
+.slide-bayes-sim .sim-formula-mini .MathJax_SVG,
+.slide-bayes-sim .sim-formula-mini mjx-container {
+  font-size: 112% !important;
+}
+
+.slide-bayes-sim .sim-matrix .MathJax,
+.slide-bayes-sim .sim-matrix .MathJax_SVG,
+.slide-bayes-sim .sim-matrix mjx-container {
+  font-size: 112% !important;
+}
+
+.slide-bayes-sim .sim-formula .MathJax,
+.slide-bayes-sim .sim-formula .MathJax_SVG,
+.slide-bayes-sim .sim-formula mjx-container {
+  font-size: 124% !important;
+}
+
+.slide-bayes-sim .sim-formula-destacada .MathJax,
+.slide-bayes-sim .sim-formula-destacada .MathJax_SVG,
+.slide-bayes-sim .sim-formula-destacada mjx-container {
+  font-size: 116% !important;
+}
+
+.slide-bayes-sim .sim-caption,
+.slide-bayes-sim .sim-warning {
+  margin-top: 0.45rem;
+  padding: 0.48rem 0.58rem;
+  border-radius: 6px;
+  font-size: 0.66rem;
+  line-height: 1.22;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.slide-bayes-sim .sim-caption {
+  border-left: 3px solid var(--npg-cyan);
+  background: rgba(77, 187, 213, 0.11);
+}
+
+.slide-bayes-sim .sim-warning {
+  border-left: 3px solid var(--npg-red);
+  background: rgba(230, 75, 53, 0.12);
+}
+
+.slide-metodo .metodo-panel {
+  background: rgba(5, 22, 45, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #ffffff;
+}
+
+.slide-metodo .metodo-panel {
+  padding: 0.78rem 0.92rem;
+}
+
+.slide-metodo .metodo-panel-lista {
+  border-left: 4px solid var(--npg-cyan);
+}
+
+.slide-clasico .formula-panel {
+  border-top: 4px solid var(--npg-red);
+}
+
+.slide-bayes .formula-panel {
+  border-top: 4px solid var(--npg-green);
+}
+
+.slide-metodo .metodo-etiqueta {
+  display: inline-block;
+  margin-bottom: 0.42rem;
+  padding: 0.16rem 0.42rem;
+  border-radius: 4px;
+  background: rgba(77, 187, 213, 0.16);
+  border: 1px solid rgba(77, 187, 213, 0.48);
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.slide-metodo h3 {
+  margin: 0 0 0.38rem 0 !important;
+  font-size: 1.04rem !important;
+  line-height: 1.14 !important;
+  color: #ffffff;
+}
+
+.slide-metodo p {
+  margin: 0 !important;
+  font-size: 0.66rem !important;
+  line-height: 1.20 !important;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.slide-metodo .formula-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.48rem;
+}
+
+.slide-metodo .formula-bloque {
+  margin: 0.34rem 0;
+  padding: 0.32rem 0.40rem;
+  text-align: center;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.055);
+  overflow: visible;
+}
+
+.slide-metodo .formula-bloque .MathJax_Display,
+.slide-metodo .formula-bloque mjx-container {
+  margin: 0.05rem 0 !important;
+  max-width: 100% !important;
+}
+
+.slide-metodo .formula-bloque .MathJax,
+.slide-metodo .formula-bloque mjx-container {
+  font-size: 118% !important;
+}
+
+.slide-metodo .formula-emv .MathJax,
+.slide-metodo .formula-emv mjx-container,
+.slide-metodo .formula-destacada .MathJax,
+.slide-metodo .formula-destacada mjx-container {
+  font-size: 106% !important;
+}
+
+.slide-metodo .formula-no-lineal .MathJax,
+.slide-metodo .formula-no-lineal mjx-container {
+  font-size: 116% !important;
+}
+
+.slide-metodo .formula-secundaria {
+  border-left: 3px solid var(--npg-blue);
+}
+
+.slide-metodo .formula-destacada {
+  border-left: 3px solid var(--npg-salmon);
+  background: rgba(243, 155, 127, 0.12);
+}
+
+.slide-metodo .metodo-fuente {
+  margin-top: 0.3rem;
+  padding-top: 0.38rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.20);
+  font-size: 0.54rem;
+  line-height: 1.18;
+  color: rgba(255, 255, 255, 0.70);
+}
+
+.slide-bayes .bayes-formulas p {
+  margin-top: 0.32rem !important;
+  font-size: 0.64rem !important;
+}
+
+.slide-bayes .bayes-flujo {
+  margin: 0.35rem 0 0 0 !important;
+  padding-left: 1.05rem !important;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.slide-bayes .bayes-flujo li {
+  margin: 0.18rem 0 !important;
+  font-size: 0.66rem;
+  line-height: 1.18;
+}
+
+.slide-resumen-metodo .resumen-metodo {
+  width: 86%;
+  padding: 0.8rem 0.95rem;
+  background: rgba(5, 22, 45, 0.66);
+  border-left: 4px solid var(--npg-green);
+  border-radius: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.slide-resumen-metodo .resumen-metodo table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 0 !important;
+  color: #ffffff;
+}
+
+.slide-resumen-metodo .resumen-metodo th {
+  padding: 0.42rem 0.48rem;
+  border-bottom: 2px solid rgba(77, 187, 213, 0.72);
+  font-size: 0.66rem;
+  line-height: 1.18;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.slide-resumen-metodo .resumen-metodo td {
+  padding: 0.55rem 0.48rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+  font-size: 0.68rem;
+  line-height: 1.24;
+  vertical-align: top;
+}
+
+.slide-resumen-metodo .resumen-metodo tr:last-child td {
+  border-bottom: none;
+}
+
+.slide-resumen-metodo .resumen-metodo th:first-child,
+.slide-resumen-metodo .resumen-metodo td:first-child {
+  width: 18%;
+  color: rgba(243, 155, 127, 0.98);
+  font-weight: 800;
+}
+
+.slide-resumen-metodo .nota-no-lineal {
+  width: 86%;
+  margin-top: 0.75rem;
+  padding: 0.55rem 0.85rem;
+  background: rgba(60, 84, 136, 0.38);
+  border-left: 4px solid var(--npg-salmon);
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.slide-resumen-metodo .nota-no-lineal p {
+  font-size: 0.66rem !important;
+  line-height: 1.22 !important;
+}
+
+.slide-resumen-metodo .nota-no-lineal .MathJax_Display,
+.slide-resumen-metodo .nota-no-lineal mjx-container {
+  margin: 0 0 0.25rem 0 !important;
+}
+
+.slide-resumen-metodo .nota-no-lineal .MathJax,
+.slide-resumen-metodo .nota-no-lineal mjx-container {
+  font-size: 70% !important;
+}
+
+.slide-resumen-metodo .metodo-titulo {
+  margin-bottom: 1rem;
+}
+
+.slide-resumen-metodo .slide-number,
+.slide-metodo .slide-number {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.slide-resumen-metodo .resumen-metodo .MathJax,
+.slide-resumen-metodo .resumen-metodo mjx-container {
+  font-size: 74% !important;
+}
+
+.slide-resumen-metodo .resumen-metodo .MathJax_Display,
+.slide-resumen-metodo .resumen-metodo mjx-container {
+  margin: 0 !important;
+}
+
+.slide-resumen-metodo .resumen-metodo p {
+  margin: 0 !important;
+  font-size: 0.68rem !important;
+}
+
+.slide-resumen-metodo .nota-no-lineal {
+  text-align: center;
+}
+
+.slide-resumen-metodo .metodo-compare {
+  width: 86%;
+  margin: 0 auto;
+}
+
+.slide-resumen-metodo .compare-common {
+  width: 74%;
+  margin: 0 auto 0.72rem auto;
+  padding: 0.36rem 0.7rem;
+  text-align: center;
+  border-top: 2px solid rgba(77, 187, 213, 0.72);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(5, 22, 45, 0.46);
+}
+
+.slide-resumen-metodo .compare-common .MathJax,
+.slide-resumen-metodo .compare-common mjx-container {
+  font-size: 108% !important;
+}
+
+.slide-resumen-metodo .compare-common .MathJax_Display,
+.slide-resumen-metodo .compare-common mjx-container {
+  margin: 0 !important;
+}
+
+.slide-resumen-metodo .compare-lanes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1.1rem;
+}
+
+.slide-resumen-metodo .compare-lane {
+  min-height: 10.4rem;
+  padding: 0.78rem 0.95rem;
+  background: rgba(5, 22, 45, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.slide-resumen-metodo .lane-classic {
+  border-left: 4px solid var(--npg-red);
+}
+
+.slide-resumen-metodo .lane-bayes {
+  border-left: 4px solid var(--npg-green);
+}
+
+.slide-resumen-metodo .compare-lane h3 {
+  margin-bottom: 0.4rem !important;
+  font-size: 1.02rem !important;
+}
+
+.slide-resumen-metodo .compare-lane p {
+  margin-top: 0.35rem !important;
+  font-size: 0.66rem !important;
+  line-height: 1.24 !important;
+}
+
+.slide-resumen-metodo .compare-lane .MathJax,
+.slide-resumen-metodo .compare-lane mjx-container {
+  font-size: 106% !important;
+}
+
+.slide-resumen-metodo .compare-lane .MathJax_Display,
+.slide-resumen-metodo .compare-lane mjx-container {
+  margin: 0.28rem 0 !important;
+}
+
+.slide-resumen-metodo .compare-warning {
+  width: 78%;
+  margin: 0.72rem auto 0 auto;
+  padding: 0.42rem 0.75rem;
+  text-align: center;
+  border-left: 4px solid var(--npg-salmon);
+  background: rgba(243, 155, 127, 0.11);
+  border-radius: 8px;
+}
+
+.slide-resumen-metodo .compare-warning .MathJax,
+.slide-resumen-metodo .compare-warning mjx-container {
+  font-size: 110% !important;
+}
+
+.slide-resumen-metodo .compare-warning .MathJax_Display,
+.slide-resumen-metodo .compare-warning mjx-container {
+  margin: 0 0 0.25rem 0 !important;
+}
+
+.slide-resumen-metodo .compare-warning p {
+  font-size: 0.64rem !important;
+  line-height: 1.18 !important;
+}
+
+/* MathJax v2 puede renderizar como SVG; estas reglas cubren esa salida. */
+.slide-metodo .formula-bloque .MathJax_SVG_Display,
+.slide-resumen-metodo .compare-common .MathJax_SVG_Display,
+.slide-resumen-metodo .compare-lane .MathJax_SVG_Display,
+.slide-resumen-metodo .compare-warning .MathJax_SVG_Display {
+  margin: 0.05rem 0 !important;
+  max-width: 100% !important;
+}
+
+.slide-metodo .formula-bloque .MathJax_SVG {
+  font-size: 118% !important;
+}
+
+.slide-metodo .formula-emv .MathJax_SVG,
+.slide-metodo .formula-destacada .MathJax_SVG {
+  font-size: 106% !important;
+}
+
+.slide-metodo .formula-no-lineal .MathJax_SVG {
+  font-size: 116% !important;
+}
+
+.slide-resumen-metodo .compare-common .MathJax_SVG {
+  font-size: 108% !important;
+}
+
+.slide-resumen-metodo .compare-lane .MathJax_SVG {
+  font-size: 106% !important;
+}
+
+.slide-resumen-metodo .compare-warning .MathJax_SVG {
+  font-size: 110% !important;
+}
+
+.slide-metodo .formula-bloque .MathJax_SVG {
+  display: inline-block !important;
+  transform: scale(1.34);
+  transform-origin: center center;
+}
+
+.slide-metodo .formula-emv .MathJax_SVG,
+.slide-metodo .formula-destacada .MathJax_SVG {
+  transform: scale(1.24);
+}
+
+.slide-metodo .formula-no-lineal .MathJax_SVG {
+  transform: scale(1.28);
+}
+
+.slide-resumen-metodo .compare-common .MathJax_SVG,
+.slide-resumen-metodo .compare-lane .MathJax_SVG,
+.slide-resumen-metodo .compare-warning .MathJax_SVG {
+  display: inline-block !important;
+  transform: scale(1.24);
+  transform-origin: center center;
+}
