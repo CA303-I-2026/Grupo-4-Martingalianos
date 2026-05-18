@@ -774,3 +774,112 @@ if (window.Reveal) {
 }
 </script>
 ```
+
+------------------------------------------------------------------------
+
+##  {.slide-metodo .slide-alternativas background-image="imagenes/foto_d.png" background-size="cover" background-position="center"}
+
+<div class="metodo-titulo" style="font-size: 2.4em;">
+ALTERNATIVAS DESCARTADAS
+</div>
+
+:::::::::: {.metodo-layout .clasico-layout style="font-size: 1.50em; line-height: 1.20;"}
+::::: {.metodo-panel .metodo-panel-lista}
+<h3>Comparar estadística frecuentista y bayesiana sin decrementos múltiples</h3>
+
+Se descartó porque resultó más provechoso segregar la mortalidad por causas.
+
+
+<br>
+
+<h3>Usar Centroamérica en su totalidad.</h3>
+
+Se descartó incluir Honduras debido a la falta de datos suficientes para mantener una comparación homogénea entre países durante el periodo 2015--2018.
+
+::: metodo-fuente
+Goerlich (2012).
+:::
+:::::
+
+:::::: {.metodo-panel .formula-panel}
+<h3>Modelo clásico elegido</h3>
+
+Se decidió trabajar con el modelo exponencial porque es el más sencillo y porque asume fuerza de mortalidad constante dentro de cada celda edad-año-causa.
+
+
+Esto permite justificar el estimador clásico de máxima verosimilitud de la fuerza de mortalidad a partir de la tasa central de mortalidad.
+
+En el enfoque bayesiano no se fija $\mu_{x,t}^{(c)}$ como un valor único, sino que se modela como variable aleatoria.
+
+
+::: metodo-fuente
+Pitacco et al. (2009), sección 3.3.3.
+:::
+::::::
+::::::::::
+
+::: notes
+Esta diapositiva explica las decisiones metodológicas que se consideraron pero se descartaron. Primero, no se trabajó con tablas de vida generales sin causas porque el interés central del proyecto es la mortalidad por causa. Segundo, no se incluyó Honduras por falta de datos. Tercero, en el enfoque clásico se mantuvo el modelo exponencial porque permite justificar de forma directa el estimador D sobre E bajo fuerza constante. En Bayes, en cambio, la fuerza de mortalidad se trata como una variable aleatoria con distribución Gamma.
+:::
+
+------------------------------------------------------------------------
+
+##  {.slide-metodo .slide-resultados background-image="imagenes/foto_d.png" background-size="cover" background-position="center"}
+
+<div class="metodo-titulo" style="font-size: 2.5em;">
+RESULTADOS ESPERADOS
+</div>
+
+:::::::::: {.metodo-layout .clasico-layout style="font-size: 1.28em; line-height: 1.12;"}
+
+::::: {.metodo-panel .metodo-panel-lista}
+<h3 style="font-size: 1.15em;">¿Qué esperamos encontrar?</h3>
+
+Se espera encontrar que:
+
+::: {.formula-bloque}
+$$
+{}_nq_x^{(c)}
+$$
+:::
+
+varía según la causa, edad, sexo, país y año.
+
+<br>
+
+En particular:
+
+<ul style="font-size: 0.32em; line-height: 1.20;">
+<li>Mayor probabilidad de decremento por causas externas, especialmente asaltos, en población joven de El Salvador.</li>
+<li>Mayor probabilidad de decremento por sistema circulatorio en edades avanzadas.</li>
+<li>Causas que no dominen el total de muertes, pero que tengan peso actuarial relevante en grupos específicos.</li>
+</ul>
+:::::
+
+::::: {.metodo-panel .formula-panel}
+<h3 style="font-size: 1.15em;">¿Cuándo queda respondida la pregunta?</h3>
+
+La pregunta quedará respondida si se logra pasar de los conteos de defunciones a probabilidades de decremento por causa:
+
+::: {.formula-bloque .formula-destacada}
+$$
+{}_nq_x^{(c)}
+$$
+:::
+
+y si estas probabilidades permiten identificar patrones claros de variación por:
+
+<ul style="font-size: 0.32em; line-height: 1.20;">
+<li>país,</li>
+<li>edad,</li>
+<li>sexo,</li>
+<li>año,</li>
+<li>causa ICD-10.</li>
+</ul>
+:::::
+
+::::::::::
+
+::: notes
+Esta diapositiva resume qué esperamos encontrar y cómo sabremos si la pregunta quedó respondida. La idea central es que no basta con observar conteos de defunciones, sino que debemos transformarlos en probabilidades de decremento por causa. Si esas probabilidades muestran patrones claros por país, edad, sexo, año y causa, entonces la pregunta de investigación queda contestada.
+:::

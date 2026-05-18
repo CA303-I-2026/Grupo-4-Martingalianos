@@ -6,8 +6,8 @@
 <script src="presentacion_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="presentacion_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="presentacion_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="presentacion_files/libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+<link href="presentacion_files/libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
 
   <meta name="author" content="">
   <title>presentacion</title>
@@ -17,6 +17,9 @@
   <link rel="stylesheet" href="presentacion_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="presentacion_files/libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -29,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="presentacion_files/libs/revealjs/dist/theme/quarto-b17fa0af1ad93c2b7802af2443afaf9b.css">
+  <link rel="stylesheet" href="presentacion_files/libs/revealjs/dist/theme/quarto-84b150702567ae7e15cad124fb9039e2.css">
   <link rel="stylesheet" href="style.css">
   <link href="presentacion_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="presentacion_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -179,7 +182,7 @@ Base internacional de mortalidad por causa, edad, sexo, país y año.
 <div class="datos-contenido">
 <div class="cell">
 <div class="cell-output-display">
-<table class="tabla-datos caption-top" data-quarto-postprocess="true">
+<table class="tabla-datos caption-top">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Categoría principal</th>
@@ -213,8 +216,6 @@ Base internacional de mortalidad por causa, edad, sexo, país y año.
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </div>
 <div class="caption-tabla">
@@ -234,7 +235,7 @@ Clasificación internacional de enfermedades y causas de muerte utilizada para c
 <div class="datos-contenido">
 <div class="cell">
 <div class="cell-output-display">
-<table class="tabla-icd-ejemplo caption-top" data-quarto-postprocess="true">
+<table class="tabla-icd-ejemplo caption-top">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -287,8 +288,6 @@ Clasificación internacional de enfermedades y causas de muerte utilizada para c
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </div>
 <div class="caption-tabla">
@@ -872,6 +871,127 @@ if (window.Reveal) {
   Reveal.on("slidechanged", () => setTimeout(escalarFormulasMetodo, 250));
 }
 </script>
+</section>
+<section id="section-14" class="slide level2 slide-metodo slide-alternativas" data-background-image="imagenes/foto_d.png" data-background-size="cover" data-background-position="center">
+<h2></h2>
+<div class="metodo-titulo" style="font-size: 2.4em;">
+<p>ALTERNATIVAS DESCARTADAS</p>
+</div>
+<div class="metodo-layout clasico-layout" style="font-size: 1.50em; line-height: 1.20;">
+<div class="metodo-panel metodo-panel-lista">
+<h3>
+Comparar estadística frecuentista y bayesiana sin decrementos múltiples
+</h3>
+<p>Se descartó porque resultó más provechoso segregar la mortalidad por causas.</p>
+<p><br></p>
+<h3>
+Usar Centroamérica en su totalidad.
+</h3>
+<p>Se descartó incluir Honduras debido a la falta de datos suficientes para mantener una comparación homogénea entre países durante el periodo 2015–2018.</p>
+<div class="metodo-fuente">
+<p>Goerlich (2012).</p>
+</div>
+</div>
+<div class="metodo-panel formula-panel">
+<h3>
+Modelo clásico elegido
+</h3>
+<p>Se decidió trabajar con el modelo exponencial porque es el más sencillo y porque asume fuerza de mortalidad constante dentro de cada celda edad-año-causa.</p>
+<p>Esto permite justificar el estimador clásico de máxima verosimilitud de la fuerza de mortalidad a partir de la tasa central de mortalidad.</p>
+<p>En el enfoque bayesiano no se fija <span class="math inline">\(\mu_{x,t}^{(c)}\)</span> como un valor único, sino que se modela como variable aleatoria.</p>
+<div class="metodo-fuente">
+<p>Pitacco et al.&nbsp;(2009), sección 3.3.3.</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Esta diapositiva explica las decisiones metodológicas que se consideraron pero se descartaron. Primero, no se trabajó con tablas de vida generales sin causas porque el interés central del proyecto es la mortalidad por causa. Segundo, no se incluyó Honduras por falta de datos. Tercero, en el enfoque clásico se mantuvo el modelo exponencial porque permite justificar de forma directa el estimador D sobre E bajo fuerza constante. En Bayes, en cambio, la fuerza de mortalidad se trata como una variable aleatoria con distribución Gamma.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-15" class="slide level2 slide-metodo slide-resultados" data-background-image="imagenes/foto_d.png" data-background-size="cover" data-background-position="center">
+<h2></h2>
+<div class="metodo-titulo" style="font-size: 2.5em;">
+<p>RESULTADOS ESPERADOS</p>
+</div>
+<div class="metodo-layout clasico-layout" style="font-size: 1.28em; line-height: 1.12;">
+<div class="metodo-panel metodo-panel-lista">
+<h3 style="font-size: 1.15em;">
+¿Qué esperamos encontrar?
+</h3>
+<p>Se espera encontrar que:</p>
+<div class="formula-bloque">
+<p><span class="math display">\[
+{}_nq_x^{(c)}
+\]</span></p>
+</div>
+<p>varía según la causa, edad, sexo, país y año.</p>
+<p><br></p>
+<p>En particular:</p>
+<ul style="font-size: 0.32em; line-height: 1.20;">
+<li>
+Mayor probabilidad de decremento por causas externas, especialmente asaltos, en población joven de El Salvador.
+</li>
+<li>
+Mayor probabilidad de decremento por sistema circulatorio en edades avanzadas.
+</li>
+<li>
+Causas que no dominen el total de muertes, pero que tengan peso actuarial relevante en grupos específicos.
+</li>
+</ul>
+</div>
+<div class="metodo-panel formula-panel">
+<h3 style="font-size: 1.15em;">
+¿Cuándo queda respondida la pregunta?
+</h3>
+<p>La pregunta quedará respondida si se logra pasar de los conteos de defunciones a probabilidades de decremento por causa:</p>
+<div class="formula-bloque formula-destacada">
+<p><span class="math display">\[
+{}_nq_x^{(c)}
+\]</span></p>
+</div>
+<p>y si estas probabilidades permiten identificar patrones claros de variación por:</p>
+<ul style="font-size: 0.32em; line-height: 1.20;">
+<li>
+país,
+</li>
+<li>
+edad,
+</li>
+<li>
+sexo,
+</li>
+<li>
+año,
+</li>
+<li>
+causa ICD-10.
+</li>
+</ul>
+</div>
+</div>
+<aside class="notes">
+<p>Esta diapositiva resume qué esperamos encontrar y cómo sabremos si la pregunta quedó respondida. La idea central es que no basta con observar conteos de defunciones, sino que debemos transformarlos en probabilidades de decremento por causa. Si esas probabilidades muestran patrones claros por país, edad, sexo, año y causa, entonces la pregunta de investigación queda contestada.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 
 </section>
     </div>
@@ -1063,7 +1183,7 @@ if (window.Reveal) {
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1090,266 +1210,211 @@ if (window.Reveal) {
       });
     </script>
     
-
     <script>
-
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
       // slide changes (different for each slide format).
-
       (function () {
-
         // dispatch for htmlwidgets
-
         function fireSlideEnter() {
-
           const event = window.document.createEvent("Event");
-
           event.initEvent("slideenter", true, true);
-
           window.document.dispatchEvent(event);
-
         }
-
-    
 
         function fireSlideChanged(previousSlide, currentSlide) {
-
           fireSlideEnter();
 
-    
-
           // dispatch for shiny
-
           if (window.jQuery) {
-
             if (previousSlide) {
-
               window.jQuery(previousSlide).trigger("hidden");
-
             }
-
             if (currentSlide) {
-
               window.jQuery(currentSlide).trigger("shown");
-
             }
-
           }
-
         }
-
-    
 
         // hookup for slidy
-
         if (window.w3c_slidy) {
-
           window.w3c_slidy.add_observer(function (slide_num) {
-
             // slide_num starts at position 1
-
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
           });
-
         }
-
-    
 
       })();
-
     </script>
 
-    
-
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
           }
+          return false;
         }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
           }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
           for (const childEl of codeEl.children) {
             if (isCodeAnnotation(childEl)) {
               childEl.remove();
             }
           }
           return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
             }
           }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
           }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
           }
-        } else {
-          return undefined;
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
         }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>
