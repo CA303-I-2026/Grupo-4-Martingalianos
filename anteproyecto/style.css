@@ -476,6 +476,371 @@
   color: rgba(255, 255, 255, 0.90);
 }
 
+
+/* =========================
+   Diapositiva EDA
+   ========================= */
+
+.slide-eda {
+  color: white;
+}
+
+.titulo-eda {
+  position: absolute;
+  top: 4.5%;
+  left: 6%;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.eda-layout {
+  position: absolute;
+  top: 18.5%;
+  left: 6%;
+  width: 91%;
+  height: 72%;
+  display: grid;
+  grid-template-columns: 36% 61%;
+  column-gap: 3%;
+  align-items: center;
+}
+
+/* =========================
+   Columna izquierda
+   ========================= */
+
+.eda-ecuacion {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.eda-subtitulo {
+  font-size: 1.12rem;
+  font-weight: 700;
+  margin-bottom: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+/* Fórmula */
+.formula-eda {
+  width: 100%;
+  text-align: center;
+  font-size: 0.98rem;
+  margin-bottom: 1rem;
+}
+
+.formula-eda mjx-container {
+  margin: 0 !important;
+}
+
+/* Definición */
+.eda-definicion {
+  width: 95%;
+  margin: 0 auto 1rem auto;
+  font-size: 0.72rem;
+  line-height: 1.3;
+  text-align: left;
+}
+
+/* Hallazgos */
+.eda-frase {
+  width: 95%;
+  margin: 0 auto;
+  font-size: 0.68rem;
+  line-height: 1.28;
+  text-align: left;
+}
+
+.eda-frase ul {
+  margin: 0.3rem 0 0 0;
+  padding-left: 1rem;
+}
+
+.eda-frase li {
+  margin-bottom: 0.28rem;
+}
+
+/* =========================
+   Columna derecha: imagen
+   ========================= */
+
+.eda-imagen {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  transform: translate(2.1rem, 1.15rem);
+}
+
+.eda-imagen img {
+  width: 108%;
+  max-width: 108%;
+  max-height: 35rem;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+/* ACA TERMONA DIAP 1 EDA*/ 
+
+
+
+/* =========================
+   Diapositiva: Perfil de excesos
+   ========================= */
+
+.slide-perfil-excesos {
+  color: white;
+}
+
+.titulo-perfil-excesos {
+  position: absolute;
+  top: 5%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 2.35rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+.perfil-excesos-layout {
+  position: absolute;
+  top: 16%;
+  left: 0;
+  width: 100%;
+  height: 78%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Imagen central */
+.perfil-excesos-imagen {
+  width: 72%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.perfil-excesos-imagen img {
+  width: 100%;
+  max-width: 100%;
+  max-height: 31rem;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* Indicaciones inferiores */
+.perfil-excesos-notas {
+  width: 78%;
+  margin-top: 1.35rem;
+  padding: 0.9rem 1.35rem;
+  border-radius: 16px;
+  background: rgba(5, 22, 45, 0.46);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(3px);
+  box-sizing: border-box;
+}
+
+.perfil-excesos-notas ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.perfil-excesos-notas li {
+  margin-bottom: 0.55rem;
+  font-size: 0.82rem;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.97);
+}
+
+.perfil-excesos-notas li:last-child {
+  margin-bottom: 0;
+}
+
+/* ACA TERMINA DIAP EDA 2 */
+
+/* =========================
+   Diapositiva: Estratos de muertes y excesos
+   ========================= */
+
+.slide-estratos {
+  color: white;
+}
+
+.titulo-estratos {
+  position: absolute;
+  top: 5%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.045em;
+  color: #ffffff;
+}
+
+.estratos-layout {
+  position: absolute;
+  top: 19%;
+  left: 6%;
+  width: 88%;
+  height: 54%;
+  display: grid;
+  grid-template-columns: 48.5% 48.5%;
+  column-gap: 3%;
+  align-items: center;
+}
+
+/* Figuras izquierda y derecha */
+.estratos-imagen {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.estratos-imagen img {
+  width: 100%;
+  max-width: 100%;
+  max-height: 30rem;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* Mensaje inferior */
+.mensaje-estratos {
+  position: absolute;
+  bottom: 9%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  padding: 1rem 1.4rem;
+  box-sizing: border-box;
+
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+
+  color: rgba(255, 255, 255, 0.98);
+  background: rgba(5, 22, 45, 0.48);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  backdrop-filter: blur(3px);
+}
+
+/* ACA TERMINA DIAP 3 */
+
+/* =========================
+   Diapositiva: Imagen que cuenta la historia
+   ========================= */
+
+.slide-historia {
+  color: white;
+}
+
+.titulo-historia {
+  position: absolute;
+  top: 5%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 2.35rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+.historia-layout {
+  position: absolute;
+  top: 16%;
+  left: 0;
+  width: 100%;
+  height: 78%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Imagen centrada */
+.historia-imagen {
+  width: 74%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.historia-imagen img {
+  width: 100%;
+  max-width: 100%;
+  max-height: 33rem;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* Mensaje inferior */
+.mensaje-historia {
+  width: 78%;
+  margin-top: 1.15rem;
+  padding: 0.9rem 1.35rem;
+  box-sizing: border-box;
+
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+
+  color: rgba(255, 255, 255, 0.98);
+  background: rgba(5, 22, 45, 0.46);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  backdrop-filter: blur(3px);
+}
+/* FIN DIAP 4 */
+/* =========================
+   Diapositiva: Construcción de decremento múltiple
+   ========================= */
+
+.slide-decremento {
+  color: white;
+}
+
+.titulo-decremento {
+  position: absolute;
+  top: 4.8%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 2.08rem;
+  font-weight: 700;
+  letter-spacing: 0.045em;
+  color: #ffffff;
+}
+
+.decremento-layout {
+  position: absolute;
+  top: 18%;
+  left: 6%;
+  width: 88%;
+  height: 54%;
+  display: grid;
+  grid-template-columns: 40% 57%;
+}
 /* =========================================================
    FILMINAS: METODOLOGÍA
    Paleta NPG: #E64B35, #4DBBD5, #00A087, #3C5488, #F39B7F
@@ -525,6 +890,155 @@
   column-gap: 3%;
   align-items: stretch;
 }
+
+/* =========================
+   Cuadro izquierdo: tasa
+   ========================= */
+
+.cuadro-tasa {
+  height: 100%;
+  padding: 1.2rem 1.25rem;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background: rgba(5, 22, 45, 0.52);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 18px;
+  backdrop-filter: blur(4px);
+}
+
+/* =========================
+   Cuadro derecho: probabilidad
+   ========================= */
+
+.cuadro-probabilidad {
+  height: 100%;
+  padding: 1.15rem 1.35rem;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background: rgba(5, 22, 45, 0.52);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 18px;
+  backdrop-filter: blur(4px);
+}
+
+/* =========================
+   Subtítulos
+   ========================= */
+
+.subtitulo-cuadro {
+  width: 100%;
+  margin-bottom: 0.8rem;
+  text-align: center;
+  font-size: 1.03rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.98);
+}
+
+/* =========================
+   Fórmula izquierda
+   ========================= */
+
+.formula-tasa {
+  width: 100%;
+  text-align: center;
+  font-size: 1.18rem;
+  margin: 0.35rem 0 1rem 0;
+}
+
+.formula-tasa mjx-container {
+  margin: 0 !important;
+}
+
+/* =========================
+   Explicación izquierda
+   ========================= */
+
+.explicacion-tasa {
+  width: 95%;
+  margin: 0 auto;
+  font-size: 0.74rem;
+  line-height: 1.34;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.explicacion-tasa p {
+  margin: 0.28rem 0;
+}
+
+/* =========================
+   Fórmula derecha
+   ========================= */
+
+.formula-q {
+  width: 100%;
+  text-align: center;
+  font-size: 0.84rem;
+  margin: 0.35rem 0 0.9rem 0;
+}
+
+.formula-q mjx-container {
+  margin: 0 !important;
+}
+
+/* =========================
+   Explicación derecha
+   ========================= */
+
+.explicacion-q {
+  width: 96%;
+  margin: 0 auto;
+  font-size: 0.72rem;
+  line-height: 1.34;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* =========================
+   Nota inferior
+   ========================= */
+
+.nota-decremento {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 84%;
+  padding: 0.95rem 1.35rem;
+  box-sizing: border-box;
+
+  background: rgba(5, 22, 45, 0.46);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  backdrop-filter: blur(3px);
+
+  color: rgba(255, 255, 255, 0.98);
+}
+
+.nota-decremento ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.nota-decremento li {
+  font-size: 0.82rem;
+  line-height: 1.34;
+  margin: 0;
+}
+/* aca terminan las diaps */
+
+
 
 .slide-metodo .clasico-layout,
 .slide-metodo .bayes-layout {
