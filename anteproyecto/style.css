@@ -1696,3 +1696,38 @@
   transform: scale(1.24);
   transform-origin: center center;
 }
+
+/* =========================================================
+   FIX EXPORTACIÓN PDF CON DECKTAPE
+   Evita que desaparezcan cuadros translúcidos en slides 3, 4 y 9
+   ========================================================= */
+
+/* Slide 3: tablas de DATOS */
+.slide-datos .tabla-datos,
+.slide-datos .tabla-icd-ejemplo {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  background: rgba(5, 22, 45, 0.82) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Slide 4: cuadro del modelo Poisson */
+.slide-poisson .poisson-modelo {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  background: rgba(5, 22, 45, 0.84) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Slide 9: cuadros de decremento múltiple */
+.slide-decremento .cuadro-tasa,
+.slide-decremento .cuadro-probabilidad,
+.slide-decremento .nota-decremento {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  background: rgba(5, 22, 45, 0.84) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
