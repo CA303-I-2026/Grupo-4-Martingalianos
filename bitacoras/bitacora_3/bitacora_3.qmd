@@ -94,7 +94,6 @@ Análisis del cambio de la probabilidad de decremento ${}_{n}q_{x}^{(c)}$ para g
 
 :::: {.content-visible when-format="html"}
 ::: {style="text-align: center; margin-top: 120px;"}
-
 <b>Universidad de Costa Rica</b><br><br>
 
 <b>Escuela de Matemática</b><br> <b>Departamento de Matemática y Ciencias Actuariales</b><br><br>
@@ -115,4 +114,133 @@ Sebastián Miranda Ramírez — C4H274<br> Benjamín Gutiérrez Padua — C4F813
 
 # Bitácora 3
 
-## 1. Parte de Planificación
+# 1. Parte de Planificación
+
+## 1.2.1. Formulación metodológica del proyecto
+
+La metodología del proyecto se construye alrededor de estimar la probabilidad actuarial de decremento por causa,
+
+$${}_n q_{x,t}^{(c)}
+=
+P(T_{x,t}\leq n,\ J=c),$$
+
+donde $x$ representa el del grupo etario de cada persona y t el año calendario en el cual se encuentran,
+
+$$x\in\{0,1,2,3,4,5\text{-}9,10\text{-}14,\ldots,90\text{-}94,95+\}, \quad t\in\{2015,2016,2017,2018\}$$
+
+y $c$ una categoría de causa de muerte según la ICD-10, de acuerdo con la clasificación definida en bitácoras anteriores. En particular, cuando el grupo etario se denote por su edad inicial, $x$ también puede leerse como el extremo inferior del intervalo. Por ejemplo, para el grupo $30\text{-}34$ se puede escribir $x=30$ y asociar el intervalo $I_x=[30,35)$, esta convención se usará al escribir las diversas fórmulas a estimar.
+
+
+La variable aleatoria $T_{x,t}$ representa el tiempo futuro de vida de una persona perteneciente al grupo etario $x$ durante el año calendario $t$ y $J$ es una variable aleatoria que indica la causa del decremento. Con esta convención, $q_{x,t}^{(c)}$ debe leerse como la probabilidad de morir por la causa $c$ para una vida perteneciente al grupo etario $x$ durante el año calendario $t$, bajo las intensidades estimadas para esa celda. Por ejemplo, si $x=30\text{-}34$, entonces $q_{30\text{-}34,t}^{(c)}$ no se interpreta como la probabilidad exacta de una persona de edad puntual $30$, $33.9$ o $34.7$, sino como el riesgo anual asociado al grupo etario completo $30\text{-}34$ durante el año $t$. Asimismo se considera que para que alguien muera por la causa $c$ primero debe no haber muerto por las otras $c-1$ causas, de manera que estas se consideran "causas competidoras" e influyen en el cálculo de las diferentes probabilidades. Bowers et al. (1997) y Deshmukh (2012) presentan este tratamiento para las probabilidades de decremento.
+
+Aunque el objeto de estudio también depende del país y del sexo, estas dimensiones se mantienen se omiten de la expresión para no sobrecargar la notación, en el momento de presentación de resultados se hará explícito el sexo y el país al que se esté referiendo cada aseveración. De forma más general, la probabilidad podría escribirse como ${}_n q_{x,t,p,s}^{(c)}$, donde $p$ representa el país y $s$ el sexo.
+
+Para la estimación de estas causas se deberá de recurrir a los datos disponibles en la WHO Mortality Database, los cuales se presenran de manera agregada, por tanto la unidad de análisis será una celda definida por país y sexo dados, así como año calendario $t$, grupo etario $x$ y causa de muerte $c$. Para cada celda se tendrá un conteo de defunciones,
+
+$$D_{x,t}^{(c)},$$
+
+obtenido de la WHO Mortality Database, y una exposición en años-persona,
+
+$$E_{x,t},$$
+
+aproximada mediante la población media o población a mitad de año, la cual es obtenida de la Population and live births Database, también de la WHO. Pitacco et al. (2009) validan esta aproximación para la exposición.
+
+Antes de pasar a los enfoques de estimación, es necesario aclarar con mayor precisión los supuestos bajo los cuales se interpretará el objeto actuarial del proyecto. En este sentido, la notación actuarial general $\,{}_n q_{x,t}^{(c)}\,$ es útil para introducir la idea de probabilidad de decremento por causa, y además es cercana a la notación estándar utilizada en trabajos sobre probabilidades de decrementos múltiples. En una formulación actuarial más general, para trabajar con $\,{}_n q_{x',t'}^{(c)}\,$ se puede interpretar $x'$ como una edad exacta y $t'$ como un momento exacto del calendario. Sin embargo, en dichos trabajos se suele contar con maneras precisas de estimar las probabilidades $,{}q_{x',t'}^{(c)},$ para al menos todos los $x',t'$ enteros, de manera que mediante supuestos como fuerza de mortalidad constante en cada celda $[x', x'+1)$ y $[t',t'+1)$ se pueden estimar toda la familia de probabilidades $,{}_n q_{x',t'}^{(c)},$ para $x',t',n$ reales.
+
+Sin embargo, en este trabajo no se cuenta con datos para todas las edades exactas $x'$ ni para todos los momentos calendario $t'$, debido a la naturaleza agregada de la WHO Mortality Database. Los datos disponibles están agrupados por grupo etario y año calendario, a excepción de los primeros años de vida, donde sí aparecen de manera más desagregada. Por esta razón, en nuestro trabajo $x$ no representa una edad exacta individual, sino que indexa el grupo etario al que pertenece la persona.
+
+Por tanto, el supuesto de fuerza constante no se hará solamente sobre una celda del estilo $[x',x'+1)$ y $[t',t'+1)$ para edades exactas, sino sobre todo el intervalo de edad asociado al grupo etario durante un año calendario. Así, para un país y sexo fijados, si $I_x$ representa el grupo etario asociado a $x$, y si $t$ representa el año calendario, se asumirá que la fuerza de mortalidad por causa es constante dentro de la celda formada por grupo etario y año calendario. Es decir, si
+
+$$
+I_x=[a_x,b_x),
+$$
+
+
+entonces se supondrá que
+
+$$
+\mu_{y,z}^{(c)}=\mu_{x,t}^{(c)}
+$$
+
+para edades exactas $y\in I_x$ y momentos calendario $z\in[t,t+1)$, donde $\mu_{x,t}^{(c)}$ representa la intensidad o tasa central de mortalidad por la causa $c$ para la celda definida por grupo etario $x$ y año calendario $t$.
+
+En el caso particular de grupos quinquenales, si el grupo se denota por su edad inicial y se escribe $I_x=[x,x+5)$, el supuesto anterior equivale a asumir que
+
+$$
+\mu_{x+\xi_1,t+\xi_2}^{(c)}
+=
+\mu_{x,t}^{(c)},
+\qquad
+0\le \xi_1<5,\quad 0\le \xi_2<1.
+$$
+
+En otras palabras, $\mu_{x,t}^{(c)}$ no representa una intensidad propia de una edad exacta como $33.9$, sino la intensidad estimada para todo el grupo etario $x$ durante el año $t$. Por ejemplo, si $x=30$ representa el grupo $30\text{-}34$, entonces $\mu_{30,t}^{(c)}$ representa una única intensidad asociada al intervalo $I_{30}=[30,35)$ durante el año calendario $t$.
+
+Esta aclaración es importante porque $\,{}_n q_{x,t}^{(c)}\,$, para un horizonte general $n$, solo puede usarse directamente con una única intensidad de muerte cuando el intervalo considerado permanece dentro de la celda donde esa intensidad fue asumida constante. Si una persona tuviera una edad exacta $y\in I_x$ y se quisiera seguir durante $n$ años usando solamente $\mu_{x,t}^{(c)}$, tendría que cumplirse al menos que
+
+$$
+y+n\leq b_x.
+$$
+
+Si esta condición no se cumple, la persona saldría del grupo etario $I_x$ y entraría en otro grupo, por lo que ya no sería correcto usar únicamente la intensidad $\mu_{x,t}^{(c)}$. Además, aun si se cumpliera la condición anterior respecto al grupo etario, también habría que considerar el año calendario si el seguimiento se interpretara estrictamente como una trayectoria real en edad y calendario, pues el año $t$ cambiaría al avanzar el tiempo. En ese caso, la fórmula directa con una sola intensidad tendría que sustituirse por un encadenamiento por tramos, usando las intensidades correspondientes a los grupos etarios y años calendario que se vayan cruzando.
+
+Por esta razón, en la aplicación empírica del proyecto se fijará el horizonte en $n=1$, pues esta elección es la más coherente con la estructura anual de los datos, y hace que el proyecto sea computacionalmente estable y fácilmente interpretable. Una vez hecha esta salvedad, se escribirá simplemente
+
+$$
+q_{x,t}^{(c)}
+$$
+
+para referirse a la probabilidad anual de decremento por causa. Es decir,
+
+$$
+q_{x,t}^{(c)}:={}_1 q_{x,t}^{(c)}.
+$$
+
+Con esta convención, $q_{x,t}^{(c)}$ debe leerse como una probabilidad anual asociada a la celda agregada definida por grupo etario, año calendario, país, sexo y causa. Es decir, representa el riesgo anual estimado de morir por la causa $c$ para el conjunto de vidas expuestas dentro del grupo etario $x$ durante el año $t$, bajo las intensidades estimadas para esa celda. Por ejemplo, si $x=30$ representa el grupo $30\text{-}34$, entonces $q_{30,t}^{(c)}$ representa el riesgo anual estimado del grupo etario $30\text{-}34$ durante el año $t$.
+
+Esta cantidad debe entenderse principalmente como una medida del grupo etario, no como una probabilidad exacta para cada edad individual dentro del grupo. Si una persona tuviera una edad exacta dentro de ese intervalo, por ejemplo $31.2$ o $32.5$, el modelo simplemente la ubicaría dentro del grupo $30\text{-}34$ y le asociaría la misma intensidad estimada para todo el grupo. Esto ocurre porque los datos no permiten distinguir el riesgo de cada edad exacta por separado. Así, bajo el supuesto de fuerza constante dentro de la celda, edades internas como $30$, $31.2$, $32.5$ o incluso $33.9$ quedan representadas por la misma probabilidad grupal $q_{30,t}^{(c)}$, pero no se está haciendo una estimación exacta para cada edad individual.
+
+Con estas salvedades aclaradas, es esencial definir de qué manera se estimará $q_{x,t}^{(c)}$. Para seguir la línea del curso y los métodos allí vistos, se usará tanto un enfoque clásico como uno bayesiano. En este sentido, la comparación no será el fin del proyecto por sí misma, sino un medio para interpretar patrones de variabilidad. Si una celda tiene alta exposición y suficientes defunciones, ambos enfoques deberían producir resultados similares. Si una celda tiene baja exposición, conteos nulos o una causa poco frecuente, el enfoque bayesiano debería producir estimaciones más estabilizadas e intervalos más amplios. El por qué de estos resultados esperados se hará claro conforme se definan los métodos de estimación que se tomará en cada uno de los enfoques.
+
+### Enfoque clásico
+
+El primer bloque metodológico será clásico. Para cada celda se modelarán las defunciones por causa como una variable aleatoria de conteo:
+
+$$D_{x,t}^{(c)}\mid \mu_{x,t}^{(c)}
+\sim
+\text{Poisson}\left(E_{x,t}\mu_{x,t}^{(c)}\right),$$
+
+Esta formulación se apoya en Manton et al. (1989), argumentan que las defunciones pueden modelarse aproximadamente como una variable Poisson con dichos parámetros. Esto es además coherente con la naturaleza de la distribución Poisson, la cual representa el número de sucesos aleatorios que ocurren en un intervalo de tiempo dado, en este caso dichos sucesos serían las defunciones. Asimismo, $\mu_{x,t}^{(c)}$ se interpreta como la fuerza de mortalidad, es decir, una tasa instantánea de salida del estado vivo por la causa $c$, asumida constante dentro de la celda anual considerada. Por tanto, al multiplicarla por la exposición $E_{x,t}$, el producto $E_{x,t}\mu_{x,t}^{(c)}$ representa el número esperado de defunciones por la causa $c$ en dicha celda, lo que justifica que sea el parametro de la Poisson.
+
+Pitacco et al (2009) muestran que, bajo este modelo, la estimación clásica por máxima verosimilitud de la intensidad es
+
+$$\widehat{\mu}_{x,t}^{(c)}
+=
+\frac{D_{x,t}^{(c)}}{E_{x,t}}.$$
+
+Esta representa cuántas defunciones por la causa $c$ se observan en relación con la población expuesta en esa celda. Luego se construye la fuerza total de salida del estado vivo sumando las intensidades por causa a lo largo de las $r$ causas:
+
+$${\mu}_{x,t}^{(\tau)}
+=
+\sum_{j=1}^{r}
+{\mu}_{x,t}^{(j)}.$$
+
+La notación $(\tau)$ se usa para indicar la mortalidad total por todas las causas consideradas. Esta suma es la parte que hace que el enfoque sea realmente de decrementos múltiples en presencia de causas competitivas, como se mencionó antes, la causa $c$ no se analiza como si fuera la única causa posible, sino en presencia de las demás causas que también pueden producir la muerte dentro del intervalo.
+
+Bajo el supuesto de fuerza constante dentro de la celda anual considerada, la transformación de intensidades a probabilidades de decremento se aplica directamente para el horizonte anual del proyecto. Siguiendo la fórmula de decrementos múltiples bajo fuerza constante presentada por Deshmukh (2012, p. 46), la probabilidad anual de morir por la causa $c$ se expresa como
+
+$$q_{x,t}^{(c)}
+=
+\frac{\mu_{x,t}^{(c)}}{\mu_{x,t}^{(\tau)}}
+\left(
+1-e^{-\mu_{x,t}^{(\tau)}}
+\right).$$
+
+En consecuencia, la estimación clásica será
+
+$$\widehat{q}_{x,t}^{(c)}
+=
+\frac{\widehat{\mu}_{x,t}^{(c)}}{\widehat{\mu}_{x,t}^{(\tau)}}
+\left(
+1-e^{-\widehat{\mu}_{x,t}^{(\tau)}}
+\right).$$
