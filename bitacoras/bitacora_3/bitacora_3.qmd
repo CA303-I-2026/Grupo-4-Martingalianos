@@ -1,0 +1,118 @@
+---
+title: ""
+format:
+  html: default
+  pdf:
+    include-in-header:
+      text: |
+        \usepackage{graphicx}
+        \usepackage{float}
+        \usepackage{pdflscape}
+        \usepackage{longtable}
+        \usepackage{booktabs}
+        \usepackage{array}
+        \usepackage{eso-pic}
+        \usepackage{xcolor}
+self-contained: true
+editor: visual
+lang: es
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{titlepage}
+\thispagestyle{empty}
+
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{portada.png}%
+  }%
+}
+
+\begin{center}
+
+{\Huge\bfseries Bitácora 3\par}
+
+\vspace{1.1cm}
+
+\textbf{Universidad de Costa Rica}
+
+\vspace{0.5cm}
+
+\textbf{Escuela de Matemática}
+
+\textbf{Departamento de Matemática y Ciencias Actuariales}
+
+\vspace{0.8cm}
+
+\textbf{Proyecto de Investigación}
+
+\vspace{2.2cm}
+
+\begin{minipage}{0.88\textwidth}
+\centering
+{\Large\bfseries
+Análisis del cambio de la probabilidad de decremento ${}_{n}q_{x}^{(c)}$ para grupos etarios por causas de muerte de acuerdo a la clasificación ICD-10 en países de Centroamérica [2015, 2018].
+\par}
+\end{minipage}
+
+\vspace{1.8cm}
+
+\textbf{Integrantes}
+
+\vspace{0.2cm}
+
+\textbf{Sebastián Miranda Ramírez C4H274}
+
+\textbf{Benjamín Gutiérrez Padua C4F813}
+
+\textbf{Kevin David Calderón Martínez C4D511}
+
+\textbf{Gabriel de Jesús Chaves Esquivel C4E273}
+
+\vspace{0.5cm}
+
+\textbf{Profesor}
+
+\vspace{0.3cm}
+
+\textbf{Maikol Solís Chacón}
+
+\vfill
+
+\textbf{2026}
+
+\end{center}
+
+\end{titlepage}
+```
+:::
+
+:::: {.content-visible when-format="html"}
+::: {style="text-align: center; margin-top: 120px;"}
+
+<b>Universidad de Costa Rica</b><br><br>
+
+<b>Escuela de Matemática</b><br> <b>Departamento de Matemática y Ciencias Actuariales</b><br><br>
+
+<b>Proyecto de Investigación</b><br><br>
+
+<b> Análisis del cambio de la probabilidad de decremento ${}_{n}q_{x}^{(c)}$ para grupos etarios por causas de muerte de acuerdo a la clasificación ICD-10 en países de Centroamérica \[2015, 2018\]. </b><br><br>
+
+<b>Integrantes</b><br><br>
+
+Sebastián Miranda Ramírez — C4H274<br> Benjamín Gutiérrez Padua — C4F813<br> Kevin David Calderón Martínez — C4D511<br> Gabriel de Jesús Chaves Esquivel — C4E273<br><br>
+
+<b>Profesor</b><br> Maikol Solís Chacón<br><br>
+
+<b>2026</b>
+:::
+::::
+
+# Bitácora 3
+
+## 1. Parte de Planificación
