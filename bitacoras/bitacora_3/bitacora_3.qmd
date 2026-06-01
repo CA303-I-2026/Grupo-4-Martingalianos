@@ -130,7 +130,6 @@ $$x\in\{0,1,2,3,4,5\text{-}9,10\text{-}14,\ldots,90\text{-}94,95+\}, \quad t\in\
 
 y $c$ una categoría de causa de muerte según la ICD-10, de acuerdo con la clasificación definida en bitácoras anteriores. En particular, cuando el grupo etario se denote por su edad inicial, $x$ también puede leerse como el extremo inferior del intervalo. Por ejemplo, para el grupo $30\text{-}34$ se puede escribir $x=30$ y asociar el intervalo $I_x=[30,35)$, esta convención se usará al escribir las diversas fórmulas a estimar.
 
-
 La variable aleatoria $T_{x,t}$ representa el tiempo futuro de vida de una persona perteneciente al grupo etario $x$ durante el año calendario $t$ y $J$ es una variable aleatoria que indica la causa del decremento. Con esta convención, $q_{x,t}^{(c)}$ debe leerse como la probabilidad de morir por la causa $c$ para una vida perteneciente al grupo etario $x$ durante el año calendario $t$, bajo las intensidades estimadas para esa celda. Por ejemplo, si $x=30\text{-}34$, entonces $q_{30\text{-}34,t}^{(c)}$ no se interpreta como la probabilidad exacta de una persona de edad puntual $30$, $33.9$ o $34.7$, sino como el riesgo anual asociado al grupo etario completo $30\text{-}34$ durante el año $t$. Asimismo se considera que para que alguien muera por la causa $c$ primero debe no haber muerto por las otras $c-1$ causas, de manera que estas se consideran "causas competidoras" e influyen en el cálculo de las diferentes probabilidades. Bowers et al. (1997) y Deshmukh (2012) presentan este tratamiento para las probabilidades de decremento.
 
 Aunque el objeto de estudio también depende del país y del sexo, estas dimensiones se mantienen se omiten de la expresión para no sobrecargar la notación, en el momento de presentación de resultados se hará explícito el sexo y el país al que se esté referiendo cada aseveración. De forma más general, la probabilidad podría escribirse como ${}_n q_{x,t,p,s}^{(c)}$, donde $p$ representa el país y $s$ el sexo.
@@ -154,7 +153,6 @@ Por tanto, el supuesto de fuerza constante no se hará solamente sobre una celda
 $$
 I_x=[a_x,b_x),
 $$
-
 
 entonces se supondrá que
 
@@ -244,3 +242,272 @@ $$\widehat{q}_{x,t}^{(c)}
 \left(
 1-e^{-\widehat{\mu}_{x,t}^{(\tau)}}
 \right).$$
+
+### Enfoque bayesiano
+
+El enfoque bayesiano mantiene el mismo modelo de conteo usado en el enfoque clásico, de forma que:
+
+$$
+D_{x,t}^{(c)}
+\mid
+\mu_{x,t}^{(c)}
+\sim
+\operatorname{Poisson}
+\left(
+E_{x,t}\mu_{x,t}^{(c)}
+\right).
+$$
+
+Sin embargo ahora la intensidad de mortalidad por causa se considera una variable aleatoria. La diferencia respecto al enfoque clásico es que ahora $\mu_{x,t}^{(c)}$ no se trata como un parámetro fijo desconocido, sino como una variable aleatoria positiva. Para ello se asigna una distribución Gamma:
+
+$$
+\mu_{x,t}^{(c)}
+\sim
+\operatorname{Gamma}
+\left(
+\alpha_p^{(c)},\beta_p^{(c)}
+\right), \quad \mathbb{E}\left[\mu_{x,t}^{(c)}\right]
+=
+\frac{\alpha_p^{(c)}}{\beta_p^{(c)}}.
+$$
+
+Se debe recordar que la metodología se aplica dentro de un subconjunto específico país-sexo dados, por ejemplo Costa Rica-hombres, Costa Rica-mujeres, Guatemala-hombres, etc. La única excepción será la notación de los hiperparámetros, donde sí se escribirá el país $p$. Esto permitirá recordar que $\alpha_p^{(c)}$ y $\beta_p^{(c)}$ se diferenciarán por causa y país, así siendo constantes en las variables de grupo etario $x$, año calendario $t$ y sexo.
+
+Para formalizar esa idea, para cada sexo, país $p$ y causa $c$ se define
+
+$$
+\mathcal I_p^{(c)}
+=
+\left\{
+(x,t): \text{país } p \text{ y causa } c \text{ fijos}
+\right\},
+$$
+
+donde los $(x,t)$ representan todos los pares de índices del grupo etario $x$ en el año calendario $t$ con un sexo dado, correspondientes a esa causa $c$ en ese país $p$.
+
+Con esas observaciones se estiman los hiperparámetros $\alpha_p^{(c)}$ y $\beta_p^{(c)}$. Es decir, para cada país y causa se usa la información observada en los distintos sexos, grupos etarios y años calendario, pero el resultado final es un único par de hiperparámetros:
+
+$$
+\alpha_p^{(c)},\beta_p^{(c)}.
+$$
+
+Esto se hace así debido a que los hiperparámetros serán estimados mediante un método llamado Empirical Bayes, en donde la idea es que se incorpore una experiencia grupal, de forma que cada celda $(x,t)$ conserva su propia información observada, pero también se beneficia de la experiencia colectiva del país y la causa. Esto es útil porque muchas celdas pueden tener conteos pequeños o incluso nulos.
+
+Por conjugación Poisson-Gamma, una vez estimados los hiperparámetros, se obtiene
+
+$$
+\mu_{x,t}^{(c)}
+\mid
+D_{x,t}^{(c)},E_{x,t}
+\sim
+\operatorname{Gamma}
+\left(
+\widehat{\alpha}_p^{(c)}+D_{x,t}^{(c)},
+\widehat{\beta}_p^{(c)}+E_{x,t}
+\right).
+$$
+
+#### Estimación de $\alpha_p^{(c)}$ y $\beta_p^{(c)}$
+
+Los hiperparámetros $\alpha_p^{(c)}$ y $\beta_p^{(c)}$ se estimarán mediante un método llamado Empirical Bayes, inspirados en el enfoque tomado por Zhang et al. (2019). Esto significa que no se fijan subjetivamente, sino que se estiman desde los propios conteos observados.
+
+En este sentido, el modelo bayesiano se puede entender como una jerarquía creciente de 3 niveles:
+
+$$
+\alpha_p^{(c)},\beta_p^{(c)}
+\longrightarrow
+\mu_{x,t}^{(c)}
+\longrightarrow
+D_{x,t}^{(c)}.
+$$
+
+En el primer nivel, los hiperparámetros $\alpha_p^{(c)}$ y $\beta_p^{(c)}$ describen la experiencia colectiva asociada al país $p$ y a la causa $c$. En el segundo nivel, cada intensidad específica $\mu_{x,t}^{(c)}$ representa el riesgo latente propio de la celda $(x,t)$, pero dicha intensidad no se observa directamente. En el tercer nivel se encuentran los conteos observados $D_{x,t}^{(c)}$, que son los datos efectivamente disponibles.
+
+La dificultad es que el nivel intermedio, $\mu_{x,t}^{(c)}$, no se observa directamente, sino que lo observado son las defunciones y exposiciones. Si las fuerzas de mortalidad fueran observadas, se podría estimar fácilmente $\alpha_p^{(c)}$ y $\beta_p^{(c)}$ mediante máxima verosimilitud o algún método similar.
+
+Por lo mencionado anteriormente para estimar los hiperparámetros no se trabaja con una verosimilitud basada en $\mu_{x,t}^{(c)}$ de manera observada, sino con la distribución marginal de los conteos observados. Esto se logra integrando la intensidad latente:
+
+$$
+P\left(D_{x,t}^{(c)}=d\right)
+=
+\int_0^\infty
+P\left(D_{x,t}^{(c)}=d\mid \mu\right)
+f\left(\mu\mid \alpha_p^{(c)},\beta_p^{(c)}\right)
+d\mu.
+$$
+
+Este paso elimina el nivel intermedio no observado y deja una relación directa entre los hiperparámetros y los conteos:
+
+$$
+\alpha_p^{(c)},\beta_p^{(c)}
+\longrightarrow
+D_{x,t}^{(c)}.
+$$
+
+Como es señalado por Schmitt et al. (2019), al integrar la variable intermedia en nuestra familia conjugada Poisson-Gamma se obtiene una distribución marginal binomial negativa para nivel superior, de forma que:
+
+$$
+P\left(D_{x,t}^{(c)}=d\right)
+=
+\frac{\Gamma\left(\alpha_p^{(c)}+d\right)}
+{\Gamma\left(\alpha_p^{(c)}\right)d!}
+\left(
+\frac{\beta_p^{(c)}}{\beta_p^{(c)}+E_{x,t}}
+\right)^{\alpha_p^{(c)}}
+\left(
+\frac{E_{x,t}}{\beta_p^{(c)}+E_{x,t}}
+\right)^d.
+$$
+
+Este procedimiento es precisamente el que permite seguir la lógica Empirical Bayes descrita por Zhang et al. (2019), en donde siguen esta lógica para estimar los hiperparámetros asociados al parámetro original, y concluyen que la mejor forma es mediante maxima verosimilitud, maximizando la log-verosimilitud marginal construida con las celdas $(x,t)$ correspondientes.
+
+Por tanto, para cada país $p$ y causa $c$, se maximizará la log-verosimilitud marginal, mediante la función `optim()` en R.
+
+$$
+\begin{aligned}
+\ell_{p}^{(c)}(\alpha,\beta)
+=
+\sum_{(x,t)\in\mathcal I_p^{(c)}} \Bigg[
+&\log\Gamma(\alpha+D_{x,t}^{(c)})
+-\log\Gamma(\alpha)
+-\log(D_{x,t}^{(c)}!) \\[2mm]
+&+\alpha\log\left(\frac{\beta}{\beta+E_{x,t}}\right)
++D_{x,t}^{(c)}
+\log\left(\frac{E_{x,t}}{\beta+E_{x,t}}\right)
+\Bigg].
+\end{aligned}
+$$
+
+Así se tiene que, para cada país $p$ y causa $c$:
+
+$$
+\left(
+\widehat{\alpha}_p^{(c)},
+\widehat{\beta}_p^{(c)}
+\right)
+=
+\arg\max_{\alpha>0,\ \beta>0}
+\ell_{p}^{(c)}(\alpha,\beta).
+$$
+
+#### Simulación posterior de $q_{x,t}^{(c)}$
+
+De la explicación brindada en el enfoque clásico y en resonancia con Deshmukh (2012, p. 46) sabemos que:
+
+$$
+q_{x,t}^{(c)}
+=
+\frac{
+\mu_{x,t}^{(c)}
+}{
+\mu_{x,t}^{(\tau)}
+}
+\left(
+1-e^{-\mu_{x,t}^{(\tau)}}
+\right),
+$$
+
+Sin embargo, como ahora en el enfoque bayesiano cada $\mu_{x,t}^{(j)}$ es una variable aleatoria posterior, entonces la probabilidad de decremento ${}Q_{x,t}^{(c)}$ también lo es (note que debido a esto ahora se escribirá con una Q mayúscula). Por tanto, al querer estimarla no basta con sustituir directamente las medias posteriores de las intensidades en la fórmula clásica. Esto se debe a que la transformación de intensidades a probabilidades de decremento no es lineal, pues depende de la suma $\mu_{x,t}^{(\tau)}=\sum_{j=1}^{r}\mu_{x,t}^{(j)}$ dentro de una función exponencial.
+
+Así, bajo función de pérdida cuadrática, el estimador bayesiano de interés es la esperanza posterior de la variable aleatoria ${}Q_{x,t}^{(c)}$. Debido a que se están usando los $r$ conteos de defunciones (uno por causa) para calcular $\mu_{x,t}^{(\tau)}$, se tiene que dicha esperanza posterior se ve la siguiente manera:
+
+$$
+\begin{aligned}
+\mathbb{E}\left({}Q_{x,t}^{(c)}
+\mid D_{x,t}^{(1)},\ldots,D_{x,t}^{(r)},E_{x,t}\right)
+= 
+\mathbb{E}\left[
+\frac{\mu_{x,t}^{(c)}}{\mu_{x,t}^{(\tau)}}
+\left(
+1-e^{\mu_{x,t}^{(\tau)}}
+\right)
+\mid
+D_{x,t}^{(1)},\ldots,D_{x,t}^{(r)},E_{x,t}
+\right].
+\end{aligned}
+$$
+
+Para simplificar la notación, de ahora en adelante se denotará por $\mathcal{D}_{x,t}$ a los conteos de defunciones por causa junto con la exposición correspondientem de la celda $x,t$. Por tanto, la esperanza anterior se escribirá simplemente como
+
+$$
+\mathbb{E}[{}Q_{x,t}^{(c)}\mid D_{x,t}]
+$$
+
+Note que ${}Q_{x,t}^{(c)} = f(\mu_{x,t}^{(1)},\ldots,\mu_{x,t}^{(r)})$ y en general se tiene que
+
+$$
+\mathbb{E}\left[
+f\left(\mu_{x,t}^{(1)},\ldots,\mu_{x,t}^{(r)}\right)
+\mid \mathcal{D}_{x,t}
+\right]
+\neq
+f\left(
+\mathbb{E}\left[\mu_{x,t}^{(1)}\mid\mathcal{D}_{x,t}\right],
+\ldots,
+\mathbb{E}\left[\mu_{x,t}^{(r)}\mid\mathcal{D}_{x,t}\right]
+\right).
+$$
+
+Por esta razón, no se estimará $Q_{x,t}^{(c)}$ sustituyendo directamente las medias posteriores de las intensidades en la fórmula presentada. En su lugar, se deberán hacer simulaciones y aproximar la media posterior de las probabilidades de decrementos mediante Ley de los Grandes Números, esto se hará de la siguiente manera:
+
+Para cada celda $(x,t)$ y para cada simulación $s=1,\ldots,S$, se generan intensidades posteriores por causa:
+
+$$
+\mu_{x,t}^{(j,s)}
+\sim
+\operatorname{Gamma}
+\left(
+\widehat{\alpha}_p^{(j)}+D_{x,t}^{(j)},
+\widehat{\beta}_p^{(j)}+E_{x,t}
+\right),
+\qquad
+j=1,\ldots,r.
+$$
+
+Luego, para esa misma simulación, se calcula la intensidad total simulada:
+
+$$
+\mu_{x,t}^{(\tau,s)}
+=
+\sum_{j=1}^{r}
+\mu_{x,t}^{(j,s)}.
+$$
+
+Con estas intensidades simuladas se obtiene una realización posterior de la probabilidad de decremento por causa $c$:
+
+$$
+q_{x,t}^{(c,s)}
+=
+\frac{
+\mu_{x,t}^{(c,s)}
+}{
+\mu_{x,t}^{(\tau,s)}
+}
+\left(
+1-e^{-\mu_{x,t}^{(\tau,s)}}
+\right).
+$$
+
+Después de $S$ simulaciones, para cada causa $c$ se obtiene una muestra de la forma
+
+$$
+q_{x,t}^{(c,1)},\ldots,q_{x,t}^{(c,S)}.
+$$
+
+Para $S$ grande se tiene que el estimador bayesiano de $Q_{x,t}^{(c)}$ de dicha causa $c$ se aproxima entonces como la media muestral de dicho conjunto:
+
+$$
+q_{x,t}^{(c)*}
+=
+\frac{1}{S}
+\sum_{s=1}^{S}
+q_{x,t}^{(c,s)}
+\approx
+\mathbb{E}\left(
+Q_{x,t}^{(c)}
+\mid
+\mathcal{D}_{x,t}
+\right).
+$$
+
+Esta aproximación se justifica por la Ley de los Grandes Números.
