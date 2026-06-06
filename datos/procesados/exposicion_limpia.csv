@@ -1,0 +1,1681 @@
+iso_3_code,pais,year,age_group,sex,exposure
+BLZ,Belize,2015,0-4,Female,17956
+BLZ,Belize,2015,10-14,Female,19264
+BLZ,Belize,2015,15-19,Female,18755
+BLZ,Belize,2015,20-24,Female,17678
+BLZ,Belize,2015,25-29,Female,15959
+BLZ,Belize,2015,30-34,Female,13998
+BLZ,Belize,2015,35-39,Female,11931
+BLZ,Belize,2015,40-44,Female,10585
+BLZ,Belize,2015,45-49,Female,8725
+BLZ,Belize,2015,5-9,Female,18518
+BLZ,Belize,2015,50-54,Female,7180
+BLZ,Belize,2015,55-59,Female,5505
+BLZ,Belize,2015,60-64,Female,3903
+BLZ,Belize,2015,65-69,Female,2680
+BLZ,Belize,2015,70-74,Female,1781
+BLZ,Belize,2015,75-79,Female,1287
+BLZ,Belize,2015,80-84,Female,847
+BLZ,Belize,2015,85-89,Female,423
+BLZ,Belize,2015,90-94,Female,132
+BLZ,Belize,2015,95+,Female,25
+BLZ,Belize,2015,0-4,Male,18829
+BLZ,Belize,2015,10-14,Male,19677
+BLZ,Belize,2015,15-19,Male,19010
+BLZ,Belize,2015,20-24,Male,17936
+BLZ,Belize,2015,25-29,Male,15954
+BLZ,Belize,2015,30-34,Male,13618
+BLZ,Belize,2015,35-39,Male,11601
+BLZ,Belize,2015,40-44,Male,10273
+BLZ,Belize,2015,45-49,Male,8675
+BLZ,Belize,2015,5-9,Male,19202
+BLZ,Belize,2015,50-54,Male,7355
+BLZ,Belize,2015,55-59,Male,5618
+BLZ,Belize,2015,60-64,Male,4105
+BLZ,Belize,2015,65-69,Male,2817
+BLZ,Belize,2015,70-74,Male,1889
+BLZ,Belize,2015,75-79,Male,1339
+BLZ,Belize,2015,80-84,Male,815
+BLZ,Belize,2015,85-89,Male,380
+BLZ,Belize,2015,90-94,Male,97
+BLZ,Belize,2015,95+,Male,15
+BLZ,Belize,2015,0-4,Total,36785
+BLZ,Belize,2015,10-14,Total,38940
+BLZ,Belize,2015,15-19,Total,37764
+BLZ,Belize,2015,20-24,Total,35614
+BLZ,Belize,2015,25-29,Total,31913
+BLZ,Belize,2015,30-34,Total,27616
+BLZ,Belize,2015,35-39,Total,23532
+BLZ,Belize,2015,40-44,Total,20858
+BLZ,Belize,2015,45-49,Total,17399
+BLZ,Belize,2015,5-9,Total,37720
+BLZ,Belize,2015,50-54,Total,14535
+BLZ,Belize,2015,55-59,Total,11123
+BLZ,Belize,2015,60-64,Total,8007.999999999999
+BLZ,Belize,2015,65-69,Total,5497
+BLZ,Belize,2015,70-74,Total,3670
+BLZ,Belize,2015,75-79,Total,2626
+BLZ,Belize,2015,80-84,Total,1662
+BLZ,Belize,2015,85-89,Total,802
+BLZ,Belize,2015,90-94,Total,229
+BLZ,Belize,2015,95+,Total,40
+BLZ,Belize,2016,0-4,Female,18294
+BLZ,Belize,2016,10-14,Female,19207
+BLZ,Belize,2016,15-19,Female,19073
+BLZ,Belize,2016,20-24,Female,18070
+BLZ,Belize,2016,25-29,Female,16493
+BLZ,Belize,2016,30-34,Female,14525
+BLZ,Belize,2016,35-39,Female,12330
+BLZ,Belize,2016,40-44,Female,10859
+BLZ,Belize,2016,45-49,Female,9145
+BLZ,Belize,2016,5-9,Female,18174
+BLZ,Belize,2016,50-54,Female,7423
+BLZ,Belize,2016,55-59,Female,5842
+BLZ,Belize,2016,60-64,Female,4120
+BLZ,Belize,2016,65-69,Female,2874
+BLZ,Belize,2016,70-74,Female,1840
+BLZ,Belize,2016,75-79,Female,1316
+BLZ,Belize,2016,80-84,Female,847
+BLZ,Belize,2016,85-89,Female,436
+BLZ,Belize,2016,90-94,Female,137
+BLZ,Belize,2016,95+,Female,27.000000000000004
+BLZ,Belize,2016,0-4,Male,19183
+BLZ,Belize,2016,10-14,Male,19646
+BLZ,Belize,2016,15-19,Male,19424
+BLZ,Belize,2016,20-24,Male,18478
+BLZ,Belize,2016,25-29,Male,16686
+BLZ,Belize,2016,30-34,Male,14280
+BLZ,Belize,2016,35-39,Male,12053
+BLZ,Belize,2016,40-44,Male,10598
+BLZ,Belize,2016,45-49,Male,9016
+BLZ,Belize,2016,5-9,Male,18925
+BLZ,Belize,2016,50-54,Male,7590
+BLZ,Belize,2016,55-59,Male,5912
+BLZ,Belize,2016,60-64,Male,4292
+BLZ,Belize,2016,65-69,Male,2973
+BLZ,Belize,2016,70-74,Male,1934
+BLZ,Belize,2016,75-79,Male,1353
+BLZ,Belize,2016,80-84,Male,820
+BLZ,Belize,2016,85-89,Male,390
+BLZ,Belize,2016,90-94,Male,104
+BLZ,Belize,2016,95+,Male,17
+BLZ,Belize,2016,0-4,Total,37477
+BLZ,Belize,2016,10-14,Total,38853
+BLZ,Belize,2016,15-19,Total,38497
+BLZ,Belize,2016,20-24,Total,36547
+BLZ,Belize,2016,25-29,Total,33179
+BLZ,Belize,2016,30-34,Total,28805
+BLZ,Belize,2016,35-39,Total,24384
+BLZ,Belize,2016,40-44,Total,21457
+BLZ,Belize,2016,45-49,Total,18161
+BLZ,Belize,2016,5-9,Total,37100
+BLZ,Belize,2016,50-54,Total,15013
+BLZ,Belize,2016,55-59,Total,11754
+BLZ,Belize,2016,60-64,Total,8412
+BLZ,Belize,2016,65-69,Total,5848
+BLZ,Belize,2016,70-74,Total,3774
+BLZ,Belize,2016,75-79,Total,2669
+BLZ,Belize,2016,80-84,Total,1666
+BLZ,Belize,2016,85-89,Total,826
+BLZ,Belize,2016,90-94,Total,241
+BLZ,Belize,2016,95+,Total,44.00000000000001
+BLZ,Belize,2017,0-4,Female,18605
+BLZ,Belize,2017,10-14,Female,19119
+BLZ,Belize,2017,15-19,Female,19332
+BLZ,Belize,2017,20-24,Female,18418
+BLZ,Belize,2017,25-29,Female,17033
+BLZ,Belize,2017,30-34,Female,15031
+BLZ,Belize,2017,35-39,Female,12786
+BLZ,Belize,2017,40-44,Female,11136
+BLZ,Belize,2017,45-49,Female,9573
+BLZ,Belize,2017,5-9,Female,17951
+BLZ,Belize,2017,50-54,Female,7672
+BLZ,Belize,2017,55-59,Female,6172
+BLZ,Belize,2017,60-64,Female,4365
+BLZ,Belize,2017,65-69,Female,3061
+BLZ,Belize,2017,70-74,Female,1930
+BLZ,Belize,2017,75-79,Female,1345
+BLZ,Belize,2017,80-84,Female,850
+BLZ,Belize,2017,85-89,Female,446
+BLZ,Belize,2017,90-94,Female,140
+BLZ,Belize,2017,95+,Female,28.999999999999996
+BLZ,Belize,2017,0-4,Male,19508
+BLZ,Belize,2017,10-14,Male,19593
+BLZ,Belize,2017,15-19,Male,19787
+BLZ,Belize,2017,20-24,Male,18949
+BLZ,Belize,2017,25-29,Male,17411
+BLZ,Belize,2017,30-34,Male,14973
+BLZ,Belize,2017,35-39,Male,12572
+BLZ,Belize,2017,40-44,Male,10929
+BLZ,Belize,2017,45-49,Male,9377
+BLZ,Belize,2017,5-9,Male,18749
+BLZ,Belize,2017,50-54,Male,7803
+BLZ,Belize,2017,55-59,Male,6218
+BLZ,Belize,2017,60-64,Male,4487
+BLZ,Belize,2017,65-69,Male,3131
+BLZ,Belize,2017,70-74,Male,2001.9999999999998
+BLZ,Belize,2017,75-79,Male,1366
+BLZ,Belize,2017,80-84,Male,829
+BLZ,Belize,2017,85-89,Male,398
+BLZ,Belize,2017,90-94,Male,111
+BLZ,Belize,2017,95+,Male,19
+BLZ,Belize,2017,0-4,Total,38113
+BLZ,Belize,2017,10-14,Total,38712
+BLZ,Belize,2017,15-19,Total,39118
+BLZ,Belize,2017,20-24,Total,37367
+BLZ,Belize,2017,25-29,Total,34444
+BLZ,Belize,2017,30-34,Total,30004
+BLZ,Belize,2017,35-39,Total,25358
+BLZ,Belize,2017,40-44,Total,22065
+BLZ,Belize,2017,45-49,Total,18950
+BLZ,Belize,2017,5-9,Total,36700
+BLZ,Belize,2017,50-54,Total,15476
+BLZ,Belize,2017,55-59,Total,12390
+BLZ,Belize,2017,60-64,Total,8852
+BLZ,Belize,2017,65-69,Total,6191
+BLZ,Belize,2017,70-74,Total,3932
+BLZ,Belize,2017,75-79,Total,2711
+BLZ,Belize,2017,80-84,Total,1679
+BLZ,Belize,2017,85-89,Total,843
+BLZ,Belize,2017,90-94,Total,251
+BLZ,Belize,2017,95+,Total,47
+BLZ,Belize,2018,0-4,Female,18863
+BLZ,Belize,2018,10-14,Female,18989
+BLZ,Belize,2018,15-19,Female,19435
+BLZ,Belize,2018,20-24,Female,18651
+BLZ,Belize,2018,25-29,Female,17447
+BLZ,Belize,2018,30-34,Female,15460
+BLZ,Belize,2018,35-39,Female,13245
+BLZ,Belize,2018,40-44,Female,11406
+BLZ,Belize,2018,45-49,Female,9950
+BLZ,Belize,2018,5-9,Female,17840
+BLZ,Belize,2018,50-54,Female,7931
+BLZ,Belize,2018,55-59,Female,6473
+BLZ,Belize,2018,60-64,Female,4632
+BLZ,Belize,2018,65-69,Female,3240
+BLZ,Belize,2018,70-74,Female,2045.9999999999998
+BLZ,Belize,2018,75-79,Female,1371
+BLZ,Belize,2018,80-84,Female,858
+BLZ,Belize,2018,85-89,Female,450
+BLZ,Belize,2018,90-94,Female,145
+BLZ,Belize,2018,95+,Female,28.999999999999996
+BLZ,Belize,2018,0-4,Male,19779
+BLZ,Belize,2018,10-14,Male,19522
+BLZ,Belize,2018,15-19,Male,19918
+BLZ,Belize,2018,20-24,Male,19185
+BLZ,Belize,2018,25-29,Male,17930
+BLZ,Belize,2018,30-34,Male,15542
+BLZ,Belize,2018,35-39,Male,13044
+BLZ,Belize,2018,40-44,Male,11195
+BLZ,Belize,2018,45-49,Male,9697
+BLZ,Belize,2018,5-9,Male,18664
+BLZ,Belize,2018,50-54,Male,7990
+BLZ,Belize,2018,55-59,Male,6501
+BLZ,Belize,2018,60-64,Male,4683
+BLZ,Belize,2018,65-69,Male,3278
+BLZ,Belize,2018,70-74,Male,2083
+BLZ,Belize,2018,75-79,Male,1373
+BLZ,Belize,2018,80-84,Male,840
+BLZ,Belize,2018,85-89,Male,403
+BLZ,Belize,2018,90-94,Male,119
+BLZ,Belize,2018,95+,Male,19
+BLZ,Belize,2018,0-4,Total,38642
+BLZ,Belize,2018,10-14,Total,38511
+BLZ,Belize,2018,15-19,Total,39353
+BLZ,Belize,2018,20-24,Total,37837
+BLZ,Belize,2018,25-29,Total,35377
+BLZ,Belize,2018,30-34,Total,31002
+BLZ,Belize,2018,35-39,Total,26290
+BLZ,Belize,2018,40-44,Total,22602
+BLZ,Belize,2018,45-49,Total,19648
+BLZ,Belize,2018,5-9,Total,36504
+BLZ,Belize,2018,50-54,Total,15922
+BLZ,Belize,2018,55-59,Total,12975
+BLZ,Belize,2018,60-64,Total,9315
+BLZ,Belize,2018,65-69,Total,6518
+BLZ,Belize,2018,70-74,Total,4129
+BLZ,Belize,2018,75-79,Total,2744
+BLZ,Belize,2018,80-84,Total,1698
+BLZ,Belize,2018,85-89,Total,852
+BLZ,Belize,2018,90-94,Total,263
+BLZ,Belize,2018,95+,Total,48
+CRI,Costa Rica,2015,0-4,Female,172636
+CRI,Costa Rica,2015,10-14,Female,181166
+CRI,Costa Rica,2015,15-19,Female,195253
+CRI,Costa Rica,2015,20-24,Female,201606
+CRI,Costa Rica,2015,25-29,Female,206360
+CRI,Costa Rica,2015,30-34,Female,195574
+CRI,Costa Rica,2015,35-39,Female,176107
+CRI,Costa Rica,2015,40-44,Female,159895
+CRI,Costa Rica,2015,45-49,Female,156782
+CRI,Costa Rica,2015,5-9,Female,176928
+CRI,Costa Rica,2015,50-54,Female,151490
+CRI,Costa Rica,2015,55-59,Female,127852
+CRI,Costa Rica,2015,60-64,Female,99917
+CRI,Costa Rica,2015,65-69,Female,76976
+CRI,Costa Rica,2015,70-74,Female,56919
+CRI,Costa Rica,2015,75-79,Female,42287
+CRI,Costa Rica,2015,80-84,Female,28828
+CRI,Costa Rica,2015,85-89,Female,16681
+CRI,Costa Rica,2015,90-94,Female,6887
+CRI,Costa Rica,2015,95+,Female,2133
+CRI,Costa Rica,2015,0-4,Male,180308
+CRI,Costa Rica,2015,10-14,Male,189623
+CRI,Costa Rica,2015,15-19,Male,203925
+CRI,Costa Rica,2015,20-24,Male,209415
+CRI,Costa Rica,2015,25-29,Male,212166
+CRI,Costa Rica,2015,30-34,Male,196343
+CRI,Costa Rica,2015,35-39,Male,170300
+CRI,Costa Rica,2015,40-44,Male,149850
+CRI,Costa Rica,2015,45-49,Male,146083
+CRI,Costa Rica,2015,5-9,Male,184833
+CRI,Costa Rica,2015,50-54,Male,141608
+CRI,Costa Rica,2015,55-59,Male,118461
+CRI,Costa Rica,2015,60-64,Male,91546
+CRI,Costa Rica,2015,65-69,Male,69948
+CRI,Costa Rica,2015,70-74,Male,50471
+CRI,Costa Rica,2015,75-79,Male,35490
+CRI,Costa Rica,2015,80-84,Male,21146
+CRI,Costa Rica,2015,85-89,Male,10277
+CRI,Costa Rica,2015,90-94,Male,3311
+CRI,Costa Rica,2015,95+,Male,658
+CRI,Costa Rica,2015,0-4,Total,352943
+CRI,Costa Rica,2015,10-14,Total,370788
+CRI,Costa Rica,2015,15-19,Total,399178
+CRI,Costa Rica,2015,20-24,Total,411021
+CRI,Costa Rica,2015,25-29,Total,418526
+CRI,Costa Rica,2015,30-34,Total,391917
+CRI,Costa Rica,2015,35-39,Total,346407
+CRI,Costa Rica,2015,40-44,Total,309745
+CRI,Costa Rica,2015,45-49,Total,302865
+CRI,Costa Rica,2015,5-9,Total,361762
+CRI,Costa Rica,2015,50-54,Total,293099
+CRI,Costa Rica,2015,55-59,Total,246313
+CRI,Costa Rica,2015,60-64,Total,191464
+CRI,Costa Rica,2015,65-69,Total,146923
+CRI,Costa Rica,2015,70-74,Total,107390
+CRI,Costa Rica,2015,75-79,Total,77777
+CRI,Costa Rica,2015,80-84,Total,49974
+CRI,Costa Rica,2015,85-89,Total,26957
+CRI,Costa Rica,2015,90-94,Total,10198
+CRI,Costa Rica,2015,95+,Total,2790
+CRI,Costa Rica,2016,0-4,Female,171982
+CRI,Costa Rica,2016,10-14,Female,178049
+CRI,Costa Rica,2016,15-19,Female,193903
+CRI,Costa Rica,2016,20-24,Female,200561
+CRI,Costa Rica,2016,25-29,Female,205841
+CRI,Costa Rica,2016,30-34,Female,199377
+CRI,Costa Rica,2016,35-39,Female,179946
+CRI,Costa Rica,2016,40-44,Female,161823
+CRI,Costa Rica,2016,45-49,Female,156618
+CRI,Costa Rica,2016,5-9,Female,176450
+CRI,Costa Rica,2016,50-54,Female,153585
+CRI,Costa Rica,2016,55-59,Female,133282
+CRI,Costa Rica,2016,60-64,Female,104413
+CRI,Costa Rica,2016,65-69,Female,80640
+CRI,Costa Rica,2016,70-74,Female,59703
+CRI,Costa Rica,2016,75-79,Female,43858
+CRI,Costa Rica,2016,80-84,Female,29976
+CRI,Costa Rica,2016,85-89,Female,17546
+CRI,Costa Rica,2016,90-94,Female,7398
+CRI,Costa Rica,2016,95+,Female,2326
+CRI,Costa Rica,2016,0-4,Male,179556
+CRI,Costa Rica,2016,10-14,Male,186207
+CRI,Costa Rica,2016,15-19,Male,202610
+CRI,Costa Rica,2016,20-24,Male,208290
+CRI,Costa Rica,2016,25-29,Male,212024
+CRI,Costa Rica,2016,30-34,Male,201157
+CRI,Costa Rica,2016,35-39,Male,175219
+CRI,Costa Rica,2016,40-44,Male,152190
+CRI,Costa Rica,2016,45-49,Male,145619
+CRI,Costa Rica,2016,5-9,Male,184366
+CRI,Costa Rica,2016,50-54,Male,143326
+CRI,Costa Rica,2016,55-59,Male,123403
+CRI,Costa Rica,2016,60-64,Male,95526
+CRI,Costa Rica,2016,65-69,Male,73043
+CRI,Costa Rica,2016,70-74,Male,52959
+CRI,Costa Rica,2016,75-79,Male,36930
+CRI,Costa Rica,2016,80-84,Male,22169
+CRI,Costa Rica,2016,85-89,Male,10835
+CRI,Costa Rica,2016,90-94,Male,3570
+CRI,Costa Rica,2016,95+,Male,723.0000000000001
+CRI,Costa Rica,2016,0-4,Total,351538
+CRI,Costa Rica,2016,10-14,Total,364255
+CRI,Costa Rica,2016,15-19,Total,396512
+CRI,Costa Rica,2016,20-24,Total,408851
+CRI,Costa Rica,2016,25-29,Total,417865
+CRI,Costa Rica,2016,30-34,Total,400534
+CRI,Costa Rica,2016,35-39,Total,355165
+CRI,Costa Rica,2016,40-44,Total,314012
+CRI,Costa Rica,2016,45-49,Total,302236
+CRI,Costa Rica,2016,5-9,Total,360815
+CRI,Costa Rica,2016,50-54,Total,296911
+CRI,Costa Rica,2016,55-59,Total,256685
+CRI,Costa Rica,2016,60-64,Total,199940
+CRI,Costa Rica,2016,65-69,Total,153684
+CRI,Costa Rica,2016,70-74,Total,112661
+CRI,Costa Rica,2016,75-79,Total,80788
+CRI,Costa Rica,2016,80-84,Total,52145
+CRI,Costa Rica,2016,85-89,Total,28381
+CRI,Costa Rica,2016,90-94,Total,10967
+CRI,Costa Rica,2016,95+,Total,3049
+CRI,Costa Rica,2017,0-4,Female,170131
+CRI,Costa Rica,2017,10-14,Female,176100
+CRI,Costa Rica,2017,15-19,Female,191655
+CRI,Costa Rica,2017,20-24,Female,199322
+CRI,Costa Rica,2017,25-29,Female,204918
+CRI,Costa Rica,2017,30-34,Female,202526
+CRI,Costa Rica,2017,35-39,Female,183780
+CRI,Costa Rica,2017,40-44,Female,164446
+CRI,Costa Rica,2017,45-49,Female,156500
+CRI,Costa Rica,2017,5-9,Female,176658
+CRI,Costa Rica,2017,50-54,Female,154916
+CRI,Costa Rica,2017,55-59,Female,138321
+CRI,Costa Rica,2017,60-64,Female,109150
+CRI,Costa Rica,2017,65-69,Female,84345
+CRI,Costa Rica,2017,70-74,Female,62700
+CRI,Costa Rica,2017,75-79,Female,45468
+CRI,Costa Rica,2017,80-84,Female,31141
+CRI,Costa Rica,2017,85-89,Female,18335
+CRI,Costa Rica,2017,90-94,Female,7907
+CRI,Costa Rica,2017,95+,Female,2518
+CRI,Costa Rica,2017,0-4,Male,177587
+CRI,Costa Rica,2017,10-14,Male,183995
+CRI,Costa Rica,2017,15-19,Male,200388
+CRI,Costa Rica,2017,20-24,Male,206929
+CRI,Costa Rica,2017,25-29,Male,211322
+CRI,Costa Rica,2017,30-34,Male,205196
+CRI,Costa Rica,2017,35-39,Male,180164
+CRI,Costa Rica,2017,40-44,Male,155378
+CRI,Costa Rica,2017,45-49,Male,145325
+CRI,Costa Rica,2017,5-9,Male,184575
+CRI,Costa Rica,2017,50-54,Male,144296
+CRI,Costa Rica,2017,55-59,Male,128033.99999999999
+CRI,Costa Rica,2017,60-64,Male,99727
+CRI,Costa Rica,2017,65-69,Male,76180
+CRI,Costa Rica,2017,70-74,Male,55624
+CRI,Costa Rica,2017,75-79,Male,38353
+CRI,Costa Rica,2017,80-84,Male,23275
+CRI,Costa Rica,2017,85-89,Male,11373
+CRI,Costa Rica,2017,90-94,Male,3829
+CRI,Costa Rica,2017,95+,Male,792.9999999999999
+CRI,Costa Rica,2017,0-4,Total,347717
+CRI,Costa Rica,2017,10-14,Total,360095
+CRI,Costa Rica,2017,15-19,Total,392043
+CRI,Costa Rica,2017,20-24,Total,406251
+CRI,Costa Rica,2017,25-29,Total,416240
+CRI,Costa Rica,2017,30-34,Total,407723
+CRI,Costa Rica,2017,35-39,Total,363945
+CRI,Costa Rica,2017,40-44,Total,319824
+CRI,Costa Rica,2017,45-49,Total,301824
+CRI,Costa Rica,2017,5-9,Total,361233
+CRI,Costa Rica,2017,50-54,Total,299212
+CRI,Costa Rica,2017,55-59,Total,266355
+CRI,Costa Rica,2017,60-64,Total,208877
+CRI,Costa Rica,2017,65-69,Total,160524
+CRI,Costa Rica,2017,70-74,Total,118324
+CRI,Costa Rica,2017,75-79,Total,83820
+CRI,Costa Rica,2017,80-84,Total,54416
+CRI,Costa Rica,2017,85-89,Total,29708
+CRI,Costa Rica,2017,90-94,Total,11737
+CRI,Costa Rica,2017,95+,Total,3311
+CRI,Costa Rica,2018,0-4,Female,168635
+CRI,Costa Rica,2018,10-14,Female,176217
+CRI,Costa Rica,2018,15-19,Female,188442
+CRI,Costa Rica,2018,20-24,Female,197968
+CRI,Costa Rica,2018,25-29,Female,203888
+CRI,Costa Rica,2018,30-34,Female,204810
+CRI,Costa Rica,2018,35-39,Female,187631
+CRI,Costa Rica,2018,40-44,Female,167720
+CRI,Costa Rica,2018,45-49,Female,156812
+CRI,Costa Rica,2018,5-9,Female,175303
+CRI,Costa Rica,2018,50-54,Female,155375
+CRI,Costa Rica,2018,55-59,Female,142716
+CRI,Costa Rica,2018,60-64,Female,114219
+CRI,Costa Rica,2018,65-69,Female,88178
+CRI,Costa Rica,2018,70-74,Female,65924
+CRI,Costa Rica,2018,75-79,Female,47237
+CRI,Costa Rica,2018,80-84,Female,32387.999999999996
+CRI,Costa Rica,2018,85-89,Female,19117
+CRI,Costa Rica,2018,90-94,Female,8441
+CRI,Costa Rica,2018,95+,Female,2725
+CRI,Costa Rica,2018,0-4,Male,176002
+CRI,Costa Rica,2018,10-14,Male,184022
+CRI,Costa Rica,2018,15-19,Male,197107
+CRI,Costa Rica,2018,20-24,Male,205468
+CRI,Costa Rica,2018,25-29,Male,210403
+CRI,Costa Rica,2018,30-34,Male,208263
+CRI,Costa Rica,2018,35-39,Male,185138
+CRI,Costa Rica,2018,40-44,Male,159354
+CRI,Costa Rica,2018,45-49,Male,145618
+CRI,Costa Rica,2018,5-9,Male,183115
+CRI,Costa Rica,2018,50-54,Male,144370
+CRI,Costa Rica,2018,55-59,Male,132070
+CRI,Costa Rica,2018,60-64,Male,104150
+CRI,Costa Rica,2018,65-69,Male,79320
+CRI,Costa Rica,2018,70-74,Male,58480
+CRI,Costa Rica,2018,75-79,Male,39839
+CRI,Costa Rica,2018,80-84,Male,24439
+CRI,Costa Rica,2018,85-89,Male,11926
+CRI,Costa Rica,2018,90-94,Male,4114
+CRI,Costa Rica,2018,95+,Male,876
+CRI,Costa Rica,2018,0-4,Total,344637
+CRI,Costa Rica,2018,10-14,Total,360238
+CRI,Costa Rica,2018,15-19,Total,385549
+CRI,Costa Rica,2018,20-24,Total,403436
+CRI,Costa Rica,2018,25-29,Total,414291
+CRI,Costa Rica,2018,30-34,Total,413074
+CRI,Costa Rica,2018,35-39,Total,372769
+CRI,Costa Rica,2018,40-44,Total,327075
+CRI,Costa Rica,2018,45-49,Total,302430
+CRI,Costa Rica,2018,5-9,Total,358418
+CRI,Costa Rica,2018,50-54,Total,299745
+CRI,Costa Rica,2018,55-59,Total,274786
+CRI,Costa Rica,2018,60-64,Total,218369
+CRI,Costa Rica,2018,65-69,Total,167499
+CRI,Costa Rica,2018,70-74,Total,124403
+CRI,Costa Rica,2018,75-79,Total,87076
+CRI,Costa Rica,2018,80-84,Total,56827
+CRI,Costa Rica,2018,85-89,Total,31043
+CRI,Costa Rica,2018,90-94,Total,12554
+CRI,Costa Rica,2018,95+,Total,3599.9999999999995
+GTM,Guatemala,2015,0-4,Female,981602
+GTM,Guatemala,2015,10-14,Female,944179
+GTM,Guatemala,2015,15-19,Female,902000
+GTM,Guatemala,2015,20-24,Female,813315
+GTM,Guatemala,2015,25-29,Female,694388
+GTM,Guatemala,2015,30-34,Female,577518
+GTM,Guatemala,2015,35-39,Female,468189
+GTM,Guatemala,2015,40-44,Female,375962
+GTM,Guatemala,2015,45-49,Female,314171
+GTM,Guatemala,2015,5-9,Female,945218
+GTM,Guatemala,2015,50-54,Female,270435
+GTM,Guatemala,2015,55-59,Female,227635
+GTM,Guatemala,2015,60-64,Female,178044
+GTM,Guatemala,2015,65-69,Female,132209
+GTM,Guatemala,2015,70-74,Female,90725
+GTM,Guatemala,2015,75-79,Female,59539
+GTM,Guatemala,2015,80-84,Female,42668
+GTM,Guatemala,2015,85-89,Female,20448
+GTM,Guatemala,2015,90-94,Female,4806
+GTM,Guatemala,2015,95+,Female,611
+GTM,Guatemala,2015,0-4,Male,1009223
+GTM,Guatemala,2015,10-14,Male,966764
+GTM,Guatemala,2015,15-19,Male,922523
+GTM,Guatemala,2015,20-24,Male,828090
+GTM,Guatemala,2015,25-29,Male,702688
+GTM,Guatemala,2015,30-34,Male,573450
+GTM,Guatemala,2015,35-39,Male,449257
+GTM,Guatemala,2015,40-44,Male,343913
+GTM,Guatemala,2015,45-49,Male,274439
+GTM,Guatemala,2015,5-9,Male,968674
+GTM,Guatemala,2015,50-54,Male,225208
+GTM,Guatemala,2015,55-59,Male,193869
+GTM,Guatemala,2015,60-64,Male,157859
+GTM,Guatemala,2015,65-69,Male,117739
+GTM,Guatemala,2015,70-74,Male,85334
+GTM,Guatemala,2015,75-79,Male,58803
+GTM,Guatemala,2015,80-84,Male,34318
+GTM,Guatemala,2015,85-89,Male,12972
+GTM,Guatemala,2015,90-94,Male,2672
+GTM,Guatemala,2015,95+,Male,286.00000000000006
+GTM,Guatemala,2015,0-4,Total,1990825
+GTM,Guatemala,2015,10-14,Total,1910943
+GTM,Guatemala,2015,15-19,Total,1824523
+GTM,Guatemala,2015,20-24,Total,1641405
+GTM,Guatemala,2015,25-29,Total,1397076
+GTM,Guatemala,2015,30-34,Total,1150968
+GTM,Guatemala,2015,35-39,Total,917446
+GTM,Guatemala,2015,40-44,Total,719875
+GTM,Guatemala,2015,45-49,Total,588611
+GTM,Guatemala,2015,5-9,Total,1913892
+GTM,Guatemala,2015,50-54,Total,495644
+GTM,Guatemala,2015,55-59,Total,421503
+GTM,Guatemala,2015,60-64,Total,335903
+GTM,Guatemala,2015,65-69,Total,249948
+GTM,Guatemala,2015,70-74,Total,176059
+GTM,Guatemala,2015,75-79,Total,118343
+GTM,Guatemala,2015,80-84,Total,76986
+GTM,Guatemala,2015,85-89,Total,33419
+GTM,Guatemala,2015,90-94,Total,7478
+GTM,Guatemala,2015,95+,Total,897
+GTM,Guatemala,2016,0-4,Female,989641
+GTM,Guatemala,2016,10-14,Female,944128
+GTM,Guatemala,2016,15-19,Female,911499
+GTM,Guatemala,2016,20-24,Female,829806
+GTM,Guatemala,2016,25-29,Female,716417
+GTM,Guatemala,2016,30-34,Female,593986
+GTM,Guatemala,2016,35-39,Female,487243
+GTM,Guatemala,2016,40-44,Female,390006
+GTM,Guatemala,2016,45-49,Female,321961
+GTM,Guatemala,2016,5-9,Female,948035
+GTM,Guatemala,2016,50-54,Female,276890
+GTM,Guatemala,2016,55-59,Female,234172
+GTM,Guatemala,2016,60-64,Female,185751
+GTM,Guatemala,2016,65-69,Female,138238
+GTM,Guatemala,2016,70-74,Female,95520
+GTM,Guatemala,2016,75-79,Female,61324
+GTM,Guatemala,2016,80-84,Female,41954
+GTM,Guatemala,2016,85-89,Female,21044
+GTM,Guatemala,2016,90-94,Female,5200
+GTM,Guatemala,2016,95+,Female,668
+GTM,Guatemala,2016,0-4,Male,1018084
+GTM,Guatemala,2016,10-14,Male,966472
+GTM,Guatemala,2016,15-19,Male,932377
+GTM,Guatemala,2016,20-24,Male,844428
+GTM,Guatemala,2016,25-29,Male,724721
+GTM,Guatemala,2016,30-34,Male,592116
+GTM,Guatemala,2016,35-39,Male,469805
+GTM,Guatemala,2016,40-44,Male,358905
+GTM,Guatemala,2016,45-49,Male,283027
+GTM,Guatemala,2016,5-9,Male,972154
+GTM,Guatemala,2016,50-54,Male,231029
+GTM,Guatemala,2016,55-59,Male,196513
+GTM,Guatemala,2016,60-64,Male,163703
+GTM,Guatemala,2016,65-69,Male,122080
+GTM,Guatemala,2016,70-74,Male,88073
+GTM,Guatemala,2016,75-79,Male,60072
+GTM,Guatemala,2016,80-84,Male,35136
+GTM,Guatemala,2016,85-89,Male,13426
+GTM,Guatemala,2016,90-94,Male,2845
+GTM,Guatemala,2016,95+,Male,310
+GTM,Guatemala,2016,0-4,Total,2007725
+GTM,Guatemala,2016,10-14,Total,1910600
+GTM,Guatemala,2016,15-19,Total,1843876
+GTM,Guatemala,2016,20-24,Total,1674234
+GTM,Guatemala,2016,25-29,Total,1441138
+GTM,Guatemala,2016,30-34,Total,1186102
+GTM,Guatemala,2016,35-39,Total,957048
+GTM,Guatemala,2016,40-44,Total,748911
+GTM,Guatemala,2016,45-49,Total,604988
+GTM,Guatemala,2016,5-9,Total,1920189
+GTM,Guatemala,2016,50-54,Total,507919
+GTM,Guatemala,2016,55-59,Total,430685
+GTM,Guatemala,2016,60-64,Total,349454
+GTM,Guatemala,2016,65-69,Total,260317.99999999997
+GTM,Guatemala,2016,70-74,Total,183594
+GTM,Guatemala,2016,75-79,Total,121397
+GTM,Guatemala,2016,80-84,Total,77090
+GTM,Guatemala,2016,85-89,Total,34471
+GTM,Guatemala,2016,90-94,Total,8045
+GTM,Guatemala,2016,95+,Total,977.0000000000001
+GTM,Guatemala,2017,0-4,Female,995460
+GTM,Guatemala,2017,10-14,Female,943342
+GTM,Guatemala,2017,15-19,Female,920034
+GTM,Guatemala,2017,20-24,Female,845461
+GTM,Guatemala,2017,25-29,Female,737017
+GTM,Guatemala,2017,30-34,Female,611741
+GTM,Guatemala,2017,35-39,Female,506707
+GTM,Guatemala,2017,40-44,Female,405110
+GTM,Guatemala,2017,45-49,Female,330815
+GTM,Guatemala,2017,5-9,Female,952825
+GTM,Guatemala,2017,50-54,Female,283565
+GTM,Guatemala,2017,55-59,Female,240398
+GTM,Guatemala,2017,60-64,Female,193511
+GTM,Guatemala,2017,65-69,Female,144494
+GTM,Guatemala,2017,70-74,Female,100505
+GTM,Guatemala,2017,75-79,Female,63965
+GTM,Guatemala,2017,80-84,Female,41159
+GTM,Guatemala,2017,85-89,Female,21516
+GTM,Guatemala,2017,90-94,Female,5619
+GTM,Guatemala,2017,95+,Female,736
+GTM,Guatemala,2017,0-4,Male,1024759
+GTM,Guatemala,2017,10-14,Male,965565
+GTM,Guatemala,2017,15-19,Male,941174
+GTM,Guatemala,2017,20-24,Male,859921
+GTM,Guatemala,2017,25-29,Male,745303
+GTM,Guatemala,2017,30-34,Male,611784
+GTM,Guatemala,2017,35-39,Male,490738
+GTM,Guatemala,2017,40-44,Male,375425
+GTM,Guatemala,2017,45-49,Male,292505
+GTM,Guatemala,2017,5-9,Male,977622
+GTM,Guatemala,2017,50-54,Male,237773
+GTM,Guatemala,2017,55-59,Male,199170
+GTM,Guatemala,2017,60-64,Male,168993
+GTM,Guatemala,2017,65-69,Male,126982
+GTM,Guatemala,2017,70-74,Male,90885
+GTM,Guatemala,2017,75-79,Male,61672
+GTM,Guatemala,2017,80-84,Male,35870
+GTM,Guatemala,2017,85-89,Male,13877
+GTM,Guatemala,2017,90-94,Male,3019
+GTM,Guatemala,2017,95+,Male,340
+GTM,Guatemala,2017,0-4,Total,2020218
+GTM,Guatemala,2017,10-14,Total,1908907
+GTM,Guatemala,2017,15-19,Total,1861208
+GTM,Guatemala,2017,20-24,Total,1705381
+GTM,Guatemala,2017,25-29,Total,1482321
+GTM,Guatemala,2017,30-34,Total,1223525
+GTM,Guatemala,2017,35-39,Total,997445
+GTM,Guatemala,2017,40-44,Total,780535
+GTM,Guatemala,2017,45-49,Total,623321
+GTM,Guatemala,2017,5-9,Total,1930447
+GTM,Guatemala,2017,50-54,Total,521337.99999999994
+GTM,Guatemala,2017,55-59,Total,439567
+GTM,Guatemala,2017,60-64,Total,362504
+GTM,Guatemala,2017,65-69,Total,271476
+GTM,Guatemala,2017,70-74,Total,191391
+GTM,Guatemala,2017,75-79,Total,125637
+GTM,Guatemala,2017,80-84,Total,77029
+GTM,Guatemala,2017,85-89,Total,35394
+GTM,Guatemala,2017,90-94,Total,8638
+GTM,Guatemala,2017,95+,Total,1075
+GTM,Guatemala,2018,0-4,Female,996764
+GTM,Guatemala,2018,10-14,Female,942160
+GTM,Guatemala,2018,15-19,Female,925866
+GTM,Guatemala,2018,20-24,Female,858097
+GTM,Guatemala,2018,25-29,Female,754486
+GTM,Guatemala,2018,30-34,Female,630412
+GTM,Guatemala,2018,35-39,Female,525698
+GTM,Guatemala,2018,40-44,Female,420861
+GTM,Guatemala,2018,45-49,Female,340750
+GTM,Guatemala,2018,5-9,Female,958745
+GTM,Guatemala,2018,50-54,Female,290087
+GTM,Guatemala,2018,55-59,Female,246323
+GTM,Guatemala,2018,60-64,Female,200926
+GTM,Guatemala,2018,65-69,Female,150632
+GTM,Guatemala,2018,70-74,Female,105859
+GTM,Guatemala,2018,75-79,Female,67189
+GTM,Guatemala,2018,80-84,Female,40576
+GTM,Guatemala,2018,85-89,Female,21756
+GTM,Guatemala,2018,90-94,Female,6038
+GTM,Guatemala,2018,95+,Female,810
+GTM,Guatemala,2018,0-4,Male,1026866
+GTM,Guatemala,2018,10-14,Male,964530
+GTM,Guatemala,2018,15-19,Male,947280
+GTM,Guatemala,2018,20-24,Male,872590
+GTM,Guatemala,2018,25-29,Male,762899
+GTM,Guatemala,2018,30-34,Male,631691
+GTM,Guatemala,2018,35-39,Male,511442
+GTM,Guatemala,2018,40-44,Male,392902
+GTM,Guatemala,2018,45-49,Male,302901
+GTM,Guatemala,2018,5-9,Male,984178
+GTM,Guatemala,2018,50-54,Male,244852
+GTM,Guatemala,2018,55-59,Male,202100
+GTM,Guatemala,2018,60-64,Male,173393
+GTM,Guatemala,2018,65-69,Male,132068
+GTM,Guatemala,2018,70-74,Male,94031
+GTM,Guatemala,2018,75-79,Male,63508
+GTM,Guatemala,2018,80-84,Male,36531
+GTM,Guatemala,2018,85-89,Male,14315
+GTM,Guatemala,2018,90-94,Male,3199
+GTM,Guatemala,2018,95+,Male,375
+GTM,Guatemala,2018,0-4,Total,2023630
+GTM,Guatemala,2018,10-14,Total,1906690
+GTM,Guatemala,2018,15-19,Total,1873147
+GTM,Guatemala,2018,20-24,Total,1730687
+GTM,Guatemala,2018,25-29,Total,1517384
+GTM,Guatemala,2018,30-34,Total,1262102
+GTM,Guatemala,2018,35-39,Total,1037140.0000000001
+GTM,Guatemala,2018,40-44,Total,813763
+GTM,Guatemala,2018,45-49,Total,643651
+GTM,Guatemala,2018,5-9,Total,1942923
+GTM,Guatemala,2018,50-54,Total,534939
+GTM,Guatemala,2018,55-59,Total,448423
+GTM,Guatemala,2018,60-64,Total,374320
+GTM,Guatemala,2018,65-69,Total,282700
+GTM,Guatemala,2018,70-74,Total,199890
+GTM,Guatemala,2018,75-79,Total,130697
+GTM,Guatemala,2018,80-84,Total,77107
+GTM,Guatemala,2018,85-89,Total,36071
+GTM,Guatemala,2018,90-94,Total,9237
+GTM,Guatemala,2018,95+,Total,1185
+HND,Honduras,2015,0-4,Female,527092
+HND,Honduras,2015,10-14,Female,525056
+HND,Honduras,2015,15-19,Female,502218
+HND,Honduras,2015,20-24,Female,455154
+HND,Honduras,2015,25-29,Female,401456
+HND,Honduras,2015,30-34,Female,354543
+HND,Honduras,2015,35-39,Female,303417
+HND,Honduras,2015,40-44,Female,240496
+HND,Honduras,2015,45-49,Female,191907
+HND,Honduras,2015,5-9,Female,521937
+HND,Honduras,2015,50-54,Female,156137
+HND,Honduras,2015,55-59,Female,127844
+HND,Honduras,2015,60-64,Female,101459
+HND,Honduras,2015,65-69,Female,70144
+HND,Honduras,2015,70-74,Female,44339
+HND,Honduras,2015,75-79,Female,29878
+HND,Honduras,2015,80-84,Female,17296
+HND,Honduras,2015,85-89,Female,7193
+HND,Honduras,2015,90-94,Female,2039.0000000000002
+HND,Honduras,2015,95+,Female,306.00000000000006
+HND,Honduras,2015,0-4,Male,553253
+HND,Honduras,2015,10-14,Male,550003
+HND,Honduras,2015,15-19,Male,523630
+HND,Honduras,2015,20-24,Male,471772
+HND,Honduras,2015,25-29,Male,413196
+HND,Honduras,2015,30-34,Male,362314
+HND,Honduras,2015,35-39,Male,306896
+HND,Honduras,2015,40-44,Male,237207
+HND,Honduras,2015,45-49,Male,182257
+HND,Honduras,2015,5-9,Male,547590
+HND,Honduras,2015,50-54,Male,145700
+HND,Honduras,2015,55-59,Male,121382
+HND,Honduras,2015,60-64,Male,97228
+HND,Honduras,2015,65-69,Male,66621
+HND,Honduras,2015,70-74,Male,39133
+HND,Honduras,2015,75-79,Male,23026
+HND,Honduras,2015,80-84,Male,11271
+HND,Honduras,2015,85-89,Male,3878
+HND,Honduras,2015,90-94,Male,926
+HND,Honduras,2015,95+,Male,115
+HND,Honduras,2015,0-4,Total,1080344
+HND,Honduras,2015,10-14,Total,1075058
+HND,Honduras,2015,15-19,Total,1025848
+HND,Honduras,2015,20-24,Total,926927
+HND,Honduras,2015,25-29,Total,814652
+HND,Honduras,2015,30-34,Total,716857
+HND,Honduras,2015,35-39,Total,610313
+HND,Honduras,2015,40-44,Total,477703
+HND,Honduras,2015,45-49,Total,374164
+HND,Honduras,2015,5-9,Total,1069526
+HND,Honduras,2015,50-54,Total,301837
+HND,Honduras,2015,55-59,Total,249225
+HND,Honduras,2015,60-64,Total,198688
+HND,Honduras,2015,65-69,Total,136766
+HND,Honduras,2015,70-74,Total,83472
+HND,Honduras,2015,75-79,Total,52904
+HND,Honduras,2015,80-84,Total,28567
+HND,Honduras,2015,85-89,Total,11070
+HND,Honduras,2015,90-94,Total,2966
+HND,Honduras,2015,95+,Total,421.00000000000006
+HND,Honduras,2016,0-4,Female,529043
+HND,Honduras,2016,10-14,Female,523753.00000000006
+HND,Honduras,2016,15-19,Female,509363
+HND,Honduras,2016,20-24,Female,465133
+HND,Honduras,2016,25-29,Female,410440
+HND,Honduras,2016,30-34,Female,362649
+HND,Honduras,2016,35-39,Female,314050
+HND,Honduras,2016,40-44,Female,251552
+HND,Honduras,2016,45-49,Female,199732
+HND,Honduras,2016,5-9,Female,522149
+HND,Honduras,2016,50-54,Female,161571
+HND,Honduras,2016,55-59,Female,132044
+HND,Honduras,2016,60-64,Female,105346
+HND,Honduras,2016,65-69,Female,75473
+HND,Honduras,2016,70-74,Female,46483
+HND,Honduras,2016,75-79,Female,30607
+HND,Honduras,2016,80-84,Female,17826
+HND,Honduras,2016,85-89,Female,7497
+HND,Honduras,2016,90-94,Female,2131
+HND,Honduras,2016,95+,Female,327
+HND,Honduras,2016,0-4,Male,555140
+HND,Honduras,2016,10-14,Male,548942
+HND,Honduras,2016,15-19,Male,531476
+HND,Honduras,2016,20-24,Male,482325
+HND,Honduras,2016,25-29,Male,423131
+HND,Honduras,2016,30-34,Male,370675
+HND,Honduras,2016,35-39,Male,318464
+HND,Honduras,2016,40-44,Male,249417
+HND,Honduras,2016,45-49,Male,190801
+HND,Honduras,2016,5-9,Male,547880
+HND,Honduras,2016,50-54,Male,150351
+HND,Honduras,2016,55-59,Male,124055
+HND,Honduras,2016,60-64,Male,100145
+HND,Honduras,2016,65-69,Male,70793
+HND,Honduras,2016,70-74,Male,41162
+HND,Honduras,2016,75-79,Male,23677
+HND,Honduras,2016,80-84,Male,11669
+HND,Honduras,2016,85-89,Male,4035.9999999999995
+HND,Honduras,2016,90-94,Male,955
+HND,Honduras,2016,95+,Male,119.00000000000001
+HND,Honduras,2016,0-4,Total,1084182
+HND,Honduras,2016,10-14,Total,1072694
+HND,Honduras,2016,15-19,Total,1040839
+HND,Honduras,2016,20-24,Total,947458
+HND,Honduras,2016,25-29,Total,833572
+HND,Honduras,2016,30-34,Total,733323
+HND,Honduras,2016,35-39,Total,632514
+HND,Honduras,2016,40-44,Total,500969
+HND,Honduras,2016,45-49,Total,390533
+HND,Honduras,2016,5-9,Total,1070030
+HND,Honduras,2016,50-54,Total,311923
+HND,Honduras,2016,55-59,Total,256099
+HND,Honduras,2016,60-64,Total,205491
+HND,Honduras,2016,65-69,Total,146266
+HND,Honduras,2016,70-74,Total,87645
+HND,Honduras,2016,75-79,Total,54284
+HND,Honduras,2016,80-84,Total,29495
+HND,Honduras,2016,85-89,Total,11534
+HND,Honduras,2016,90-94,Total,3086
+HND,Honduras,2016,95+,Total,444.99999999999994
+HND,Honduras,2017,0-4,Female,531585
+HND,Honduras,2017,10-14,Female,522178
+HND,Honduras,2017,15-19,Female,515375
+HND,Honduras,2017,20-24,Female,474173
+HND,Honduras,2017,25-29,Female,419601
+HND,Honduras,2017,30-34,Female,371035
+HND,Honduras,2017,35-39,Female,323964
+HND,Honduras,2017,40-44,Female,263190
+HND,Honduras,2017,45-49,Female,208118
+HND,Honduras,2017,5-9,Female,522722
+HND,Honduras,2017,50-54,Female,167308
+HND,Honduras,2017,55-59,Female,136368
+HND,Honduras,2017,60-64,Female,109269
+HND,Honduras,2017,65-69,Female,80655
+HND,Honduras,2017,70-74,Female,49132
+HND,Honduras,2017,75-79,Female,31419
+HND,Honduras,2017,80-84,Female,18375
+HND,Honduras,2017,85-89,Female,7847
+HND,Honduras,2017,90-94,Female,2213
+HND,Honduras,2017,95+,Female,354.00000000000006
+HND,Honduras,2017,0-4,Male,557619
+HND,Honduras,2017,10-14,Male,547507
+HND,Honduras,2017,15-19,Male,538182
+HND,Honduras,2017,20-24,Male,491992
+HND,Honduras,2017,25-29,Male,433063
+HND,Honduras,2017,30-34,Male,379450
+HND,Honduras,2017,35-39,Male,329170
+HND,Honduras,2017,40-44,Male,262168
+HND,Honduras,2017,45-49,Male,200120
+HND,Honduras,2017,5-9,Male,548511
+HND,Honduras,2017,50-54,Male,155558
+HND,Honduras,2017,55-59,Male,126877
+HND,Honduras,2017,60-64,Male,102926
+HND,Honduras,2017,65-69,Male,74692
+HND,Honduras,2017,70-74,Male,43614
+HND,Honduras,2017,75-79,Male,24393
+HND,Honduras,2017,80-84,Male,12083
+HND,Honduras,2017,85-89,Male,4228
+HND,Honduras,2017,90-94,Male,979
+HND,Honduras,2017,95+,Male,125
+HND,Honduras,2017,0-4,Total,1089204
+HND,Honduras,2017,10-14,Total,1069685
+HND,Honduras,2017,15-19,Total,1053556
+HND,Honduras,2017,20-24,Total,966165
+HND,Honduras,2017,25-29,Total,852664
+HND,Honduras,2017,30-34,Total,750485
+HND,Honduras,2017,35-39,Total,653135
+HND,Honduras,2017,40-44,Total,525358
+HND,Honduras,2017,45-49,Total,408238
+HND,Honduras,2017,5-9,Total,1071234
+HND,Honduras,2017,50-54,Total,322865
+HND,Honduras,2017,55-59,Total,263245
+HND,Honduras,2017,60-64,Total,212195
+HND,Honduras,2017,65-69,Total,155347
+HND,Honduras,2017,70-74,Total,92746
+HND,Honduras,2017,75-79,Total,55813
+HND,Honduras,2017,80-84,Total,30457
+HND,Honduras,2017,85-89,Total,12075
+HND,Honduras,2017,90-94,Total,3192
+HND,Honduras,2017,95+,Total,478.00000000000006
+HND,Honduras,2018,0-4,Female,535076
+HND,Honduras,2018,10-14,Female,521200.00000000006
+HND,Honduras,2018,15-19,Female,519780
+HND,Honduras,2018,20-24,Female,482227
+HND,Honduras,2018,25-29,Female,429207
+HND,Honduras,2018,30-34,Female,379564
+HND,Honduras,2018,35-39,Female,333288
+HND,Honduras,2018,40-44,Female,275336
+HND,Honduras,2018,45-49,Female,216823
+HND,Honduras,2018,5-9,Female,523265.99999999994
+HND,Honduras,2018,50-54,Female,173406
+HND,Honduras,2018,55-59,Female,140847
+HND,Honduras,2018,60-64,Female,113207
+HND,Honduras,2018,65-69,Female,85500
+HND,Honduras,2018,70-74,Female,52398
+HND,Honduras,2018,75-79,Female,32386.000000000004
+HND,Honduras,2018,80-84,Female,18931
+HND,Honduras,2018,85-89,Female,8219
+HND,Honduras,2018,90-94,Female,2295
+HND,Honduras,2018,95+,Female,383
+HND,Honduras,2018,0-4,Male,561115
+HND,Honduras,2018,10-14,Male,546605
+HND,Honduras,2018,15-19,Male,543249
+HND,Honduras,2018,20-24,Male,500717
+HND,Honduras,2018,25-29,Male,443262
+HND,Honduras,2018,30-34,Male,388538
+HND,Honduras,2018,35-39,Male,339121
+HND,Honduras,2018,40-44,Male,275429
+HND,Honduras,2018,45-49,Male,209830
+HND,Honduras,2018,5-9,Male,549066
+HND,Honduras,2018,50-54,Male,161397
+HND,Honduras,2018,55-59,Male,129937.99999999999
+HND,Honduras,2018,60-64,Male,105572
+HND,Honduras,2018,65-69,Male,78230
+HND,Honduras,2018,70-74,Male,46492
+HND,Honduras,2018,75-79,Male,25232
+HND,Honduras,2018,80-84,Male,12504
+HND,Honduras,2018,85-89,Male,4441
+HND,Honduras,2018,90-94,Male,1004
+HND,Honduras,2018,95+,Male,132
+HND,Honduras,2018,0-4,Total,1096190
+HND,Honduras,2018,10-14,Total,1067805
+HND,Honduras,2018,15-19,Total,1063030
+HND,Honduras,2018,20-24,Total,982944
+HND,Honduras,2018,25-29,Total,872468
+HND,Honduras,2018,30-34,Total,768101
+HND,Honduras,2018,35-39,Total,672409
+HND,Honduras,2018,40-44,Total,550764
+HND,Honduras,2018,45-49,Total,426653
+HND,Honduras,2018,5-9,Total,1072332
+HND,Honduras,2018,50-54,Total,334803
+HND,Honduras,2018,55-59,Total,270784
+HND,Honduras,2018,60-64,Total,218779
+HND,Honduras,2018,65-69,Total,163730
+HND,Honduras,2018,70-74,Total,98890
+HND,Honduras,2018,75-79,Total,57617
+HND,Honduras,2018,80-84,Total,31436
+HND,Honduras,2018,85-89,Total,12661
+HND,Honduras,2018,90-94,Total,3299
+HND,Honduras,2018,95+,Total,515
+NIC,Nicaragua,2015,0-4,Female,333293
+NIC,Nicaragua,2015,10-14,Female,315468
+NIC,Nicaragua,2015,15-19,Female,315440
+NIC,Nicaragua,2015,20-24,Female,307722
+NIC,Nicaragua,2015,25-29,Female,282146
+NIC,Nicaragua,2015,30-34,Female,248797
+NIC,Nicaragua,2015,35-39,Female,212932
+NIC,Nicaragua,2015,40-44,Female,177522
+NIC,Nicaragua,2015,45-49,Female,146386
+NIC,Nicaragua,2015,5-9,Female,327113
+NIC,Nicaragua,2015,50-54,Female,119731
+NIC,Nicaragua,2015,55-59,Female,96773
+NIC,Nicaragua,2015,60-64,Female,79322
+NIC,Nicaragua,2015,65-69,Female,58164
+NIC,Nicaragua,2015,70-74,Female,42204
+NIC,Nicaragua,2015,75-79,Female,31794
+NIC,Nicaragua,2015,80-84,Female,20262
+NIC,Nicaragua,2015,85-89,Female,9909
+NIC,Nicaragua,2015,90-94,Female,2700
+NIC,Nicaragua,2015,95+,Female,345.00000000000006
+NIC,Nicaragua,2015,0-4,Male,343262
+NIC,Nicaragua,2015,10-14,Male,323724
+NIC,Nicaragua,2015,15-19,Male,322995
+NIC,Nicaragua,2015,20-24,Male,309618
+NIC,Nicaragua,2015,25-29,Male,273445
+NIC,Nicaragua,2015,30-34,Male,232853
+NIC,Nicaragua,2015,35-39,Male,200213
+NIC,Nicaragua,2015,40-44,Male,168864
+NIC,Nicaragua,2015,45-49,Male,135733
+NIC,Nicaragua,2015,5-9,Male,336163
+NIC,Nicaragua,2015,50-54,Male,105277
+NIC,Nicaragua,2015,55-59,Male,81650
+NIC,Nicaragua,2015,60-64,Male,64230.99999999999
+NIC,Nicaragua,2015,65-69,Male,46383
+NIC,Nicaragua,2015,70-74,Male,33507
+NIC,Nicaragua,2015,75-79,Male,23599
+NIC,Nicaragua,2015,80-84,Male,13243
+NIC,Nicaragua,2015,85-89,Male,5330
+NIC,Nicaragua,2015,90-94,Male,1188
+NIC,Nicaragua,2015,95+,Male,118.00000000000001
+NIC,Nicaragua,2015,0-4,Total,676555
+NIC,Nicaragua,2015,10-14,Total,639192
+NIC,Nicaragua,2015,15-19,Total,638435
+NIC,Nicaragua,2015,20-24,Total,617340
+NIC,Nicaragua,2015,25-29,Total,555591
+NIC,Nicaragua,2015,30-34,Total,481649
+NIC,Nicaragua,2015,35-39,Total,413145
+NIC,Nicaragua,2015,40-44,Total,346387
+NIC,Nicaragua,2015,45-49,Total,282119
+NIC,Nicaragua,2015,5-9,Total,663277
+NIC,Nicaragua,2015,50-54,Total,225007
+NIC,Nicaragua,2015,55-59,Total,178423
+NIC,Nicaragua,2015,60-64,Total,143553
+NIC,Nicaragua,2015,65-69,Total,104547
+NIC,Nicaragua,2015,70-74,Total,75711
+NIC,Nicaragua,2015,75-79,Total,55392
+NIC,Nicaragua,2015,80-84,Total,33505
+NIC,Nicaragua,2015,85-89,Total,15239
+NIC,Nicaragua,2015,90-94,Total,3888
+NIC,Nicaragua,2015,95+,Total,462
+NIC,Nicaragua,2016,0-4,Female,332749
+NIC,Nicaragua,2016,10-14,Female,316577
+NIC,Nicaragua,2016,15-19,Female,314220
+NIC,Nicaragua,2016,20-24,Female,307842
+NIC,Nicaragua,2016,25-29,Female,286076
+NIC,Nicaragua,2016,30-34,Female,253681
+NIC,Nicaragua,2016,35-39,Female,218945
+NIC,Nicaragua,2016,40-44,Female,183265
+NIC,Nicaragua,2016,45-49,Female,151293
+NIC,Nicaragua,2016,5-9,Female,328455
+NIC,Nicaragua,2016,50-54,Female,123835
+NIC,Nicaragua,2016,55-59,Female,100091
+NIC,Nicaragua,2016,60-64,Female,81089
+NIC,Nicaragua,2016,65-69,Female,62111
+NIC,Nicaragua,2016,70-74,Female,43026
+NIC,Nicaragua,2016,75-79,Female,32454
+NIC,Nicaragua,2016,80-84,Female,20671
+NIC,Nicaragua,2016,85-89,Female,10091
+NIC,Nicaragua,2016,90-94,Female,2917
+NIC,Nicaragua,2016,95+,Female,389
+NIC,Nicaragua,2016,0-4,Male,342790
+NIC,Nicaragua,2016,10-14,Male,324988
+NIC,Nicaragua,2016,15-19,Male,322111
+NIC,Nicaragua,2016,20-24,Male,311322
+NIC,Nicaragua,2016,25-29,Male,279329
+NIC,Nicaragua,2016,30-34,Male,237820
+NIC,Nicaragua,2016,35-39,Male,204620
+NIC,Nicaragua,2016,40-44,Male,173778
+NIC,Nicaragua,2016,45-49,Male,141044
+NIC,Nicaragua,2016,5-9,Male,337680
+NIC,Nicaragua,2016,50-54,Male,109500
+NIC,Nicaragua,2016,55-59,Male,84621
+NIC,Nicaragua,2016,60-64,Male,65788
+NIC,Nicaragua,2016,65-69,Male,48975
+NIC,Nicaragua,2016,70-74,Male,33946
+NIC,Nicaragua,2016,75-79,Male,24119
+NIC,Nicaragua,2016,80-84,Male,13595
+NIC,Nicaragua,2016,85-89,Male,5441
+NIC,Nicaragua,2016,90-94,Male,1289
+NIC,Nicaragua,2016,95+,Male,134
+NIC,Nicaragua,2016,0-4,Total,675539
+NIC,Nicaragua,2016,10-14,Total,641564
+NIC,Nicaragua,2016,15-19,Total,636331
+NIC,Nicaragua,2016,20-24,Total,619164
+NIC,Nicaragua,2016,25-29,Total,565404
+NIC,Nicaragua,2016,30-34,Total,491502
+NIC,Nicaragua,2016,35-39,Total,423565
+NIC,Nicaragua,2016,40-44,Total,357043
+NIC,Nicaragua,2016,45-49,Total,292337
+NIC,Nicaragua,2016,5-9,Total,666136
+NIC,Nicaragua,2016,50-54,Total,233334
+NIC,Nicaragua,2016,55-59,Total,184712
+NIC,Nicaragua,2016,60-64,Total,146877
+NIC,Nicaragua,2016,65-69,Total,111087
+NIC,Nicaragua,2016,70-74,Total,76972
+NIC,Nicaragua,2016,75-79,Total,56573
+NIC,Nicaragua,2016,80-84,Total,34266
+NIC,Nicaragua,2016,85-89,Total,15532
+NIC,Nicaragua,2016,90-94,Total,4205
+NIC,Nicaragua,2016,95+,Total,523
+NIC,Nicaragua,2017,0-4,Female,331949
+NIC,Nicaragua,2017,10-14,Female,318670
+NIC,Nicaragua,2017,15-19,Female,312608
+NIC,Nicaragua,2017,20-24,Female,307447
+NIC,Nicaragua,2017,25-29,Female,289680
+NIC,Nicaragua,2017,30-34,Female,258478
+NIC,Nicaragua,2017,35-39,Female,224871
+NIC,Nicaragua,2017,40-44,Female,189194
+NIC,Nicaragua,2017,45-49,Female,156393
+NIC,Nicaragua,2017,5-9,Female,329529
+NIC,Nicaragua,2017,50-54,Female,128139.99999999999
+NIC,Nicaragua,2017,55-59,Female,103575
+NIC,Nicaragua,2017,60-64,Female,83152
+NIC,Nicaragua,2017,65-69,Female,65942
+NIC,Nicaragua,2017,70-74,Female,44020
+NIC,Nicaragua,2017,75-79,Female,33063
+NIC,Nicaragua,2017,80-84,Female,21111
+NIC,Nicaragua,2017,85-89,Female,10254
+NIC,Nicaragua,2017,90-94,Female,3110
+NIC,Nicaragua,2017,95+,Female,437
+NIC,Nicaragua,2017,0-4,Male,342051
+NIC,Nicaragua,2017,10-14,Male,327224
+NIC,Nicaragua,2017,15-19,Male,320637
+NIC,Nicaragua,2017,20-24,Male,312324
+NIC,Nicaragua,2017,25-29,Male,284937
+NIC,Nicaragua,2017,30-34,Male,243296
+NIC,Nicaragua,2017,35-39,Male,209032
+NIC,Nicaragua,2017,40-44,Male,178595
+NIC,Nicaragua,2017,45-49,Male,146376
+NIC,Nicaragua,2017,5-9,Male,338960
+NIC,Nicaragua,2017,50-54,Male,114144
+NIC,Nicaragua,2017,55-59,Male,87801
+NIC,Nicaragua,2017,60-64,Male,67561
+NIC,Nicaragua,2017,65-69,Male,51553
+NIC,Nicaragua,2017,70-74,Male,34468
+NIC,Nicaragua,2017,75-79,Male,24602
+NIC,Nicaragua,2017,80-84,Male,13957
+NIC,Nicaragua,2017,85-89,Male,5566
+NIC,Nicaragua,2017,90-94,Male,1374
+NIC,Nicaragua,2017,95+,Male,151
+NIC,Nicaragua,2017,0-4,Total,674000
+NIC,Nicaragua,2017,10-14,Total,645893
+NIC,Nicaragua,2017,15-19,Total,633245
+NIC,Nicaragua,2017,20-24,Total,619770
+NIC,Nicaragua,2017,25-29,Total,574617
+NIC,Nicaragua,2017,30-34,Total,501774
+NIC,Nicaragua,2017,35-39,Total,433904
+NIC,Nicaragua,2017,40-44,Total,367789
+NIC,Nicaragua,2017,45-49,Total,302769
+NIC,Nicaragua,2017,5-9,Total,668489
+NIC,Nicaragua,2017,50-54,Total,242285
+NIC,Nicaragua,2017,55-59,Total,191376
+NIC,Nicaragua,2017,60-64,Total,150714
+NIC,Nicaragua,2017,65-69,Total,117496
+NIC,Nicaragua,2017,70-74,Total,78488
+NIC,Nicaragua,2017,75-79,Total,57666
+NIC,Nicaragua,2017,80-84,Total,35068
+NIC,Nicaragua,2017,85-89,Total,15819
+NIC,Nicaragua,2017,90-94,Total,4484
+NIC,Nicaragua,2017,95+,Total,588.0000000000001
+NIC,Nicaragua,2018,0-4,Female,330851
+NIC,Nicaragua,2018,10-14,Female,321260
+NIC,Nicaragua,2018,15-19,Female,311339
+NIC,Nicaragua,2018,20-24,Female,306671
+NIC,Nicaragua,2018,25-29,Female,292580
+NIC,Nicaragua,2018,30-34,Female,263264
+NIC,Nicaragua,2018,35-39,Female,230714
+NIC,Nicaragua,2018,40-44,Female,195178
+NIC,Nicaragua,2018,45-49,Female,161739
+NIC,Nicaragua,2018,5-9,Female,330217
+NIC,Nicaragua,2018,50-54,Female,132637
+NIC,Nicaragua,2018,55-59,Female,107242
+NIC,Nicaragua,2018,60-64,Female,85538
+NIC,Nicaragua,2018,65-69,Female,69264
+NIC,Nicaragua,2018,70-74,Female,45650
+NIC,Nicaragua,2018,75-79,Female,33724
+NIC,Nicaragua,2018,80-84,Female,21633
+NIC,Nicaragua,2018,85-89,Female,10432
+NIC,Nicaragua,2018,90-94,Female,3267
+NIC,Nicaragua,2018,95+,Female,488.00000000000006
+NIC,Nicaragua,2018,0-4,Male,341002
+NIC,Nicaragua,2018,10-14,Male,329982
+NIC,Nicaragua,2018,15-19,Male,319410
+NIC,Nicaragua,2018,20-24,Male,312595
+NIC,Nicaragua,2018,25-29,Male,289783
+NIC,Nicaragua,2018,30-34,Male,249279
+NIC,Nicaragua,2018,35-39,Male,213584
+NIC,Nicaragua,2018,40-44,Male,183212
+NIC,Nicaragua,2018,45-49,Male,151704
+NIC,Nicaragua,2018,5-9,Male,339808
+NIC,Nicaragua,2018,50-54,Male,119112
+NIC,Nicaragua,2018,55-59,Male,91231
+NIC,Nicaragua,2018,60-64,Male,69647
+NIC,Nicaragua,2018,65-69,Male,53903
+NIC,Nicaragua,2018,70-74,Male,35395
+NIC,Nicaragua,2018,75-79,Male,25086
+NIC,Nicaragua,2018,80-84,Male,14338
+NIC,Nicaragua,2018,85-89,Male,5713
+NIC,Nicaragua,2018,90-94,Male,1438
+NIC,Nicaragua,2018,95+,Male,170
+NIC,Nicaragua,2018,0-4,Total,671852
+NIC,Nicaragua,2018,10-14,Total,651242
+NIC,Nicaragua,2018,15-19,Total,630750
+NIC,Nicaragua,2018,20-24,Total,619266
+NIC,Nicaragua,2018,25-29,Total,582364
+NIC,Nicaragua,2018,30-34,Total,512543
+NIC,Nicaragua,2018,35-39,Total,444298
+NIC,Nicaragua,2018,40-44,Total,378390
+NIC,Nicaragua,2018,45-49,Total,313444
+NIC,Nicaragua,2018,5-9,Total,670024
+NIC,Nicaragua,2018,50-54,Total,251749
+NIC,Nicaragua,2018,55-59,Total,198473
+NIC,Nicaragua,2018,60-64,Total,155185
+NIC,Nicaragua,2018,65-69,Total,123166
+NIC,Nicaragua,2018,70-74,Total,81044
+NIC,Nicaragua,2018,75-79,Total,58809
+NIC,Nicaragua,2018,80-84,Total,35971
+NIC,Nicaragua,2018,85-89,Total,16145
+NIC,Nicaragua,2018,90-94,Total,4705
+NIC,Nicaragua,2018,95+,Total,658
+PAN,Panama,2015,0-4,Female,187595
+PAN,Panama,2015,10-14,Female,172703
+PAN,Panama,2015,15-19,Female,166163
+PAN,Panama,2015,20-24,Female,160750
+PAN,Panama,2015,25-29,Female,156714
+PAN,Panama,2015,30-34,Female,149321
+PAN,Panama,2015,35-39,Female,138006
+PAN,Panama,2015,40-44,Female,132431
+PAN,Panama,2015,45-49,Female,120977
+PAN,Panama,2015,5-9,Female,179518
+PAN,Panama,2015,50-54,Female,104507
+PAN,Panama,2015,55-59,Female,83998
+PAN,Panama,2015,60-64,Female,67816
+PAN,Panama,2015,65-69,Female,52541
+PAN,Panama,2015,70-74,Female,40072
+PAN,Panama,2015,75-79,Female,29109
+PAN,Panama,2015,80-84,Female,18730
+PAN,Panama,2015,85-89,Female,10172
+PAN,Panama,2015,90-94,Female,4143
+PAN,Panama,2015,95+,Female,1401
+PAN,Panama,2015,0-4,Male,196980
+PAN,Panama,2015,10-14,Male,180786
+PAN,Panama,2015,15-19,Male,173387
+PAN,Panama,2015,20-24,Male,165782
+PAN,Panama,2015,25-29,Male,160645
+PAN,Panama,2015,30-34,Male,151751
+PAN,Panama,2015,35-39,Male,139096
+PAN,Panama,2015,40-44,Male,131971
+PAN,Panama,2015,45-49,Male,119105
+PAN,Panama,2015,5-9,Male,187710
+PAN,Panama,2015,50-54,Male,101534
+PAN,Panama,2015,55-59,Male,81168
+PAN,Panama,2015,60-64,Male,64577
+PAN,Panama,2015,65-69,Male,48306
+PAN,Panama,2015,70-74,Male,35359
+PAN,Panama,2015,75-79,Male,23919
+PAN,Panama,2015,80-84,Male,13479
+PAN,Panama,2015,85-89,Male,5924
+PAN,Panama,2015,90-94,Male,1607
+PAN,Panama,2015,95+,Male,283.00000000000006
+PAN,Panama,2015,0-4,Total,384575
+PAN,Panama,2015,10-14,Total,353490
+PAN,Panama,2015,15-19,Total,339550
+PAN,Panama,2015,20-24,Total,326533
+PAN,Panama,2015,25-29,Total,317360
+PAN,Panama,2015,30-34,Total,301072
+PAN,Panama,2015,35-39,Total,277103
+PAN,Panama,2015,40-44,Total,264403
+PAN,Panama,2015,45-49,Total,240082
+PAN,Panama,2015,5-9,Total,367228
+PAN,Panama,2015,50-54,Total,206041
+PAN,Panama,2015,55-59,Total,165166
+PAN,Panama,2015,60-64,Total,132393
+PAN,Panama,2015,65-69,Total,100846
+PAN,Panama,2015,70-74,Total,75431
+PAN,Panama,2015,75-79,Total,53028
+PAN,Panama,2015,80-84,Total,32209.000000000004
+PAN,Panama,2015,85-89,Total,16096
+PAN,Panama,2015,90-94,Total,5749
+PAN,Panama,2015,95+,Total,1682.9999999999998
+PAN,Panama,2016,0-4,Female,188385
+PAN,Panama,2016,10-14,Female,174071
+PAN,Panama,2016,15-19,Female,167849
+PAN,Panama,2016,20-24,Female,162410
+PAN,Panama,2016,25-29,Female,158401
+PAN,Panama,2016,30-34,Female,152026
+PAN,Panama,2016,35-39,Female,139922
+PAN,Panama,2016,40-44,Female,133798
+PAN,Panama,2016,45-49,Female,123656
+PAN,Panama,2016,5-9,Female,181371
+PAN,Panama,2016,50-54,Female,108170
+PAN,Panama,2016,55-59,Female,87513
+PAN,Panama,2016,60-64,Female,70478
+PAN,Panama,2016,65-69,Female,54870
+PAN,Panama,2016,70-74,Female,41667
+PAN,Panama,2016,75-79,Female,30484
+PAN,Panama,2016,80-84,Female,19742
+PAN,Panama,2016,85-89,Female,10732
+PAN,Panama,2016,90-94,Female,4309
+PAN,Panama,2016,95+,Female,1444
+PAN,Panama,2016,0-4,Male,198200
+PAN,Panama,2016,10-14,Male,182179
+PAN,Panama,2016,15-19,Male,175225
+PAN,Panama,2016,20-24,Male,167583
+PAN,Panama,2016,25-29,Male,162295
+PAN,Panama,2016,30-34,Male,154591
+PAN,Panama,2016,35-39,Male,141148
+PAN,Panama,2016,40-44,Male,133570
+PAN,Panama,2016,45-49,Male,121912
+PAN,Panama,2016,5-9,Male,189636
+PAN,Panama,2016,50-54,Male,105095
+PAN,Panama,2016,55-59,Male,84372
+PAN,Panama,2016,60-64,Male,67138
+PAN,Panama,2016,65-69,Male,50522
+PAN,Panama,2016,70-74,Male,36702
+PAN,Panama,2016,75-79,Male,25050
+PAN,Panama,2016,80-84,Male,14223
+PAN,Panama,2016,85-89,Male,6324
+PAN,Panama,2016,90-94,Male,1725
+PAN,Panama,2016,95+,Male,304.00000000000006
+PAN,Panama,2016,0-4,Total,386584
+PAN,Panama,2016,10-14,Total,356250
+PAN,Panama,2016,15-19,Total,343073
+PAN,Panama,2016,20-24,Total,329992
+PAN,Panama,2016,25-29,Total,320696
+PAN,Panama,2016,30-34,Total,306618
+PAN,Panama,2016,35-39,Total,281070
+PAN,Panama,2016,40-44,Total,267368
+PAN,Panama,2016,45-49,Total,245569
+PAN,Panama,2016,5-9,Total,371007
+PAN,Panama,2016,50-54,Total,213265
+PAN,Panama,2016,55-59,Total,171886
+PAN,Panama,2016,60-64,Total,137615
+PAN,Panama,2016,65-69,Total,105391
+PAN,Panama,2016,70-74,Total,78368
+PAN,Panama,2016,75-79,Total,55534
+PAN,Panama,2016,80-84,Total,33965
+PAN,Panama,2016,85-89,Total,17056
+PAN,Panama,2016,90-94,Total,6034
+PAN,Panama,2016,95+,Total,1748
+PAN,Panama,2017,0-4,Female,188647
+PAN,Panama,2017,10-14,Female,175475
+PAN,Panama,2017,15-19,Female,169506
+PAN,Panama,2017,20-24,Female,164355
+PAN,Panama,2017,25-29,Female,160131
+PAN,Panama,2017,30-34,Female,154451
+PAN,Panama,2017,35-39,Female,142345
+PAN,Panama,2017,40-44,Female,134960
+PAN,Panama,2017,45-49,Female,126195
+PAN,Panama,2017,5-9,Female,183391
+PAN,Panama,2017,50-54,Female,111573
+PAN,Panama,2017,55-59,Female,91275
+PAN,Panama,2017,60-64,Female,73199
+PAN,Panama,2017,65-69,Female,57359
+PAN,Panama,2017,70-74,Female,43332
+PAN,Panama,2017,75-79,Female,31851
+PAN,Panama,2017,80-84,Female,20821
+PAN,Panama,2017,85-89,Female,11334
+PAN,Panama,2017,90-94,Female,4501
+PAN,Panama,2017,95+,Female,1492
+PAN,Panama,2017,0-4,Male,198899
+PAN,Panama,2017,10-14,Male,183574
+PAN,Panama,2017,15-19,Male,176974
+PAN,Panama,2017,20-24,Male,169721
+PAN,Panama,2017,25-29,Male,163934
+PAN,Panama,2017,30-34,Male,157167
+PAN,Panama,2017,35-39,Male,143712
+PAN,Panama,2017,40-44,Male,134995
+PAN,Panama,2017,45-49,Male,124606
+PAN,Panama,2017,5-9,Male,191806
+PAN,Panama,2017,50-54,Male,108500
+PAN,Panama,2017,55-59,Male,87856
+PAN,Panama,2017,60-64,Male,69698
+PAN,Panama,2017,65-69,Male,52873
+PAN,Panama,2017,70-74,Male,38106
+PAN,Panama,2017,75-79,Male,26140
+PAN,Panama,2017,80-84,Male,15040
+PAN,Panama,2017,85-89,Male,6715
+PAN,Panama,2017,90-94,Male,1869
+PAN,Panama,2017,95+,Male,330.99999999999994
+PAN,Panama,2017,0-4,Total,387546
+PAN,Panama,2017,10-14,Total,359048
+PAN,Panama,2017,15-19,Total,346480
+PAN,Panama,2017,20-24,Total,334076
+PAN,Panama,2017,25-29,Total,324065
+PAN,Panama,2017,30-34,Total,311617
+PAN,Panama,2017,35-39,Total,286056
+PAN,Panama,2017,40-44,Total,269955
+PAN,Panama,2017,45-49,Total,250802
+PAN,Panama,2017,5-9,Total,375197
+PAN,Panama,2017,50-54,Total,220072
+PAN,Panama,2017,55-59,Total,179131
+PAN,Panama,2017,60-64,Total,142897
+PAN,Panama,2017,65-69,Total,110232
+PAN,Panama,2017,70-74,Total,81439
+PAN,Panama,2017,75-79,Total,57992
+PAN,Panama,2017,80-84,Total,35861
+PAN,Panama,2017,85-89,Total,18049
+PAN,Panama,2017,90-94,Total,6370
+PAN,Panama,2017,95+,Total,1822
+PAN,Panama,2018,0-4,Female,188454
+PAN,Panama,2018,10-14,Female,177006
+PAN,Panama,2018,15-19,Female,171098
+PAN,Panama,2018,20-24,Female,166383
+PAN,Panama,2018,25-29,Female,161956
+PAN,Panama,2018,30-34,Female,156517
+PAN,Panama,2018,35-39,Female,145256
+PAN,Panama,2018,40-44,Female,136081
+PAN,Panama,2018,45-49,Female,128536
+PAN,Panama,2018,5-9,Female,185160
+PAN,Panama,2018,50-54,Female,114673
+PAN,Panama,2018,55-59,Female,95237
+PAN,Panama,2018,60-64,Female,75962
+PAN,Panama,2018,65-69,Female,60023
+PAN,Panama,2018,70-74,Female,45056
+PAN,Panama,2018,75-79,Female,33221
+PAN,Panama,2018,80-84,Female,21973
+PAN,Panama,2018,85-89,Female,12000
+PAN,Panama,2018,90-94,Female,4749
+PAN,Panama,2018,95+,Female,1555
+PAN,Panama,2018,0-4,Male,199011
+PAN,Panama,2018,10-14,Male,185088
+PAN,Panama,2018,15-19,Male,178614
+PAN,Panama,2018,20-24,Male,171971
+PAN,Panama,2018,25-29,Male,165661
+PAN,Panama,2018,30-34,Male,159349
+PAN,Panama,2018,35-39,Male,146755
+PAN,Panama,2018,40-44,Male,136367
+PAN,Panama,2018,45-49,Male,127121
+PAN,Panama,2018,5-9,Male,193815
+PAN,Panama,2018,50-54,Male,111681
+PAN,Panama,2018,55-59,Male,91552
+PAN,Panama,2018,60-64,Male,72250
+PAN,Panama,2018,65-69,Male,55395
+PAN,Panama,2018,70-74,Male,39594
+PAN,Panama,2018,75-79,Male,27230
+PAN,Panama,2018,80-84,Male,15963
+PAN,Panama,2018,85-89,Male,7133
+PAN,Panama,2018,90-94,Male,2050
+PAN,Panama,2018,95+,Male,367
+PAN,Panama,2018,0-4,Total,387466
+PAN,Panama,2018,10-14,Total,362093
+PAN,Panama,2018,15-19,Total,349712
+PAN,Panama,2018,20-24,Total,338355
+PAN,Panama,2018,25-29,Total,327616
+PAN,Panama,2018,30-34,Total,315865
+PAN,Panama,2018,35-39,Total,292012
+PAN,Panama,2018,40-44,Total,272448
+PAN,Panama,2018,45-49,Total,255657
+PAN,Panama,2018,5-9,Total,378975
+PAN,Panama,2018,50-54,Total,226354
+PAN,Panama,2018,55-59,Total,186790
+PAN,Panama,2018,60-64,Total,148212
+PAN,Panama,2018,65-69,Total,115418
+PAN,Panama,2018,70-74,Total,84650
+PAN,Panama,2018,75-79,Total,60450
+PAN,Panama,2018,80-84,Total,37935
+PAN,Panama,2018,85-89,Total,19133
+PAN,Panama,2018,90-94,Total,6798
+PAN,Panama,2018,95+,Total,1922.0000000000002
+SLV,El Salvador,2015,0-4,Female,276733
+SLV,El Salvador,2015,10-14,Female,303267
+SLV,El Salvador,2015,15-19,Female,345266
+SLV,El Salvador,2015,20-24,Female,313837
+SLV,El Salvador,2015,25-29,Female,254979
+SLV,El Salvador,2015,30-34,Female,226827
+SLV,El Salvador,2015,35-39,Female,222659
+SLV,El Salvador,2015,40-44,Female,198971
+SLV,El Salvador,2015,45-49,Female,177611
+SLV,El Salvador,2015,5-9,Female,276452
+SLV,El Salvador,2015,50-54,Female,152268
+SLV,El Salvador,2015,55-59,Female,126455
+SLV,El Salvador,2015,60-64,Female,105555
+SLV,El Salvador,2015,65-69,Female,85322
+SLV,El Salvador,2015,70-74,Female,68275
+SLV,El Salvador,2015,75-79,Female,50366
+SLV,El Salvador,2015,80-84,Female,32003
+SLV,El Salvador,2015,85-89,Female,15335
+SLV,El Salvador,2015,90-94,Female,4939
+SLV,El Salvador,2015,95+,Female,1194
+SLV,El Salvador,2015,0-4,Male,294491
+SLV,El Salvador,2015,10-14,Male,320551
+SLV,El Salvador,2015,15-19,Male,362031
+SLV,El Salvador,2015,20-24,Male,322459
+SLV,El Salvador,2015,25-29,Male,239747
+SLV,El Salvador,2015,30-34,Male,187575
+SLV,El Salvador,2015,35-39,Male,172618
+SLV,El Salvador,2015,40-44,Male,150363
+SLV,El Salvador,2015,45-49,Male,133821
+SLV,El Salvador,2015,5-9,Male,295641
+SLV,El Salvador,2015,50-54,Male,111136
+SLV,El Salvador,2015,55-59,Male,93533
+SLV,El Salvador,2015,60-64,Male,77884
+SLV,El Salvador,2015,65-69,Male,64819.99999999999
+SLV,El Salvador,2015,70-74,Male,49882
+SLV,El Salvador,2015,75-79,Male,35471
+SLV,El Salvador,2015,80-84,Male,21119
+SLV,El Salvador,2015,85-89,Male,9193
+SLV,El Salvador,2015,90-94,Male,2538
+SLV,El Salvador,2015,95+,Male,492.00000000000006
+SLV,El Salvador,2015,0-4,Total,571224
+SLV,El Salvador,2015,10-14,Total,623818
+SLV,El Salvador,2015,15-19,Total,707297
+SLV,El Salvador,2015,20-24,Total,636295
+SLV,El Salvador,2015,25-29,Total,494726
+SLV,El Salvador,2015,30-34,Total,414402
+SLV,El Salvador,2015,35-39,Total,395276
+SLV,El Salvador,2015,40-44,Total,349334
+SLV,El Salvador,2015,45-49,Total,311432
+SLV,El Salvador,2015,5-9,Total,572092
+SLV,El Salvador,2015,50-54,Total,263405
+SLV,El Salvador,2015,55-59,Total,219988
+SLV,El Salvador,2015,60-64,Total,183439
+SLV,El Salvador,2015,65-69,Total,150142
+SLV,El Salvador,2015,70-74,Total,118156
+SLV,El Salvador,2015,75-79,Total,85838
+SLV,El Salvador,2015,80-84,Total,53123
+SLV,El Salvador,2015,85-89,Total,24529
+SLV,El Salvador,2015,90-94,Total,7476
+SLV,El Salvador,2015,95+,Total,1685
+SLV,El Salvador,2016,0-4,Female,274043
+SLV,El Salvador,2016,10-14,Female,291567
+SLV,El Salvador,2016,15-19,Female,339685
+SLV,El Salvador,2016,20-24,Female,319557
+SLV,El Salvador,2016,25-29,Female,260933
+SLV,El Salvador,2016,30-34,Female,224476
+SLV,El Salvador,2016,35-39,Female,222950
+SLV,El Salvador,2016,40-44,Female,201677
+SLV,El Salvador,2016,45-49,Female,180386
+SLV,El Salvador,2016,5-9,Female,275771
+SLV,El Salvador,2016,50-54,Female,156338
+SLV,El Salvador,2016,55-59,Female,129883.00000000001
+SLV,El Salvador,2016,60-64,Female,107767
+SLV,El Salvador,2016,65-69,Female,87876
+SLV,El Salvador,2016,70-74,Female,69317
+SLV,El Salvador,2016,75-79,Female,51974
+SLV,El Salvador,2016,80-84,Female,32371.000000000004
+SLV,El Salvador,2016,85-89,Female,15965
+SLV,El Salvador,2016,90-94,Female,4875
+SLV,El Salvador,2016,95+,Female,1165
+SLV,El Salvador,2016,0-4,Male,290724
+SLV,El Salvador,2016,10-14,Male,308716
+SLV,El Salvador,2016,15-19,Male,356832
+SLV,El Salvador,2016,20-24,Male,329688
+SLV,El Salvador,2016,25-29,Male,250851
+SLV,El Salvador,2016,30-34,Male,188046
+SLV,El Salvador,2016,35-39,Male,172891
+SLV,El Salvador,2016,40-44,Male,150999
+SLV,El Salvador,2016,45-49,Male,135353
+SLV,El Salvador,2016,5-9,Male,295310
+SLV,El Salvador,2016,50-54,Male,113534
+SLV,El Salvador,2016,55-59,Male,94830
+SLV,El Salvador,2016,60-64,Male,78741
+SLV,El Salvador,2016,65-69,Male,65742
+SLV,El Salvador,2016,70-74,Male,50516
+SLV,El Salvador,2016,75-79,Male,36099
+SLV,El Salvador,2016,80-84,Male,21063
+SLV,El Salvador,2016,85-89,Male,9373
+SLV,El Salvador,2016,90-94,Male,2459
+SLV,El Salvador,2016,95+,Male,459
+SLV,El Salvador,2016,0-4,Total,564768
+SLV,El Salvador,2016,10-14,Total,600283
+SLV,El Salvador,2016,15-19,Total,696518
+SLV,El Salvador,2016,20-24,Total,649245
+SLV,El Salvador,2016,25-29,Total,511784
+SLV,El Salvador,2016,30-34,Total,412522
+SLV,El Salvador,2016,35-39,Total,395840
+SLV,El Salvador,2016,40-44,Total,352675
+SLV,El Salvador,2016,45-49,Total,315738
+SLV,El Salvador,2016,5-9,Total,571080
+SLV,El Salvador,2016,50-54,Total,269872
+SLV,El Salvador,2016,55-59,Total,224714
+SLV,El Salvador,2016,60-64,Total,186508
+SLV,El Salvador,2016,65-69,Total,153619
+SLV,El Salvador,2016,70-74,Total,119832
+SLV,El Salvador,2016,75-79,Total,88073
+SLV,El Salvador,2016,80-84,Total,53434
+SLV,El Salvador,2016,85-89,Total,25338
+SLV,El Salvador,2016,90-94,Total,7335
+SLV,El Salvador,2016,95+,Total,1624
+SLV,El Salvador,2017,0-4,Female,269534
+SLV,El Salvador,2017,10-14,Female,283413
+SLV,El Salvador,2017,15-19,Female,331139
+SLV,El Salvador,2017,20-24,Female,323644
+SLV,El Salvador,2017,25-29,Female,267438
+SLV,El Salvador,2017,30-34,Female,223964
+SLV,El Salvador,2017,35-39,Female,221667
+SLV,El Salvador,2017,40-44,Female,204458
+SLV,El Salvador,2017,45-49,Female,183091
+SLV,El Salvador,2017,5-9,Female,274659
+SLV,El Salvador,2017,50-54,Female,160218
+SLV,El Salvador,2017,55-59,Female,133532
+SLV,El Salvador,2017,60-64,Female,110080
+SLV,El Salvador,2017,65-69,Female,90524
+SLV,El Salvador,2017,70-74,Female,70500
+SLV,El Salvador,2017,75-79,Female,53492
+SLV,El Salvador,2017,80-84,Female,32914
+SLV,El Salvador,2017,85-89,Female,16511
+SLV,El Salvador,2017,90-94,Female,4904
+SLV,El Salvador,2017,95+,Female,1129
+SLV,El Salvador,2017,0-4,Male,284960
+SLV,El Salvador,2017,10-14,Male,300807
+SLV,El Salvador,2017,15-19,Male,348404
+SLV,El Salvador,2017,20-24,Male,334788
+SLV,El Salvador,2017,25-29,Male,262324
+SLV,El Salvador,2017,30-34,Male,190969
+SLV,El Salvador,2017,35-39,Male,172105
+SLV,El Salvador,2017,40-44,Male,151957
+SLV,El Salvador,2017,45-49,Male,136435
+SLV,El Salvador,2017,5-9,Male,294120
+SLV,El Salvador,2017,50-54,Male,116032
+SLV,El Salvador,2017,55-59,Male,96111
+SLV,El Salvador,2017,60-64,Male,79742
+SLV,El Salvador,2017,65-69,Male,66502
+SLV,El Salvador,2017,70-74,Male,51328
+SLV,El Salvador,2017,75-79,Male,36665
+SLV,El Salvador,2017,80-84,Male,21127
+SLV,El Salvador,2017,85-89,Male,9488
+SLV,El Salvador,2017,90-94,Male,2440
+SLV,El Salvador,2017,95+,Male,424.00000000000006
+SLV,El Salvador,2017,0-4,Total,554494
+SLV,El Salvador,2017,10-14,Total,584221
+SLV,El Salvador,2017,15-19,Total,679543
+SLV,El Salvador,2017,20-24,Total,658432
+SLV,El Salvador,2017,25-29,Total,529761
+SLV,El Salvador,2017,30-34,Total,414932
+SLV,El Salvador,2017,35-39,Total,393772
+SLV,El Salvador,2017,40-44,Total,356414
+SLV,El Salvador,2017,45-49,Total,319526
+SLV,El Salvador,2017,5-9,Total,568779
+SLV,El Salvador,2017,50-54,Total,276250
+SLV,El Salvador,2017,55-59,Total,229643
+SLV,El Salvador,2017,60-64,Total,189822
+SLV,El Salvador,2017,65-69,Total,157026
+SLV,El Salvador,2017,70-74,Total,121828
+SLV,El Salvador,2017,75-79,Total,90157
+SLV,El Salvador,2017,80-84,Total,54041
+SLV,El Salvador,2017,85-89,Total,25999
+SLV,El Salvador,2017,90-94,Total,7343
+SLV,El Salvador,2017,95+,Total,1552
+SLV,El Salvador,2018,0-4,Female,263771
+SLV,El Salvador,2018,10-14,Female,278414
+SLV,El Salvador,2018,15-19,Female,319554
+SLV,El Salvador,2018,20-24,Female,325422
+SLV,El Salvador,2018,25-29,Female,274055
+SLV,El Salvador,2018,30-34,Female,225450
+SLV,El Salvador,2018,35-39,Female,218715
+SLV,El Salvador,2018,40-44,Female,207281
+SLV,El Salvador,2018,45-49,Female,185590
+SLV,El Salvador,2018,5-9,Female,273255
+SLV,El Salvador,2018,50-54,Female,163844
+SLV,El Salvador,2018,55-59,Female,137232
+SLV,El Salvador,2018,60-64,Female,112689
+SLV,El Salvador,2018,65-69,Female,92939
+SLV,El Salvador,2018,70-74,Female,72022
+SLV,El Salvador,2018,75-79,Female,54725
+SLV,El Salvador,2018,80-84,Female,33722
+SLV,El Salvador,2018,85-89,Female,16881
+SLV,El Salvador,2018,90-94,Female,5027
+SLV,El Salvador,2018,95+,Female,1082
+SLV,El Salvador,2018,0-4,Male,277966
+SLV,El Salvador,2018,10-14,Male,296302
+SLV,El Salvador,2018,15-19,Male,336705
+SLV,El Salvador,2018,20-24,Male,337471
+SLV,El Salvador,2018,25-29,Male,273314
+SLV,El Salvador,2018,30-34,Male,196524
+SLV,El Salvador,2018,35-39,Male,170318
+SLV,El Salvador,2018,40-44,Male,153359
+SLV,El Salvador,2018,45-49,Male,136941
+SLV,El Salvador,2018,5-9,Male,292345
+SLV,El Salvador,2018,50-54,Male,118495
+SLV,El Salvador,2018,55-59,Male,97401
+SLV,El Salvador,2018,60-64,Male,80936
+SLV,El Salvador,2018,65-69,Male,66998
+SLV,El Salvador,2018,70-74,Male,52325
+SLV,El Salvador,2018,75-79,Male,37048
+SLV,El Salvador,2018,80-84,Male,21340
+SLV,El Salvador,2018,85-89,Male,9504
+SLV,El Salvador,2018,90-94,Male,2466
+SLV,El Salvador,2018,95+,Male,383
+SLV,El Salvador,2018,0-4,Total,541736
+SLV,El Salvador,2018,10-14,Total,574716
+SLV,El Salvador,2018,15-19,Total,656259
+SLV,El Salvador,2018,20-24,Total,662893
+SLV,El Salvador,2018,25-29,Total,547369
+SLV,El Salvador,2018,30-34,Total,421974
+SLV,El Salvador,2018,35-39,Total,389033
+SLV,El Salvador,2018,40-44,Total,360640
+SLV,El Salvador,2018,45-49,Total,322531
+SLV,El Salvador,2018,5-9,Total,565600
+SLV,El Salvador,2018,50-54,Total,282339
+SLV,El Salvador,2018,55-59,Total,234632
+SLV,El Salvador,2018,60-64,Total,193625
+SLV,El Salvador,2018,65-69,Total,159936
+SLV,El Salvador,2018,70-74,Total,124347
+SLV,El Salvador,2018,75-79,Total,91773
+SLV,El Salvador,2018,80-84,Total,55063
+SLV,El Salvador,2018,85-89,Total,26385
+SLV,El Salvador,2018,90-94,Total,7492
+SLV,El Salvador,2018,95+,Total,1464

@@ -188,20 +188,53 @@ data_work_largo <- data_work_0 %>%
     names_to = "intervalo_edad",
     values_to = "freq_muerte"
   ) %>%
-  group_by(Pais, icd10_code, intervalo_edad, Year) %>%  
+  mutate(
+    age_group = case_when(
+      intervalo_edad %in% paste0("Deaths", 2:6)  ~ "0-4",
+      intervalo_edad == "Deaths7"  ~ "5-9",
+      intervalo_edad == "Deaths8"  ~ "10-14",
+      intervalo_edad == "Deaths9"  ~ "15-19",
+      intervalo_edad == "Deaths10" ~ "20-24",
+      intervalo_edad == "Deaths11" ~ "25-29",
+      intervalo_edad == "Deaths12" ~ "30-34",
+      intervalo_edad == "Deaths13" ~ "35-39",
+      intervalo_edad == "Deaths14" ~ "40-44",
+      intervalo_edad == "Deaths15" ~ "45-49",
+      intervalo_edad == "Deaths16" ~ "50-54",
+      intervalo_edad == "Deaths17" ~ "55-59",
+      intervalo_edad == "Deaths18" ~ "60-64",
+      intervalo_edad == "Deaths19" ~ "65-69",
+      intervalo_edad == "Deaths20" ~ "70-74",
+      intervalo_edad == "Deaths21" ~ "75-79",
+      intervalo_edad == "Deaths22" ~ "80-84",
+      intervalo_edad == "Deaths23" ~ "85-89",
+      intervalo_edad == "Deaths24" ~ "90-94",
+      intervalo_edad == "Deaths25" ~ "95+",
+      intervalo_edad == "Deaths26" ~ "Unknown",
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  filter(!is.na(age_group), age_group != "Unknown") %>%
+  group_by(Pais, Country, Year, icd10_code, age_group) %>%
+  summarise(
+    freq_muerte = sum(freq_muerte, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  group_by(Pais, icd10_code, age_group) %>%  
   mutate(
     mediana = median(freq_muerte, na.rm = TRUE),
     media = mean(freq_muerte, na.rm = TRUE),
     banda = 1.2 * media,
-    desviacion = freq_muerte - mediana,  
+    desviacion = freq_muerte - mediana,
     exceso = ifelse(freq_muerte > banda, desviacion, 0)
-  )
+  ) %>%
+  ungroup()
 
 # guardado data set procesado 
 
 write.csv(
   data_work_largo,
-  here("datos", "procesados", "data_mortalidad_limpia.csv"),
+  here("datos", "procesados", "mortalidad_final.csv"),
   row.names = FALSE
 )
 
