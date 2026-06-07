@@ -2514,6 +2514,92 @@ q_{x,t}^{(c)}:={}_1 q_{x,t}^{(c)}.
 1-e^{-\widehat{\mu}_{x,t}^{(\tau)}}
 \right).\]</span></p>
 </section>
+<section id="análisis-de-las-probabilidades-de-decremento-desde-el-enfoque-clásico" class="level3">
+<h3 class="anchored" data-anchor-id="análisis-de-las-probabilidades-de-decremento-desde-el-enfoque-clásico">Análisis de las probabilidades de decremento desde el enfoque clásico</h3>
+<p>Una vez estimadas las probabilidades clásicas de decremento por causa, se construyen tres análisis derivados: La probabilidad de decremento por causa, la composición causal condicionada al fallecimiento y la concentración causal. Estos análisis constituyen un enfoque probabilísitco que compara entre sí las causas de decremento. Su propósito es responder la pregunta planteada inicialmente; cómo varía la probabilidad de decremento por causa según grupo etario, país, sexo y año calendario.</p>
+<p>Inicialmente, el primer análisis gráfico corresponde a la probabilidad de decremento por causa,</p>
+<p><span class="math display">\[
+\widehat{q}_{x,t}^{(c)}.
+\]</span></p>
+<p>Esta cantidad mide la magnitud real del riesgo de decremento por causa. En la presentación gráfica se plantea utilizar</p>
+<p><span class="math display">\[
+100\widehat{q}_{x,t}^{(c)},
+\]</span></p>
+<p>de manera que el eje vertical pueda interpretarse como porcentaje. Este análisis permite comparar, para cada país y sexo, cómo cambia la probabilidad anual de fallecer por una causa específica entre 2015 y 2018 a lo largo de los grupos etarios.</p>
+<p>El segundo análisis corresponde a la composición causal condicionada al fallecimiento. Para una celda fija, la probabilidad total de fallecimiento por cualquier causa es</p>
+<p><span class="math display">\[
+\widehat{q}_{x,t}^{(\tau)}
+=
+\sum_{j=1}^{r}
+\widehat{q}_{x,t}^{(j)}.
+\]</span></p>
+<p>A partir de esta cantidad se define</p>
+<p><span class="math display">\[
+\widehat{\pi}_{x,t}^{(c)}
+=
+P(J=c \mid \text{muerte en el grupo } x)
+=
+\frac{
+\widehat{q}_{x,t}^{(c)}
+}{
+\sum_{j=1}^{r}
+\widehat{q}_{x,t}^{(j)}
+}.
+\]</span></p>
+<p>Esta cantidad debe de interpretarse como una probabilidad condicional: Dado que ocurre un fallecimiento en la celda, <span class="math inline">\(\widehat{\pi}_{x,t}^{(c)}\)</span> representa la proporción atribuible a la causa <span class="math inline">\(c\)</span>. Por tanto, mientras <span class="math inline">\(\widehat{q}_{x,t}^{(c)}\)</span> mide el nivel absoluto del riesgo, <span class="math inline">\(\widehat{\pi}_{x,t}^{(c)}\)</span> describe la estructura causal de la mortalidad dentro de quienes fallecen.</p>
+<p>Para una celda fija, las cantidades <span class="math inline">\(\widehat{\pi}_{x,t}^{(c)}\)</span> forman una distribución de probabilidad sobre las causas, ya que</p>
+<p><span class="math display">\[
+\sum_{c=1}^{r}
+\widehat{\pi}_{x,t}^{(c)}
+=
+\sum_{c=1}^{r}
+\frac{
+\widehat{q}_{x,t}^{(c)}
+}{
+\sum_{j=1}^{r}
+\widehat{q}_{x,t}^{(j)}
+}
+=
+1.
+\]</span></p>
+<p>Esta propiedad justifica el uso de gráficos de composición causal, similares en espíritu a los análisis de distribución de causas de muerte por grupo de edad, utilizados por Goerlich (2012). Sin embargo, para mantener la legibilidad, se propone mostrar únicamente algunas causas seleccionadas. En estos casos, el denominador de <span class="math inline">\(\widehat{\pi}_{x,t}^{(c)}\)</span> se mantendría como la suma de todas las causas, aunque solo se visualicen algunas. Por esta razón, cuando se presenten únicamente causas seleccionadas, las barras visibles no necesariamente sumarían <span class="math inline">\(100\%\)</span>.</p>
+<p>El tercer análisis resume la concentración de la composición causal. Dado que <span class="math inline">\(\widehat{\pi}_{x,t}^{(c)}\)</span> define una distribución de probabilidad sobre las causas de muerte, se calcula el índice</p>
+<p><span class="math display">\[
+H_{x,t}
+=
+\sum_{c=1}^{r}
+\left(
+\widehat{\pi}_{x,t}^{(c)}
+\right)^2
+=
+\sum_{c=1}^{r}
+\left(
+\frac{
+\widehat{q}_{x,t}^{(c)}
+}{
+\sum_{j=1}^{r}
+\widehat{q}_{x,t}^{(j)}
+}
+\right)^2.
+\]</span></p>
+<p>Este índice es una medida tipo Herfindahl-Simpson aplicada a la composición causal. Su valor se encuentra entre <span class="math inline">\(0\)</span> y <span class="math inline">\(1\)</span>. Valores altos indican que la mortalidad de la celda está concentrada en pocas causas; valores bajos indican que la mortalidad está más distribuida entre varias causas <span class="citation" data-cites="simpson1949 herfindahl1950 hirschman1964">[@simpson1949; @herfindahl1950; @hirschman1964]</span>.</p>
+<p>La interpretación probabilística de <span class="math inline">\(H_{x,t}\)</span> es directa. Si se seleccionan dos fallecimientos de manera independiente dentro de la misma celda, y si la probabilidad de que un fallecimiento corresponda a la causa <span class="math inline">\(c\)</span> es <span class="math inline">\(\widehat{\pi}_{x,t}^{(c)}\)</span>, entonces la probabilidad de que ambos fallecimientos correspondan a la misma causa es</p>
+<p><span class="math display">\[
+\sum_{c=1}^{r}
+\widehat{\pi}_{x,t}^{(c)}
+\widehat{\pi}_{x,t}^{(c)}
+=
+\sum_{c=1}^{r}
+\left(
+\widehat{\pi}_{x,t}^{(c)}
+\right)^2
+=
+H_{x,t}.
+\]</span></p>
+<p>Por tanto, <span class="math inline">\(H_{x,t}\)</span> no se introduce únicamente como un indicador descriptivo, sino como una función de la distribución condicional de causas. En el contexto del proyecto, permite identificar si la mortalidad de un grupo etario está dominada por una causa particular o si se reparte entre múltiples categorías.</p>
+<p>En conjunto, los tres análisis cumplen funciones complementarias. La probabilidad absoluta <span class="math inline">\(\widehat{q}_{x,t}^{(c)}\)</span> permite analizar la magnitud del decremento por causa. La composición condicionada <span class="math inline">\(\widehat{\pi}_{x,t}^{(c)}\)</span> permite estudiar la estructura causal de las muertes dentro de cada grupo etario. Finalmente, el índice <span class="math inline">\(H_{x,t}\)</span> resume el grado de concentración de dicha estructura causal. Así, los gráficos utilizados no se plantean como visualizaciones aisladas, sino como representaciones de cantidades probabilísticas derivadas del modelo clásico de decrementos múltiples.</p>
+<p>Para efectos de visualización, las causas principales se seleccionan por país. Se incluye la categoría de causas externas de mortalidad debido a su relevancia en edades jóvenes y adultas, y se completan las restantes con las causas de mayor probabilidad promedio de decremento dentro del país. Además, las afecciones originadas en el periodo perinatal se analizan por separado, dado que presentan un perfil etario estructuralmente distinto, concentrado en edades iniciales. Esta selección afecta únicamente la presentación gráfica; los denominadores utilizados en <span class="math inline">\(\widehat{q}_{x,t}^{(\tau)}\)</span>, <span class="math inline">\(\widehat{\pi}_{x,t}^{(c)}\)</span> y <span class="math inline">\(H_{x,t}\)</span> se calculan con todas las causas disponibles en cada celda.</p>
+</section>
 <section id="enfoque-bayesiano" class="level3">
 <h3 class="anchored" data-anchor-id="enfoque-bayesiano">Enfoque bayesiano</h3>
 <p>El enfoque bayesiano mantiene el mismo modelo de conteo usado en el enfoque clásico, de forma que:</p>
