@@ -1,240 +1,425 @@
-# 01_limpieza.R
-# Limpieza y preparación de los datos crudos
-# Autor: Kevin calderon
-# Fecha: 1/4/2026
+# 01_base_centroamerica_final.R
+# Construye mortalidad OMS desde cero y la une con exposicion_limpia.csv
+# Autor: Kevin Calderón / Grupo Martingalianos
+# Fecha: 2026
 
 library(data.table)
-library(tidyr)
-library(dplyr)
+library(tidyverse)
 library(here)
 
-here()
-# =========================
-# 1. CARGAR TODAS LAS BASES
-# =========================
+# ============================================================
+# 0. RUTAS
+# ============================================================
 
-data1 <- read.table(here("datos", "originales", "Morticd10_part1"), sep = ",", header = TRUE)
-data2 <- read.table(here("datos", "originales", "Morticd10_part2"), sep = ",", header = TRUE)
-data3 <- read.table(here("datos", "originales", "Morticd10_part3"), sep = ",", header = TRUE)
-data4 <- read.table(here("datos", "originales", "Morticd10_part4"), sep = ",", header = TRUE)
-data5 <- read.table(here("datos", "originales", "Morticd10_part5"), sep = ",", header = TRUE)
-data6 <- read.table(here("datos", "originales", "Morticd10_part6"), sep = ",", header = TRUE)
+ruta_mortalidad <- here("datos", "originales")
+ruta_salida <- here("datos", "procesados")
 
-# =========================
-# 2. UNIR TODAS LAS BASES
-# =========================
+# ============================================================
+# 1. CARGAR Y UNIR BASES CRUDAS DE MORTALIDAD ICD-10
+# ============================================================
 
-data_all <- rbind(data1, data2, data3, data4, data5, data6)
+data1 <- read.table(here(ruta_mortalidad, "Morticd10_part1"), sep = ",", header = TRUE)
+data2 <- read.table(here(ruta_mortalidad, "Morticd10_part2"), sep = ",", header = TRUE)
+data3 <- read.table(here(ruta_mortalidad, "Morticd10_part3"), sep = ",", header = TRUE)
+data4 <- read.table(here(ruta_mortalidad, "Morticd10_part4"), sep = ",", header = TRUE)
+data5 <- read.table(here(ruta_mortalidad, "Morticd10_part5"), sep = ",", header = TRUE)
+data6 <- read.table(here(ruta_mortalidad, "Morticd10_part6"), sep = ",", header = TRUE)
 
-# =========================
-# 3. DEFINIR CENTROAMERICA
-# =========================
+data_all <- rbind(
+  data1,
+  data2,
+  data3,
+  data4,
+  data5,
+  data6
+)
+
+# ============================================================
+# 2. DEFINIR PAÍSES DE CENTROAMÉRICA EN WHO MORTALITY DATABASE
+# ============================================================
 
 paises <- data.frame(
   Country = c(2045, 2140, 2190, 2250, 2280, 2340, 2350),
-  Pais = c("Belice", "Costa Rica", "El Salvador", 
-           "Guatemala", "Honduras", "Nicaragua", "Panama")
+  Pais = c(
+    "Belice",
+    "Costa Rica",
+    "El Salvador",
+    "Guatemala",
+    "Honduras",
+    "Nicaragua",
+    "Panama"
+  )
 )
 
-# =========================
-# 4. FILTRAR CENTROAM?RICA
-# =========================
+# ============================================================
+# 3. FILTRAR MORTALIDAD OMS DESDE CERO
+# ============================================================
 
-data_ca <- data_all[data_all$Country %in% paises$Country, ]
+data_ca <- data_all %>%
+  filter(Country %in% paises$Country) %>%
+  left_join(paises, by = "Country")
 
-# =========================
-# 5. AGREGAR NOMBRES
-# =========================
+# ============================================================
+# 4. CARGAR EXPOSICIÓN LIMPIA YA CREADA
+# ============================================================
 
-data_ca <- merge(data_ca, paises, by = "Country")
+exposicion_limpia <- readr::read_csv(
+  here(ruta_salida, "exposicion_limpia.csv"),
+  na = c("", "NA"),
+  show_col_types = FALSE
+)
 
-# =========================
-# 6. GUARDAR BASE DE DATOS
-# =========================
+llaves <- c("pais", "year", "age_group", "sex")
 
-# write.csv(data_ca, here("datos", "procesados", "data_centroamerica.csv"), row.names = FALSE)
+# ============================================================
+# 5. VALIDAR EXPOSICIÓN
+# ============================================================
 
-# 01_limpieza.R
-# Limpieza de datos y clasificacion ICD10
-# Autor: Benjamin Padua
-# Fecha: 26/5/2026
+duplicados_exposicion <- exposicion_limpia %>%
+  count(across(all_of(llaves)), name = "n") %>%
+  filter(n > 1)
 
+faltantes_exposicion <- exposicion_limpia %>%
+  filter(if_any(everything(), is.na))
 
+exposiciones_invalidas <- exposicion_limpia %>%
+  filter(is.na(exposure) | exposure <= 0)
 
-# Creo copia filtrando anios 
-data_ca_1 <- data_ca[data_ca$Year %in% 2015:2018,]
-# Convertir a factor el int de fecha
-data_ca_1$Year <- as.factor(data_ca_1$Year)
-## Asignacion de codigo 1001 de ICD10  enfermedades infecciosas y parasitarias
-data_ca_1$icd10_code <- NA
+stopifnot(
+  nrow(duplicados_exposicion) == 0,
+  nrow(faltantes_exposicion) == 0,
+  nrow(exposiciones_invalidas) == 0
+)
 
-data_ca_2 <- data_ca_1 
+# ============================================================
+# 6. LLEVAR MORTALIDAD A FORMATO LARGO
+# ============================================================
+# En Frmat == 0:
+# Deaths2,...,Deaths6 corresponden a edades 0,1,2,3,4.
+# Deaths7,...,Deaths25 corresponden a 5-9,...,95+.
 
+mapa_edades <- setNames(
+  c(
+    "5-9", "10-14", "15-19", "20-24", "25-29",
+    "30-34", "35-39", "40-44", "45-49", "50-54",
+    "55-59", "60-64", "65-69", "70-74", "75-79",
+    "80-84", "85-89", "90-94", "95+"
+  ),
+  paste0("Deaths", 7:25)
+)
 
-data_ca_2 <- data_ca_2 %>%
+mortalidad_base <- data_ca %>%
+  filter(
+    Year %in% 2015:2018,
+    Sex %in% c(1, 2),
+    Frmat == 0
+  ) %>%
   mutate(
-    string  = substr(Cause, 1,1),
-    number = as.numeric(substr(Cause,2,3))
-    
-    )
-
-
-
-
-
-
-data_ca_2$number[is.na(data_ca_2$number)] <- 999999 #ASIGNACION ARBITRARIA DE NUMERO GRANDE PARA QUE NO ENTRE EN LAS VALIDACIONES POR NA Y SE SOBREESCRIBA icd10c_code
-
-data_ca_etiquetada <- data_ca_2 %>%
-  mutate(
-    icd10_code= case_when(
-      
-      # A00- B99 ICD10 1001
-      (string == 'A' & number>=0 & number <=99) ~ 1001,
-      (string == 'B') ~ 1001,
-      #C00 - C99 y D00- D48 corresponde a ICD10 1026 NEOPLASMA
-      
-      (string == 'C') ~ 1026,
-      (string == 'D' & number <= 48) ~ 1026,
-      
-      # D50- D89  corresponde a ICD10 1048 ENFERMEDADES EN LA SANGRE
-      (string == 'D' & number >= 50 & number <=89) ~ 1048,
-      
-      #E00 - E90  corresponde a ICD10 1051 ENCDOCRINO ENFERMEDADES METABOLICAS
-      (string == 'E') ~ 1051,
-      
-      # F00- F99  icd 10 1055 desordenes del comportamiento 
-      (string == 'F') ~ 1055,
-      
-      # G00 - G99 ICD 10 1058 ENFERMEDAD SISTEMA NERVIOSO 
-      (string == 'G') ~ 1058,
-      
-      #H00 - H59  ICDD 10 1062 ENFERMEDAD OJO
-      (string == 'H' & number <= 59) ~ 1062,
-      
-      # H60- H95 ICD10 1063 ENFERMEDAD OIDO 
-      (string == 'H' & number >= 60 & number <=95) ~ 1063,
-      
-      # I 00 - I 99  ICD10: 1064 ENFERMEDADES CIRCULATORIAS
-      (string == 'I') ~ 1064,
-      
-      #J00J99 ICD10:1072  ENFERMEDADES SISTEMA RESPIRATORI
-      
-      (string == 'J') ~ 1072,
-      
-      # K00-K92 , ICD10:1078 ENFERMEDADES SISTEM DIGESTIVO 
-      (string == 'K') ~ 1078,
-      
-      # L00- L99 ICD10: 1082 ENFERMEDADES SUBCUTANEAS Y DE PIEL
-      
-      (string == 'L') ~ 1082,
-      
-      # M00 - M 99 ICD10 : 1083 ENFERMEDADES DEL ESQUELETO
-      (string == 'M') ~ 1083,
-      
-      # N00 - N99  ICD10 : 1084 ENFERMEDADES  GENITICOURINARIAS 
-      (string == 'N') ~ 1084,
-      
-      # O00 - O99 ICD10 : 1087  EMBARAZO NACIMIENTO PREMATURO 
-      (string == 'O') ~ 1087,
-      
-      # P00-P96 ICD10: 1092  CODICIONES PERINATALES
-      (string == 'P') ~ 1092,
-      
-      # Q00-Q99 ICD10 : 1093 MALFORMACIONES CONGENITAS  y deformaciones
-      (string == 'Q') ~ 1093,
-      
-      #R00 R99 ICD10 : 1094  anomalidades clinicas de laboratorio
-      
-      (string == 'R') ~ 1094,
-      
-      # V01- V99 : ICD10 1096 accidentes de transporte
-      (string == 'V') ~ 1096 ,
-      
-      # X85 - Y09 : ICD10 1102 ASALTO
-      
-      (string == 'X' & number >= 85 & number <= 99) ~ 1102,
-      (string == 'Y' & number <= 09) ~ 1102,
-      
-      
-      
-      
-      TRUE ~ NA_real_
+    pais = Pais,
+    year = as.integer(Year),
+    sex = recode(
+      as.character(Sex),
+      "1" = "Male",
+      "2" = "Female"
+    ),
+    deaths_0_4 = rowSums(
+      pick(Deaths2:Deaths6),
+      na.rm = FALSE
     )
   )
 
-#Se hallaron NA.s introducidos por coercion corresponde a AAA muerte por todas las causas codigo 1000 en ICD10
+mortalidad_0_4 <- mortalidad_base %>%
+  transmute(
+    Country,
+    Admin1,
+    SubDiv,
+    year,
+    List,
+    Cause,
+    sex,
+    Frmat,
+    IM_Frmat,
+    pais,
+    age_group = "0-4",
+    deaths = deaths_0_4
+  )
 
-data_ca_etiquetada$icd10_code[data_ca_etiquetada$number == 999999] <-1000
-
-## Eliminar NA restantes 
-
-data_ca_etiquetada <- data_ca_etiquetada[!is.na(data_ca_etiquetada$icd10_code),]
-
-
-# =========================
-# 6. IMPLEMENTACION DE CALCULO DE INTENSIDADES DE MORTALIDAD DE FRECUENCIAS
-# =========================
-
-## Exlcuir a conteo general de muertes 
-data_work_0 <- data_ca_etiquetada %>% 
-  filter(icd10_code != 1000)
-# Pasar a formato  longer para tener FREQ(MUERTE)_idx{TIEMPO} es decir indexar por intervalo temporal 
-
-
-data_work_largo <- data_work_0 %>% 
+mortalidad_5_mas <- mortalidad_base %>%
+  select(
+    Country,
+    Admin1,
+    SubDiv,
+    year,
+    List,
+    Cause,
+    sex,
+    Frmat,
+    IM_Frmat,
+    pais,
+    Deaths7:Deaths25
+  ) %>%
   pivot_longer(
-    cols = all_of(paste0("Deaths", 2:26)),
-    names_to = "intervalo_edad",
-    values_to = "freq_muerte"
+    cols = Deaths7:Deaths25,
+    names_to = "death_column",
+    values_to = "deaths"
   ) %>%
   mutate(
-    age_group = case_when(
-      intervalo_edad %in% paste0("Deaths", 2:6)  ~ "0-4",
-      intervalo_edad == "Deaths7"  ~ "5-9",
-      intervalo_edad == "Deaths8"  ~ "10-14",
-      intervalo_edad == "Deaths9"  ~ "15-19",
-      intervalo_edad == "Deaths10" ~ "20-24",
-      intervalo_edad == "Deaths11" ~ "25-29",
-      intervalo_edad == "Deaths12" ~ "30-34",
-      intervalo_edad == "Deaths13" ~ "35-39",
-      intervalo_edad == "Deaths14" ~ "40-44",
-      intervalo_edad == "Deaths15" ~ "45-49",
-      intervalo_edad == "Deaths16" ~ "50-54",
-      intervalo_edad == "Deaths17" ~ "55-59",
-      intervalo_edad == "Deaths18" ~ "60-64",
-      intervalo_edad == "Deaths19" ~ "65-69",
-      intervalo_edad == "Deaths20" ~ "70-74",
-      intervalo_edad == "Deaths21" ~ "75-79",
-      intervalo_edad == "Deaths22" ~ "80-84",
-      intervalo_edad == "Deaths23" ~ "85-89",
-      intervalo_edad == "Deaths24" ~ "90-94",
-      intervalo_edad == "Deaths25" ~ "95+",
-      intervalo_edad == "Deaths26" ~ "Unknown",
+    age_group = unname(mapa_edades[death_column])
+  ) %>%
+  select(-death_column)
+
+mortalidad_larga <- bind_rows(
+  mortalidad_0_4,
+  mortalidad_5_mas
+)
+
+# Guardar mortalidad larga filtrada antes de agrupar causas.
+write_csv(
+  mortalidad_larga,
+  here(ruta_salida, "mortalidad_larga_centroamerica_2015_2018.csv"),
+  na = ""
+)
+
+# ============================================================
+# 7. AGRUPAR CAUSAS ICD-10 EN GRUPOS AMPLIOS
+# ============================================================
+
+catalogo_causas <- tribble(
+  ~Cause, ~causa_grupo,
+  "I", "Enfermedades infecciosas y parasitarias",
+  "II", "Tumores",
+  "III", "Enfermedades de la sangre y de los órganos hematopoyéticos y ciertos trastornos de la inmunidad",
+  "IV", "Enfermedades endocrinas, nutricionales y metabólicas",
+  "V-VIII", "Trastornos mentales, enfermedades del sistema nervioso y de los órganos de los sentidos",
+  "IX", "Enfermedades del sistema circulatorio",
+  "X", "Enfermedades del sistema respiratorio",
+  "XI", "Enfermedades del sistema digestivo",
+  "XII", "Enfermedades de la piel y del tejido subcutáneo",
+  "XIII", "Enfermedades del sistema osteomuscular y del tejido conjuntivo",
+  "XIV", "Enfermedades del sistema genitourinario",
+  "XV", "Embarazo, parto y puerperio",
+  "XVI", "Afecciones originadas en el periodo perinatal",
+  "XVII", "Malformaciones congénitas, deformidades y anomalías cromosómicas",
+  "XVIII", "Síntomas, signos y hallazgos anormales no clasificados en otra parte",
+  "XX", "Causas externas de mortalidad"
+)
+
+mortalidad_agrupada <- mortalidad_larga %>%
+  filter(Cause != "AAA") %>%
+  mutate(
+    letra_causa = substr(Cause, 1, 1),
+    numero_causa = suppressWarnings(
+      as.integer(substr(Cause, 2, 3))
+    ),
+    Cause = case_when(
+      letra_causa %in% c("A", "B") |
+        (letra_causa == "R" & numero_causa == 75) ~ "I",
+      
+      letra_causa == "C" |
+        (letra_causa == "D" & between(numero_causa, 0, 48)) ~ "II",
+      
+      letra_causa == "D" &
+        between(numero_causa, 50, 89) ~ "III",
+      
+      letra_causa == "E" &
+        between(numero_causa, 0, 90) ~ "IV",
+      
+      letra_causa %in% c("F", "G", "H") ~ "V-VIII",
+      
+      letra_causa == "I" ~ "IX",
+      
+      letra_causa == "J" ~ "X",
+      
+      letra_causa == "K" ~ "XI",
+      
+      letra_causa == "L" ~ "XII",
+      
+      letra_causa == "M" ~ "XIII",
+      
+      letra_causa == "N" ~ "XIV",
+      
+      letra_causa == "O" ~ "XV",
+      
+      letra_causa == "P" ~ "XVI",
+      
+      letra_causa == "Q" ~ "XVII",
+      
+      (
+        letra_causa == "R" &
+          numero_causa != 75
+      ) |
+        letra_causa == "U" ~ "XVIII",
+      
+      letra_causa %in% c("V", "W", "X") |
+        (
+          letra_causa == "Y" &
+            between(numero_causa, 0, 89)
+        ) ~ "XX",
+      
       TRUE ~ NA_character_
     )
   ) %>%
-  filter(!is.na(age_group), age_group != "Unknown") %>%
-  group_by(Pais, Country, Year, icd10_code, age_group) %>%
+  select(
+    -letra_causa,
+    -numero_causa
+  ) %>%
+  group_by(
+    Country,
+    Admin1,
+    SubDiv,
+    year,
+    List,
+    sex,
+    Frmat,
+    IM_Frmat,
+    pais,
+    age_group,
+    Cause
+  ) %>%
   summarise(
-    freq_muerte = sum(freq_muerte, na.rm = TRUE),
+    deaths = sum(deaths, na.rm = TRUE),
     .groups = "drop"
   ) %>%
-  group_by(Pais, icd10_code, age_group) %>%  
-  mutate(
-    mediana = median(freq_muerte, na.rm = TRUE),
-    media = mean(freq_muerte, na.rm = TRUE),
-    banda = 1.2 * media,
-    desviacion = freq_muerte - mediana,
-    exceso = ifelse(freq_muerte > banda, desviacion, 0)
+  group_by(
+    Country,
+    Admin1,
+    SubDiv,
+    year,
+    List,
+    sex,
+    Frmat,
+    IM_Frmat,
+    pais,
+    age_group
   ) %>%
-  ungroup()
+  complete(
+    Cause = catalogo_causas$Cause,
+    fill = list(deaths = 0)
+  ) %>%
+  ungroup() %>%
+  left_join(
+    catalogo_causas,
+    by = "Cause"
+  ) %>%
+  relocate(
+    causa_grupo,
+    .after = Cause
+  )
 
-# guardado data set procesado 
+# ============================================================
+# 8. AJUSTAR EXPOSICIÓN AL ALCANCE DE MORTALIDAD
+# ============================================================
+# Honduras no aparece en mortalidad para 2015-2018.
+# "Total" no equivale a Sex == 9; el código 9 es sexo desconocido.
 
-write.csv(
-  data_work_largo,
-  here("datos", "procesados", "mortalidad_final.csv"),
-  row.names = FALSE
+exposicion_objetivo <- exposicion_limpia %>%
+  filter(
+    year %in% 2015:2018,
+    pais != "Honduras",
+    sex %in% c("Male", "Female")
+  ) %>%
+  mutate(
+    pais = recode(
+      pais,
+      "Belize" = "Belice"
+    )
+  )
+
+# ============================================================
+# 9. VERIFICAR QUE LOS ESTRATOS COINCIDAN
+# ============================================================
+
+estratos_mortalidad <- mortalidad_agrupada %>%
+  distinct(across(all_of(llaves)))
+
+estratos_exposicion <- exposicion_objetivo %>%
+  distinct(across(all_of(llaves)))
+
+solo_mortalidad <- anti_join(
+  estratos_mortalidad,
+  estratos_exposicion,
+  by = llaves
 )
 
+solo_exposicion <- anti_join(
+  estratos_exposicion,
+  estratos_mortalidad,
+  by = llaves
+)
+
+cat("Estratos de mortalidad:", nrow(estratos_mortalidad), "\n")
+cat("Estratos de exposición:", nrow(estratos_exposicion), "\n")
+cat("Solo en mortalidad:", nrow(solo_mortalidad), "\n")
+cat("Solo en exposición:", nrow(solo_exposicion), "\n")
+
+stopifnot(
+  nrow(solo_mortalidad) == 0,
+  nrow(solo_exposicion) == 0
+)
+
+# ============================================================
+# 10. UNIR MORTALIDAD CON EXPOSICIÓN
+# ============================================================
+
+base_unida <- mortalidad_agrupada %>%
+  left_join(
+    exposicion_objetivo %>%
+      select(
+        all_of(llaves),
+        exposure
+      ),
+    by = llaves,
+    relationship = "many-to-one"
+  )
+
+stopifnot(
+  !anyNA(base_unida$exposure)
+)
+
+cat("Filas finales:", nrow(base_unida), "\n")
+cat(
+  "Exposiciones faltantes después de unir:",
+  sum(is.na(base_unida$exposure)),
+  "\n"
+)
+
+# ============================================================
+# 11. LIMPIAR NOMBRES FINALES
+# ============================================================
+
+base_final <- base_unida %>%
+  select(
+    -c(Country, Admin1, SubDiv, List, Frmat, IM_Frmat)
+  ) %>%
+  rename(
+    exposicion = exposure,
+    anio = year,
+    sexo = sex,
+    muertes = deaths,
+    grupo_edad = age_group,
+    causa = Cause
+  ) %>%
+  mutate(
+    sexo = recode(
+      sexo,
+      "Female" = "Mujer",
+      "Male" = "Hombre"
+    )
+  ) %>%
+  arrange(
+    pais,
+    anio,
+    sexo,
+    grupo_edad,
+    causa
+  )
+
+# ============================================================
+# 12. GUARDAR BASE FINAL
+# ============================================================
+
+write_csv(
+  base_final,
+  here(ruta_salida, "data_centroamerica_FINAL.csv"),
+  na = ""
+)
