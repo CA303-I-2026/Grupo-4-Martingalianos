@@ -300,24 +300,83 @@ $$
 \widehat{q}_{x,t}^{(j)}.
 $$
 
-A partir de esta cantidad se define
+A partir de esta cantidad se define la composición causal condicionada al fallecimiento. Para justificarla, considérese, para una celda fija, el evento
+
+$$
+A_c=\{T_{x,t}\leq 1,\ J=c\},
+$$
+
+correspondiente a fallecer durante un horizonte anual por la causa $c$, y el evento
+
+$$
+B=\{T_{x,t}\leq 1\},
+$$
+
+correspondiente a fallecer durante ese mismo horizonte anual por cualquier causa. Por definición,
+
+$$
+P(A_c)=\widehat q_{x,t}^{(c)}.
+$$
+
+Como las causas son mutuamente excluyentes y exhaustivas, el evento $B$ es la unión disjunta de los eventos $A_1,\ldots,A_r$. Por tanto,
+
+$$
+P(B)
+=
+\sum_{j=1}^{r}P(A_j)
+=
+\sum_{j=1}^{r}\widehat q_{x,t}^{(j)}
+=
+\widehat q_{x,t}^{(\tau)}.
+$$
+
+Además, como $A_c\subseteq B$, se tiene $A_c\cap B=A_c$. Así, mediante la definición de probabilidad condicional considere
+
+$$
+{\pi}_{x,t}^{(c)}
+:=
+P(J=c\mid T_{x,t}\leq 1)
+=
+\frac{P(A_c\cap B)}{P(B)}
+=
+\frac{q_{x,t}^{(c)}}
+{\displaystyle\sum_{j=1}^{r} q_{x,t}^{(j)}}.
+$$
+
+Al sustituir las probabilidades desconocidas por sus estimaciones, se obtiene
 
 $$
 \widehat{\pi}_{x,t}^{(c)}
 =
-P(J=c \mid \text{muerte en el grupo } x)
-=
-\frac{
-\widehat{q}_{x,t}^{(c)}
-}{
-\sum_{j=1}^{r}
-\widehat{q}_{x,t}^{(j)}
-}.
+\frac{\widehat q_{x,t}^{(c)}}
+{\displaystyle\sum_{j=1}^{r}\widehat q_{x,t}^{(j)}}.
 $$
 
-Esta cantidad debe de interpretarse como una probabilidad condicional: Dado que ocurre un fallecimiento en la celda, $\widehat{\pi}_{x,t}^{(c)}$ representa la proporción atribuible a la causa $c$. Por tanto, mientras $\widehat{q}_{x,t}^{(c)}$ mide el nivel absoluto del riesgo, $\widehat{\pi}_{x,t}^{(c)}$ describe la estructura causal de la mortalidad dentro de quienes fallecen.
+La condición $T_{x,t}\leq 1$ modifica el conjunto de referencia sobre el cual se calcula la probabilidad. Sin condicionar, $q_{x,t}^{(c)}$ considera a todas las vidas pertenecientes a la celda y mide la probabilidad de que una de ellas fallezca por la causa $c$ durante el horizonte anual. En cambio, al condicionar a que $T_{x,t}\leq 1$, se excluyen del conjunto de referencia todas las vidas que sobreviven ese año y se consideran únicamente aquellas que fallecen.
 
-Para una celda fija, las cantidades $\widehat{\pi}_{x,t}^{(c)}$ forman una distribución de probabilidad sobre las causas, ya que
+Por tanto,
+
+$$
+\pi_{x,t}^{(c)}
+=
+P(J=c\mid T_{x,t}\leq 1)
+$$
+
+responde a la siguiente pregunta: dado que una vida perteneciente a la celda $(x,t)$ fallece durante el próximo año, ¿cuál es la probabilidad de que ese fallecimiento sea atribuible a la causa $c$?
+
+Así, $\widehat q_{x,t}^{(c)}$ mide un riesgo absoluto respecto de todas las vidas de la celda, mientras que $\widehat{\pi}_{x,t}^{(c)}$ mide una composición causal respecto únicamente de las vidas que fallecen. Por ejemplo, si la probabilidad anual total de fallecimiento es $0.02$ y la probabilidad de fallecer por la causa $c$ es $0.006$, entonces
+
+$$
+\widehat\pi_{x,t}^{(c)}
+=
+\frac{0.006}{0.02}
+=
+0.30.
+$$
+
+Esto no significa que el $30\%$ de las vidas de la celda fallezca por la causa $c$, sino que, entre los fallecimientos ocurridos durante el horizonte anual, el $30\%$ se atribuye probabilísticamente a dicha causa.
+
+Asimismo es importante notar que para una celda fija, las cantidades estimadas $\widehat{\pi}_{x,t}^{(c)}$ forman una distribución de probabilidad sobre las causas, ya que
 
 $$
 \sum_{c=1}^{r}
@@ -334,7 +393,9 @@ $$
 1.
 $$
 
-Esta propiedad justifica el uso de gráficos de composición causal, similares en espíritu a los análisis de distribución de causas de muerte por grupo de edad, utilizados por Goerlich (2012). Sin embargo, para mantener la legibilidad, se propone mostrar únicamente algunas causas seleccionadas. En estos casos, el denominador de $\widehat{\pi}_{x,t}^{(c)}$ se mantendría como la suma de todas las causas, aunque solo se visualicen algunas. Por esta razón, cuando se presenten únicamente causas seleccionadas, las barras visibles no necesariamente sumarían $100\%$.
+Porque, una vez condicionado a que ocurrió un fallecimiento, la persona necesariamente tuvo que morir por una de las $r$ causas consideradas. Por tanto, las probabilidades condicionadas distribuyen la totalidad de la probabilidad entre las causas.
+
+Esta propiedad justifica el uso de gráficos de composición condicionada, similares en espíritu a los análisis de distribución de causas de muerte por grupo de edad, utilizados por Goerlich (2012, p.36). Sin embargo, para mantener la legibilidad, se propone mostrar únicamente algunas causas seleccionadas. En estos casos, el denominador de $\widehat{\pi}_{x,t}^{(c)}$ continuará incluyendo la suma de las probabilidades de decremento correspondientes a todas las causas, aunque solo se visualicen algunas. Por esta razón, cuando se presenten únicamente causas seleccionadas, las barras visibles no necesariamente sumarían 100%.
 
 El tercer análisis resume la concentración de la composición causal. Dado que $\widehat{\pi}_{x,t}^{(c)}$ define una distribución de probabilidad sobre las causas de muerte, se calcula el índice
 
@@ -357,7 +418,7 @@ H_{x,t}
 \right)^2.
 $$
 
-Este índice es una medida tipo Herfindahl-Simpson aplicada a la composición causal. Su valor se encuentra entre $0$ y $1$. Valores altos indican que la mortalidad de la celda está concentrada en pocas causas; valores bajos indican que la mortalidad está más distribuida entre varias causas [@simpson1949; @herfindahl1950; @hirschman1964].
+Este índice es una medida tipo Herfindahl-Simpson aplicada a la composición causal. Su valor se encuentra entre $1/r$ y $1$. Valores altos indican que la mortalidad de la celda está concentrada en pocas causas; valores bajos indican que la mortalidad está más distribuida entre varias causas [@simpson1949; @herfindahl1950; @hirschman1964].
 
 La interpretación probabilística de $H_{x,t}$ es directa. Si se seleccionan dos fallecimientos de manera independiente dentro de la misma celda, y si la probabilidad de que un fallecimiento corresponda a la causa $c$ es $\widehat{\pi}_{x,t}^{(c)}$, entonces la probabilidad de que ambos fallecimientos correspondan a la misma causa es
 
@@ -379,8 +440,6 @@ Por tanto, $H_{x,t}$ no se introduce únicamente como un indicador descriptivo, 
 En conjunto, los tres análisis cumplen funciones complementarias. La probabilidad absoluta $\widehat{q}_{x,t}^{(c)}$ permite analizar la magnitud del decremento por causa. La composición condicionada $\widehat{\pi}_{x,t}^{(c)}$ permite estudiar la estructura causal de las muertes dentro de cada grupo etario. Finalmente, el índice $H_{x,t}$ resume el grado de concentración de dicha estructura causal. Así, los gráficos utilizados no se plantean como visualizaciones aisladas, sino como representaciones de cantidades probabilísticas derivadas del modelo clásico de decrementos múltiples.
 
 Para efectos de visualización, las causas principales se seleccionan por país. Se incluye la categoría de causas externas de mortalidad debido a su relevancia en edades jóvenes y adultas, y se completan las restantes con las causas de mayor probabilidad promedio de decremento dentro del país. Además, las afecciones originadas en el periodo perinatal se analizan por separado, dado que presentan un perfil etario estructuralmente distinto, concentrado en edades iniciales. Esta selección afecta únicamente la presentación gráfica; los denominadores utilizados en $\widehat{q}_{x,t}^{(\tau)}$, $\widehat{\pi}_{x,t}^{(c)}$ y $H_{x,t}$ se calculan con todas las causas disponibles en cada celda.
-
-
 
 ### Enfoque bayesiano
 
@@ -651,7 +710,6 @@ $$
 
 Esta aproximación se justifica por la Ley de los Grandes Números.
 
-
 \newpage
-# Referencias
 
+# Referencias
