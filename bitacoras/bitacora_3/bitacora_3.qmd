@@ -134,7 +134,37 @@ La variable aleatoria $T_{x,t}$ representa el tiempo futuro de vida de una perso
 
 Aunque el objeto de estudio también depende del país y del sexo, estas dimensiones se mantienen se omiten de la expresión para no sobrecargar la notación, en el momento de presentación de resultados se hará explícito el sexo y el país al que se esté referiendo cada aseveración. De forma más general, la probabilidad podría escribirse como ${}_n q_{x,t,p,s}^{(c)}$, donde $p$ representa el país y $s$ el sexo.
 
-Para la estimación de estas causas se deberá de recurrir a los datos disponibles en la WHO Mortality Database, los cuales se presenran de manera agregada, por tanto la unidad de análisis será una celda definida por país y sexo dados, así como año calendario $t$, grupo etario $x$ y causa de muerte $c$. Para cada celda se tendrá un conteo de defunciones,
+Con respecto al sistema de clasificación de las causas de defunción: Existe una estandarización aún más general para la clasificación de enfermedades utilizando números romanos, la cual fue propuesta por la misma WHO, para agrupar de manera más amplia la causa de muerte en el cálculo de las tablas de vida de decrementos múltiples. Para efectos de este trabajo, se utilizará este estándar para un mejor manejo de datos. A continuación una tabla que explica el estándar:
+
+```{r, echo = FALSE}
+library(knitr)
+estandar <- data.frame(
+  "      **Grupo**     " = c("I","II","III","IV","V-VIII","IX","X","XI","XII","XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XX"),
+  "     **ICD-10** " = c("A00-B99, R75", "C00-D48","D50-D89","E00-E90","F00-H95","I00-I99","J00-J99","K00-K93","L00-L99","M00-M99", "N00-N99", "O00-O99 ", "P00-P96", "Q00-Q99", "R00-R74, R76-R99, U00-U99", "V01-Y89"),
+  "     **Causa**   " = c(
+    "Enfermedades infecciosas y parasitarias",
+    "Tumores",
+    "Enfermedades de la sangre y de los órganos hematopoyéticos, y ciertos trastornos que afectan al mecanismo de la inmunidad",
+    "Enfermedades endocrinas, nutricionales y metabólicas",
+    "Trastornos mentales y del comportamiento (V) y Enfermedades del sistema nervioso y de los órganos de los sentidos (VI-VIII)",
+    "Enfermedades del sistema circulatorio",
+    "Enfermedades del sistema respiratorio",
+    "Enfermedades del sistema digestivo",
+    "Enfermedades de la piel y del tejido subcutáneo",
+    "Enfermedades del sistema osteomuscular y del tejido conjuntivo",
+    "Enfermedades del sistema genitourinario",
+    "Embarazo, parto y puerperio",
+    "Afecciones originadas en el periodo perinatal",
+    "Malformaciones congénitas, deformidades y anomalías cromosómicas",
+    "Síntomas, signos y hallazgos anormales clínicos y de laboratorio, no clasificados en otra parte.",
+    "Causas externas de mortalidad"
+  ), check.names = FALSE
+)
+
+kable(estandar, caption = "*Explicación de la lista de tabulación de mortalidad de la ICD-10. Obtenido de: World Health Organization (WHO)*")
+```
+
+Para la estimación de estas causas se deberá de recurrir a los datos disponibles en la WHO Mortality Database, los cuales se presentan de manera agregada, por tanto la unidad de análisis será una celda definida por país y sexo dados, así como año calendario $t$, grupo etario $x$ y causa de muerte $c$. Para cada celda se tendrá un conteo de defunciones,
 
 $$D_{x,t}^{(c)},$$
 
@@ -142,7 +172,7 @@ obtenido de la WHO Mortality Database, y una exposición en años-persona,
 
 $$E_{x,t},$$
 
-aproximada mediante la población media o población a mitad de año, la cual es obtenida de la Population and live births Database, también de la WHO. Pitacco et al. (2009) validan esta aproximación para la exposición.
+aproximada mediante la población a mitad de año correspondiente al mismo país, sexo, año calendario y grupo etario, obtenida de World Population Prospects 2024. Esta aproximación es metodológicamente razonable en este contexto, pues la población a mitad de año suele utilizarse como aproximación de la exposición al riesgo cuando se trabaja con datos agregados anuales; Pitacco et al. (2009) discuten esta interpretación de la exposición en modelos de mortalidad.
 
 Antes de pasar a los enfoques de estimación, es necesario aclarar con mayor precisión los supuestos bajo los cuales se interpretará el objeto actuarial del proyecto. En este sentido, la notación actuarial general $\,{}_n q_{x,t}^{(c)}\,$ es útil para introducir la idea de probabilidad de decremento por causa, y además es cercana a la notación estándar utilizada en trabajos sobre probabilidades de decrementos múltiples. En una formulación actuarial más general, para trabajar con $\,{}_n q_{x',t'}^{(c)}\,$ se puede interpretar $x'$ como una edad exacta y $t'$ como un momento exacto del calendario. Sin embargo, en dichos trabajos se suele contar con maneras precisas de estimar las probabilidades $,{}q_{x',t'}^{(c)},$ para al menos todos los $x',t'$ enteros, de manera que mediante supuestos como fuerza de mortalidad constante en cada celda $[x', x'+1)$ y $[t',t'+1)$ se pueden estimar toda la familia de probabilidades $,{}_n q_{x',t'}^{(c)},$ para $x',t',n$ reales.
 
@@ -511,3 +541,8 @@ Q_{x,t}^{(c)}
 $$
 
 Esta aproximación se justifica por la Ley de los Grandes Números.
+
+
+\newpage
+# Referencias
+
