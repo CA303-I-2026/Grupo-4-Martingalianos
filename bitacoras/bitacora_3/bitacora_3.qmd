@@ -469,114 +469,222 @@ $$
 \frac{\alpha_p^{(c)}}{\beta_p^{(c)}}.
 $$
 
-Se debe recordar que la metodología se aplica dentro de un subconjunto específico país-sexo dados, por ejemplo Costa Rica-hombres, Costa Rica-mujeres, Guatemala-hombres, etc. La única excepción será la notación de los hiperparámetros, donde sí se escribirá el país $p$. Esto permitirá recordar que $\alpha_p^{(c)}$ y $\beta_p^{(c)}$ se diferenciarán por causa y país, así siendo constantes en las variables de grupo etario $x$, año calendario $t$ y sexo.
-
-Para formalizar esa idea, para cada sexo, país $p$ y causa $c$ se define
-
-$$
-\mathcal I_p^{(c)}
-=
-\left\{
-(x,t): \text{país } p \text{ y causa } c \text{ fijos}
-\right\},
-$$
-
-donde los $(x,t)$ representan todos los pares de índices del grupo etario $x$ en el año calendario $t$ con un sexo dado, correspondientes a esa causa $c$ en ese país $p$.
-
-Con esas observaciones se estiman los hiperparámetros $\alpha_p^{(c)}$ y $\beta_p^{(c)}$. Es decir, para cada país y causa se usa la información observada en los distintos sexos, grupos etarios y años calendario, pero el resultado final es un único par de hiperparámetros:
+Se debe recordar que, aunque en buena parte de la metodología se omiten el país y el sexo de la notación para evitar sobrecargarla, la estimación se realiza utilizando celdas definidas por país, sexo, grupo etario, año calendario y causa. En el caso de los hiperparámetros sí se mantendrá explícito el país $p$, ya que se estimará un par distinto para cada combinación de país y causa:
 
 $$
 \alpha_p^{(c)},\beta_p^{(c)}.
 $$
 
-Esto se hace así debido a que los hiperparámetros serán estimados mediante un método llamado Empirical Bayes, en donde la idea es que se incorpore una experiencia grupal, de forma que cada celda $(x,t)$ conserva su propia información observada, pero también se beneficia de la experiencia colectiva del país y la causa. Esto es útil porque muchas celdas pueden tener conteos pequeños o incluso nulos.
+Estos hiperparámetros serán comunes para los distintos sexos, grupos etarios y años calendario incluidos en la experiencia colectiva del país $p$ y la causa $c$. Es decir, para cada país y causa se utilizará la información observada en ambos sexos, los distintos grupos etarios y los años 2015 a 2018, pero el resultado será un único par de hiperparámetros.
 
-Por conjugación Poisson-Gamma, una vez estimados los hiperparámetros, se obtiene
+Para formalizar esta idea, se define
 
 $$
-\mu_{x,t}^{(c)}
-\mid
-D_{x,t}^{(c)},E_{x,t}
-\sim
-\operatorname{Gamma}
-\left(
-\widehat{\alpha}_p^{(c)}+D_{x,t}^{(c)},
-\widehat{\beta}_p^{(c)}+E_{x,t}
-\right).
+\mathcal I_p^{(c)}
+=
+\left\{
+(s,x,t):
+\text{país }p\text{ y causa }c\text{ fijos}
+\right\},
 $$
+
+donde $s$ representa el sexo, $x$ el grupo etario y $t$ el año calendario. Por tanto, $\mathcal I_p^{(c)}$ contiene las celdas cuya experiencia se utilizará para estimar los hiperparámetros correspondientes al país $p$ y la causa $c$.
+
+Para la mayoría de las causas, el conjunto $\mathcal I_p^{(c)}$ incluirá todas las combinaciones disponibles de sexo, grupo etario y año calendario. Sin embargo, antes de realizar la estimación es necesario distinguir entre ceros observacionales y ceros estructurales.
+
+Un cero observacional corresponde a una celda en la cual la muerte por la causa $c$ es posible, pero no se registraron defunciones durante el año analizado. Estas celdas deben mantenerse en la estimación, ya que aportan información sobre la intensidad de mortalidad.
+
+En cambio, un cero estructural corresponde a una combinación de sexo o grupo etario para la cual la causa no resulta aplicable. Estas celdas no deben interpretarse como observaciones de una intensidad pequeña, sino como casos que se encuentran fuera del conjunto de riesgo correspondiente a la causa.
+
+En particular, para la causa XV, correspondiente a embarazo, parto y puerperio, se define
+
+$$
+\mathcal I_p^{(\mathrm{XV})}
+:=
+\left\{
+(\text{Mujer},x,t):
+x\in
+\{
+10\text{-}54
+\},
+\quad
+t\in\{2015,2016,2017,2018\}
+\right\}.
+$$
+
+Por tanto, para esta causa no se utilizarán en la estimación de los hiperparámetros las celdas correspondientes a hombres ni los grupos etarios situados fuera de dicho intervalo. No obstante, los conteos iguales a cero que aparezcan dentro de las celdas femeninas incluidas sí permanecerán en la estimación.
+
+Para la causa XVI, afecciones originadas en el periodo perinatal, se define
+
+$$
+\mathcal I_p^{(\mathrm{XVI})}
+:=
+\left\{
+(s,0\text{-}4,t):
+s\in\{\text{Hombre},\text{Mujer}\},
+\quad
+t\in\{2015,2016,2017,2018\}
+\right\}.
+$$
+
+En este caso, la estimación utilizará solamente las celdas correspondientes al grupo etario $0\text{-}4$, para ambos sexos y todos los años disponibles. Los conteos nulos observados dentro de estas celdas también se conservarán.
+
+Así, las restricciones anteriores no implican eliminar de manera general las observaciones para las cuales
+
+$$
+D_{x,t,s}^{(c)}=0.
+$$
+
+Únicamente se excluyen las celdas que se encuentran fuera del dominio de aplicación de la causa.
+
+Esto permite mantener la idea de experiencia colectiva propia del enfoque Empirical Bayes. Cada celda conserva su información observada, pero la estimación de su intensidad se beneficia de la experiencia conjunta del país y la causa. Esta característica resulta especialmente útil cuando existen celdas con poca exposición, conteos pequeños o conteos nulos.
 
 #### Estimación de $\alpha_p^{(c)}$ y $\beta_p^{(c)}$
 
-Los hiperparámetros $\alpha_p^{(c)}$ y $\beta_p^{(c)}$ se estimarán mediante un método llamado Empirical Bayes, inspirados en el enfoque tomado por Zhang et al. (2019). Esto significa que no se fijan subjetivamente, sino que se estiman desde los propios conteos observados.
+Los hiperparámetros $\alpha_p^{(c)}$ y $\beta_p^{(c)}$ se estimarán mediante un enfoque Empirical Bayes, inspirado en el procedimiento presentado por Zhang et al. (2019). Esto significa que no se fijarán subjetivamente, sino que se estimarán a partir de los conteos observados pertenecientes al conjunto $\mathcal I_p^{(c)}$.
 
-En este sentido, el modelo bayesiano se puede entender como una jerarquía creciente de 3 niveles:
+El modelo bayesiano puede representarse mediante la jerarquía
 
 $$
 \alpha_p^{(c)},\beta_p^{(c)}
 \longrightarrow
-\mu_{x,t}^{(c)}
+\mu_{x,t,s}^{(c)}
 \longrightarrow
-D_{x,t}^{(c)}.
+D_{x,t,s}^{(c)}.
 $$
 
-En el primer nivel, los hiperparámetros $\alpha_p^{(c)}$ y $\beta_p^{(c)}$ describen la experiencia colectiva asociada al país $p$ y a la causa $c$. En el segundo nivel, cada intensidad específica $\mu_{x,t}^{(c)}$ representa el riesgo latente propio de la celda $(x,t)$, pero dicha intensidad no se observa directamente. En el tercer nivel se encuentran los conteos observados $D_{x,t}^{(c)}$, que son los datos efectivamente disponibles.
+En el primer nivel, los hiperparámetros $\alpha_p^{(c)}$ y $\beta_p^{(c)}$ describen la experiencia colectiva asociada al país $p$ y a la causa $c$. En el segundo nivel, cada intensidad $\mu_{x,t,s}^{(c)}$ representa el riesgo latente propio de una celda definida por sexo, grupo etario y año calendario. Finalmente, en el tercer nivel se encuentran los conteos observados $D_{x,t,s}^{(c)}$.
 
-La dificultad es que el nivel intermedio, $\mu_{x,t}^{(c)}$, no se observa directamente, sino que lo observado son las defunciones y exposiciones. Si las fuerzas de mortalidad fueran observadas, se podría estimar fácilmente $\alpha_p^{(c)}$ y $\beta_p^{(c)}$ mediante máxima verosimilitud o algún método similar.
-
-Por lo mencionado anteriormente para estimar los hiperparámetros no se trabaja con una verosimilitud basada en $\mu_{x,t}^{(c)}$ de manera observada, sino con la distribución marginal de los conteos observados. Esto se logra integrando la intensidad latente:
+Para cada celda aplicable se mantiene el modelo
 
 $$
-P\left(D_{x,t}^{(c)}=d\right)
+D_{x,t,s}^{(c)}
+\mid
+\mu_{x,t,s}^{(c)}
+\sim
+\operatorname{Poisson}
+\left(
+E_{x,t,s}\mu_{x,t,s}^{(c)}
+\right),
+$$
+
+junto con la distribución previa
+
+$$
+\mu_{x,t,s}^{(c)}
+\sim
+\operatorname{Gamma}
+\left(
+\alpha_p^{(c)},
+\beta_p^{(c)}
+\right),
+$$
+
+donde $\beta_p^{(c)}$ se parametriza como tasa. Por tanto,
+
+$$
+\mathbb{E}\left[
+\mu_{x,t,s}^{(c)}
+\right]
+=
+\frac{\alpha_p^{(c)}}{\beta_p^{(c)}}.
+$$
+
+La dificultad es que las intensidades $\mu_{x,t,s}^{(c)}$ no se observan directamente. Los datos disponibles son las defunciones $D_{x,t,s}^{(c)}$ y las exposiciones $E_{x,t,s}$. Por ello, los hiperparámetros no se estimarán utilizando una muestra observada de intensidades, sino mediante la distribución marginal de los conteos.
+
+Esta distribución se obtiene integrando la intensidad latente:
+
+$$
+P\left(
+D_{x,t,s}^{(c)}=d
+\right)
 =
 \int_0^\infty
-P\left(D_{x,t}^{(c)}=d\mid \mu\right)
-f\left(\mu\mid \alpha_p^{(c)},\beta_p^{(c)}\right)
+P\left(
+D_{x,t,s}^{(c)}=d
+\mid
+\mu
+\right)
+f\left(
+\mu
+\mid
+\alpha_p^{(c)},\beta_p^{(c)}
+\right)
 d\mu.
 $$
 
-Este paso elimina el nivel intermedio no observado y deja una relación directa entre los hiperparámetros y los conteos:
+Este procedimiento elimina el nivel intermedio no observado y produce una relación directa entre los hiperparámetros y los conteos:
 
 $$
 \alpha_p^{(c)},\beta_p^{(c)}
 \longrightarrow
-D_{x,t}^{(c)}.
+D_{x,t,s}^{(c)}.
 $$
 
-Como es señalado por Schmitt et al. (2019), al integrar la variable intermedia en nuestra familia conjugada Poisson-Gamma se obtiene una distribución marginal binomial negativa para nivel superior, de forma que:
+Como señalan Schmitt et al. (2019), al integrar la intensidad en el modelo conjugado Poisson--Gamma se obtiene una distribución marginal binomial negativa:
 
 $$
-P\left(D_{x,t}^{(c)}=d\right)
+P\left(
+D_{x,t,s}^{(c)}=d
+\right)
 =
-\frac{\Gamma\left(\alpha_p^{(c)}+d\right)}
-{\Gamma\left(\alpha_p^{(c)}\right)d!}
+\frac{
+\Gamma\left(\alpha_p^{(c)}+d\right)
+}{
+\Gamma\left(\alpha_p^{(c)}\right)d!
+}
 \left(
-\frac{\beta_p^{(c)}}{\beta_p^{(c)}+E_{x,t}}
+\frac{
+\beta_p^{(c)}
+}{
+\beta_p^{(c)}+E_{x,t,s}
+}
 \right)^{\alpha_p^{(c)}}
 \left(
-\frac{E_{x,t}}{\beta_p^{(c)}+E_{x,t}}
+\frac{
+E_{x,t,s}
+}{
+\beta_p^{(c)}+E_{x,t,s}
+}
 \right)^d.
 $$
 
-Este procedimiento es precisamente el que permite seguir la lógica Empirical Bayes descrita por Zhang et al. (2019), en donde siguen esta lógica para estimar los hiperparámetros asociados al parámetro original, y concluyen que la mejor forma es mediante maxima verosimilitud, maximizando la log-verosimilitud marginal construida con las celdas $(x,t)$ correspondientes.
-
-Por tanto, para cada país $p$ y causa $c$, se maximizará la log-verosimilitud marginal, mediante la función `optim()` en R.
+Siguiendo la lógica Empirical Bayes descrita por Zhang et al. (2019), los hiperparámetros se estimarán mediante máxima verosimilitud marginal. Para cada país $p$ y causa $c$, se construye la log-verosimilitud
 
 $$
 \begin{aligned}
-\ell_{p}^{(c)}(\alpha,\beta)
+\ell_p^{(c)}(\alpha,\beta)
 =
-\sum_{(x,t)\in\mathcal I_p^{(c)}} \Bigg[
-&\log\Gamma(\alpha+D_{x,t}^{(c)})
--\log\Gamma(\alpha)
--\log(D_{x,t}^{(c)}!) \\[2mm]
-&+\alpha\log\left(\frac{\beta}{\beta+E_{x,t}}\right)
-+D_{x,t}^{(c)}
-\log\left(\frac{E_{x,t}}{\beta+E_{x,t}}\right)
+\sum_{(s,x,t)\in\mathcal I_p^{(c)}}\Bigg[
+&
+\log\Gamma\left(
+\alpha+D_{x,t,s}^{(c)}
+\right)
+-
+\log\Gamma(\alpha)
+-
+\log\left(
+D_{x,t,s}^{(c)}!
+\right)
+\\[2mm]
+&
++
+\alpha
+\log\left(
+\frac{\beta}
+{\beta+E_{x,t,s}}
+\right)
++
+D_{x,t,s}^{(c)}
+\log\left(
+\frac{E_{x,t,s}}
+{\beta+E_{x,t,s}}
+\right)
 \Bigg].
 \end{aligned}
 $$
 
-Así se tiene que, para cada país $p$ y causa $c$:
+Por tanto, para cada país $p$ y causa $c$, los estimadores Empirical Bayes se definen como
 
 $$
 \left(
@@ -584,8 +692,54 @@ $$
 \widehat{\beta}_p^{(c)}
 \right)
 =
-\arg\max_{\alpha>0,\ \beta>0}
-\ell_{p}^{(c)}(\alpha,\beta).
+\underset{\alpha>0,\ \beta>0}
+{\operatorname{arg\,max}}
+\;
+\ell_p^{(c)}(\alpha,\beta).
+$$
+
+La maximización se realizará numéricamente mediante la función `optim()` de R. Para garantizar que los parámetros permanezcan positivos, la optimización se realizará sobre $\log(\alpha)$ y $\log(\beta)$, recuperando posteriormente los valores de $\alpha$ y $\beta$ mediante la función exponencial. Esta transformación no modifica el criterio de máxima verosimilitud, sino que facilita la búsqueda numérica respetando las restricciones
+
+$$
+\alpha>0,
+\qquad
+\beta>0.
+$$
+
+Una vez estimados los hiperparámetros, para cada celda perteneciente a $\mathcal I_p^{(c)}$ se obtiene por conjugación Poisson--Gamma
+
+$$
+\mu_{x,t,s}^{(c)}
+\mid
+D_{x,t,s}^{(c)},E_{x,t,s}
+\sim
+\operatorname{Gamma}
+\left(
+\widehat{\alpha}_p^{(c)}
++
+D_{x,t,s}^{(c)},
+\widehat{\beta}_p^{(c)}
++
+E_{x,t,s}
+\right).
+$$
+
+Para las celdas situadas fuera de $\mathcal I_p^{(c)}$ no se generará una intensidad mediante la distribución Gamma posterior. En la implementación, su contribución a la intensidad total de la celda se fijará en cero y se conservará un indicador que señale que la causa no fue considerada aplicable dentro del dominio definido para el proyecto.
+
+Este valor nulo no debe interpretarse necesariamente como una afirmación general de imposibilidad biológica, sino como una restricción del dominio de modelación adoptado según el sexo, la agrupación etaria y el soporte observado en los datos. La excepción más clara corresponde a la causa XV en hombres, para la cual el cero sí se considera estructural.
+
+En cambio, las celdas pertenecientes a $\mathcal I_p^{(c)}$ permanecerán en la estimación incluso cuando $D_{x,t,s}^{(c)}=0$. En esos casos, la intensidad posterior no se fija en cero, sino que se obtiene mediante
+
+$$
+\mu_{x,t,s}^{(c)}
+\mid
+D_{x,t,s}^{(c)} = 0
+\sim
+\operatorname{Gamma}
+\left(
+\widehat{\alpha}_p^{(c)}+0,
+\widehat{\beta}_p^{(c)}+E_{x,t,s}
+\right).
 $$
 
 #### Simulación posterior de $q_{x,t}^{(c)}$
@@ -617,7 +771,7 @@ $$
 \mathbb{E}\left[
 \frac{\mu_{x,t}^{(c)}}{\mu_{x,t}^{(\tau)}}
 \left(
-1-e^{\mu_{x,t}^{(\tau)}}
+1-e^{-\mu_{x,t}^{(\tau)}}
 \right)
 \mid
 D_{x,t}^{(1)},\ldots,D_{x,t}^{(r)},E_{x,t}
@@ -625,10 +779,10 @@ D_{x,t}^{(1)},\ldots,D_{x,t}^{(r)},E_{x,t}
 \end{aligned}
 $$
 
-Para simplificar la notación, de ahora en adelante se denotará por $\mathcal{D}_{x,t}$ a los conteos de defunciones por causa junto con la exposición correspondientem de la celda $x,t$. Por tanto, la esperanza anterior se escribirá simplemente como
+Para simplificar la notación, de ahora en adelante se denotará por $\mathcal{D}_{x,t}$ a los conteos de defunciones por causa junto con la exposición correspondiente de la celda $x,t$. Por tanto, la esperanza anterior se escribirá simplemente como
 
 $$
-\mathbb{E}[{}Q_{x,t}^{(c)}\mid D_{x,t}]
+\mathbb{E}[{}Q_{x,t}^{(c)}\mid \mathcal{D}_{x,t}]
 $$
 
 Note que ${}Q_{x,t}^{(c)} = f(\mu_{x,t}^{(1)},\ldots,\mu_{x,t}^{(r)})$ y en general se tiene que
