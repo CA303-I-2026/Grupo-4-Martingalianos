@@ -92,10 +92,12 @@ La intensidad se modela con una distribución Gamma:
 ```math
 \mu_{x,t}^{(c)}
 \sim
-\operatorname{Gamma}
+\mathrm{Gamma}
 \left(
 \alpha_p^{(c)},\beta_p^{(c)}
-\right), \quad \mathbb{E}\left[\mu_{x,t}^{(c)}\right]
+\right),
+\qquad
+\mathbb{E}\left[\mu_{x,t}^{(c)}\right]
 =
 \frac{\alpha_p^{(c)}}{\beta_p^{(c)}}
 ```
