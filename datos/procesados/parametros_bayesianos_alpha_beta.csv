@@ -1,0 +1,97 @@
+pais,causa,causa_grupo,alpha,beta
+Belice,I,Enfermedades infecciosas y parasitarias,0.7923667072405164,884.1294437929569
+Belice,II,Tumores,0.3119709422420788,80.48846011384009
+Belice,III,Enfermedades de la sangre y de los órganos hematopoyéticos y ciertos trastornos de la inmunidad,0.13160855437919852,524.2137064466625
+Belice,IV,"Enfermedades endocrinas, nutricionales y metabólicas",0.2340626412611338,38.41034805852031
+Belice,IX,Enfermedades del sistema circulatorio,0.17939174579328157,6.7246267609550054
+Belice,V-VIII,"Trastornos mentales, enfermedades del sistema nervioso y de los órganos de los sentidos",0.3209615545548054,613.1986456582772
+Belice,X,Enfermedades del sistema respiratorio,0.21893119248900944,19.79654043581748
+Belice,XI,Enfermedades del sistema digestivo,0.3812994007750573,333.60527920422663
+Belice,XII,Enfermedades de la piel y del tejido subcutáneo,0.029718678617005966,62.38424472955056
+Belice,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,0.42741775128766135,18319.416514485376
+Belice,XIV,Enfermedades del sistema genitourinario,0.17076426863370875,111.60262121653419
+Belice,XV,"Embarazo, parto y puerperio",1.0882252836141464,52185.41307539595
+Belice,XVI,Afecciones originadas en el periodo perinatal,37.291940276462476,23274.690125581226
+Belice,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.12218625733966805,1962.8797813030362
+Belice,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.07819501042873055,44.2073939268513
+Belice,XX,Causas externas de mortalidad,0.9871695097580168,875.5827422725299
+Costa Rica,I,Enfermedades infecciosas y parasitarias,0.4459973590175838,1238.7148764241715
+Costa Rica,II,Tumores,0.34466949896945565,59.59700732737815
+Costa Rica,III,Enfermedades de la sangre y de los órganos hematopoyéticos y ciertos trastornos de la inmunidad,0.39737668904948414,6540.314938481101
+Costa Rica,IV,"Enfermedades endocrinas, nutricionales y metabólicas",0.2805222424043851,158.7547665244733
+Costa Rica,IX,Enfermedades del sistema circulatorio,0.21391354264186527,14.368499733753284
+Costa Rica,V-VIII,"Trastornos mentales, enfermedades del sistema nervioso y de los órganos de los sentidos",0.2967962422693733,145.31686773769383
+Costa Rica,X,Enfermedades del sistema respiratorio,0.2077419660517235,32.318853178423744
+Costa Rica,XI,Enfermedades del sistema digestivo,0.28426043675934015,135.12464943778463
+Costa Rica,XII,Enfermedades de la piel y del tejido subcutáneo,0.14044531994796688,619.6857496140034
+Costa Rica,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,0.3075023960962243,1437.3837047163286
+Costa Rica,XIV,Enfermedades del sistema genitourinario,0.21538878180351817,118.13269623498574
+Costa Rica,XV,"Embarazo, parto y puerperio",1.8674924137965323,195936.00587977853
+Costa Rica,XVI,Afecciones originadas en el periodo perinatal,116.41342573247233,149513.70114111368
+Costa Rica,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.1875077860976672,4929.732282096925
+Costa Rica,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.24535077255947968,265.39785965895544
+Costa Rica,XX,Causas externas de mortalidad,0.5239909078306921,296.9129232875335
+El Salvador,I,Enfermedades infecciosas y parasitarias,0.3572588870482701,155.57687393754316
+El Salvador,II,Tumores,0.3605696652651745,86.89555444242704
+El Salvador,III,Enfermedades de la sangre y de los órganos hematopoyéticos y ciertos trastornos de la inmunidad,0.5646395864501054,5880.197155892228
+El Salvador,IV,"Enfermedades endocrinas, nutricionales y metabólicas",0.33094492279595417,145.32752555177103
+El Salvador,IX,Enfermedades del sistema circulatorio,0.22834689007251843,8.079801674157425
+El Salvador,V-VIII,"Trastornos mentales, enfermedades del sistema nervioso y de los órganos de los sentidos",0.395576675608733,338.18145270784856
+El Salvador,X,Enfermedades del sistema respiratorio,0.25031863224159373,24.22544886000979
+El Salvador,XI,Enfermedades del sistema digestivo,0.3367257643217442,148.34578848384226
+El Salvador,XII,Enfermedades de la piel y del tejido subcutáneo,0.21432827399785673,942.01669451199
+El Salvador,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,0.3316222529089759,2955.391491757187
+El Salvador,XIV,Enfermedades del sistema genitourinario,0.3156382471763207,81.1654986033304
+El Salvador,XV,"Embarazo, parto y puerperio",1.7027351356051308,133362.8136789783
+El Salvador,XVI,Afecciones originadas en el periodo perinatal,31.027516822839488,53280.32892865201
+El Salvador,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.32202118165526455,10079.671183323153
+El Salvador,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.22957948802152217,8.644459598498509
+El Salvador,XX,Causas externas de mortalidad,0.6349707960094612,264.0264492565379
+Guatemala,I,Enfermedades infecciosas y parasitarias,0.3920542630516338,167.9939146744772
+Guatemala,II,Tumores,0.3301210275660026,50.888426499134475
+Guatemala,III,Enfermedades de la sangre y de los órganos hematopoyéticos y ciertos trastornos de la inmunidad,0.3889339840530276,849.4393301905235
+Guatemala,IV,"Enfermedades endocrinas, nutricionales y metabólicas",0.27325537304378866,31.28162177356324
+Guatemala,IX,Enfermedades del sistema circulatorio,0.20565159727009646,5.450200684981955
+Guatemala,V-VIII,"Trastornos mentales, enfermedades del sistema nervioso y de los órganos de los sentidos",0.3665797942594583,207.48566186855803
+Guatemala,X,Enfermedades del sistema respiratorio,0.2271562172048881,10.478328468860155
+Guatemala,XI,Enfermedades del sistema digestivo,0.3789577771646922,103.93406945490673
+Guatemala,XII,Enfermedades de la piel y del tejido subcutáneo,0.2546233365537916,896.7953667202494
+Guatemala,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,0.2836493648045543,779.177083397051
+Guatemala,XIV,Enfermedades del sistema genitourinario,0.29329143607641456,74.80708849823544
+Guatemala,XV,"Embarazo, parto y puerperio",0.8552211286446156,16103.193822855756
+Guatemala,XVI,Afecciones originadas en el periodo perinatal,41.87175311370694,27145.366570990893
+Guatemala,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.43784119889065387,5995.526156549936
+Guatemala,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.2241341128261898,8.931537247789013
+Guatemala,XX,Causas externas de mortalidad,0.6265847667524483,263.19773248358246
+Nicaragua,I,Enfermedades infecciosas y parasitarias,0.6406329075413526,1651.725966929227
+Nicaragua,II,Tumores,0.32782376388169704,57.00945731647617
+Nicaragua,III,Enfermedades de la sangre y de los órganos hematopoyéticos y ciertos trastornos de la inmunidad,1.296973628971375,40377.353656262254
+Nicaragua,IV,"Enfermedades endocrinas, nutricionales y metabólicas",0.2741537380120345,57.03870218433654
+Nicaragua,IX,Enfermedades del sistema circulatorio,0.1843281658661053,3.3300154027354245
+Nicaragua,V-VIII,"Trastornos mentales, enfermedades del sistema nervioso y de los órganos de los sentidos",0.5366326173345246,1033.1900042281604
+Nicaragua,X,Enfermedades del sistema respiratorio,0.1968249871872201,11.892932385142554
+Nicaragua,XI,Enfermedades del sistema digestivo,0.3256663996902092,101.00802223811958
+Nicaragua,XII,Enfermedades de la piel y del tejido subcutáneo,0.1908910384138688,650.7284769927821
+Nicaragua,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,0.532796431563293,8365.196922666495
+Nicaragua,XIV,Enfermedades del sistema genitourinario,0.2704034206086549,56.85214474733451
+Nicaragua,XV,"Embarazo, parto y puerperio",1.4557792864598393,66600.1895896267
+Nicaragua,XVI,Afecciones originadas en el periodo perinatal,26.27814664517306,17555.39358132048
+Nicaragua,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.3024593854435354,4885.352367644685
+Nicaragua,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.1586036929212552,21.226614661228705
+Nicaragua,XX,Causas externas de mortalidad,0.45282250102534577,239.3978141598199
+Panama,I,Enfermedades infecciosas y parasitarias,0.5900857393367094,588.0269700993441
+Panama,II,Tumores,0.32273103202840897,49.16330428690288
+Panama,III,Enfermedades de la sangre y de los órganos hematopoyéticos y ciertos trastornos de la inmunidad,0.35173217471246826,1543.3216172125778
+Panama,IV,"Enfermedades endocrinas, nutricionales y metabólicas",0.2338889305969322,53.898704519335105
+Panama,IX,Enfermedades del sistema circulatorio,0.18238114467337954,5.930524995880344
+Panama,V-VIII,"Trastornos mentales, enfermedades del sistema nervioso y de los órganos de los sentidos",0.276227007971519,113.98751119718776
+Panama,X,Enfermedades del sistema respiratorio,0.2025411937008375,19.726291467468407
+Panama,XI,Enfermedades del sistema digestivo,0.2866400155139761,138.95517432015956
+Panama,XII,Enfermedades de la piel y del tejido subcutáneo,0.14411904214240473,256.49009273390305
+Panama,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,0.2102263293720929,757.1198866671059
+Panama,XIV,Enfermedades del sistema genitourinario,0.2121030063065608,66.51460352457521
+Panama,XV,"Embarazo, parto y puerperio",1.411898342872912,55602.15228949411
+Panama,XVI,Afecciones originadas en el periodo perinatal,45.27173429590767,39495.95514811301
+Panama,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.1318814831794554,2512.169078520769
+Panama,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.26186143543562723,81.97595080964369
+Panama,XX,Causas externas de mortalidad,0.8185574116206725,1138.3133879181944
