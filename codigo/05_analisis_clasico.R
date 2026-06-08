@@ -7,6 +7,7 @@ library(ggplot2)
 library(here)
 library(stringr)
 library(scales)
+library(ggsci)
 
 options(scipen = 999)
 
@@ -22,12 +23,65 @@ resultados_clasico <- read_csv(
 )
 
 
+# Solo se contrastan 2015 y 2018
+
+anios_comparacion <- c(2015, 2018)
+
+resultados_clasico <- resultados_clasico %>%
+  filter(anio %in% anios_comparacion)
+
+
 # ---------------------------------------------------------------------------
-# 2. Preparar variables generales
+# 2. Funciones auxiliares
 # ---------------------------------------------------------------------------
 
-# Ordenar grupos etarios por límite inferior.
-# Esto evita ordenamientos alfabéticos como: 0-4, 10-14, 15-19, 5-9.
+etiqueta_pct_directa <- function(x, decimales = 2) {
+  x_fmt <- format(
+    round(x, decimales),
+    nsmall = decimales,
+    trim = TRUE,
+    scientific = FALSE
+  )
+  
+  x_fmt <- sub("(\\.\\d*?)0+$", "\\1", x_fmt)
+  x_fmt <- sub("\\.$", "", x_fmt)
+  
+  paste0(x_fmt, "%")
+}
+
+
+etiqueta_pct_proporcion <- function(x, decimales = 1) {
+  x <- x * 100
+  
+  x_fmt <- format(
+    round(x, decimales),
+    nsmall = decimales,
+    trim = TRUE,
+    scientific = FALSE
+  )
+  
+  x_fmt <- sub("(\\.\\d*?)0+$", "\\1", x_fmt)
+  x_fmt <- sub("\\.$", "", x_fmt)
+  
+  paste0(x_fmt, "%")
+}
+
+
+tema_clasico <- function() {
+  theme_minimal() +
+    theme(
+      axis.text.x = element_text(angle = 90, vjust = 0.5),
+      legend.position = "bottom",
+      plot.title = element_text(face = "bold"),
+      strip.text = element_text(face = "bold"),
+      legend.title = element_text(face = "bold")
+    )
+}
+
+
+# ---------------------------------------------------------------------------
+# 3. Preparar variables generales
+# ---------------------------------------------------------------------------
 
 orden_edades <- resultados_clasico %>%
   distinct(grupo_edad) %>%
@@ -37,9 +91,6 @@ orden_edades <- resultados_clasico %>%
   arrange(edad_inicio) %>%
   pull(grupo_edad)
 
-
-# Estandarizar nombres de carpetas por país.
-# Las carpetas ya existen dentro de figuras/clasico.
 
 resultados_clasico <- resultados_clasico %>%
   mutate(
@@ -54,23 +105,18 @@ resultados_clasico <- resultados_clasico %>%
       TRUE ~ str_to_lower(pais)
     ),
     causa_grupo_wrap = str_wrap(causa_grupo, width = 35),
-    q_100mil = q_c * 100000
+    q_porcentaje = q_c * 100
   )
 
 
 # ---------------------------------------------------------------------------
-# 3. Composición causal condicionada al fallecimiento
+# 4. Composición causal condicionada al fallecimiento
 # ---------------------------------------------------------------------------
 
-# prop_q representa:
+# prop_q = q_c / sum_j q_j
 #
-#   prop_q = q_c / sum_j q_j
-#
-# Es decir, dado que ocurre una muerte en la celda, qué proporción corresponde
-# a cada causa.
-#
-# Esto es el análogo más cercano al análisis tipo Goerlich.
-# No es q_c absoluto.
+# El denominador usa TODAS las causas dentro de:
+# anio, pais, sexo, grupo_edad.
 
 composicion_causal <- resultados_clasico %>%
   group_by(anio, pais, pais_carpeta, sexo, grupo_edad) %>%
@@ -82,15 +128,12 @@ composicion_causal <- resultados_clasico %>%
 
 
 # ---------------------------------------------------------------------------
-# 4. Concentración causal
+# 5. Concentración causal
 # ---------------------------------------------------------------------------
 
-# Índice tipo Herfindahl:
+# H = sum_c prop_q^2
 #
-#   H = sum_c prop_q^2
-#
-# Si H es alto, la mortalidad está concentrada en pocas causas.
-# Si H es bajo, está más distribuida entre causas.
+# Se calcula con TODAS las causas.
 
 concentracion_causal <- composicion_causal %>%
   group_by(anio, pais, pais_carpeta, sexo, grupo_edad) %>%
@@ -103,22 +146,103 @@ concentracion_causal <- composicion_causal %>%
 
 
 # ---------------------------------------------------------------------------
-# 5. Función auxiliar de tema
+# 6. Selección de causas por país
 # ---------------------------------------------------------------------------
 
-tema_clasico <- function() {
-  theme_minimal() +
-    theme(
-      axis.text.x = element_text(angle = 90, vjust = 0.5),
-      legend.position = "bottom",
-      plot.title = element_text(face = "bold"),
-      strip.text = element_text(face = "bold")
+# Regla:
+#
+# Para cada país se seleccionan 4 causas:
+#
+# 1. Causas externas de mortalidad, identificada por causa == "XX"
+#    o por texto en causa_grupo.
+#
+# 2. Las 3 causas restantes con mayor q_c promedio dentro del país.
+#
+# Perinatales se excluye de esta selección porque se grafica aparte.
+
+obtener_causa_externa_pais <- function(datos_pais) {
+  
+  causa_externa <- datos_pais %>%
+    distinct(causa, causa_grupo) %>%
+    filter(
+      causa == "XX" |
+        str_detect(str_to_lower(causa_grupo), "extern")
+    ) %>%
+    pull(causa_grupo) %>%
+    unique()
+  
+  if (length(causa_externa) > 0) {
+    causa_externa[1]
+  } else {
+    NA_character_
+  }
+}
+
+
+obtener_causa_perinatal_pais <- function(datos_pais) {
+  
+  causa_perinatal <- datos_pais %>%
+    distinct(causa_grupo) %>%
+    filter(
+      str_detect(str_to_lower(causa_grupo), "perinatal")
+    ) %>%
+    pull(causa_grupo) %>%
+    unique()
+  
+  if (length(causa_perinatal) > 0) {
+    causa_perinatal[1]
+  } else {
+    NA_character_
+  }
+}
+
+
+seleccionar_top4_promedio_pais <- function(datos_pais) {
+  
+  causa_externa <- obtener_causa_externa_pais(datos_pais)
+  
+  datos_base <- datos_pais %>%
+    filter(
+      !str_detect(str_to_lower(causa_grupo), "perinatal")
     )
+  
+  if (!is.na(causa_externa)) {
+    
+    datos_base <- datos_base %>%
+      filter(causa_grupo != causa_externa)
+    
+    n_resto <- 3
+    
+  } else {
+    
+    n_resto <- 4
+  }
+  
+  causas_resto <- datos_base %>%
+    group_by(causa_grupo) %>%
+    summarise(
+      q_promedio = mean(q_c, na.rm = TRUE),
+      muertes_totales = sum(muertes, na.rm = TRUE),
+      .groups = "drop"
+    ) %>%
+    arrange(desc(q_promedio)) %>%
+    slice_head(n = n_resto) %>%
+    pull(causa_grupo)
+  
+  causas_seleccionadas <- c()
+  
+  if (!is.na(causa_externa)) {
+    causas_seleccionadas <- c(causas_seleccionadas, causa_externa)
+  }
+  
+  causas_seleccionadas <- c(causas_seleccionadas, causas_resto)
+  
+  unique(causas_seleccionadas)
 }
 
 
 # ---------------------------------------------------------------------------
-# 6. Gráficos por país
+# 7. Gráficos por país
 # ---------------------------------------------------------------------------
 
 paises <- resultados_clasico %>%
@@ -130,8 +254,20 @@ for (i in seq_len(nrow(paises))) {
   
   pais_actual <- paises$pais[i]
   carpeta_pais <- paises$pais_carpeta[i]
-  
   ruta_figuras <- here("figuras", "clasico", carpeta_pais)
+  
+  # Limpia gráficos anteriores del análisis clásico.
+  
+  archivos_previos <- list.files(
+    ruta_figuras,
+    pattern = "^(00|01|02|03|04|05)_.*\\.png$",
+    full.names = TRUE
+  )
+  
+  if (length(archivos_previos) > 0) {
+    file.remove(archivos_previos)
+  }
+  
   
   datos_pais <- resultados_clasico %>%
     filter(pais == pais_actual)
@@ -144,69 +280,160 @@ for (i in seq_len(nrow(paises))) {
   
   
   # -------------------------------------------------------------------------
-  # 6.1 Causas principales del país
+  # 7.1 Seleccionar causas principales del país
   # -------------------------------------------------------------------------
   
-  # Para cada país se seleccionan las causas con mayor q_c promedio.
-  # Esto evita que una causa sea importante globalmente, pero irrelevante
-  # dentro del país que se está graficando.
+  causas_top4_pais <- seleccionar_top4_promedio_pais(datos_pais)
+  causa_perinatal_pais <- obtener_causa_perinatal_pais(datos_pais)
   
-  causas_principales_pais <- datos_pais %>%
-    group_by(causa_grupo) %>%
-    summarise(
-      q_promedio = mean(q_c, na.rm = TRUE),
-      muertes_totales = sum(muertes, na.rm = TRUE),
-      .groups = "drop"
+  orden_causas_top4_wrap <- str_wrap(causas_top4_pais, width = 35)
+  
+  datos_pais_top4 <- datos_pais %>%
+    filter(causa_grupo %in% causas_top4_pais) %>%
+    mutate(
+      causa_grupo_wrap = factor(
+        str_wrap(causa_grupo, width = 35),
+        levels = orden_causas_top4_wrap
+      )
+    )
+  
+  composicion_pais_top4 <- composicion_pais %>%
+    filter(causa_grupo %in% causas_top4_pais) %>%
+    mutate(
+      causa_grupo_wrap = factor(
+        str_wrap(causa_grupo, width = 35),
+        levels = orden_causas_top4_wrap
+      )
+    )
+  
+  datos_pais_perinatal <- datos_pais %>%
+    filter(
+      str_detect(str_to_lower(causa_grupo), "perinatal")
     ) %>%
-    arrange(desc(q_promedio)) %>%
-    slice_head(n = 8) %>%
-    pull(causa_grupo)
-  
-  datos_pais_top <- datos_pais %>%
-    filter(causa_grupo %in% causas_principales_pais) %>%
     mutate(
       causa_grupo_wrap = str_wrap(causa_grupo, width = 35)
     )
   
-  composicion_pais_top <- composicion_pais %>%
-    filter(causa_grupo %in% causas_principales_pais) %>%
+  
+  # Causas para gráfico 4:
+  # top 4 + perinatal.
+  
+  causas_grafico_4 <- causas_top4_pais
+  
+  if (!is.na(causa_perinatal_pais)) {
+    causas_grafico_4 <- unique(c(causa_perinatal_pais, causas_grafico_4))
+  }
+  
+  orden_causas_grafico_4_wrap <- str_wrap(causas_grafico_4, width = 35)
+  
+  composicion_pais_top4_mas_perinatal <- composicion_pais %>%
+    filter(causa_grupo %in% causas_grafico_4) %>%
     mutate(
-      causa_grupo_wrap = str_wrap(causa_grupo, width = 35)
+      causa_grupo_wrap = factor(
+        str_wrap(causa_grupo, width = 35),
+        levels = orden_causas_grafico_4_wrap
+      )
     )
+  
+  
+  # -------------------------------------------------------------------------
+  # Gráfico 0: q_c perinatal por edad
+  # -------------------------------------------------------------------------
+  
+  if (nrow(datos_pais_perinatal) > 0) {
+    
+    max_perinatal <- max(datos_pais_perinatal$q_porcentaje, na.rm = TRUE)
+    
+    limite_perinatal <- if_else(
+      is.finite(max_perinatal) & max_perinatal > 0,
+      max_perinatal * 1.15,
+      0.01
+    )
+    
+    grafico_00_perinatal <- datos_pais_perinatal %>%
+      ggplot(
+        aes(
+          x = grupo_edad,
+          y = q_porcentaje,
+          group = interaction(anio, sexo),
+          color = factor(anio),
+          linetype = sexo
+        )
+      ) +
+      geom_line(linewidth = 0.8) +
+      geom_point(size = 1.3) +
+      scale_color_npg() +
+      scale_y_continuous(
+        labels = etiqueta_pct_directa,
+        breaks = pretty(c(0, limite_perinatal), n = 5),
+        expand = expansion(mult = c(0, 0.03))
+      ) +
+      coord_cartesian(ylim = c(0, limite_perinatal)) +
+      labs(
+        title = paste0("Probabilidad de decremento por afecciones perinatales: ", pais_actual),
+        subtitle = "q_c x 100. Causa graficada por separado por su perfil etario temprano",
+        x = "Grupo etario",
+        y = "q_c",
+        color = "Año",
+        linetype = "Sexo"
+      ) +
+      tema_clasico()
+    
+    ggsave(
+      filename = here("figuras", "clasico", carpeta_pais, "00_q_perinatal_por_edad.png"),
+      plot = grafico_00_perinatal,
+      width = 13,
+      height = 7,
+      dpi = 300
+    )
+  }
   
   
   # -------------------------------------------------------------------------
   # Gráfico 1: q_c absoluto por edad
   # -------------------------------------------------------------------------
   #
-  # Este es el gráfico principal del proyecto.
+  # Este gráfico junta 2015 y 2018 en una sola figura.
+  # Se separa por sexo y por año:
   #
-  # Se grafica q_c x 100,000 para que la escala sea interpretable.
+  # filas    = sexo
+  # columnas = año
+  #
+  # Dentro de cada panel se muestran las 4 causas seleccionadas.
+  #
+  # Escala: 0% a 40%, saltos de 10%.
   
-  grafico_01_q_edad <- datos_pais_top %>%
+  grafico_01_q_edad <- datos_pais_top4 %>%
     ggplot(
       aes(
         x = grupo_edad,
-        y = q_100mil,
+        y = q_porcentaje,
         group = causa_grupo_wrap,
         color = causa_grupo_wrap
       )
     ) +
-    geom_line(linewidth = 0.7) +
-    geom_point(size = 1.1) +
+    geom_line(linewidth = 0.8) +
+    geom_point(size = 1.2) +
     facet_grid(sexo ~ anio) +
-    scale_y_continuous(labels = label_number(accuracy = 0.1)) +
+    scale_color_npg() +
+    scale_y_continuous(
+      labels = etiqueta_pct_directa,
+      breaks = seq(0, 40, 10),
+      minor_breaks = seq(0, 40, 5),
+      expand = expansion(mult = c(0, 0.02))
+    ) +
+    coord_cartesian(ylim = c(0, 40)) +
     labs(
       title = paste0("Probabilidad absoluta de decremento por causa: ", pais_actual),
-      subtitle = "q_c x 100,000. Enfoque clásico. Causas seleccionadas por mayor q_c promedio dentro del país",
+      subtitle = "q_c x 100. Comparación 2015 y 2018. Causas externas + 3 causas principales por q_c promedio",
       x = "Grupo etario",
-      y = "q_c x 100,000",
+      y = "q_c",
       color = "Causa"
     ) +
     tema_clasico()
   
   ggsave(
-    filename = here("figuras", "clasico", carpeta_pais, "01_q_absoluto_por_edad.png"),
+    filename = here("figuras", "clasico", carpeta_pais, "01_q_absoluto_top4_2015_2018.png"),
     plot = grafico_01_q_edad,
     width = 14,
     height = 8,
@@ -215,137 +442,145 @@ for (i in seq_len(nrow(paises))) {
   
   
   # -------------------------------------------------------------------------
-  # Gráfico 2: q_c absoluto por causa, con escala libre
+  # Gráfico 2: q_c por causa
   # -------------------------------------------------------------------------
   #
-  # Este gráfico separa por causa para evitar que causas pequeñas desaparezcan
-  # frente a causas con q_c mucho mayor.
+  # q_c x 100.
+  # Escala: 0% a 30%, saltos de 10%.
   
-  grafico_02_q_causa <- datos_pais_top %>%
+  grafico_02_q_causa <- datos_pais_top4 %>%
     ggplot(
       aes(
         x = grupo_edad,
-        y = q_100mil,
+        y = q_porcentaje,
         group = interaction(anio, sexo),
         color = factor(anio),
         linetype = sexo
       )
     ) +
-    geom_line(linewidth = 0.7) +
-    geom_point(size = 1.1) +
-    facet_wrap(~ causa_grupo_wrap, scales = "free_y") +
-    scale_y_continuous(labels = label_number(accuracy = 0.1)) +
+    geom_line(linewidth = 0.8) +
+    geom_point(size = 1.2) +
+    facet_wrap(~ causa_grupo_wrap) +
+    scale_color_npg() +
+    scale_y_continuous(
+      labels = etiqueta_pct_directa,
+      breaks = seq(0, 30, 10),
+      minor_breaks = seq(0, 30, 5),
+      expand = expansion(mult = c(0, 0.02))
+    ) +
+    coord_cartesian(ylim = c(0, 30)) +
     labs(
-      title = paste0("Variación de q_c por causa y edad: ", pais_actual),
-      subtitle = "q_c x 100,000. Escala vertical libre por causa",
+      title = paste0("Variación etaria de q_c por causa: ", pais_actual),
+      subtitle = "q_c x 100. Causas externas + 3 causas principales por q_c promedio. Comparación 2015 y 2018",
       x = "Grupo etario",
-      y = "q_c x 100,000",
+      y = "q_c",
       color = "Año",
       linetype = "Sexo"
     ) +
     tema_clasico()
   
   ggsave(
-    filename = here("figuras", "clasico", carpeta_pais, "02_q_por_causa_escala_libre.png"),
+    filename = here("figuras", "clasico", carpeta_pais, "02_q_por_causa_top4.png"),
     plot = grafico_02_q_causa,
-    width = 15,
-    height = 10,
-    dpi = 300
-  )
-  
-  
-  # -------------------------------------------------------------------------
-  # Gráfico 3: mapa de calor de q_c
-  # -------------------------------------------------------------------------
-  #
-  # Muestra en qué edades y causas se concentran los mayores niveles de q_c.
-  
-  grafico_03_heatmap_q <- datos_pais_top %>%
-    ggplot(
-      aes(
-        x = grupo_edad,
-        y = causa_grupo_wrap,
-        fill = q_100mil
-      )
-    ) +
-    geom_tile() +
-    facet_grid(sexo ~ anio) +
-    scale_fill_continuous(labels = label_number(accuracy = 0.1)) +
-    labs(
-      title = paste0("Mapa de calor de q_c: ", pais_actual),
-      subtitle = "q_c x 100,000 por grupo etario, causa, sexo y año",
-      x = "Grupo etario",
-      y = "Causa",
-      fill = "q_c x 100,000"
-    ) +
-    tema_clasico()
-  
-  ggsave(
-    filename = here("figuras", "clasico", carpeta_pais, "03_heatmap_q_edad_causa.png"),
-    plot = grafico_03_heatmap_q,
-    width = 15,
+    width = 14,
     height = 9,
     dpi = 300
   )
   
   
   # -------------------------------------------------------------------------
-  # Gráfico 4: composición causal condicionada al fallecimiento
+  # Gráfico 3: composición causal condicionada al fallecimiento
   # -------------------------------------------------------------------------
   #
-  # Este es el gráfico tipo Goerlich.
+  # prop_q = q_c / sum_j q_j
   #
-  # Muestra:
+  # Se agrupan las 4 causas seleccionadas de 2 en 2 para que el gráfico sea
+  # legible.
   #
-  #   prop_q = q_c / sum_j q_j
+  # Se generan:
   #
-  # Interpretación:
-  # dado que ocurre un fallecimiento en el grupo etario, qué porcentaje
-  # corresponde a cada causa.
+  # 03_composicion_condicionada_grupo_1.png
+  # 03_composicion_condicionada_grupo_2.png
+  #
+  # Dentro de cada gráfico se compara 2015 contra 2018.
+  #
+  # Escala: 0% a 100%, saltos de 25%.
   
-  grafico_04_composicion_goerlich <- composicion_pais_top %>%
-    filter(anio %in% c(2015, 2018)) %>%
-    group_by(anio, sexo, grupo_edad, causa_grupo_wrap) %>%
-    summarise(
-      prop_promedio = mean(prop_q, na.rm = TRUE),
-      .groups = "drop"
-    ) %>%
-    ggplot(
-      aes(
-        x = grupo_edad,
-        y = prop_promedio,
-        fill = factor(anio)
-      )
-    ) +
-    geom_col(position = "dodge") +
-    facet_grid(sexo ~ causa_grupo_wrap, scales = "free_y") +
-    scale_y_continuous(labels = percent_format(accuracy = 1)) +
-    labs(
-      title = paste0("Composición causal condicionada al fallecimiento: ", pais_actual),
-      subtitle = "Participación porcentual dentro de la mortalidad total. Comparación 2015 y 2018",
-      x = "Grupo etario",
-      y = "Participación condicionada al fallecimiento",
-      fill = "Año"
-    ) +
-    tema_clasico()
-  
-  ggsave(
-    filename = here("figuras", "clasico", carpeta_pais, "04_composicion_condicionada_goerlich.png"),
-    plot = grafico_04_composicion_goerlich,
-    width = 18,
-    height = 10,
-    dpi = 300
+  grupos_causas_03 <- split(
+    causas_top4_pais,
+    ceiling(seq_along(causas_top4_pais) / 2)
   )
   
+  for (g in seq_along(grupos_causas_03)) {
+    
+    causas_grupo_actual <- grupos_causas_03[[g]]
+    
+    composicion_grupo_actual <- composicion_pais_top4 %>%
+      filter(causa_grupo %in% causas_grupo_actual) %>%
+      mutate(
+        causa_grupo_wrap = factor(
+          str_wrap(causa_grupo, width = 35),
+          levels = str_wrap(causas_grupo_actual, width = 35)
+        )
+      )
+    
+    grafico_03_composicion_goerlich <- composicion_grupo_actual %>%
+      ggplot(
+        aes(
+          x = grupo_edad,
+          y = prop_q,
+          fill = factor(anio)
+        )
+      ) +
+      geom_col(position = "dodge") +
+      facet_grid(sexo ~ causa_grupo_wrap) +
+      scale_fill_npg() +
+      scale_y_continuous(
+        labels = etiqueta_pct_proporcion,
+        breaks = seq(0, 1, 0.25),
+        minor_breaks = seq(0, 1, 0.125),
+        expand = expansion(mult = c(0, 0.02))
+      ) +
+      coord_cartesian(ylim = c(0, 1)) +
+      labs(
+        title = paste0("Composición causal condicionada al fallecimiento: ", pais_actual),
+        subtitle = "prop_q = q_c / suma_j q_j. Comparación 2015 y 2018. Causas agrupadas de dos en dos",
+        x = "Grupo etario",
+        y = "Participación condicionada al fallecimiento",
+        fill = "Año"
+      ) +
+      tema_clasico()
+    
+    ggsave(
+      filename = here(
+        "figuras",
+        "clasico",
+        carpeta_pais,
+        paste0("03_composicion_condicionada_grupo_", g, ".png")
+      ),
+      plot = grafico_03_composicion_goerlich,
+      width = 14,
+      height = 8,
+      dpi = 300
+    )
+  }
+  
   
   # -------------------------------------------------------------------------
-  # Gráfico 5: composición causal apilada por edad
+  # Gráfico 4: composición causal promedio por edad
   # -------------------------------------------------------------------------
   #
-  # Muestra la estructura causal promedio dentro de cada grupo etario.
-  # No es q_c absoluto.
+  # Muestra top 4 causas + perinatal.
+  #
+  # Cada segmento es:
+  #
+  # prop_q = q_c / sum_j q_j
+  #
+  # con denominador de todas las causas.
+  #
+  # Escala: 0% a 100%, saltos de 25%.
   
-  grafico_05_composicion_apilada <- composicion_pais_top %>%
+  grafico_04_composicion_apilada <- composicion_pais_top4_mas_perinatal %>%
     group_by(grupo_edad, causa_grupo_wrap) %>%
     summarise(
       prop_promedio = mean(prop_q, na.rm = TRUE),
@@ -359,10 +594,17 @@ for (i in seq_len(nrow(paises))) {
       )
     ) +
     geom_col(position = "stack") +
-    scale_y_continuous(labels = percent_format(accuracy = 1)) +
+    scale_fill_npg() +
+    scale_y_continuous(
+      labels = etiqueta_pct_proporcion,
+      breaks = seq(0, 1, 0.25),
+      minor_breaks = seq(0, 1, 0.125),
+      expand = expansion(mult = c(0, 0.02))
+    ) +
+    coord_cartesian(ylim = c(0, 1)) +
     labs(
       title = paste0("Composición causal promedio por edad: ", pais_actual),
-      subtitle = "Participación relativa dentro de la probabilidad total de decremento",
+      subtitle = "Participación relativa dentro de la mortalidad total. Top 4 causas + causa perinatal",
       x = "Grupo etario",
       y = "Participación relativa",
       fill = "Causa"
@@ -370,8 +612,8 @@ for (i in seq_len(nrow(paises))) {
     tema_clasico()
   
   ggsave(
-    filename = here("figuras", "clasico", carpeta_pais, "05_composicion_apilada_por_edad.png"),
-    plot = grafico_05_composicion_apilada,
+    filename = here("figuras", "clasico", carpeta_pais, "04_composicion_promedio_top4_mas_perinatal.png"),
+    plot = grafico_04_composicion_apilada,
     width = 14,
     height = 8,
     dpi = 300
@@ -379,178 +621,16 @@ for (i in seq_len(nrow(paises))) {
   
   
   # -------------------------------------------------------------------------
-  # Gráfico 6: cambio absoluto de q_c entre 2015 y 2018
-  # -------------------------------------------------------------------------
-  
-  cambio_q_pais <- datos_pais %>%
-    filter(anio %in% c(2015, 2018)) %>%
-    select(
-      pais,
-      sexo,
-      grupo_edad,
-      causa,
-      causa_grupo,
-      anio,
-      q_c
-    ) %>%
-    pivot_wider(
-      names_from = anio,
-      values_from = q_c,
-      names_prefix = "q_"
-    ) %>%
-    mutate(
-      cambio_q = q_2018 - q_2015,
-      cambio_q_100mil = cambio_q * 100000,
-      causa_grupo_wrap = str_wrap(causa_grupo, width = 35)
-    ) %>%
-    filter(causa_grupo %in% causas_principales_pais)
-  
-  grafico_06_cambio_q <- cambio_q_pais %>%
-    ggplot(
-      aes(
-        x = grupo_edad,
-        y = causa_grupo_wrap,
-        fill = cambio_q_100mil
-      )
-    ) +
-    geom_tile() +
-    facet_wrap(~ sexo) +
-    scale_fill_continuous(labels = label_number(accuracy = 0.1)) +
-    labs(
-      title = paste0("Cambio absoluto de q_c entre 2015 y 2018: ", pais_actual),
-      subtitle = "[q_c(2018) - q_c(2015)] x 100,000",
-      x = "Grupo etario",
-      y = "Causa",
-      fill = "Cambio"
-    ) +
-    tema_clasico()
-  
-  ggsave(
-    filename = here("figuras", "clasico", carpeta_pais, "06_cambio_q_2015_2018.png"),
-    plot = grafico_06_cambio_q,
-    width = 14,
-    height = 8,
-    dpi = 300
-  )
-  
-  
-  # -------------------------------------------------------------------------
-  # Gráfico 7: cambio en composición causal entre 2015 y 2018
-  # -------------------------------------------------------------------------
-  
-  cambio_prop_pais <- composicion_pais %>%
-    filter(anio %in% c(2015, 2018)) %>%
-    select(
-      pais,
-      sexo,
-      grupo_edad,
-      causa,
-      causa_grupo,
-      anio,
-      prop_q
-    ) %>%
-    pivot_wider(
-      names_from = anio,
-      values_from = prop_q,
-      names_prefix = "prop_"
-    ) %>%
-    mutate(
-      cambio_prop = prop_2018 - prop_2015,
-      causa_grupo_wrap = str_wrap(causa_grupo, width = 35)
-    ) %>%
-    filter(causa_grupo %in% causas_principales_pais)
-  
-  grafico_07_cambio_prop <- cambio_prop_pais %>%
-    ggplot(
-      aes(
-        x = grupo_edad,
-        y = causa_grupo_wrap,
-        fill = cambio_prop
-      )
-    ) +
-    geom_tile() +
-    facet_wrap(~ sexo) +
-    scale_fill_continuous(labels = percent_format(accuracy = 1)) +
-    labs(
-      title = paste0("Cambio en composición causal entre 2015 y 2018: ", pais_actual),
-      subtitle = "prop_q(2018) - prop_q(2015)",
-      x = "Grupo etario",
-      y = "Causa",
-      fill = "Cambio"
-    ) +
-    tema_clasico()
-  
-  ggsave(
-    filename = here("figuras", "clasico", carpeta_pais, "07_cambio_composicion_2015_2018.png"),
-    plot = grafico_07_cambio_prop,
-    width = 14,
-    height = 8,
-    dpi = 300
-  )
-  
-  
-  # -------------------------------------------------------------------------
-  # Gráfico 8: diferencia por sexo
+  # Gráfico 5: concentración causal
   # -------------------------------------------------------------------------
   #
-  # Muestra:
+  # H = sum_c prop_q^2
   #
-  #   q_hombre - q_mujer
+  # Se calcula con todas las causas.
+  #
+  # Escala: 0% a 100%, saltos de 25%.
   
-  diferencia_sexo_pais <- datos_pais %>%
-    select(
-      anio,
-      grupo_edad,
-      causa,
-      causa_grupo,
-      sexo,
-      q_c
-    ) %>%
-    pivot_wider(
-      names_from = sexo,
-      values_from = q_c
-    ) %>%
-    mutate(
-      diferencia_hombre_mujer = Hombre - Mujer,
-      diferencia_hombre_mujer_100mil = diferencia_hombre_mujer * 100000,
-      causa_grupo_wrap = str_wrap(causa_grupo, width = 35)
-    ) %>%
-    filter(causa_grupo %in% causas_principales_pais)
-  
-  grafico_08_diferencia_sexo <- diferencia_sexo_pais %>%
-    ggplot(
-      aes(
-        x = grupo_edad,
-        y = causa_grupo_wrap,
-        fill = diferencia_hombre_mujer_100mil
-      )
-    ) +
-    geom_tile() +
-    facet_wrap(~ anio) +
-    scale_fill_continuous(labels = label_number(accuracy = 0.1)) +
-    labs(
-      title = paste0("Diferencia por sexo en q_c: ", pais_actual),
-      subtitle = "(q_c hombres - q_c mujeres) x 100,000",
-      x = "Grupo etario",
-      y = "Causa",
-      fill = "Diferencia"
-    ) +
-    tema_clasico()
-  
-  ggsave(
-    filename = here("figuras", "clasico", carpeta_pais, "08_diferencia_sexo_q.png"),
-    plot = grafico_08_diferencia_sexo,
-    width = 14,
-    height = 8,
-    dpi = 300
-  )
-  
-  
-  # -------------------------------------------------------------------------
-  # Gráfico 9: concentración causal
-  # -------------------------------------------------------------------------
-  
-  grafico_09_concentracion <- concentracion_pais %>%
+  grafico_05_concentracion <- concentracion_pais %>%
     ggplot(
       aes(
         x = grupo_edad,
@@ -559,25 +639,31 @@ for (i in seq_len(nrow(paises))) {
         color = sexo
       )
     ) +
-    geom_line(linewidth = 0.7) +
-    geom_point(size = 1.1) +
+    geom_line(linewidth = 0.8) +
+    geom_point(size = 1.2) +
     facet_wrap(~ anio) +
-    scale_y_continuous(labels = label_number(accuracy = 0.01)) +
+    scale_color_npg() +
+    scale_y_continuous(
+      labels = etiqueta_pct_proporcion,
+      breaks = seq(0, 1, 0.25),
+      minor_breaks = seq(0, 1, 0.125),
+      expand = expansion(mult = c(0, 0.02))
+    ) +
+    coord_cartesian(ylim = c(0, 1)) +
     labs(
       title = paste0("Concentración causal por grupo etario: ", pais_actual),
-      subtitle = "Índice H = suma de participaciones relativas al cuadrado",
+      subtitle = "Índice H = suma de participaciones relativas al cuadrado. Calculado con todas las causas",
       x = "Grupo etario",
-      y = "Índice de concentración",
+      y = "Índice de concentración H",
       color = "Sexo"
     ) +
     tema_clasico()
   
   ggsave(
-    filename = here("figuras", "clasico", carpeta_pais, "09_concentracion_causal.png"),
-    plot = grafico_09_concentracion,
+    filename = here("figuras", "clasico", carpeta_pais, "05_concentracion_causal.png"),
+    plot = grafico_05_concentracion,
     width = 14,
     height = 8,
     dpi = 300
   )
-  
 }
