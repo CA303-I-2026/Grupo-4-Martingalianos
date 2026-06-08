@@ -10,8 +10,8 @@ Belice,XI,Enfermedades del sistema digestivo,0.3812994007750573,333.605279204226
 Belice,XII,Enfermedades de la piel y del tejido subcutáneo,0.029718678617005966,62.38424472955056
 Belice,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,0.42741775128766135,18319.416514485376
 Belice,XIV,Enfermedades del sistema genitourinario,0.17076426863370875,111.60262121653419
-Belice,XV,"Embarazo, parto y puerperio",1.0882252836141464,52185.41307539595
-Belice,XVI,Afecciones originadas en el periodo perinatal,37.291940276462476,23274.690125581226
+Belice,XV,"Embarazo, parto y puerperio",0.20863944232563883,29629.293539205657
+Belice,XVI,Afecciones originadas en el periodo perinatal,0.015990036754915827,177.14881573829476
 Belice,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.12218625733966805,1962.8797813030362
 Belice,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.07819501042873055,44.2073939268513
 Belice,XX,Causas externas de mortalidad,0.9871695097580168,875.5827422725299
@@ -26,8 +26,8 @@ Costa Rica,XI,Enfermedades del sistema digestivo,0.28426043675934015,135.1246494
 Costa Rica,XII,Enfermedades de la piel y del tejido subcutáneo,0.14044531994796688,619.6857496140034
 Costa Rica,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,0.3075023960962243,1437.3837047163286
 Costa Rica,XIV,Enfermedades del sistema genitourinario,0.21538878180351817,118.13269623498574
-Costa Rica,XV,"Embarazo, parto y puerperio",1.8674924137965323,195936.00587977853
-Costa Rica,XVI,Afecciones originadas en el periodo perinatal,116.41342573247233,149513.70114111368
+Costa Rica,XV,"Embarazo, parto y puerperio",0.18928423185482957,68784.24535432784
+Costa Rica,XVI,Afecciones originadas en el periodo perinatal,0.009019773092977433,229.2643064211966
 Costa Rica,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.1875077860976672,4929.732282096925
 Costa Rica,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.24535077255947968,265.39785965895544
 Costa Rica,XX,Causas externas de mortalidad,0.5239909078306921,296.9129232875335
@@ -42,8 +42,8 @@ El Salvador,XI,Enfermedades del sistema digestivo,0.3367257643217442,148.3457884
 El Salvador,XII,Enfermedades de la piel y del tejido subcutáneo,0.21432827399785673,942.01669451199
 El Salvador,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,0.3316222529089759,2955.391491757187
 El Salvador,XIV,Enfermedades del sistema genitourinario,0.3156382471763207,81.1654986033304
-El Salvador,XV,"Embarazo, parto y puerperio",1.7027351356051308,133362.8136789783
-El Salvador,XVI,Afecciones originadas en el periodo perinatal,31.027516822839488,53280.32892865201
+El Salvador,XV,"Embarazo, parto y puerperio",0.15684087591069187,42833.05969983342
+El Salvador,XVI,Afecciones originadas en el periodo perinatal,0.009438903499599166,317.04638937655983
 El Salvador,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.32202118165526455,10079.671183323153
 El Salvador,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.22957948802152217,8.644459598498509
 El Salvador,XX,Causas externas de mortalidad,0.6349707960094612,264.0264492565379
@@ -58,8 +58,8 @@ Guatemala,XI,Enfermedades del sistema digestivo,0.3789577771646922,103.934069454
 Guatemala,XII,Enfermedades de la piel y del tejido subcutáneo,0.2546233365537916,896.7953667202494
 Guatemala,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,0.2836493648045543,779.177083397051
 Guatemala,XIV,Enfermedades del sistema genitourinario,0.29329143607641456,74.80708849823544
-Guatemala,XV,"Embarazo, parto y puerperio",0.8552211286446156,16103.193822855756
-Guatemala,XVI,Afecciones originadas en el periodo perinatal,41.87175311370694,27145.366570990893
+Guatemala,XV,"Embarazo, parto y puerperio",0.07063911896071072,5332.537863646601
+Guatemala,XVI,Afecciones originadas en el periodo perinatal,0.007028410636959712,90.20783167654584
 Guatemala,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.43784119889065387,5995.526156549936
 Guatemala,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.2241341128261898,8.931537247789013
 Guatemala,XX,Causas externas de mortalidad,0.6265847667524483,263.19773248358246
@@ -74,8 +74,8 @@ Nicaragua,XI,Enfermedades del sistema digestivo,0.3256663996902092,101.008022238
 Nicaragua,XII,Enfermedades de la piel y del tejido subcutáneo,0.1908910384138688,650.7284769927821
 Nicaragua,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,0.532796431563293,8365.196922666495
 Nicaragua,XIV,Enfermedades del sistema genitourinario,0.2704034206086549,56.85214474733451
-Nicaragua,XV,"Embarazo, parto y puerperio",1.4557792864598393,66600.1895896267
-Nicaragua,XVI,Afecciones originadas en el periodo perinatal,26.27814664517306,17555.39358132048
+Nicaragua,XV,"Embarazo, parto y puerperio",0.11974753863184337,19790.844528318306
+Nicaragua,XVI,Afecciones originadas en el periodo perinatal,0.00813643722195049,106.52387738684578
 Nicaragua,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.3024593854435354,4885.352367644685
 Nicaragua,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.1586036929212552,21.226614661228705
 Nicaragua,XX,Causas externas de mortalidad,0.45282250102534577,239.3978141598199
@@ -90,8 +90,8 @@ Panama,XI,Enfermedades del sistema digestivo,0.2866400155139761,138.955174320159
 Panama,XII,Enfermedades de la piel y del tejido subcutáneo,0.14411904214240473,256.49009273390305
 Panama,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,0.2102263293720929,757.1198866671059
 Panama,XIV,Enfermedades del sistema genitourinario,0.2121030063065608,66.51460352457521
-Panama,XV,"Embarazo, parto y puerperio",1.411898342872912,55602.15228949411
-Panama,XVI,Afecciones originadas en el periodo perinatal,45.27173429590767,39495.95514811301
+Panama,XV,"Embarazo, parto y puerperio",0.11542784414333052,16715.363306979794
+Panama,XVI,Afecciones originadas en el periodo perinatal,0.00886173557142028,152.3730369179523
 Panama,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.1318814831794554,2512.169078520769
 Panama,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.26186143543562723,81.97595080964369
 Panama,XX,Causas externas de mortalidad,0.8185574116206725,1138.3133879181944
