@@ -29,10 +29,22 @@ n_horizonte = 1
 
 # Unir alpha y Beta a cada fila del df de datos
 
+grupos_xv <- c(
+  "10-14", "15-19", "20-24", "25-29", "30-34",
+  "35-39", "40-44", "45-49", "50-54"
+)
+
 datos_bayes <- datos %>%
   left_join(
     parametros_bayesianos,
     by = c("pais", "causa", "causa_grupo")
+  ) %>%
+  mutate(
+    no_aplicable = case_when( # Casos no aplicables (de la metodologia)
+      causa == "XV"  ~ sexo != "Mujer" | !(grupo_edad %in% grupos_xv),
+      causa == "XVI" ~ grupo_edad != "0-4",
+      TRUE ~ FALSE
+    )
   )
 
 # funcion para simular q
@@ -67,6 +79,11 @@ simular_q_celda <- function(base_celda, S = 10000, n = 1) {
 #Simulaciones
 
 q_bayesiano <- datos_bayes %>%
+  filter( # Filtramos los casos no aplicables
+    !no_aplicable,
+    !is.na(alpha),
+    !is.na(beta)
+  ) %>%
   group_by(
     pais,
     anio,
