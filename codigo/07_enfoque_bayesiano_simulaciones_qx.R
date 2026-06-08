@@ -1,0 +1,91 @@
+library(readr)
+library(dplyr)
+library(here)
+
+# Simulacion posterior de qx,t(c)
+
+# Lectura de los parametros_bayesianos y los datos
+
+parametros_bayesianos <- read_csv(
+  here("datos", "procesados", "parametros_bayesianos_alpha_beta.csv"),
+  show_col_types = FALSE
+)
+
+datos <- read_csv(
+  here(
+    "datos",
+    "procesados",
+    "data_centroamerica_FINAL.csv"
+  ),
+  show_col_types = FALSE
+)
+
+set.seed(122)
+
+# Parametros generales
+
+S = 10000 #cantidad de simulaciones
+n_horizonte = 1 
+
+# Unir alpha y Beta a cada fila del df de datos
+
+datos_bayes <- datos %>%
+  left_join(
+    parametros_bayesianos,
+    by = c("pais", "causa", "causa_grupo")
+  )
+
+# funcion para simular q
+
+simular_q_celda <- function(base_celda, S = 10000, n = 1) {
+  
+  mu_sim <- sapply(seq_len(nrow(base_celda)), function(j) { # se simulan S gamma por fila (causa, anio, pais y sexo)
+    rgamma(
+      n = S,
+      shape = base_celda$alpha[j] + base_celda$muertes[j],
+      rate  = base_celda$beta[j] + base_celda$exposicion[j]
+    )
+  })
+  
+  mu_total <- rowSums(mu_sim) # Sumamos todas las causas por simulacion 
+  
+  proporcion_causa <- mu_sim / mu_total
+  prob_total <- 1 - exp(-n * mu_total)
+  
+  q_sim <- proporcion_causa * prob_total # Calculamos el q simulado
+  
+  tibble(
+    causa = base_celda$causa,
+    causa_grupo = base_celda$causa_grupo,
+    q_media_posterior = colMeans(q_sim), # Calculamos la media de las q simuladas
+    q_mediana_posterior = apply(q_sim, 2, median),
+    q_li_95 = apply(q_sim, 2, quantile, probs = 0.025),
+    q_ls_95 = apply(q_sim, 2, quantile, probs = 0.975)
+  )
+}
+
+#Simulaciones
+
+q_bayesiano <- datos_bayes %>%
+  group_by(
+    pais,
+    anio,
+    grupo_edad,
+    sexo
+  ) %>%
+  group_modify(
+    ~ simular_q_celda(.x, S = S, n = n_horizonte)
+  ) %>%
+  ungroup()
+
+q_bayesiano
+
+# Guardar los resultados 
+write_csv(
+  q_bayesiano,
+  here(
+    "datos", 
+    "procesados", 
+    "q_bayesiano_posterior.csv")
+)
+
