@@ -875,6 +875,8 @@ Esta aproximación se justifica por la Ley de los Grandes Números.
 
 #### Estimación bayesiana sin distinguir el dominio de las causas
 
+(En esta sección se retoma el subíndice $s$, correspondiente al sexo en las diversas fórmulas, para hacer claro el punto al cual se hace referencia).
+
 En una primera implementación del enfoque bayesiano, los hiperparámetros $\alpha_p^{(c)}$ y $\beta_p^{(c)}$ se estimaron utilizando, para cada país y causa, todas las combinaciones disponibles de sexo, grupo etario y año calendario. Este procedimiento no distinguía entre los ceros observacionales, correspondientes a celdas en las que la muerte por una causa era posible pero no se registraron defunciones, y las celdas situadas fuera del dominio de aplicación definido para determinadas causas.
 
 El problema se hizo evidente para la causa XV, correspondiente a embarazo, parto y puerperio. En la implementación inicial se incorporaron al ajuste las celdas de hombres y mujeres de todos los grupos etarios. Los conteos nulos de las celdas masculinas fueron tratados como observaciones ordinarias de intensidades pequeñas y, por tanto, participaron en la estimación de los hiperparámetros colectivos del país y la causa.
@@ -884,8 +886,7 @@ Una vez estimados estos hiperparámetros, las intensidades posteriores se obten�
 $$
 \mu_{x,t,s}^{(\mathrm{XV})}
 \mid
-D_{x,t,s}^{(\mathrm{XV})},
-E_{x,t,s}
+D_{x,t,s}^{(\mathrm{XV})}
 \sim
 \operatorname{Gamma}
 \left(
@@ -1489,8 +1490,7 @@ $$
 \left(
 \mu_{x,t,s}^{(c)}
 \mid
-D_{x,t,s}^{(c)},
-E_{x,t,s}
+D_{x,t,s}^{(c)}
 \right)
 =
 \frac{
@@ -1696,7 +1696,6 @@ La @tbl-comparacion-intensidades-fallido permite observar directamente el proble
 Para una mujer de `25-29`, la celda permanece dentro del dominio de la causa XV. Sin embargo, su media posterior cambia porque ahora los hiperparámetros se estiman sin incorporar las celdas masculinas ni los grupos etarios situados fuera del dominio.
 
 En el caso de la causa XVI, la celda del grupo `0-4` permanece dentro del ajuste, pero su media posterior cambia al dejar de utilizarse las edades posteriores para estimar la experiencia colectiva. Por el contrario, la celda de `70-74` queda fuera del dominio adoptado para esta causa y su intensidad corregida se fija en cero.
-
 
 \newpage
 
