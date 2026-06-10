@@ -500,15 +500,22 @@ En particular, para la causa XV, correspondiente a embarazo, parto y puerperio, 
 
 $$
 \mathcal I_p^{(\mathrm{XV})}
-:=
+=
 \left\{
-(\text{Mujer},x,t):
-x\in
-\{
-10\text{-}54
-\},
-\quad
-t\in\{2015,2016,2017,2018\}
+(\mathrm{Mujer},x,t):
+\begin{aligned}
+x &\in
+\left\{
+10\text{-}14,
+15\text{-}19,
+\ldots,
+50\text{-}54
+\right\},\\[2mm]
+t &\in
+\left\{
+2015,2016,2017,2018
+\right\}
+\end{aligned}
 \right\}.
 $$
 
@@ -863,6 +870,833 @@ Q_{x,t}^{(c)}
 $$
 
 Esta aproximación se justifica por la Ley de los Grandes Números.
+
+## 1.2.5. Análisis fallido
+
+#### Estimación bayesiana sin distinguir el dominio de las causas
+
+En una primera implementación del enfoque bayesiano, los hiperparámetros $\alpha_p^{(c)}$ y $\beta_p^{(c)}$ se estimaron utilizando, para cada país y causa, todas las combinaciones disponibles de sexo, grupo etario y año calendario. Este procedimiento no distinguía entre los ceros observacionales, correspondientes a celdas en las que la muerte por una causa era posible pero no se registraron defunciones, y las celdas situadas fuera del dominio de aplicación definido para determinadas causas.
+
+El problema se hizo evidente para la causa XV, correspondiente a embarazo, parto y puerperio. En la implementación inicial se incorporaron al ajuste las celdas de hombres y mujeres de todos los grupos etarios. Los conteos nulos de las celdas masculinas fueron tratados como observaciones ordinarias de intensidades pequeñas y, por tanto, participaron en la estimación de los hiperparámetros colectivos del país y la causa.
+
+Una vez estimados estos hiperparámetros, las intensidades posteriores se obtenían mediante
+
+$$
+\mu_{x,t,s}^{(\mathrm{XV})}
+\mid
+D_{x,t,s}^{(\mathrm{XV})},
+E_{x,t,s}
+\sim
+\operatorname{Gamma}
+\left(
+\widehat{\alpha}_p^{(\mathrm{XV})}
++
+D_{x,t,s}^{(\mathrm{XV})},
+\widehat{\beta}_p^{(\mathrm{XV})}
++
+E_{x,t,s}
+\right).
+$$
+
+Como la distribución Gamma tiene soporte en los reales positivos, una celda masculina con cero defunciones no producía automáticamente una intensidad posterior igual a cero. Por tanto, al transformar posteriormente las intensidades en probabilidades de decremento, el procedimiento podía asignar una probabilidad positiva de morir por embarazo, parto y puerperio a un hombre.
+
+La inclusión de estas celdas también modificaba las estimaciones correspondientes a las mujeres. Pues los numerosos conteos nulos de los hombres (ceros estructurales) alteraban $\widehat{\alpha}_p^{(\mathrm{XV})}$ y $\widehat{\beta}_p^{(\mathrm{XV})}$, haciendo que fueran muy pequeños y, por tanto, disminuían sintéticamente la estimación bayesiana aplicada a las celdas femeninas en las que la causa sí era aplicable.
+
+Una dificultad análoga apareció para la causa XVI, afecciones originadas en el periodo perinatal. La estimación inicial combinaba las celdas del grupo `0-4`, donde se concentraban todas las defunciones observadas de la base de datos, con miles de conteos nulos correspondientes a edades posteriores. De esta manera, un mismo par de hiperparámetros debía representar simultáneamente la experiencia infantil y una sucesión extensa de ceros en los demás grupos etarios.
+
+Como consecuencia, la distribución colectiva utilizada para estimar las intensidades del grupo `0-4` era influida por celdas ajenas al dominio de la causa, (posteriormente definido) y de manera sintética hacían que las intensidades fueran muy bajas. Además, el modelo podía generar intensidades positivas por afecciones perinatales en edades avanzadas.
+
+El análisis se consideró fallido al inspeccionar los hiperparámetros estimados y las intensidades posteriores por sexo y grupo etario.
+
+A partir de este resultado se reconsideró la metodología. Para la causa XV se definió
+
+$$
+\mathcal I_p^{(\mathrm{XV})}
+=
+\left\{
+(\mathrm{Mujer},x,t):
+\begin{aligned}
+x &\in
+\left\{
+10\text{-}14,
+15\text{-}19,
+\ldots,
+50\text{-}54
+\right\},\\[2mm]
+t &\in
+\left\{
+2015,2016,2017,2018
+\right\}
+\end{aligned}
+\right\}.
+$$
+
+Para la causa XVI se definió
+
+$$
+\mathcal I_p^{(\mathrm{XVI})}
+=
+\left\{
+(s,0\text{-}4,t):
+s\in\{\mathrm{Hombre},\mathrm{Mujer}\},
+\quad
+t\in\{2015,2016,2017,2018\}
+\right\}.
+$$
+
+Las celdas situadas fuera de estos conjuntos dejaron de utilizarse para estimar los hiperparámetros. En cambio, los conteos iguales a cero observados dentro de los conjuntos aplicables se conservaron, pues sí representan información estadística relevante sobre la intensidad de mortalidad.
+
+##### Comparación de la implementación inicial y la corregida
+
+Para documentar el problema se reproducen los dos procedimientos utilizados. El primero estima los hiperparámetros con la base completa. El segundo aplica las restricciones previamente definidas a las causas XV y XVI.
+
+```{r}
+#| label: comparacion-ajustes-bayesianos
+#| include: false
+#| warning: false
+#| message: false
+
+library(readr)
+library(dplyr)
+library(tidyr)
+library(here)
+
+# País y año utilizados en las tablas de la bitácora.
+
+pais_ejemplo <- "Costa Rica"
+anio_ejemplo <- 2018
+
+# 1. Cargar la base ---------------------------------------------------------
+
+datos <- read_csv(
+  here(
+    "datos",
+    "procesados",
+    "data_centroamerica_FINAL.csv"
+  ),
+  show_col_types = FALSE
+) %>%
+  mutate(
+    anio = as.integer(anio)
+  )
+
+# Comprobaciones básicas.
+
+if (any(datos$muertes < 0, na.rm = TRUE)) {
+  stop(
+    "La variable muertes contiene valores negativos."
+  )
+}
+
+if (any(datos$exposicion <= 0, na.rm = TRUE)) {
+  stop(
+    paste(
+      "La variable exposicion contiene valores",
+      "menores o iguales a cero."
+    )
+  )
+}
+
+if (
+  any(is.na(datos$muertes)) ||
+  any(is.na(datos$exposicion))
+) {
+  stop(
+    "Hay valores faltantes en muertes o exposicion."
+  )
+}
+
+if (!(pais_ejemplo %in% datos$pais)) {
+  stop(
+    paste(
+      "El país seleccionado no aparece en la base:",
+      pais_ejemplo
+    )
+  )
+}
+
+if (!(anio_ejemplo %in% datos$anio)) {
+  stop(
+    paste(
+      "El año seleccionado no aparece en la base:",
+      anio_ejemplo
+    )
+  )
+}
+
+# 2. Log-verosimilitud marginal Poisson--Gamma -----------------------------
+
+# Modelo:
+#
+# D | mu ~ Poisson(E * mu)
+# mu ~ Gamma(alpha, beta)
+#
+# beta se utiliza como parámetro de tasa.
+#
+# Al integrar mu:
+#
+# D ~ Binomial negativa
+#
+# con:
+# size = alpha
+# media = E * alpha / beta
+
+log_verosimilitud <- function(
+    log_parametros,
+    muertes,
+    exposicion
+) {
+  alpha <- exp(log_parametros[1])
+  beta <- exp(log_parametros[2])
+
+  media_conteo <- exposicion * alpha / beta
+
+  sum(
+    dnbinom(
+      x = muertes,
+      size = alpha,
+      mu = media_conteo,
+      log = TRUE
+    )
+  )
+}
+
+# 3. Procedimiento inicial --------------------------------------------------
+
+# Esta función corresponde al código utilizado antes de definir
+# los dominios particulares de las causas XV y XVI.
+
+estimar_alpha_beta_inicial <- function(
+    base_grupo
+) {
+  muertes_totales <- sum(
+    base_grupo$muertes
+  )
+
+  exposicion_total <- sum(
+    base_grupo$exposicion
+  )
+
+  if (muertes_totales == 0) {
+    return(
+      tibble(
+        alpha = NA_real_,
+        beta = NA_real_
+      )
+    )
+  }
+
+  tasa_global <- (
+    muertes_totales /
+      exposicion_total
+  )
+
+  ajuste <- optim(
+    par = log(
+      c(
+        alpha = 1,
+        beta = 1 / tasa_global
+      )
+    ),
+    fn = log_verosimilitud,
+    muertes = base_grupo$muertes,
+    exposicion = base_grupo$exposicion,
+    method = "Nelder-Mead",
+    control = list(
+      fnscale = -1,
+      maxit = 5000,
+      reltol = 1e-10
+    )
+  )
+
+  if (ajuste$convergence != 0) {
+    warning(
+      "Uno de los ajustes iniciales no convergió correctamente."
+    )
+
+    return(
+      tibble(
+        alpha = NA_real_,
+        beta = NA_real_
+      )
+    )
+  }
+
+  tibble(
+    alpha = exp(ajuste$par[1]),
+    beta = exp(ajuste$par[2])
+  )
+}
+
+parametros_iniciales <- datos %>%
+  group_by(
+    pais,
+    causa,
+    causa_grupo
+  ) %>%
+  group_modify(
+    ~ estimar_alpha_beta_inicial(.x)
+  ) %>%
+  ungroup() %>%
+  select(
+    pais,
+    causa,
+    causa_grupo,
+    alpha,
+    beta
+  )
+
+# 4. Procedimiento corregido ------------------------------------------------
+
+# Se definen las celdas aplicables para las causas XV y XVI.
+# Los ceros observacionales dentro de estos dominios no se eliminan.
+
+edades_maternas <- c(
+  "10-14",
+  "15-19",
+  "20-24",
+  "25-29",
+  "30-34",
+  "35-39",
+  "40-44",
+  "45-49",
+  "50-54"
+)
+
+datos_ajuste <- datos %>%
+  filter(
+    !(causa %in% c("XV", "XVI")) |
+      (
+        causa == "XV" &
+          sexo == "Mujer" &
+          grupo_edad %in% edades_maternas
+      ) |
+      (
+        causa == "XVI" &
+          grupo_edad == "0-4"
+      )
+  )
+
+estimar_alpha_beta_corregido <- function(
+    base_grupo,
+    llave
+) {
+  muertes_totales <- sum(
+    base_grupo$muertes
+  )
+
+  exposicion_total <- sum(
+    base_grupo$exposicion
+  )
+
+  if (muertes_totales == 0) {
+    stop(
+      "No se pueden estimar alpha y beta para ",
+      llave$pais,
+      " - causa ",
+      llave$causa,
+      ": todas las muertes son cero."
+    )
+  }
+
+  tasa_global <- (
+    muertes_totales /
+      exposicion_total
+  )
+
+  ajuste <- optim(
+    par = log(
+      c(
+        alpha = 1,
+        beta = 1 / tasa_global
+      )
+    ),
+    fn = log_verosimilitud,
+    muertes = base_grupo$muertes,
+    exposicion = base_grupo$exposicion,
+    method = "Nelder-Mead",
+    control = list(
+      fnscale = -1,
+      maxit = 5000,
+      reltol = 1e-10
+    )
+  )
+
+  if (ajuste$convergence != 0) {
+    stop(
+      "El ajuste no convergió para ",
+      llave$pais,
+      " - causa ",
+      llave$causa,
+      "."
+    )
+  }
+
+  tibble(
+    alpha = exp(ajuste$par[1]),
+    beta = exp(ajuste$par[2])
+  )
+}
+
+parametros_corregidos <- datos_ajuste %>%
+  group_by(
+    pais,
+    causa,
+    causa_grupo
+  ) %>%
+  group_modify(
+    ~ estimar_alpha_beta_corregido(
+      .x,
+      .y
+    )
+  ) %>%
+  ungroup() %>%
+  select(
+    pais,
+    causa,
+    causa_grupo,
+    alpha,
+    beta
+  )
+
+# 5. Contar las celdas utilizadas en cada procedimiento ---------------------
+
+celdas_iniciales <- datos %>%
+  filter(
+    causa %in% c(
+      "XV",
+      "XVI"
+    )
+  ) %>%
+  count(
+    pais,
+    causa,
+    causa_grupo,
+    name = "celdas_iniciales"
+  )
+
+celdas_corregidas <- datos_ajuste %>%
+  filter(
+    causa %in% c(
+      "XV",
+      "XVI"
+    )
+  ) %>%
+  count(
+    pais,
+    causa,
+    causa_grupo,
+    name = "celdas_corregidas"
+  )
+
+# 6. Construir la comparación de hiperparámetros ----------------------------
+
+comparacion_hiperparametros <- parametros_iniciales %>%
+  filter(
+    causa %in% c(
+      "XV",
+      "XVI"
+    )
+  ) %>%
+  rename(
+    alpha_inicial = alpha,
+    beta_inicial = beta
+  ) %>%
+  left_join(
+    parametros_corregidos %>%
+      filter(
+        causa %in% c(
+          "XV",
+          "XVI"
+        )
+      ) %>%
+      rename(
+        alpha_corregido = alpha,
+        beta_corregido = beta
+      ),
+    by = c(
+      "pais",
+      "causa",
+      "causa_grupo"
+    )
+  ) %>%
+  left_join(
+    celdas_iniciales,
+    by = c(
+      "pais",
+      "causa",
+      "causa_grupo"
+    )
+  ) %>%
+  left_join(
+    celdas_corregidas,
+    by = c(
+      "pais",
+      "causa",
+      "causa_grupo"
+    )
+  ) %>%
+  mutate(
+    media_colectiva_inicial =
+      alpha_inicial / beta_inicial,
+
+    media_colectiva_corregida =
+      alpha_corregido / beta_corregido
+  ) %>%
+  arrange(
+    pais,
+    match(
+      causa,
+      c(
+        "XV",
+        "XVI"
+      )
+    )
+  )
+
+# Guardar la comparación sin sobrescribir el archivo vigente.
+
+dir.create(
+  here(
+    "fichas",
+    "resultados"
+  ),
+  recursive = TRUE,
+  showWarnings = FALSE
+)
+
+write_csv(
+  comparacion_hiperparametros,
+  here(
+    "fichas",
+    "resultados",
+    "comparacion_hiperparametros_analisis_fallido.csv"
+  )
+)
+
+# Función para mostrar los valores numéricos.
+
+formato_cientifico <- function(x) {
+  ifelse(
+    is.na(x),
+    "NA",
+    formatC(
+      x,
+      format = "e",
+      digits = 3
+    )
+  )
+}
+```
+
+```{r}
+# Función para mostrar números sin notación científica.
+# El argumento decimales permite controlar la precisión.
+
+formato_decimal <- function(
+    x,
+    decimales = 6
+) {
+  ifelse(
+    is.na(x),
+    "NA",
+    formatC(
+      x,
+      format = "f",
+      digits = decimales,
+      big.mark = " ",
+      decimal.mark = "."
+    )
+  )
+}
+```
+
+```{r}
+#| label: tbl-comparacion-hiperparametros
+#| tbl-cap: "Comparación de los hiperparámetros antes y después de restringir los dominios de las causas XV y XVI."
+#| echo: false
+#| warning: false
+#| message: false
+
+tabla_hiperparametros <- comparacion_hiperparametros %>%
+  filter(
+    pais == pais_ejemplo
+  ) %>%
+  transmute(
+    causa = causa,
+
+    celdas_iniciales =
+      celdas_iniciales,
+
+    celdas_corregidas =
+      celdas_corregidas,
+
+    alpha_inicial =
+      formato_decimal(
+        alpha_inicial,
+        decimales = 6
+      ),
+
+    alpha_corregido =
+      formato_decimal(
+        alpha_corregido,
+        decimales = 6
+      ),
+
+    beta_inicial =
+      formato_decimal(
+        beta_inicial,
+        decimales = 2
+      ),
+
+    beta_corregido =
+      formato_decimal(
+        beta_corregido,
+        decimales = 2
+      )
+  )
+
+knitr::kable(
+  tabla_hiperparametros,
+  booktabs = TRUE,
+  col.names = c(
+    "Causa",
+    "Celdas iniciales",
+    "Celdas corregidas",
+    "Alpha inicial",
+    "Alpha corregido",
+    "Beta inicial",
+    "Beta corregido"
+  ),
+  align = c(
+    "l",
+    "r",
+    "r",
+    "r",
+    "r",
+    "r",
+    "r"
+  )
+)
+```
+
+La @tbl-comparacion-hiperparametros muestra cómo cambian los hiperparámetros cuando la experiencia colectiva se restringe a las celdas aplicables. En el procedimiento inicial, las causas XV y XVI utilizaban todas las combinaciones disponibles de sexo, grupo etario y año. En el procedimiento corregido, la causa XV utiliza solamente mujeres de `10-14` a `50-54`, mientras que la causa XVI utiliza solamente el grupo `0-4`.
+
+Para observar cómo el cambio en los hiperparámetros afecta las celdas individuales, se compara también la media posterior de la intensidad:
+
+$$
+\mathbb E
+\left(
+\mu_{x,t,s}^{(c)}
+\mid
+D_{x,t,s}^{(c)},
+E_{x,t,s}
+\right)
+=
+\frac{
+\widehat{\alpha}_p^{(c)}
++
+D_{x,t,s}^{(c)}
+}{
+\widehat{\beta}_p^{(c)}
++
+E_{x,t,s}
+}.
+$$
+
+```{r}
+#| label: crear-comparacion-casos
+#| include: false
+#| warning: false
+#| message: false
+
+# Casos particulares que se desean comparar.
+
+casos_comparacion <- tibble(
+  causa = c(
+    "XV",
+    "XV",
+    "XVI",
+    "XVI"
+  ),
+  sexo = c(
+    "Hombre",
+    "Mujer",
+    "Hombre",
+    "Hombre"
+  ),
+  grupo_edad = c(
+    "25-29",
+    "25-29",
+    "0-4",
+    "70-74"
+  ),
+  caso = c(
+    "XV: hombre de 25-29",
+    "XV: mujer de 25-29",
+    "XVI: hombre de 0-4",
+    "XVI: hombre de 70-74"
+  ),
+  orden = 1:4
+)
+
+# Construir la comparación de las medias posteriores.
+
+comparacion_casos <- datos %>%
+  filter(
+    pais == pais_ejemplo,
+    anio == anio_ejemplo
+  ) %>%
+  inner_join(
+    casos_comparacion,
+    by = c(
+      "causa",
+      "sexo",
+      "grupo_edad"
+    )
+  ) %>%
+  left_join(
+    comparacion_hiperparametros %>%
+      select(
+        pais,
+        causa,
+        causa_grupo,
+        alpha_inicial,
+        beta_inicial,
+        alpha_corregido,
+        beta_corregido
+      ),
+    by = c(
+      "pais",
+      "causa",
+      "causa_grupo"
+    )
+  ) %>%
+  mutate(
+    aplicable = case_when(
+      causa == "XV" ~
+        sexo == "Mujer" &
+          grupo_edad %in% edades_maternas,
+
+      causa == "XVI" ~
+        grupo_edad == "0-4",
+
+      TRUE ~ TRUE
+    ),
+
+    media_posterior_inicial =
+      (
+        alpha_inicial +
+          muertes
+      ) /
+      (
+        beta_inicial +
+          exposicion
+      ),
+
+    media_posterior_corregida =
+      if_else(
+        aplicable,
+        (
+          alpha_corregido +
+            muertes
+        ) /
+          (
+            beta_corregido +
+              exposicion
+          ),
+        0
+      )
+  ) %>%
+  arrange(orden)
+
+# Guardar los resultados.
+
+write_csv(
+  comparacion_casos,
+  here(
+    "fichas",
+    "resultados",
+    "comparacion_intensidades_analisis_fallido.csv"
+  )
+)
+
+# Función para mostrar valores sin notación científica.
+
+formato_decimal <- function(
+    x,
+    decimales = 9
+) {
+  ifelse(
+    is.na(x),
+    "NA",
+    formatC(
+      x,
+      format = "f",
+      digits = decimales,
+      decimal.mark = "."
+    )
+  )
+}
+```
+
+```{r}
+#| label: tbl-comparacion-intensidades-fallido
+#| tbl-cap: "Comparación de las medias posteriores de las intensidades en casos representativos."
+#| echo: false
+#| warning: false
+#| message: false
+
+tabla_intensidades <- comparacion_casos %>%
+  transmute(
+    caso = caso,
+
+    muertes = muertes,
+
+    exposicion = format(
+      round(exposicion),
+      big.mark = " ",
+      scientific = FALSE,
+      trim = TRUE
+    ),
+
+    media_posterior_inicial = formato_decimal(
+      media_posterior_inicial,
+      decimales = 9
+    ),
+
+    media_posterior_corregida = formato_decimal(
+      media_posterior_corregida,
+      decimales = 9
+    )
+  )
+
+knitr::kable(
+  tabla_intensidades,
+  booktabs = TRUE,
+  col.names = c(
+    "Caso",
+    "Muertes",
+    "Exposición",
+    "Media posterior inicial",
+    "Media posterior corregida"
+  ),
+  align = c(
+    "l",
+    "r",
+    "r",
+    "r",
+    "r"
+  )
+)
+```
+
+La @tbl-comparacion-intensidades-fallido permite observar directamente el problema de la implementación inicial. Para la causa XV en un hombre de `25-29`, la media posterior inicial es positiva aunque estos hombres presenten ceros estructurales. En el procedimiento corregido, la celda se encuentra fuera de $\mathcal I_p^{(\mathrm{XV})}$ y su intensidad se fija en cero.
+
+Para una mujer de `25-29`, la celda permanece dentro del dominio de la causa XV. Sin embargo, su media posterior cambia porque ahora los hiperparámetros se estiman sin incorporar las celdas masculinas ni los grupos etarios situados fuera del dominio.
+
+En el caso de la causa XVI, la celda del grupo `0-4` permanece dentro del ajuste, pero su media posterior cambia al dejar de utilizarse las edades posteriores para estimar la experiencia colectiva. Por el contrario, la celda de `70-74` queda fuera del dominio adoptado para esta causa y su intensidad corregida se fija en cero.
+
 
 \newpage
 
