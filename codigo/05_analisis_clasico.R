@@ -22,6 +22,143 @@ resultados_clasico <- read_csv(
   show_col_types = FALSE
 )
 
+# ---------------------------------------------------------------------------
+# Gráfico adicional: composición causal completa para Nicaragua
+# ---------------------------------------------------------------------------
+#
+# Este gráfico muestra la composición causal promedio por grupo etario para
+# Nicaragua, incluyendo todas las causas disponibles.
+#
+# A diferencia del gráfico 04 original, aquí no se seleccionan únicamente
+# las top 4 causas. Se usan todas las causas, por lo que cada barra representa
+# el 100% de la composición causal.
+#
+# Cantidad graficada:
+#
+#   pi_x^(c) = q_x^(c) / sum_j q_x^(j)
+#
+# Se promedia por grupo etario y causa sobre las combinaciones disponibles
+# de año y sexo que estén en resultados_clasico.
+#
+# Nota: si resultados_clasico ya fue filtrado a 2015 y 2018, este gráfico
+# promedia solamente esos años.
+# ---------------------------------------------------------------------------
+
+
+# 1. Construir composición causal completa ----------------------------------
+
+composicion_nicaragua_completa <- resultados_clasico %>%
+  filter(pais == "Nicaragua") %>%
+  group_by(anio, sexo, grupo_edad) %>%
+  mutate(
+    q_total = sum(q_c, na.rm = TRUE),
+    prop_q = if_else(
+      q_total > 0,
+      q_c / q_total,
+      0
+    )
+  ) %>%
+  ungroup()
+
+
+# 2. Promediar composición por edad y causa ---------------------------------
+#
+# Esto genera una lectura promedio de la participación causal por grupo etario,
+# agregando las combinaciones de sexo y año presentes en la base.
+
+comp_causal_prima_nic <- composicion_nicaragua_completa %>%
+  group_by(grupo_edad, causa, causa_grupo) %>%
+  summarise(
+    prop_q_promedio = mean(prop_q, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    grupo_edad = factor(grupo_edad, levels = orden_edades),
+    causa_grupo_wrap = str_wrap(causa_grupo, width = 35)
+  )
+
+
+# 3. Verificación: las barras deben sumar aproximadamente 1 ------------------
+
+revision_suma_nic <- comp_causal_prima_nic %>%
+  group_by(grupo_edad) %>%
+  summarise(
+    suma_prop = sum(prop_q_promedio, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+print(revision_suma_nic)
+
+
+# 4. Crear gráfico -----------------------------------------------------------
+
+grafico_comp_causal_prima_nic <- ggplot(
+  comp_causal_prima_nic,
+  aes(
+    x = grupo_edad,
+    y = prop_q_promedio,
+    fill = causa_grupo_wrap
+  )
+) +
+  geom_col(
+    position = "fill",
+    width = 0.85
+  ) +
+  scale_y_continuous(
+    labels = etiqueta_pct_proporcion,
+    limits = c(0, 1),
+    expand = expansion(mult = c(0, 0))
+  ) +
+  labs(
+    title = "Composición causal completa por edad: Nicaragua",
+    subtitle = "Todas las causas incluidas. Cada barra representa el 100% de la composición causal.",
+    x = "Grupo etario",
+    y = "Participación relativa",
+    fill = "Causa"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    axis.text.x = element_text(angle = 90, vjust = 0.5),
+    legend.position = "bottom",
+    legend.title = element_text(face = "bold"),
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(size = 10),
+    panel.grid.major.x = element_blank()
+  ) +
+  guides(
+    fill = guide_legend(ncol = 2)
+  )
+
+
+# 5. Guardar gráfico en carpeta de Nicaragua --------------------------------
+
+ruta_nicaragua <- here("figuras", "clasico", "nicaragua")
+
+dir.create(
+  ruta_nicaragua,
+  recursive = TRUE,
+  showWarnings = FALSE
+)
+
+ggsave(
+  filename = here(
+    "figuras",
+    "clasico",
+    "nicaragua",
+    "comp_causal_prima_nic.png"
+  ),
+  plot = grafico_comp_causal_prima_nic,
+  width = 14,
+  height = 9,
+  dpi = 300,
+  bg = "white"
+)
+
+
+# 6. Mostrar gráfico ---------------------------------------------------------
+
+grafico_comp_causal_prima_nic
+
 
 # Solo se contrastan 2015 y 2018
 
@@ -667,3 +804,353 @@ for (i in seq_len(nrow(paises))) {
     dpi = 300
   )
 }
+
+# ---------------------------------------------------------------------------
+# 8. Gráfico 6: radar de q_c clásico por país para Tumores
+# ---------------------------------------------------------------------------
+#
+# Funcion para radar gráficos compara países alrededor de un radar.
+#
+# Cantidad graficada:
+#
+#   q_c x 100
+#
+# para la causa II = Tumores.
+#
+# Interpretación:
+#   Probabilidad anual local de decremento por tumores para un grupo etario,
+#   sexo y año dados.
+#
+#
+# ---------------------------------------------------------------------------
+
+
+crear_radar_clasico <- function(
+    datos,
+    causa_radar,
+    nombre_causa_radar,
+    grupo_edad_radar,
+    sexo_radar,
+    anios_radar = c(2015, 2018),
+    orden_paises_radar = c(
+      "Belice",
+      "Guatemala",
+      "El Salvador",
+      "Nicaragua",
+      "Costa Rica",
+      "Panama"
+    ),
+    guardar_csv = FALSE,
+    ruta_salida = here("figuras", "clasico", "radar")
+) {
+  
+  # 1. Filtrar la base para la causa, edad, sexo y años seleccionados --------
+  
+  radar_base <- datos %>%
+    filter(
+      causa == causa_radar,
+      grupo_edad == grupo_edad_radar,
+      sexo == sexo_radar,
+      anio %in% anios_radar
+    ) %>%
+    mutate(
+      # Se estandariza el nombre de Panamá para evitar problemas con tilde
+      pais = case_when(
+        pais == "Panamá" ~ "Panama",
+        TRUE ~ pais
+      ),
+      
+      # Se fija el orden de los países alrededor del radar
+      pais = factor(pais, levels = orden_paises_radar),
+      
+      # Se trata el año como categoría para que cada año sea una línea
+      anio = factor(anio),
+      
+      # Se expresa q_c como porcentaje
+      q_porcentaje = q_c * 100
+    ) %>%
+    arrange(anio, pais)
+  
+  
+  # 2. Validaciones básicas --------------------------------------------------
+  
+  if (nrow(radar_base) == 0) {
+    stop("No hay datos para la causa, grupo etario, sexo y años seleccionados.")
+  }
+  
+  if (any(is.na(radar_base$pais))) {
+    stop("Hay países en los datos que no están incluidos en orden_paises_radar.")
+  }
+  
+  
+  # 3. Definir la escala radial ---------------------------------------------
+  
+  max_radar <- max(radar_base$q_porcentaje, na.rm = TRUE)
+  
+  radio_max <- ifelse(
+    is.finite(max_radar) && max_radar > 0,
+    max_radar * 1.20,
+    0.01
+  )
+  
+  breaks_radio <- pretty(c(0, radio_max), n = 4)
+  breaks_radio <- breaks_radio[breaks_radio >= 0]
+  radio_max <- max(breaks_radio)
+  
+  
+  # 4. Construir coordenadas para ubicar países en el círculo ----------------
+  
+  n_paises <- length(orden_paises_radar)
+  
+  coords_paises <- tibble(
+    pais = factor(orden_paises_radar, levels = orden_paises_radar),
+    indice = seq_len(n_paises),
+    angulo = pi / 2 - 2 * pi * (indice - 1) / n_paises
+  ) %>%
+    mutate(
+      # Coordenadas de los ejes radiales
+      x_eje = radio_max * cos(angulo),
+      y_eje = radio_max * sin(angulo),
+      
+      # Coordenadas de las etiquetas de países
+      x_label = 1.12 * radio_max * cos(angulo),
+      y_label = 1.12 * radio_max * sin(angulo)
+    )
+  
+  
+  # 5. Convertir q_porcentaje a coordenadas cartesianas ----------------------
+  
+  radar_xy <- radar_base %>%
+    left_join(
+      coords_paises,
+      by = "pais"
+    ) %>%
+    mutate(
+      x = q_porcentaje * cos(angulo),
+      y = q_porcentaje * sin(angulo)
+    ) %>%
+    arrange(anio, indice)
+  
+  
+  # 6. Cerrar los polígonos --------------------------------------------------
+  #
+  # Para que cada línea del radar cierre, se repite el primer país al final
+  # de cada año.
+  
+  radar_xy_cerrado <- radar_xy %>%
+    group_by(anio) %>%
+    group_modify(~ bind_rows(.x, slice(.x, 1))) %>%
+    ungroup()
+  
+  
+  # 7. Crear círculos guía del radar -----------------------------------------
+  
+  grid_circulos <- tidyr::expand_grid(
+    radio = breaks_radio[breaks_radio > 0],
+    theta = seq(0, 2 * pi, length.out = 361)
+  ) %>%
+    mutate(
+      x = radio * cos(theta),
+      y = radio * sin(theta)
+    )
+  
+  
+  # 8. Crear ejes radiales ---------------------------------------------------
+  
+  ejes_radar <- coords_paises %>%
+    transmute(
+      pais,
+      x = 0,
+      y = 0,
+      xend = x_eje,
+      yend = y_eje
+    )
+  
+  
+  # 9. Etiquetas de los radios -----------------------------------------------
+  
+  etiquetas_radio <- tibble(
+    radio = breaks_radio[breaks_radio > 0]
+  ) %>%
+    mutate(
+      x = -radio,
+      y = 0,
+      etiqueta = etiqueta_pct_directa(radio)
+    )
+  
+  
+  # 10. Construir el gráfico -------------------------------------------------
+  
+  grafico <- ggplot() +
+    
+    # Círculos de referencia
+    geom_path(
+      data = grid_circulos,
+      aes(x = x, y = y, group = radio),
+      color = "grey80",
+      linewidth = 0.5
+    ) +
+    
+    # Ejes hacia cada país
+    geom_segment(
+      data = ejes_radar,
+      aes(x = x, y = y, xend = xend, yend = yend),
+      color = "grey75",
+      linetype = "dotted",
+      linewidth = 0.6
+    ) +
+    
+    # Etiquetas de porcentaje en los radios
+    geom_text(
+      data = etiquetas_radio,
+      aes(x = x, y = y, label = etiqueta),
+      color = "grey35",
+      size = 3,
+      hjust = 1.1
+    ) +
+    
+    # Líneas del radar por año
+    geom_path(
+      data = radar_xy_cerrado,
+      aes(
+        x = x,
+        y = y,
+        group = anio,
+        color = anio,
+        linetype = anio
+      ),
+      linewidth = 1
+    ) +
+    
+    # Puntos observados por país y año
+    geom_point(
+      data = radar_xy,
+      aes(
+        x = x,
+        y = y,
+        color = anio
+      ),
+      size = 2.4
+    ) +
+    
+    # Etiquetas de países alrededor del radar
+    geom_text(
+      data = coords_paises,
+      aes(
+        x = x_label,
+        y = y_label,
+        label = pais
+      ),
+      color = "grey20",
+      fontface = "bold",
+      size = 3.5
+    ) +
+    
+    scale_color_npg() +
+    coord_equal(clip = "off") +
+    
+    labs(
+      title = paste0(
+        "Probabilidad local de decremento por ",
+        str_to_lower(nombre_causa_radar),
+        " por país"
+      ),
+     subtitle = bquote(
+  100 %*% q[c] ~ ". Grupo etario " ~ .(grupo_edad_radar) ~
+    ", sexo: " ~ .(sexo_radar) ~
+    ". Comparación " ~ .(paste(anios_radar, collapse = " y ")) ~ "."
+      ),
+      color = "Año",
+      linetype = "Año"
+    ) +
+    
+    theme_void(base_size = 12) +
+    theme(
+      plot.background = element_rect(fill = "white", color = NA),
+      panel.background = element_rect(fill = "white", color = NA),
+      legend.background = element_rect(fill = "white", color = NA),
+      legend.box.background = element_rect(fill = "white", color = NA),
+      legend.position = "bottom",
+      legend.title = element_text(face = "bold"),
+      plot.title = element_text(face = "bold", color = "black"),
+      plot.subtitle = element_text(color = "black"),
+      plot.margin = margin(20, 40, 20, 40)
+    )
+  
+  
+  # 11. Crear carpeta de salida ----------------------------------------------
+  
+  dir.create(
+    ruta_salida,
+    recursive = TRUE,
+    showWarnings = FALSE
+  )
+  
+  
+  # 12. Nombre automático del archivo ----------------------------------------
+  
+  nombre_archivo <- paste0(
+    "06_radar_",
+    str_to_lower(str_replace_all(nombre_causa_radar, " ", "_")),
+    "_",
+    grupo_edad_radar,
+    "_",
+    str_to_lower(sexo_radar),
+    ".png"
+  )
+  
+  
+  # 13. Guardar figura -------------------------------------------------------
+  
+  ggsave(
+    filename = file.path(ruta_salida, nombre_archivo),
+    plot = grafico,
+    width = 10,
+    height = 8,
+    dpi = 300,
+    bg = "white"
+  )
+  
+  
+  # 14. Guardar tabla usada en el radar, si se solicita ----------------------
+  #
+  # No es necesario para generar el gráfico.
+  # Solo sirve para auditoría o revisión posterior.
+  
+  if (guardar_csv) {
+    write_csv(
+      radar_base,
+      file.path(
+        ruta_salida,
+        str_replace(nombre_archivo, "\\.png$", "_datos.csv")
+      )
+    )
+  }
+  
+  
+  # 15. Devolver el gráfico --------------------------------------------------
+  
+  return(grafico)
+}
+
+
+grafico_07_radar_causaext_20_24_mujer <- crear_radar_clasico(
+  datos = resultados_clasico,
+  causa_radar = "XX",
+  nombre_causa_radar = "Causas Externas",
+  grupo_edad_radar = "20-24",
+  sexo_radar = "Mujer",
+  anios_radar = c(2015, 2018),
+  guardar_csv = FALSE
+)
+
+
+grafico_07_radar_causaext_20_24_hombre <- crear_radar_clasico(
+  datos = resultados_clasico,
+  causa_radar = "IX",
+  nombre_causa_radar = "Sistema circulatorio",
+  grupo_edad_radar = "65-69",
+  sexo_radar = "Hombre",
+  anios_radar = c(2015, 2018),
+  guardar_csv = FALSE
+)

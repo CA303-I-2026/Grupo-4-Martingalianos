@@ -180,49 +180,37 @@ Sin embargo, en este trabajo no se cuenta con datos para todas las edades exacta
 
 Por tanto, el supuesto de fuerza constante no se hará solamente sobre una celda del estilo $[x',x'+1)$ y $[t',t'+1)$ para edades exactas, sino sobre todo el intervalo de edad asociado al grupo etario durante un año calendario. Así, para un país y sexo fijados, si $I_x$ representa el grupo etario asociado a $x$, y si $t$ representa el año calendario, se asumirá que la fuerza de mortalidad por causa es constante dentro de la celda formada por grupo etario y año calendario. Es decir, si
 
-$$
-I_x=[a_x,b_x),
-$$
+$$I_x=[a_x,b_x),$$
 
 entonces se supondrá que
 
-$$
-\mu_{y,z}^{(c)}=\mu_{x,t}^{(c)}
-$$
+$$\mu_{y,z}^{(c)}=\mu_{x,t}^{(c)}$$
 
 para edades exactas $y\in I_x$ y momentos calendario $z\in[t,t+1)$, donde $\mu_{x,t}^{(c)}$ representa la intensidad o tasa central de mortalidad por la causa $c$ para la celda definida por grupo etario $x$ y año calendario $t$.
 
 En el caso particular de grupos quinquenales, si el grupo se denota por su edad inicial y se escribe $I_x=[x,x+5)$, el supuesto anterior equivale a asumir que
 
-$$
-\mu_{x+\xi_1,t+\xi_2}^{(c)}
+$$\mu_{x+\xi_1,t+\xi_2}^{(c)}
 =
 \mu_{x,t}^{(c)},
 \qquad
-0\le \xi_1<5,\quad 0\le \xi_2<1.
-$$
+0\le \xi_1<5,\quad 0\le \xi_2<1.$$
 
 En otras palabras, $\mu_{x,t}^{(c)}$ no representa una intensidad propia de una edad exacta como $33.9$, sino la intensidad estimada para todo el grupo etario $x$ durante el año $t$. Por ejemplo, si $x=30$ representa el grupo $30\text{-}34$, entonces $\mu_{30,t}^{(c)}$ representa una única intensidad asociada al intervalo $I_{30}=[30,35)$ durante el año calendario $t$.
 
 Esta aclaración es importante porque $\,{}_n q_{x,t}^{(c)}\,$, para un horizonte general $n$, solo puede usarse directamente con una única intensidad de muerte cuando el intervalo considerado permanece dentro de la celda donde esa intensidad fue asumida constante. Si una persona tuviera una edad exacta $y\in I_x$ y se quisiera seguir durante $n$ años usando solamente $\mu_{x,t}^{(c)}$, tendría que cumplirse al menos que
 
-$$
-y+n\leq b_x.
-$$
+$$y+n\leq b_x.$$
 
 Si esta condición no se cumple, la persona saldría del grupo etario $I_x$ y entraría en otro grupo, por lo que ya no sería correcto usar únicamente la intensidad $\mu_{x,t}^{(c)}$. Además, aun si se cumpliera la condición anterior respecto al grupo etario, también habría que considerar el año calendario si el seguimiento se interpretara estrictamente como una trayectoria real en edad y calendario, pues el año $t$ cambiaría al avanzar el tiempo. En ese caso, la fórmula directa con una sola intensidad tendría que sustituirse por un encadenamiento por tramos, usando las intensidades correspondientes a los grupos etarios y años calendario que se vayan cruzando.
 
 Por esta razón, en la aplicación empírica del proyecto se fijará el horizonte en $n=1$, pues esta elección es la más coherente con la estructura anual de los datos, y hace que el proyecto sea computacionalmente estable y fácilmente interpretable. Una vez hecha esta salvedad, se escribirá simplemente
 
-$$
-q_{x,t}^{(c)}
-$$
+$$q_{x,t}^{(c)}$$
 
 para referirse a la probabilidad anual de decremento por causa. Es decir,
 
-$$
-q_{x,t}^{(c)}:={}_1 q_{x,t}^{(c)}.
-$$
+$$q_{x,t}^{(c)}:={}_1 q_{x,t}^{(c)}.$$
 
 Con esta convención, $q_{x,t}^{(c)}$ debe leerse como una probabilidad anual asociada a la celda agregada definida por grupo etario, año calendario, país, sexo y causa. Es decir, representa el riesgo anual estimado de morir por la causa $c$ para el conjunto de vidas expuestas dentro del grupo etario $x$ durante el año $t$, bajo las intensidades estimadas para esa celda. Por ejemplo, si $x=30$ representa el grupo $30\text{-}34$, entonces $q_{30,t}^{(c)}$ representa el riesgo anual estimado del grupo etario $30\text{-}34$ durante el año $t$.
 
@@ -279,107 +267,84 @@ Una vez estimadas las probabilidades clásicas de decremento por causa, se const
 
 Inicialmente, el primer análisis gráfico corresponde a la probabilidad de decremento por causa,
 
-$$
-\widehat{q}_{x,t}^{(c)}.
-$$
+$$\widehat{q}_{x,t}^{(c)}.$$
 
 Esta cantidad mide la magnitud real del riesgo de decremento por causa. En la presentación gráfica se plantea utilizar
 
-$$
-100\widehat{q}_{x,t}^{(c)},
-$$
+$$100\widehat{q}_{x,t}^{(c)},$$
 
 de manera que el eje vertical pueda interpretarse como porcentaje. Este análisis permite comparar, para cada país y sexo, cómo cambia la probabilidad anual de fallecer por una causa específica entre 2015 y 2018 a lo largo de los grupos etarios.
 
 El segundo análisis corresponde a la composición causal condicionada al fallecimiento. Para una celda fija, la probabilidad total de fallecimiento por cualquier causa es
 
-$$
-\widehat{q}_{x,t}^{(\tau)}
+$$\widehat{q}_{x,t}^{(\tau)}
 =
 \sum_{j=1}^{r}
-\widehat{q}_{x,t}^{(j)}.
-$$
+\widehat{q}_{x,t}^{(j)}.$$
 
 A partir de esta cantidad se define la composición causal condicionada al fallecimiento. Para justificarla, considérese, para una celda fija, el evento
 
-$$
-A_c=\{T_{x,t}\leq 1,\ J=c\},
-$$
+$$A_c=\{T_{x,t}\leq 1,\ J=c\},$$
 
 correspondiente a fallecer durante un horizonte anual por la causa $c$, y el evento
 
-$$
-B=\{T_{x,t}\leq 1\},
-$$
+$$B=\{T_{x,t}\leq 1\},$$
 
 correspondiente a fallecer durante ese mismo horizonte anual por cualquier causa. Por definición,
 
-$$
-P(A_c)=\widehat q_{x,t}^{(c)}.
-$$
+$$P(A_c)=\widehat q_{x,t}^{(c)}.$$
 
 Como las causas son mutuamente excluyentes y exhaustivas, el evento $B$ es la unión disjunta de los eventos $A_1,\ldots,A_r$. Por tanto,
 
-$$
-P(B)
+$$P(B)
 =
 \sum_{j=1}^{r}P(A_j)
 =
 \sum_{j=1}^{r}\widehat q_{x,t}^{(j)}
 =
-\widehat q_{x,t}^{(\tau)}.
-$$
+\widehat q_{x,t}^{(\tau)}.$$
 
 Además, como $A_c\subseteq B$, se tiene $A_c\cap B=A_c$. Así, mediante la definición de probabilidad condicional considere
 
-$$
-{\pi}_{x,t}^{(c)}
+$${\pi}_{x,t}^{(c)}
 :=
 P(J=c\mid T_{x,t}\leq 1)
 =
 \frac{P(A_c\cap B)}{P(B)}
 =
 \frac{q_{x,t}^{(c)}}
-{\displaystyle\sum_{j=1}^{r} q_{x,t}^{(j)}}.
-$$
+{\displaystyle\sum_{j=1}^{r} q_{x,t}^{(j)}}.$$
 
 Al sustituir las probabilidades desconocidas por sus estimaciones, se obtiene
 
-$$
-\widehat{\pi}_{x,t}^{(c)}
+$$\widehat{\pi}_{x,t}^{(c)}
 =
 \frac{\widehat q_{x,t}^{(c)}}
-{\displaystyle\sum_{j=1}^{r}\widehat q_{x,t}^{(j)}}.
-$$
+{\displaystyle\sum_{j=1}^{r}\widehat q_{x,t}^{(j)}}.$$
 
 La condición $T_{x,t}\leq 1$ modifica el conjunto de referencia sobre el cual se calcula la probabilidad. Sin condicionar, $q_{x,t}^{(c)}$ considera a todas las vidas pertenecientes a la celda y mide la probabilidad de que una de ellas fallezca por la causa $c$ durante el horizonte anual. En cambio, al condicionar a que $T_{x,t}\leq 1$, se excluyen del conjunto de referencia todas las vidas que sobreviven ese año y se consideran únicamente aquellas que fallecen.
 
 Por tanto,
 
-$$
-\pi_{x,t}^{(c)}
+$$\pi_{x,t}^{(c)}
 =
-P(J=c\mid T_{x,t}\leq 1)
-$$
+P(J=c\mid T_{x,t}\leq 1)$$
 
 responde a la siguiente pregunta: dado que una vida perteneciente a la celda $(x,t)$ fallece durante el próximo año, ¿cuál es la probabilidad de que ese fallecimiento sea atribuible a la causa $c$?
 
 Así, $\widehat q_{x,t}^{(c)}$ mide un riesgo absoluto respecto de todas las vidas de la celda, mientras que $\widehat{\pi}_{x,t}^{(c)}$ mide una composición causal respecto únicamente de las vidas que fallecen. Por ejemplo, si la probabilidad anual total de fallecimiento es $0.02$ y la probabilidad de fallecer por la causa $c$ es $0.006$, entonces
 
-$$
-\widehat\pi_{x,t}^{(c)}
+$$\widehat\pi_{x,t}^{(c)}
 =
 \frac{0.006}{0.02}
 =
-0.30.
-$$
+0.30.$$
 
 Esto no significa que el $30\%$ de las vidas de la celda fallezca por la causa $c$, sino que, entre los fallecimientos ocurridos durante el horizonte anual, el $30\%$ se atribuye probabilísticamente a dicha causa.
 
 Asimismo es importante notar que para una celda fija, las cantidades estimadas $\widehat{\pi}_{x,t}^{(c)}$ forman una distribución de probabilidad sobre las causas, ya que
 
-$$
-\sum_{c=1}^{r}
+$$\sum_{c=1}^{r}
 \widehat{\pi}_{x,t}^{(c)}
 =
 \sum_{c=1}^{r}
@@ -390,8 +355,7 @@ $$
 \widehat{q}_{x,t}^{(j)}
 }
 =
-1.
-$$
+1.$$
 
 Porque, una vez condicionado a que ocurrió un fallecimiento, la persona necesariamente tuvo que morir por una de las $r$ causas consideradas. Por tanto, las probabilidades condicionadas distribuyen la totalidad de la probabilidad entre las causas.
 
@@ -399,8 +363,7 @@ Esta propiedad justifica el uso de gráficos de composición condicionada, simil
 
 El tercer análisis resume la concentración de la composición causal. Dado que $\widehat{\pi}_{x,t}^{(c)}$ define una distribución de probabilidad sobre las causas de muerte, se calcula el índice
 
-$$
-H_{x,t}
+$$H_{x,t}
 =
 \sum_{c=1}^{r}
 \left(
@@ -415,15 +378,13 @@ H_{x,t}
 \sum_{j=1}^{r}
 \widehat{q}_{x,t}^{(j)}
 }
-\right)^2.
-$$
+\right)^2.$$
 
 Este índice es una medida tipo Herfindahl-Simpson aplicada a la composición causal. Su valor se encuentra entre $1/r$ y $1$. Valores altos indican que la mortalidad de la celda está concentrada en pocas causas; valores bajos indican que la mortalidad está más distribuida entre varias causas [@simpson1949; @herfindahl1950; @hirschman1964].
 
 La interpretación probabilística de $H_{x,t}$ es directa. Si se seleccionan dos fallecimientos de manera independiente dentro de la misma celda, y si la probabilidad de que un fallecimiento corresponda a la causa $c$ es $\widehat{\pi}_{x,t}^{(c)}$, entonces la probabilidad de que ambos fallecimientos correspondan a la misma causa es
 
-$$
-\sum_{c=1}^{r}
+$$\sum_{c=1}^{r}
 \widehat{\pi}_{x,t}^{(c)}
 \widehat{\pi}_{x,t}^{(c)}
 =
@@ -432,8 +393,7 @@ $$
 \widehat{\pi}_{x,t}^{(c)}
 \right)^2
 =
-H_{x,t}.
-$$
+H_{x,t}.$$
 
 Por tanto, $H_{x,t}$ no se introduce únicamente como un indicador descriptivo, sino como una función de la distribución condicional de causas. En el contexto del proyecto, permite identificar si la mortalidad de un grupo etario está dominada por una causa particular o si se reparte entre múltiples categorías.
 
@@ -445,48 +405,40 @@ Para efectos de visualización, las causas principales se seleccionan por país.
 
 El enfoque bayesiano mantiene el mismo modelo de conteo usado en el enfoque clásico, de forma que:
 
-$$
-D_{x,t}^{(c)}
+$$D_{x,t}^{(c)}
 \mid
 \mu_{x,t}^{(c)}
 \sim
 \operatorname{Poisson}
 \left(
 E_{x,t}\mu_{x,t}^{(c)}
-\right).
-$$
+\right).$$
 
 Sin embargo ahora la intensidad de mortalidad por causa se considera una variable aleatoria. La diferencia respecto al enfoque clásico es que ahora $\mu_{x,t}^{(c)}$ no se trata como un parámetro fijo desconocido, sino como una variable aleatoria positiva. Para ello se asigna una distribución Gamma:
 
-$$
-\mu_{x,t}^{(c)}
+$$\mu_{x,t}^{(c)}
 \sim
 \operatorname{Gamma}
 \left(
 \alpha_p^{(c)},\beta_p^{(c)}
 \right), \quad \mathbb{E}\left[\mu_{x,t}^{(c)}\right]
 =
-\frac{\alpha_p^{(c)}}{\beta_p^{(c)}}.
-$$
+\frac{\alpha_p^{(c)}}{\beta_p^{(c)}}.$$
 
 Se debe recordar que, aunque en buena parte de la metodología se omiten el país y el sexo de la notación para evitar sobrecargarla, la estimación se realiza utilizando celdas definidas por país, sexo, grupo etario, año calendario y causa. En el caso de los hiperparámetros sí se mantendrá explícito el país $p$, ya que se estimará un par distinto para cada combinación de país y causa:
 
-$$
-\alpha_p^{(c)},\beta_p^{(c)}.
-$$
+$$\alpha_p^{(c)},\beta_p^{(c)}.$$
 
 Estos hiperparámetros serán comunes para los distintos sexos, grupos etarios y años calendario incluidos en la experiencia colectiva del país $p$ y la causa $c$. Es decir, para cada país y causa se utilizará la información observada en ambos sexos, los distintos grupos etarios y los años 2015 a 2018, pero el resultado será un único par de hiperparámetros.
 
 Para formalizar esta idea, se define
 
-$$
-\mathcal I_p^{(c)}
+$$\mathcal I_p^{(c)}
 =
 \left\{
 (s,x,t):
 \text{país }p\text{ y causa }c\text{ fijos}
-\right\},
-$$
+\right\},$$
 
 donde $s$ representa el sexo, $x$ el grupo etario y $t$ el año calendario. Por tanto, $\mathcal I_p^{(c)}$ contiene las celdas cuya experiencia se utilizará para estimar los hiperparámetros correspondientes al país $p$ y la causa $c$.
 
@@ -498,8 +450,7 @@ En cambio, un cero estructural corresponde a una combinación de sexo o grupo et
 
 En particular, para la causa XV, correspondiente a embarazo, parto y puerperio, se define
 
-$$
-\mathcal I_p^{(\mathrm{XV})}
+$$\mathcal I_p^{(\mathrm{XV})}
 :=
 \left\{
 (\text{Mujer},x,t):
@@ -509,31 +460,26 @@ x\in
 \},
 \quad
 t\in\{2015,2016,2017,2018\}
-\right\}.
-$$
+\right\}.$$
 
 Por tanto, para esta causa no se utilizarán en la estimación de los hiperparámetros las celdas correspondientes a hombres ni los grupos etarios situados fuera de dicho intervalo. No obstante, los conteos iguales a cero que aparezcan dentro de las celdas femeninas incluidas sí permanecerán en la estimación.
 
 Para la causa XVI, afecciones originadas en el periodo perinatal, se define
 
-$$
-\mathcal I_p^{(\mathrm{XVI})}
+$$\mathcal I_p^{(\mathrm{XVI})}
 :=
 \left\{
 (s,0\text{-}4,t):
 s\in\{\text{Hombre},\text{Mujer}\},
 \quad
 t\in\{2015,2016,2017,2018\}
-\right\}.
-$$
+\right\}.$$
 
 En este caso, la estimación utilizará solamente las celdas correspondientes al grupo etario $0\text{-}4$, para ambos sexos y todos los años disponibles. Los conteos nulos observados dentro de estas celdas también se conservarán.
 
 Así, las restricciones anteriores no implican eliminar de manera general las observaciones para las cuales
 
-$$
-D_{x,t,s}^{(c)}=0.
-$$
+$$D_{x,t,s}^{(c)}=0.$$
 
 Únicamente se excluyen las celdas que se encuentran fuera del dominio de aplicación de la causa.
 
@@ -545,57 +491,48 @@ Los hiperparámetros $\alpha_p^{(c)}$ y $\beta_p^{(c)}$ se estimarán mediante u
 
 El modelo bayesiano puede representarse mediante la jerarquía
 
-$$
-\alpha_p^{(c)},\beta_p^{(c)}
+$$\alpha_p^{(c)},\beta_p^{(c)}
 \longrightarrow
 \mu_{x,t,s}^{(c)}
 \longrightarrow
-D_{x,t,s}^{(c)}.
-$$
+D_{x,t,s}^{(c)}.$$
 
 En el primer nivel, los hiperparámetros $\alpha_p^{(c)}$ y $\beta_p^{(c)}$ describen la experiencia colectiva asociada al país $p$ y a la causa $c$. En el segundo nivel, cada intensidad $\mu_{x,t,s}^{(c)}$ representa el riesgo latente propio de una celda definida por sexo, grupo etario y año calendario. Finalmente, en el tercer nivel se encuentran los conteos observados $D_{x,t,s}^{(c)}$.
 
 Para cada celda aplicable se mantiene el modelo
 
-$$
-D_{x,t,s}^{(c)}
+$$D_{x,t,s}^{(c)}
 \mid
 \mu_{x,t,s}^{(c)}
 \sim
 \operatorname{Poisson}
 \left(
 E_{x,t,s}\mu_{x,t,s}^{(c)}
-\right),
-$$
+\right),$$
 
 junto con la distribución previa
 
-$$
-\mu_{x,t,s}^{(c)}
+$$\mu_{x,t,s}^{(c)}
 \sim
 \operatorname{Gamma}
 \left(
 \alpha_p^{(c)},
 \beta_p^{(c)}
-\right),
-$$
+\right),$$
 
 donde $\beta_p^{(c)}$ se parametriza como tasa. Por tanto,
 
-$$
-\mathbb{E}\left[
+$$\mathbb{E}\left[
 \mu_{x,t,s}^{(c)}
 \right]
 =
-\frac{\alpha_p^{(c)}}{\beta_p^{(c)}}.
-$$
+\frac{\alpha_p^{(c)}}{\beta_p^{(c)}}.$$
 
 La dificultad es que las intensidades $\mu_{x,t,s}^{(c)}$ no se observan directamente. Los datos disponibles son las defunciones $D_{x,t,s}^{(c)}$ y las exposiciones $E_{x,t,s}$. Por ello, los hiperparámetros no se estimarán utilizando una muestra observada de intensidades, sino mediante la distribución marginal de los conteos.
 
 Esta distribución se obtiene integrando la intensidad latente:
 
-$$
-P\left(
+$$P\left(
 D_{x,t,s}^{(c)}=d
 \right)
 =
@@ -610,21 +547,17 @@ f\left(
 \mid
 \alpha_p^{(c)},\beta_p^{(c)}
 \right)
-d\mu.
-$$
+d\mu.$$
 
 Este procedimiento elimina el nivel intermedio no observado y produce una relación directa entre los hiperparámetros y los conteos:
 
-$$
-\alpha_p^{(c)},\beta_p^{(c)}
+$$\alpha_p^{(c)},\beta_p^{(c)}
 \longrightarrow
-D_{x,t,s}^{(c)}.
-$$
+D_{x,t,s}^{(c)}.$$
 
 Como señalan Schmitt et al. (2019), al integrar la intensidad en el modelo conjugado Poisson--Gamma se obtiene una distribución marginal binomial negativa:
 
-$$
-P\left(
+$$P\left(
 D_{x,t,s}^{(c)}=d
 \right)
 =
@@ -646,13 +579,11 @@ E_{x,t,s}
 }{
 \beta_p^{(c)}+E_{x,t,s}
 }
-\right)^d.
-$$
+\right)^d.$$
 
 Siguiendo la lógica Empirical Bayes descrita por Zhang et al. (2019), los hiperparámetros se estimarán mediante máxima verosimilitud marginal. Para cada país $p$ y causa $c$, se construye la log-verosimilitud
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 \ell_p^{(c)}(\alpha,\beta)
 =
 \sum_{(s,x,t)\in\mathcal I_p^{(c)}}\Bigg[
@@ -681,13 +612,11 @@ D_{x,t,s}^{(c)}
 {\beta+E_{x,t,s}}
 \right)
 \Bigg].
-\end{aligned}
-$$
+\end{aligned}$$
 
 Por tanto, para cada país $p$ y causa $c$, los estimadores Empirical Bayes se definen como
 
-$$
-\left(
+$$\left(
 \widehat{\alpha}_p^{(c)},
 \widehat{\beta}_p^{(c)}
 \right)
@@ -695,21 +624,17 @@ $$
 \underset{\alpha>0,\ \beta>0}
 {\operatorname{arg\,max}}
 \;
-\ell_p^{(c)}(\alpha,\beta).
-$$
+\ell_p^{(c)}(\alpha,\beta).$$
 
 La maximización se realizará numéricamente mediante la función `optim()` de R. Para garantizar que los parámetros permanezcan positivos, la optimización se realizará sobre $\log(\alpha)$ y $\log(\beta)$, recuperando posteriormente los valores de $\alpha$ y $\beta$ mediante la función exponencial. Esta transformación no modifica el criterio de máxima verosimilitud, sino que facilita la búsqueda numérica respetando las restricciones
 
-$$
-\alpha>0,
+$$\alpha>0,
 \qquad
-\beta>0.
-$$
+\beta>0.$$
 
 Una vez estimados los hiperparámetros, para cada celda perteneciente a $\mathcal I_p^{(c)}$ se obtiene por conjugación Poisson--Gamma
 
-$$
-\mu_{x,t,s}^{(c)}
+$$\mu_{x,t,s}^{(c)}
 \mid
 D_{x,t,s}^{(c)},E_{x,t,s}
 \sim
@@ -721,8 +646,7 @@ D_{x,t,s}^{(c)},
 \widehat{\beta}_p^{(c)}
 +
 E_{x,t,s}
-\right).
-$$
+\right).$$
 
 Para las celdas situadas fuera de $\mathcal I_p^{(c)}$ no se generará una intensidad mediante la distribución Gamma posterior. En la implementación, su contribución a la intensidad total de la celda se fijará en cero y se conservará un indicador que señale que la causa no fue considerada aplicable dentro del dominio definido para el proyecto.
 
@@ -730,8 +654,7 @@ Este valor nulo no debe interpretarse necesariamente como una afirmación genera
 
 En cambio, las celdas pertenecientes a $\mathcal I_p^{(c)}$ permanecerán en la estimación incluso cuando $D_{x,t,s}^{(c)}=0$. En esos casos, la intensidad posterior no se fija en cero, sino que se obtiene mediante
 
-$$
-\mu_{x,t,s}^{(c)}
+$$\mu_{x,t,s}^{(c)}
 \mid
 D_{x,t,s}^{(c)} = 0
 \sim
@@ -739,15 +662,13 @@ D_{x,t,s}^{(c)} = 0
 \left(
 \widehat{\alpha}_p^{(c)}+0,
 \widehat{\beta}_p^{(c)}+E_{x,t,s}
-\right).
-$$
+\right).$$
 
 #### Simulación posterior de $q_{x,t}^{(c)}$
 
 De la explicación brindada en el enfoque clásico y en resonancia con Deshmukh (2012, p. 46) sabemos que:
 
-$$
-q_{x,t}^{(c)}
+$$q_{x,t}^{(c)}
 =
 \frac{
 \mu_{x,t}^{(c)}
@@ -756,15 +677,13 @@ q_{x,t}^{(c)}
 }
 \left(
 1-e^{-\mu_{x,t}^{(\tau)}}
-\right),
-$$
+\right),$$
 
 Sin embargo, como ahora en el enfoque bayesiano cada $\mu_{x,t}^{(j)}$ es una variable aleatoria posterior, entonces la probabilidad de decremento ${}Q_{x,t}^{(c)}$ también lo es (note que debido a esto ahora se escribirá con una Q mayúscula). Por tanto, al querer estimarla no basta con sustituir directamente las medias posteriores de las intensidades en la fórmula clásica. Esto se debe a que la transformación de intensidades a probabilidades de decremento no es lineal, pues depende de la suma $\mu_{x,t}^{(\tau)}=\sum_{j=1}^{r}\mu_{x,t}^{(j)}$ dentro de una función exponencial.
 
 Así, bajo función de pérdida cuadrática, el estimador bayesiano de interés es la esperanza posterior de la variable aleatoria ${}Q_{x,t}^{(c)}$. Debido a que se están usando los $r$ conteos de defunciones (uno por causa) para calcular $\mu_{x,t}^{(\tau)}$, se tiene que dicha esperanza posterior se ve la siguiente manera:
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 \mathbb{E}\left({}Q_{x,t}^{(c)}
 \mid D_{x,t}^{(1)},\ldots,D_{x,t}^{(r)},E_{x,t}\right)
 = 
@@ -776,19 +695,15 @@ $$
 \mid
 D_{x,t}^{(1)},\ldots,D_{x,t}^{(r)},E_{x,t}
 \right].
-\end{aligned}
-$$
+\end{aligned}$$
 
 Para simplificar la notación, de ahora en adelante se denotará por $\mathcal{D}_{x,t}$ a los conteos de defunciones por causa junto con la exposición correspondiente de la celda $x,t$. Por tanto, la esperanza anterior se escribirá simplemente como
 
-$$
-\mathbb{E}[{}Q_{x,t}^{(c)}\mid \mathcal{D}_{x,t}]
-$$
+$$\mathbb{E}[{}Q_{x,t}^{(c)}\mid \mathcal{D}_{x,t}]$$
 
 Note que ${}Q_{x,t}^{(c)} = f(\mu_{x,t}^{(1)},\ldots,\mu_{x,t}^{(r)})$ y en general se tiene que
 
-$$
-\mathbb{E}\left[
+$$\mathbb{E}\left[
 f\left(\mu_{x,t}^{(1)},\ldots,\mu_{x,t}^{(r)}\right)
 \mid \mathcal{D}_{x,t}
 \right]
@@ -797,15 +712,13 @@ f\left(
 \mathbb{E}\left[\mu_{x,t}^{(1)}\mid\mathcal{D}_{x,t}\right],
 \ldots,
 \mathbb{E}\left[\mu_{x,t}^{(r)}\mid\mathcal{D}_{x,t}\right]
-\right).
-$$
+\right).$$
 
 Por esta razón, no se estimará $Q_{x,t}^{(c)}$ sustituyendo directamente las medias posteriores de las intensidades en la fórmula presentada. En su lugar, se deberán hacer simulaciones y aproximar la media posterior de las probabilidades de decrementos mediante Ley de los Grandes Números, esto se hará de la siguiente manera:
 
 Para cada celda $(x,t)$ y para cada simulación $s=1,\ldots,S$, se generan intensidades posteriores por causa:
 
-$$
-\mu_{x,t}^{(j,s)}
+$$\mu_{x,t}^{(j,s)}
 \sim
 \operatorname{Gamma}
 \left(
@@ -813,22 +726,18 @@ $$
 \widehat{\beta}_p^{(j)}+E_{x,t}
 \right),
 \qquad
-j=1,\ldots,r.
-$$
+j=1,\ldots,r.$$
 
 Luego, para esa misma simulación, se calcula la intensidad total simulada:
 
-$$
-\mu_{x,t}^{(\tau,s)}
+$$\mu_{x,t}^{(\tau,s)}
 =
 \sum_{j=1}^{r}
-\mu_{x,t}^{(j,s)}.
-$$
+\mu_{x,t}^{(j,s)}.$$
 
 Con estas intensidades simuladas se obtiene una realización posterior de la probabilidad de decremento por causa $c$:
 
-$$
-q_{x,t}^{(c,s)}
+$$q_{x,t}^{(c,s)}
 =
 \frac{
 \mu_{x,t}^{(c,s)}
@@ -837,19 +746,15 @@ q_{x,t}^{(c,s)}
 }
 \left(
 1-e^{-\mu_{x,t}^{(\tau,s)}}
-\right).
-$$
+\right).$$
 
 Después de $S$ simulaciones, para cada causa $c$ se obtiene una muestra de la forma
 
-$$
-q_{x,t}^{(c,1)},\ldots,q_{x,t}^{(c,S)}.
-$$
+$$q_{x,t}^{(c,1)},\ldots,q_{x,t}^{(c,S)}.$$
 
 Para $S$ grande se tiene que el estimador bayesiano de $Q_{x,t}^{(c)}$ de dicha causa $c$ se aproxima entonces como la media muestral de dicho conjunto:
 
-$$
-q_{x,t}^{(c)*}
+$$q_{x,t}^{(c)*}
 =
 \frac{1}{S}
 \sum_{s=1}^{S}
@@ -859,11 +764,291 @@ q_{x,t}^{(c,s)}
 Q_{x,t}^{(c)}
 \mid
 \mathcal{D}_{x,t}
-\right).
-$$
+\right).$$
 
 Esta aproximación se justifica por la Ley de los Grandes Números.
 
 \newpage
 
-# Referencias
+## 1.2.4 Implementación metodológica y análisis.
+
+### Enfoque clásico
+
+- Análisis de decremento por causa q.
+
+### Composición causal $\pi$
+
+Un segundo elemento del análisis frecuentista corresponde al estudio de la composición causal. Mientras que ${}*n\widehat q*{x,t,p,s}^{(c)}$ mide la probabilidad local de decremento por la causa $c$, la composición causal permite estudiar el peso relativo de esa causa dentro del conjunto de decrementos observados o estimados para una misma celda demográfica.
+
+Para un país $p$, sexo $s$, grupo etario $x$ y año calendario $t$, se define la composición causal de la causa $c$ como
+
+\$\$ \widehat{\pi}\_{x,t,p,s}\^{(c)}
+
+\frac{
+{}*n\widehat q*{x,t,p,s}^{(c)}
+}{
+\sum_{j=1}^{r} {}*n\widehat q*{x,t,p,s}^{(j)}
+}, \$\$
+
+siempre que
+
+$$\sum_{j=1}^{r} {}*n\widehat q*{x,t,p,s}^{(j)} > 0.$$
+
+En esta expresión, ${}*n\widehat q*{x,t,p,s}^{(c)}$ representa la probabilidad clásica estimada de decremento por la causa $c$, mientras que
+
+$$\sum_{j=1}^{r} {}*n\widehat q*{x,t,p,s}^{(j)}$$
+
+representa la probabilidad total estimada de decremento por cualquiera de las causas competidoras consideradas en el modelo.
+
+De esta forma, $\widehat{\pi}_{x,t,p,s}^{(c)}$ puede interpretarse como la proporción de la probabilidad total de decremento que corresponde a la causa $c$ dentro de una celda específica. Equivalentemente, esta cantidad aproxima la probabilidad condicional
+
+$$\widehat{\pi}_{x,t,p,s}^{(c)}
+\approx
+P(J=c \mid T_x \le n),$$
+
+Tal como se había visto anteriormente. Entonces, esta composición causal no nos mide el riesgo absoluto de morir por una causa, sino la participación relativa de dicha causa entre los decrementos estimados para un país, sexo, año y grupo etario dados. Esta distinción es importante: una causa puede tener una alta composición relativa dentro de los fallecimientos de una celda, aunque la probabilidad absoluta de muerte en esa celda sea baja. En consecuencia, podremos estudiar cómo cambia la estructura causal de los decrementos conforme varía la edad, el país, el sexo o el año calendario. Dicho de manera más simple **cómo se reparte causalmente el riesgo estimado**.
+
+Representando gráficamente la composición causal para Costa Rica, se obtiene una lectura descriptiva relevante sobre la forma en que se distribuyen las causas de decremento a lo largo de los intervalos de edad. En particular, @fig-composicion-causal-por-edades-costa-rica permite observar la participación relativa de las principales causas dentro del total de decrementos estimados para cada grupo etario.
+
+En primer lugar, se observa una presencia importante de la causa $II$, correspondiente a tumores. Esta causa mantiene una participación relativamente persistente a lo largo de varios intervalos de edad, con un peso especialmente visible en edades tempranas y adultas. No obstante, debe recordarse que este gráfico no mide el riesgo absoluto de morir por tumores, sino su peso relativo dentro de las causas seleccionadas para cada grupo etario.
+
+En segundo lugar, la causa $IX$, correspondiente a enfermedades del sistema circulatorio, presenta un patrón creciente conforme aumentan los intervalos de edad. Sin embargo, en Costa Rica este crecimiento parece ser más gradual que abrupto, y en edades avanzadas tiende a compartir espacio con otras causas relevantes, como tumores y enfermedades del sistema respiratorio. Esto sugiere que la composición causal en edades mayores no queda dominada exclusivamente por una sola causa, sino que se reparte entre varias causas crónicas de peso importante.
+
+Paralelamente, también se aprecia una mayor participación relativa de la causa $XX$, correspondiente a causas externas de mortalidad, entre edades jóvenes y adultas jóvenes. Este comportamiento es coherente con lo observado en análisis complementarios, donde las causas externas tienden a concentrarse en ciertos grupos etarios específicos. En este sentido, la figura permite identificar que la relevancia de las causas externas no es uniforme a lo largo de toda la vida, sino que se concentra principalmente en edades intermedias tempranas.
+
+Además, aunque la figura representa las cuatro causas con mayor participación relativa global entre los intervalos de edad, se incluye de forma separada la causa $XVI$, correspondiente a afecciones originadas en el periodo perinatal. Esta causa adquiere importancia únicamente en el primer intervalo de edad, $0$--$4$, lo cual es consistente con su naturaleza conceptual y con el dominio de modelación adoptado para esta categoría.
+
+Por otra parte, la causa $X$, correspondiente a enfermedades del sistema respiratorio, muestra un comportamiento no monótono. Su participación relativa es visible en edades tempranas, disminuye en varios intervalos intermedios y vuelve a adquirir mayor presencia en edades avanzadas. Este patrón resulta relevante porque sugiere que las enfermedades respiratorias no se concentran únicamente al inicio o al final de la distribución etaria, sino que su peso relativo cambia de forma diferenciada según el grupo de edad.
+
+Finalmente, es importante señalar que las barras de @fig-composicion-causal-por-edades-costa-rica no necesariamente acumulan el $100%$ de la composición causal total. Esto ocurre porque la visualización muestra únicamente las cuatro causas con mayor participación relativa global, junto con la causa perinatal. Por tanto, la diferencia hasta el $100%$ corresponde a causas no incluidas explícitamente en la figura. En consecuencia, la interpretación del gráfico debe hacerse como una comparación de las principales causas seleccionadas, no como una descomposición exhaustiva de todas las causas de decremento.
+
+![Composición causal promedio por edad: Costa Rica.](../../figuras/clasico/costa%20rica/04_composicion_promedio_top4_mas_perinatal.png){#fig-composicion-causal-por-edades-costa-rica width="80%" fig-align="center"}
+
+De forma análoga al caso de Costa Rica, se analiza ahora la composición causal para Nicaragua. El objeto representado corresponde a la participación relativa de cada causa dentro del total de decrementos estimados para una misma celda demográfica. Para un país $p$, sexo $s$, año $t$, grupo etario $x$ y causa $c$, esta cantidad se define como
+
+$$\widehat{\pi}_{x,t,p,s}^{(c)}
+=
+\frac{
+{}_n\widehat{q}_{x,t,p,s}^{(c)}
+}{
+\sum_{j=1}^{r} {}_n\widehat{q}_{x,t,p,s}^{(j)}
+}.$$
+
+En los gráficos presentados se resume esta cantidad por grupo etario, promediando sobre las combinaciones de año y sexo disponibles en el análisis clásico. Es decir, para cada grupo etario se observa una versión agregada de la composición causal,
+
+$$\overline{\pi}_{x,p}^{(c)}
+=
+\frac{1}{|\mathcal A|}
+\sum_{(t,s)\in \mathcal A}
+\widehat{\pi}_{x,t,p,s}^{(c)},$$
+
+donde $\mathcal A$ representa el conjunto de combinaciones de año y sexo incluidas en la visualización. Por tanto, el gráfico no debe interpretarse como una probabilidad absoluta de muerte por causa, sino como la forma en que se reparte causalmente el total de decrementos estimados dentro de cada intervalo de edad.
+
+Al observar Nicaragua en @fig-composicion-causal-por-edades-nicaragua, se mantienen algunos patrones generales ya identificados en Costa Rica. La causa $XVI$, correspondiente a afecciones originadas en el periodo perinatal, concentra su participación en el primer intervalo de edad. La causa $XX$, asociada a causas externas de mortalidad, presenta mayor peso relativo en edades jóvenes y adultas jóvenes. Asimismo, la causa $IX$, correspondiente a enfermedades del sistema circulatorio, aumenta su participación conforme avanzan los intervalos de edad.
+
+No obstante, la diferencia más notable respecto a Costa Rica aparece en la causa $II$, correspondiente a tumores. Mientras que en @fig-composicion-causal-por-edades-costa-rica esta causa mostraba una participación amplia y persistente a través de varios grupos etarios, en Nicaragua su peso relativo dentro de las principales causas seleccionadas parece considerablemente menor. Esto no implica necesariamente que el riesgo absoluto por tumores sea bajo, sino que, dentro de la composición causal estimada para Nicaragua, otras causas adquieren una mayor participación relativa en varios tramos de edad.
+
+También resulta relevante el comportamiento de la causa $X$, correspondiente a enfermedades del sistema respiratorio. En Costa Rica, esta causa mostraba un patrón relativamente gradual, con una presencia que disminuía en edades intermedias y volvía a cobrar peso en edades avanzadas. En Nicaragua, en cambio, la evolución de esta participación parece menos suavizada: su peso relativo cambia de manera más irregular conforme aumenta la edad. Esto sugiere una estructura causal menos homogénea entre intervalos etarios, al menos dentro del subconjunto de causas representadas en la figura.
+
+![Composición causal promedio por edad: Nicaragua.](../../figuras/clasico/nicaragua/04_composicion_promedio_top4_mas_perinatal.png){#fig-composicion-causal-por-edades-nicaragua width="80%" fig-align="center"}
+
+Un punto importante en la lectura de @fig-composicion-causal-por-edades-nicaragua es que las barras no acumulan necesariamente el $100\%$ de la composición causal. Esto ocurre porque la visualización incluye únicamente las cuatro causas con mayor participación relativa global, junto con la causa perinatal. Si se denota por $\mathcal C_{\mathrm{sel}}$ el conjunto de causas seleccionadas en esa figura, entonces la altura total de cada barra representa
+
+$$\sum_{c\in\mathcal C_{\mathrm{sel}}}
+\overline{\pi}_{x,p}^{(c)},$$
+
+y no necesariamente
+
+$$\sum_{c=1}^{r}
+\overline{\pi}_{x,p}^{(c)}
+=
+1.$$
+
+Por esta razón, en algunos intervalos de edad, especialmente entre edades adultas y adultas mayores, las causas seleccionadas pueden no ocupar una proporción visualmente dominante del total. Esto no significa que exista una única causa omitida que tome toda la relevancia en esos intervalos, sino que la composición restante se distribuye entre varias causas no incluidas en el gráfico principal.
+
+Para verificar esta interpretación, @fig-composicion-causal-por-edades-nicaragua-total muestra la composición causal completa de Nicaragua incorporando todas las causas disponibles. En esta segunda visualización, cada barra sí representa el $100\%$ de la composición causal, por lo que se cumple
+
+$$\sum_{c=1}^{r}
+\overline{\pi}_{x,p}^{(c)}
+=
+1$$
+
+para cada grupo etario $x$. Al comparar ambas figuras, se observa que la menor altura conjunta de las causas principales en ciertos grupos no responde a la aparición dominante de una sola causa adicional, sino a una mayor dispersión de la participación relativa entre causas residuales. Esto refuerza la idea de que, en Nicaragua, la composición causal en varios tramos de edad se encuentra más fragmentada entre distintas categorías, mientras que en edades avanzadas las enfermedades del sistema circulatorio adquieren progresivamente mayor peso relativo.
+
+![Composición causal completa por edad: Nicaragua.](../../figuras/clasico/nicaragua/comp_causal_prima_nic.png){#fig-composicion-causal-por-edades-nicaragua-total width="80%" fig-align="center"}
+
+- Concentración de composición causal H
+
+## 1.2.5 Análisis fallido.
+
+### Enfoque clásico.
+
+### Enfoque Bayesiano.
+
+### Nivel descriptivo.
+
+#### Titular:
+
+#### Nombre del hallazgo/resultado:
+
+#### Resumen en una oración:
+
+#### Método o análisis que lo produjo:
+
+#### Evidencia:
+
+### Nivel analítico.
+
+#### Conexión con pregunta de investigación.
+
+#### Contraste con la literatura.
+
+#### Lo que NO explica el resultado.
+
+#### Implicación para el siguiente paso
+
+## 1.3 Contrucción de fichas de resultados
+
+## Enfoque clásico:
+
+## Enfoque clásico: composición causal
+
+### Nivel descriptivo.
+
+#### Titular:
+
+Nicaragua exhibe una composición causal más fragmentada que Costa Rica.
+
+#### Nombre del hallazgo/resultado:
+
+Comparación de la composición causal por edad entre Costa Rica y Nicaragua bajo el enfoque clásico.
+
+#### Resumen en una oración:
+
+La composición causal de Nicaragua se distribuye más entre causas residuales que la de Costa Rica.
+
+#### Método o análisis que lo produjo:
+
+El resultado se obtuvo a partir del cálculo clásico de la probabilidad local de decremento por causa,
+
+$${}_n\widehat{q}_{x,t,p,s}^{(c)}
+=
+\frac{
+\widehat{\mu}_{x,t,p,s}^{(c)}
+}{
+\widehat{\mu}_{x,t,p,s}^{(\tau)}
+}
+\left(
+1-e^{-n\widehat{\mu}_{x,t,p,s}^{(\tau)}}
+\right),$$
+
+donde
+
+$$\widehat{\mu}_{x,t,p,s}^{(\tau)}
+=
+\sum_{j=1}^{r}
+\widehat{\mu}_{x,t,p,s}^{(j)}.$$
+
+A partir de estas probabilidades se construyó la composición causal,
+
+$$\widehat{\pi}_{x,t,p,s}^{(c)}
+=
+\frac{
+{}_n\widehat{q}_{x,t,p,s}^{(c)}
+}{
+\sum_{j=1}^{r} {}_n\widehat{q}_{x,t,p,s}^{(j)}
+},$$
+
+la cual mide la participación relativa de la causa $c$ dentro del total de decrementos estimados para una celda demográfica dada. Posteriormente, para resumir la visualización por grupo etario, se promedió esta composición sobre las combinaciones de año y sexo consideradas:
+
+$$\overline{\pi}_{x,p}^{(c)}
+=
+\frac{1}{|\mathcal A|}
+\sum_{(t,s)\in \mathcal A}
+\widehat{\pi}_{x,t,p,s}^{(c)},$$
+
+donde $\mathcal A$ representa el conjunto de combinaciones de año y sexo incluidas en el análisis.
+
+#### Evidencia:
+
+La evidencia principal corresponde a las visualizaciones de composición causal por edad para Costa Rica y Nicaragua. En @fig-composicion-causal-por-edades-costa-rica se observa una participación persistente de la causa $II$, correspondiente a tumores, junto con una presencia creciente pero relativamente gradual de la causa $IX$, correspondiente a enfermedades del sistema circulatorio. En @fig-composicion-causal-por-edades-nicaragua se observa que, para Nicaragua, las causas seleccionadas explican una menor proporción conjunta en varios intervalos etarios. Esta lectura se complementa con @fig-composicion-causal-por-edades-nicaragua-total, donde se incluyen todas las causas disponibles y cada barra acumula el $100\%$ de la composición causal:
+
+$$\sum_{c=1}^{r}
+\overline{\pi}_{x,p}^{(c)}
+=
+1.$$
+
+La comparación entre el gráfico parcial y el gráfico completo muestra que la menor participación conjunta de las causas principales en Nicaragua no se debe necesariamente al dominio de una única causa omitida, sino a una mayor dispersión entre causas residuales.
+
+### Nivel analítico.
+
+#### Conexión con pregunta de investigación.
+
+Este resultado se conecta directamente con la pregunta de investigación porque permite estudiar patrones de variabilidad en la probabilidad de decremento por causa desde una perspectiva relativa. Mientras que ${}_n\widehat{q}_{x,t,p,s}^{(c)}$ mide la magnitud local del decremento por una causa específica, $\widehat{\pi}_{x,t,p,s}^{(c)}$ permite analizar cómo se reparte causalmente el total de decrementos dentro de cada grupo etario, país, sexo y año. Por tanto, la composición causal complementa el análisis de probabilidades absolutas, mostrando no solo cuánto pesa una causa en términos de riesgo estimado, sino qué lugar ocupa dentro del conjunto de causas competidoras.
+
+En el caso de Costa Rica, la composición causal parece más concentrada en un conjunto estable de causas principales, especialmente tumores, enfermedades circulatorias y enfermedades respiratorias. En Nicaragua, en cambio, la visualización completa sugiere una estructura más fragmentada en varios intervalos de edad, con mayor participación de causas no incluidas entre las cuatro principales del gráfico resumido. Esto sugiere que los patrones de decremento por causa no solo varían en magnitud respecto a las demás causa, sino también en la forma en que se distribuye la estructura causal de la mortalidad.
+
+#### Contraste con la literatura.
+
+El resultado es coherente con la idea general de trabajar las causas de muerte en un marco de decrementos múltiples o riesgos competitivos, donde la causa $c$ no debe interpretarse aisladamente, sino en relación con el conjunto de causas que compiten por producir la salida del estado vivo. En este sentido, la composición causal $\widehat{\pi}_{x,t,p,s}^{(c)}$ se aproxima a una lectura condicionada del tipo
+
+$$P(J=c \mid T_x \le n),$$
+
+donde $J$ representa la causa del decremento y $T_x$ el tiempo futuro de vida desde el grupo etario $x$.
+
+El contraste con los antecedentes tipo Goerlich es parcial. La visualización se inspira en la idea de estudiar cómo se distribuyen las causas dentro de una estructura de mortalidad por edad, pero no reproduce una probabilidad vitalicia acumulada de fallecer eventualmente por una causa. En este trabajo, la composición causal es local por celda etaria y calendario, no una descomposición de toda la trayectoria vital desde el nacimiento. Por tanto, el resultado coincide con la literatura en la utilidad de analizar la mortalidad por causa dentro de un marco de tabla de vida o decrementos múltiples, pero se diferencia en el alcance temporal de la cantidad estimada.
+
+De hecho si profundizamos un poco más en los resultados descritos, en relación con la Investigación hecha por Goerlich (hacer cita y referencia en apa7 correspondiente) señala que halló que "al alcanzar los 65 años de edad, la probabilidad de abar falleciendo de una enfermedad relacionada con el sistema circulatorio crece ligeramente" (cita textual)
+ Nota adicional, aunado a esto Goerlich señalaría que estos resultados son más acentuados en años anteriores, sugiriendo que hay una mejora de superviviencia para la respectiva causa, esto para el caso de Nicaragua es consistente siendo que en el intervalo temporal delimitado la participación de la respectiva causa se ve ligeramente reducida dado que la probabilidad de fallercer debido a dicha causa se ve reducida entre los respectivos años, no obstante esto no es un comportamiento que los diferentes países en conjunto siguen tal como se va a ver a detalle en la siguiente ficha de resultado. 
+#### Lo que NO explica el resultado.
+
+Este resultado no explica el riesgo absoluto de morir por una causa. Una causa puede tener una participación relativa alta dentro de la composición causal y, aun así, corresponder a una probabilidad absoluta baja si la mortalidad total del grupo etario también es baja. Por esta razón, $\widehat{\pi}_{x,t,p,s}^{(c)}$ no sustituye a ${}_n\widehat{q}_{x,t,p,s}^{(c)}$, sino que lo complementa.
+
+Tampoco permite afirmar, por sí solo, que una causa sea estadísticamente más importante que otra en sentido inferencial, ya que no se están presentando intervalos de confianza ni pruebas de hipótesis. Además, cuando se grafican únicamente las cuatro causas principales más la causa perinatal, las barras no representan el total de la composición causal. En ese caso, la suma representada es
+
+$$\sum_{c\in\mathcal C_{\mathrm{sel}}}
+\overline{\pi}_{x,p}^{(c)},$$
+
+donde $\mathcal C_{\mathrm{sel}}$ es el conjunto de causas seleccionadas, y no necesariamente se cumple que esta suma sea igual a $1$. La visualización completa de Nicaragua corrige este punto al incluir todas las causas disponibles.
+
+
+
+#### Contraste con la literatura.
+
+NOTA EN MODIFICACION 
+
+El resultado es coherente con la idea general de trabajar las causas de muerte dentro de un marco de decrementos múltiples o riesgos competitivos. En este enfoque, una causa $c$ no debe interpretarse de manera aislada, sino en relación con el conjunto de causas que compiten por producir la salida del estado vivo. Por esta razón, la composición causal $\widehat{\pi}_{x,t,p,s}^{(c)}$ se interpreta como una medida relativa: no describe el riesgo absoluto de fallecer por una causa, sino la participación de esa causa dentro del total de decrementos estimados para una misma celda demográfica.
+
+En términos probabilísticos, esta lectura puede aproximarse mediante una probabilidad condicionada del tipo
+
+$$
+P(J=c \mid T_x \le n),
+$$
+
+donde $J$ representa la causa del decremento y $T_x$ el tiempo futuro de vida desde el grupo etario $x$. Esta interpretación es cercana a la presentada por Goerlich Gisbert (2012), quien, al estudiar tablas de vida de decrementos múltiples, analiza la probabilidad de fallecer por una causa determinada condicionada a que la muerte ocurra en un intervalo de edad específico. En particular, el autor señala que el Gráfico 2 presenta la probabilidad de fallecer por una causa dada condicionada a que la muerte se produce en un intervalo etario determinado. Esta idea es conceptualmente análoga al uso de la composición causal por edad en este trabajo, aunque no idéntica en su construcción empírica.
+
+El contraste con Goerlich Gisbert (2012) debe hacerse con cuidado. En su caso, los indicadores se construyen dentro de una tabla de vida de decrementos múltiples y, por tanto, siguen la lógica de una generación ficticia sometida a las condiciones de mortalidad de un periodo. En este trabajo, en cambio, la composición causal se calcula de forma local por país, año, sexo y grupo etario. Por tanto, no se está estimando la probabilidad vitalicia de que una persona termine falleciendo por una causa, sino la forma en que se distribuye causalmente la probabilidad total de decremento dentro de una celda específica.
+
+Un punto relevante señalado por Goerlich Gisbert (2012) aparece al analizar la mortalidad por enfermedades del sistema circulatorio. El autor indica que, al condicionar en personas que alcanzan los 65 años, la probabilidad de acabar falleciendo por una enfermedad del sistema circulatorio crece ligeramente, aunque este aumento es más marcado en 1975 que en 2008. Esta reducción relativa en 2008 es interpretada como evidencia de mejoras en la supervivencia frente a este grupo de causas. Además, al analizar la mortalidad condicional por intervalos de edad, Goerlich Gisbert (2012) muestra que, para fallecidos de 65 años o más, la participación de las enfermedades del sistema circulatorio disminuye de forma importante entre 1975 y 2008.
+
+Esta comparación permite formular una lectura útil para los resultados propios, aunque con una diferencia metodológica importante. En el caso de Nicaragua, la composición causal sugiere que las enfermedades del sistema circulatorio adquieren progresivamente mayor peso relativo en edades avanzadas. Sin embargo, esta lectura corresponde a una composición local por grupo etario, no a una probabilidad acumulada de fallecer eventualmente por dicha causa. Por ello, el paralelismo con Goerlich Gisbert (2012) debe entenderse como conceptual: ambos análisis estudian cómo cambia el peso de las causas dentro de una estructura etaria de mortalidad, pero no estiman exactamente la misma cantidad.
+
+La gráfica radar de probabilidad local de decremento por sistema circulatorio debe analizarse separadamente, porque no representa composición causal $\widehat{\pi}_{x,t,p,s}^{(c)}$, sino probabilidad local absoluta ${}_n\widehat q_{x,t,p,s}^{(c)}$. En esa visualización, para hombres de 65--69 años, Belice muestra un aumento entre 2015 y 2018 en la probabilidad local de decremento por enfermedades del sistema circulatorio. Esto va en dirección opuesta a la mejora de supervivencia frente a causas circulatorias descrita por Goerlich Gisbert (2012) para España en el largo plazo. No obstante, esta diferencia no debe interpretarse automáticamente como un deterioro estructural de la supervivencia en Belice. Dado que se trata de una comparación local, limitada a un grupo etario, un sexo y dos años calendario, el aumento puede reflejar variación transitoria, ruido propio de poblaciones pequeñas o cambios específicos en el registro de defunciones y exposición. Por esta razón, el radar será analizado en una ficha posterior centrada en ${}_n\widehat q_{x,t,p,s}^{(c)}$, mientras que la presente ficha se mantiene enfocada en la composición causal $\widehat{\pi}_{x,t,p,s}^{(c)}$.
+
+#### Implicación para el siguiente paso.
+
+El siguiente paso consiste en vincular esta lectura de composición causal con el índice de concentración causal,
+
+$$H_{x,t,p,s}
+=
+\sum_{c=1}^{r}
+\left(
+\widehat{\pi}_{x,t,p,s}^{(c)}
+\right)^2.$$
+
+Este índice permitirá evaluar de forma más sintética si la composición causal de un país y grupo etario está dominada por pocas causas o si se encuentra distribuida entre varias. En particular, el caso de Nicaragua sugiere que el análisis de $H$ puede ser útil para confirmar si la aparente fragmentación observada en la visualización completa se traduce en menores niveles de concentración causal respecto a Costa Rica. Asimismo, conviene contrastar estos resultados con las probabilidades absolutas ${}_n\widehat{q}_{x,t,p,s}^{(c)}$, para distinguir entre cambios en la participación relativa y cambios reales en la magnitud del riesgo de decremento.
+
+## 1.3 Ordenamiento de los elementos del reporte.
+
+## Referencias
+Goerlich Gisbert, F. J. (2012). *Tablas de vida de decrementos múltiples: Mortalidad por causas en España (1975--2008)* (Documento de Trabajo No. 1/2012). Fundación BBVA.
