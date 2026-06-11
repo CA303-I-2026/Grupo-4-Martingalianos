@@ -1697,6 +1697,377 @@ Para una mujer de `25-29`, la celda permanece dentro del dominio de la causa XV.
 
 En el caso de la causa XVI, la celda del grupo `0-4` permanece dentro del ajuste, pero su media posterior cambia al dejar de utilizarse las edades posteriores para estimar la experiencia colectiva. Por el contrario, la celda de `70-74` queda fuera del dominio adoptado para esta causa y su intensidad corregida se fija en cero.
 
+## 1.4 Ordenamiento de los elementos del reporte
+
+### 1.4.1. Identificación de los elementos primarios y secundarios
+
+| Primarios | Secundarios |
+|:-----------------------------------|:-----------------------------------|
+| Probabilidad actuarial de decremento por causa, ${}_nq_{x,t}^{(c)}=P(T_{x,t}\leq n,\ J=c)$. | Contexto general de la WHO Mortality Database y de su función en la recopilación internacional de defunciones por causa. |
+| Teoría de decrementos múltiples de Bowers et al. (1997) y Deshmukh (2012). | Modelación actuarial mediante modelos de decremento presentada por Dirgová y Bilíková (2014). |
+| Gráficos de Goerlich (2012). | Hallazgo de Calazans y Queiroz (2020) acerca de la existencia de patrones comunes de mortalidad adulta en América Latina, pero con cambios distintos entre países. |
+| Modelo Poisson de Manton et al. (1989) para los conteos de defunciones. | Uso de la población a mitad de año como aproximación de la exposición $E_{x,t}$, de acuerdo con Pitacco et al. (2009). |
+| Estimador clásico de Pitacco et al. (2009), $\widehat{\mu}_{x,t}^{(c)}=D_{x,t}^{(c)}/E_{x,t}$. | Supuesto de fuerza de mortalidad constante dentro de cada celda formada por país, sexo, año calendario y grupo etario. |
+| Idea Empirical Bayes de Zhang et al. (2019) para estimar $\widehat{\alpha}_{p}^{(c)}$ y $\widehat{\beta}_{p}^{(c)}$. | Resultado de Schmitt et al. (2019) sobre la distribución marginal binomial negativa obtenida al integrar la intensidad del modelo Poisson--Gamma. |
+| Fuerza total de mortalidad obtenida mediante $\mu_{x,t}^{(\tau)}=\sum_{j=1}^{r}\mu_{x,t}^{(j)}$. | Interpretación de las causas de muerte como riesgos competitivos, donde la probabilidad de morir por una causa también depende de las intensidades de las demás causas. |
+| Transformación de las intensidades en probabilidades de decremento mediante $q_{x,t}^{(c)}=\dfrac{\mu_{x,t}^{(c)}}{\mu_{x,t}^{(\tau)}}\left(1-e^{-\mu_{x,t}^{(\tau)}}\right)$. | Fijación del horizonte en $n=1$ para mantener la interpretación anual de las probabilidades y hacerla coherente con la estructura de los datos. |
+| Estimador bayesiano $q_{x,t}^{(c)*}=\dfrac{1}{S}\sum_{k=1}^{S}q_{x,t}^{(c,k)}\approx\mathbb{E}\left(Q_{x,t}^{(c)}\mid\mathcal{D}_{x,t}\right)$. | Uso de la Ley de los Grandes Números para justificar la aproximación de la esperanza posterior mediante la media de las simulaciones. |
+| Simulación paramétrica de conteos Poisson para obtener intervalos de confianza del enfoque clásico. | Elección de una misma cantidad de simulaciones y de un mismo nivel de cobertura para hacer comparables los intervalos clásicos y bayesianos. |
+| Construcción de intervalos creíbles mediante los cuantiles de la distribución posterior de $Q_{x,t}^{(c)}$. | Diferencia interpretativa entre un intervalo de confianza clásico y un intervalo creíble bayesiano. |
+| Comparación entre $\widehat{q}_{x,t}^{(c)}$ y $q_{x,t}^{(c)*}$ para un mismo país, sexo, año, grupo etario y causa. | Uso de diferencias absolutas, diferencias relativas y amplitudes de los intervalos como herramientas complementarias de comparación. |
+| Análisis de cómo cambia $q_{x,t}^{(c)}$ conforme cambia el grupo etario. | Clasificación de las causas de muerte mediante los grupos amplios de la ICD-10 propuestos por la WHO. |
+| Comparación de los perfiles de decremento por país, sexo, año y causa de muerte. | Calidad, cobertura y comparabilidad de los registros de mortalidad entre los países incluidos. |
+| Análisis de la composición causal $$
+\pi_{x,t}^{(c)}
+=
+P(J=c\mid T_{x,t}\leq 1)
+$$ | Distinción entre la probabilidad absoluta de decremento por causa y la distribución de las causas condicionada a que ocurra la muerte. |
+| Identificación de las celdas en las que el enfoque clásico y el bayesiano producen resultados semejantes. | Resultado esperado de que ambas estimaciones se aproximen cuando existe una exposición grande y una cantidad suficiente de defunciones. |
+| Tratamiento de los conteos nulos dentro del enfoque clásico y del enfoque bayesiano. | Distinción entre un cero observado, un cero estructural y una celda situada fuera del dominio de estimación definido para una causa. |
+| Resultados sobre los patrones etarios de las probabilidades de decremento por las distintas categorías de causas. | Uso de gráficos de líneas, mapas de calor, gráficos radar y tablas resumen para facilitar la interpretación de los resultados. |
+| Resultados sobre las diferencias de mortalidad por causa entre hombres y mujeres. | Consideración particular de la causa XV y XVI según el sexo y el rango etario aplicable. |
+| Resultados sobre las diferencias entre países centroamericanos durante el periodo 2015--2018. | Exclusión de Honduras debido a la falta de observaciones recientes compatibles con el periodo definido para el proyecto. |
+| Interpretación actuarial de los principales patrones encontrados para $q_{x,t}^{(c)}$. | Posibles implicaciones de los resultados para el estudio de la mortalidad por causa y la identificación de grupos con perfiles particulares. |
+| Conclusiones sobre la variabilidad de la probabilidad de decremento y sobre la comparación entre los enfoques clásico y bayesiano. | Limitaciones relacionadas con la naturaleza agregada de los datos y con la imposibilidad de interpretar las estimaciones como riesgos individuales exactos. |
+
 \newpage
 
+## Nuevas fichas de literatura
+
+**Título:** *Empirical Bayes Procedures for Stabilizing Maps of U.S. Cancer Mortality Rates*
+
+**Autores:** Kenneth G. Manton, Max A. Woodbury, Eric Stallard, Wilson B. Riggan, John P. Creason y Alvin C. Pellom.
+
+**Año:** 1989.
+
+**Tema principal:** Tasas de mortalidad mediante un procedimiento *Empirical Bayes*.
+
+**Clasificación:** Metodológica, porque el artículo propone una forma concreta de estimar tasas de mortalidad cuando algunas poblaciones tienen pocos fallecimientos observados.
+
+**Resumen en una oración:** Los autores utilizan un procedimiento *Empirical Bayes* para reducir la variabilidad de las tasas de mortalidad por cáncer calculadas en poblaciones pequeñas.
+
+**Argumento principal:** Cuando una tasa de mortalidad se calcula con pocos fallecimientos o con una población expuesta pequeña, puede variar mucho por razones puramente aleatorias. Esto hace que algunas tasas parezcan demasiado altas o bajas, aunque en realidad el cambio se deba a la poca información disponible. Para enfrentar este problema, los autores combinan la experiencia observada en cada condado con información proveniente del conjunto de condados. Así, las poblaciones con mayor cantidad de información conservan estimaciones cercanas a su tasa observada, mientras que las poblaciones pequeñas reciben una mayor estabilización.
+
+**Relación con el proyecto:** El artículo sirve como respaldo para modelar los conteos de defunciones mediante una distribución Poisson. En nuestro caso se plantea
+
+$$
+D_{x,t}^{(c)}
+\mid
+\mu_{x,t}^{(c)}
+\sim
+\operatorname{Poisson}
+\left(
+E_{x,t}\mu_{x,t}^{(c)}
+\right),
+$$
+
+donde $D_{x,t}^{(c)}$ es el número de defunciones por la causa $c$, $E_{x,t}$ es la exposición y $\mu_{x,t}^{(c)}$ es la intensidad de mortalidad correspondiente.
+
+También permite justificar la necesidad de estabilizar las estimaciones en celdas con poca exposición o con pocos fallecimientos. Esta situación aparece en nuestro proyecto principalmente en edades jóvenes, causas poco frecuentes y países con poblaciones pequeñas. En estos casos, la tasa clásica
+
+$$
+\widehat{\mu}_{x,t}^{(c)}
+=
+\frac{D_{x,t}^{(c)}}{E_{x,t}}
+$$
+
+puede ser muy inestable. El enfoque *Empirical Bayes* permite que la estimación utilice tanto la información de la celda como la experiencia general observada para la misma causa.
+
+**Limitaciones para nuestro proyecto:** El artículo estudia tasas de mortalidad por cáncer estandarizadas por edad y organizadas geográficamente por condados de Estados Unidos. Nuestro proyecto, en cambio, trabaja con grupos etarios, países centroamericanos y varias categorías de causas de muerte. Además, el objeto final no es solamente la intensidad $\mu_{x,t}^{(c)}$ , sino la probabilidad actuarial de decremento
+
+$$
+q_{x,t}^{(c)}
+=
+\frac{
+\mu_{x,t}^{(c)}
+}{
+\mu_{x,t}^{(\tau)}
+}
+\left(
+1-e^{-\mu_{x,t}^{(\tau)}}
+\right),
+\qquad
+\mu_{x,t}^{(\tau)}
+=
+\sum_{j=1}^{r}\mu_{x,t}^{(j)}.
+$$
+
+Por esta razón, no utilizamos de manera completa el procedimiento desarrollado por los autores, sino principalmente su justificación del modelo Poisson y de la estabilización de tasas en poblaciones pequeñas.
+
+**Lo que el artículo no resuelve:** No explica cómo combinar varias causas competidoras para obtener $q_{x,t}^{(c)}$, ni cómo trasladar la incertidumbre de las intensidades hacia las probabilidades de decremento. Tampoco considera restricciones específicas para causas que solo se modelan en ciertos sexos o grupos etarios.
+
+**Contraste con otras fuentes:** Manton et al. aportan la motivación práctica para estabilizar tasas de mortalidad. Schmitt et al. (2019) permiten justificar con mayor detalle la estructura Poisson-Gamma y la distribución marginal binomial negativa.
+
+**Nivel de aplicabilidad:** **4/5.** El artículo es bastante útil para justificar la distribución Poisson y el uso de información colectiva, aunque su procedimiento completo no coincide con el que se implementa en el proyecto.
+
+**Pregunta para los autores:** ¿Cómo se podría extender este procedimiento para estimar simultáneamente varias intensidades por causa cuando todas intervienen en una misma probabilidad de decremento?
+
+**Síntesis:** El aporte principal de Manton et al. para nuestro proyecto es mostrar que las tasas calculadas con pocos fallecimientos no deberían interpretarse sin considerar su variabilidad. La idea de combinar la información particular de una celda con una experiencia más amplia permite obtener estimaciones menos extremas y más estables. Aunque el artículo no trabaja directamente con decrementos múltiples, su planteamiento sirve como antecedente para el modelo *Empirical Bayes* utilizado en la estimación de las intensidades.
+
+**Título:** *A Class of Flat Prior Distributions for the Poisson-Gamma Hierarchical Model*
+
+**Autores:** Fernando O. Schmitt, Gustavo L. Gilardoni y J. A. A. Andrade.
+
+**Año:** 2019.
+
+**Tema principal:** Propiedades del modelo jerárquico Poisson-Gamma y uso de distribuciones previas planas para sus hiperparámetros.
+
+**Clasificación:** Teórica, porque el artículo se concentra en estudiar las condiciones matemáticas bajo las cuales la distribución posterior es válida y sus momentos existen.
+
+**Resumen en una oración:** Los autores estudian una familia de previas planas para el modelo Poisson--Gamma y muestran las condiciones necesarias para obtener distribuciones posteriores propias.
+
+**Argumento principal:** En un modelo jerárquico Poisson-Gamma algunas previas impropias pueden producir una posterior que tampoco sea propia o cuyos momentos no existan. Por esta razón, los autores analizan una familia amplia de distribuciones previas para los hiperparámetros y establecen las condiciones necesarias para que la inferencia posterior sea válida.
+
+Durante este desarrollo también presentan una propiedad importante del modelo: cuando un conteo sigue una distribución Poisson condicionada a una tasa Gamma, la distribución marginal del conteo es binomial negativa.
+
+**Relación con el proyecto:** En nuestro enfoque bayesiano se plantea
+
+$$
+D_{x,t}^{(c)}
+\mid
+\mu_{x,t}^{(c)}
+\sim
+\operatorname{Poisson}
+\left(
+E_{x,t}\mu_{x,t}^{(c)}
+\right),
+$$
+
+junto con
+
+$$
+\mu_{x,t}^{(c)}
+\sim
+\operatorname{Gamma}
+\left(
+\alpha^{(c)},
+\beta^{(c)}
+\right),
+$$
+
+donde $\beta^{(c)}$ se interpreta como parámetro de tasa.
+
+Al integrar la intensidad $\mu_{x,t}^{(c)}$, se obtiene la distribución marginal
+
+$$
+P
+\left(
+D_{x,t}^{(c)}=d
+\right)
+=
+\frac{
+\Gamma\left(\alpha^{(c)}+d\right)
+}{
+\Gamma\left(\alpha^{(c)}\right)d!
+}
+\left(
+\frac{
+\beta^{(c)}
+}{
+\beta^{(c)}+E_{x,t}
+}
+\right)^{\alpha^{(c)}}
+\left(
+\frac{
+E_{x,t}
+}{
+\beta^{(c)}+E_{x,t}
+}
+\right)^d.
+$$
+
+Esta expresión es importante porque permite construir la verosimilitud marginal utilizada para estimar $\alpha^{(c)}$ y $\beta^{(c)}$ a partir de los conteos observados.
+
+Una vez estimados los hiperparámetros, la distribución posterior de la intensidad es
+
+$$
+\mu_{x,t}^{(c)}
+\mid
+D_{x,t}^{(c)},E_{x,t}
+\sim
+\operatorname{Gamma}
+\left(
+\widehat{\alpha}^{(c)}+D_{x,t}^{(c)},
+\widehat{\beta}^{(c)}+E_{x,t}
+\right).
+$$
+
+**Limitaciones para nuestro proyecto:** El artículo estudia un enfoque bayesiano completo en el que también se asignan distribuciones previas a los hiperparámetros. En nuestro proyecto no se colocan hiperprevias sobre $\alpha^{(c)}$ y $\beta^{(c)}$, sino que estos parámetros se estiman mediante máxima verosimilitud marginal. Por tanto, la mayor parte de los resultados relacionados con previas planas y posterioridad propia no se utiliza directamente.
+
+Además, los autores no trabajan con mortalidad, riesgos competitivos ni probabilidades actuariales de decremento.
+
+**Lo que el artículo no resuelve:** No presenta el procedimiento *Empirical Bayes* específico utilizado en el proyecto ni explica cómo transformar varias intensidades posteriores en una distribución posterior para $q_{x,t}^{(c)}$. Tampoco estudia la simulación conjunta de las intensidades correspondientes a todas las causas.
+
+**Contraste con otras fuentes:** Schmitt et al. aportan principalmente la parte matemática del modelo Poisson--Gamma. Manton et al. (1989) muestran por qué la estabilización resulta necesaria en datos de mortalidad.
+
+**Nivel de aplicabilidad:** **3/5.** La derivación de la distribución marginal binomial negativa es muy útil para nuestro modelo, pero buena parte del artículo trata problemas de hiperprevias que no se incorporan en el proyecto.
+
+**Pregunta para los autores:** ¿Qué condiciones se necesitarían para garantizar la existencia de los momentos posteriores de $q_{x,t}^{(c)}$, considerando que esta probabilidad depende de todas las intensidades por causa?
+
+**Síntesis:** Schmitt et al. no constituyen la principal referencia para justificar todo el enfoque *Empirical Bayes*, pero sí permiten fundamentar una parte matemática importante. En particular, muestran cómo surge la distribución binomial negativa al integrar una intensidad Gamma dentro de un modelo Poisson.
+
+**Título:** *The Empirical Bayes Estimators of the Parameter of the Poisson Distribution with a Conjugate Gamma Prior under Stein's Loss Function*
+
+**Autores:** Ying-Ying Zhang, Ze-Yu Wang, Zheng-Min Duan y Wen Mi.
+
+**Año:** 2019.
+
+**Tema principal:** Estimación Empirical Bayes en un modelo jerárquico Poisson-Gamma.
+
+**Clasificación:** Metodológica y teórica, porque el artículo desarrolla estimadores bayesianos para el parámetro de una distribución Poisson y estudia dos formas de estimar los hiperparámetros de la distribución Gamma: el método de momentos y la máxima verosimilitud.
+
+**Resumen en una oración:** Los autores estiman los hiperparámetros de un modelo Poisson--Gamma mediante momentos y máxima verosimilitud, y utilizan esas estimaciones para construir estimadores *Empirical Bayes*.
+
+**Argumento principal:** En un análisis *Empirical Bayes*, la distribución previa conserva una estructura paramétrica conocida, pero sus hiperparámetros se estiman a partir de los propios datos. Zhang et al. estudian el modelo
+
+$$
+X_i\mid\theta_i
+\sim
+\operatorname{Poisson}(\theta_i),
+\qquad
+\theta_i
+\sim
+\operatorname{Gamma}(\alpha,\beta),
+$$
+
+donde $\alpha$ es el parámetro de forma y $\beta$ el parámetro de tasa. Al integrar las variables $\theta_i$, la distribución marginal de los conteos pertenece a la familia binomial negativa. Esta distribución marginal permite estimar $\alpha$ y $\beta$ sin tener que observar directamente los parámetros $\theta_i$.
+
+Los autores comparan dos métodos para estimar los hiperparámetros. El primero utiliza los momentos muestrales y produce expresiones cerradas. El segundo maximiza la verosimilitud marginal y requiere métodos numéricos. En sus simulaciones, ambos métodos presentan un comportamiento consistente conforme aumenta el tamaño de muestra, pero la máxima verosimilitud suele producir mejores resultados que el método de momentos.
+
+**Relación con el proyecto:** Este artículo es la referencia principal para justificar que los hiperparámetros de la distribución Gamma se estimen a partir de los conteos observados. En nuestro proyecto se plantea
+
+$$
+D_{x,t}^{(c)}
+\mid
+\mu_{x,t}^{(c)}
+\sim
+\operatorname{Poisson}
+\left(
+E_{x,t}\mu_{x,t}^{(c)}
+\right),
+$$
+
+y
+
+$$
+\mu_{x,t}^{(c)}
+\sim
+\operatorname{Gamma}
+\left(
+\alpha^{(c)},\beta^{(c)}
+\right).
+$$
+
+La distribución previa conserva la forma Gamma, pero sus hiperparámetros $\alpha^{(c)}$ y $\beta^{(c)}$ no se escogen arbitrariamente. Siguiendo la lógica *Empirical Bayes* presentada por Zhang et al., estos se estiman usando la distribución marginal de las defunciones.
+
+Al integrar la intensidad $\mu_{x,t}^{(c)}$, se obtiene
+
+$$
+P
+\left(
+D_{x,t}^{(c)}=d
+\right)
+=
+\frac{
+\Gamma\left(\alpha^{(c)}+d\right)
+}{
+\Gamma\left(\alpha^{(c)}\right)d!
+}
+\left(
+\frac{
+\beta^{(c)}
+}{
+\beta^{(c)}+E_{x,t}
+}
+\right)^{\alpha^{(c)}}
+\left(
+\frac{
+E_{x,t}
+}{
+\beta^{(c)}+E_{x,t}
+}
+\right)^d.
+$$
+
+Por tanto, los hiperparámetros se estiman mediante
+
+$$
+\left(
+\widehat{\alpha}^{(c)},
+\widehat{\beta}^{(c)}
+\right)
+=
+\underset{\alpha^{(c)},\beta^{(c)}>0}{\operatorname{arg\,max}}
+\;
+\ell_c
+\left(
+\alpha^{(c)},\beta^{(c)}
+\right),
+$$
+
+donde $\ell_c$ es la log-verosimilitud marginal construida con todas las celdas incluidas para la causa $c$.
+
+Una vez estimados los hiperparámetros, la distribución posterior de cada intensidad es
+
+$$
+\mu_{x,t}^{(c)}
+\mid
+D_{x,t}^{(c)},E_{x,t}
+\sim
+\operatorname{Gamma}
+\left(
+\widehat{\alpha}^{(c)}+D_{x,t}^{(c)},
+\widehat{\beta}^{(c)}+E_{x,t}
+\right).
+$$
+
+De esta distribución se simulan las intensidades que posteriormente se transforman en probabilidades de decremento.
+
+**Adaptación necesaria:** El modelo original de Zhang et al. supone conteos Poisson con media $\theta_i$ y no incorpora una exposición diferente para cada observación. En nuestro proyecto la media del conteo es
+
+$$
+E_{x,t}\mu_{x,t}^{(c)},
+$$
+
+por lo que las probabilidades de la distribución marginal dependen de $E_{x,t}$. Esto significa que las ecuaciones de máxima verosimilitud presentadas en el artículo no se utilizan literalmente. Se conserva su estrategia de estimar los hiperparámetros mediante la verosimilitud marginal, pero esta se modifica para incorporar las exposiciones de cada celda.
+
+**Limitaciones para nuestro proyecto:** El artículo estima directamente el parámetro de una distribución Poisson, mientras que nuestro interés final es la probabilidad de decremento
+
+$$
+q_{x,t}^{(c)}
+=
+\frac{
+\mu_{x,t}^{(c)}
+}{
+\mu_{x,t}^{(\tau)}
+}
+\left(
+1-e^{-\mu_{x,t}^{(\tau)}}
+\right),
+\qquad
+\mu_{x,t}^{(\tau)}
+=
+\sum_{j=1}^{r}\mu_{x,t}^{(j)}.
+$$
+
+Zhang et al. tampoco trabajan con riesgos competitivos ni con varias intensidades que deban simularse de manera conjunta para calcular una misma cantidad.
+
+Además, buena parte del artículo se centra en la función de pérdida de Stein. Bajo esta pérdida, el estimador propuesto para el parámetro Poisson es distinto de la media posterior. En nuestro proyecto, en cambio, el estimador de $q_{x,t}^{(c)}$ se obtiene bajo pérdida cuadrática y corresponde a su esperanza posterior, aproximada mediante simulación. Por tanto, la función de pérdida de Stein no forma parte de la metodología adoptada.
+
+**Lo que el artículo no resuelve:** No explica cómo transformar varias intensidades posteriores en probabilidades de decremento por causa ni cómo obtener intervalos creíbles para estas probabilidades. Tampoco estudia la presencia de exposiciones distintas, grupos etarios, causas de muerte o restricciones del dominio de estimación.
+
+**Contraste con otras fuentes:** Zhang et al. justifican de manera directa la estimación *Empirical Bayes* de los hiperparámetros mediante momentos y máxima verosimilitud. Schmitt et al. (2019) desarrollan con mayor profundidad las propiedades teóricas del modelo Poisson--Gamma y de las distribuciones previas para sus hiperparámetros. Manton et al. (1989) muestran una aplicación de *Empirical Bayes* a la estabilización de tasas de mortalidad.
+
+**Nivel de aplicabilidad:** **5/5.** Es la fuente más cercana al procedimiento utilizado para estimar $\alpha^{(c)}$ y $\beta^{(c)}$. No obstante, se requiere adaptar la verosimilitud marginal para incorporar la exposición $E_{x,t}$ y no se utiliza el estimador basado en la pérdida de Stein.
+
+**Pregunta para los autores:** ¿Cómo cambiarían los estimadores de los hiperparámetros si cada conteo Poisson tuviera una exposición conocida y distinta, como ocurre con las defunciones y poblaciones de cada grupo etario?
+
+**Síntesis:** El principal aporte de Zhang et al. para el proyecto es la idea de estimar los hiperparámetros de la distribución Gamma utilizando la distribución marginal de los conteos. Esto permite construir una previa a partir de la experiencia observada, en lugar de fijar sus parámetros de forma arbitraria. Los resultados del artículo también respaldan el uso de máxima verosimilitud sobre el método de momentos, aunque advierten que su cálculo es numérico, sensible a los valores iniciales y más costoso computacionalmente. En nuestro caso se adopta esta misma lógica, pero se modifica la verosimilitud para tomar en cuenta que cada celda tiene una exposición diferente.
+
 # Referencias
+
+Manton, K. G., Woodbury, M. A., Stallard, E., Riggan, W. B., Creason, J. P., & Pellom, A. C. (1989). Empirical Bayes procedures for stabilizing maps of U.S. cancer mortality rates. *Journal of the American Statistical Association, 84*(407), 637–650. https://doi.org/10.1080/01621459.1989.10478816
+
+Schmitt, F. O., Gilardoni, G. L., & Andrade, J. A. A. (2019). A class of flat prior distributions for the Poisson-gamma hierarchical model. *Statistica Neerlandica, 73*(3), 414–433. https://doi.org/10.1111/stan.12176
+
+Zhang, Y.-Y., Wang, Z.-Y., Duan, Z.-M., & Mi, W. (2019). The empirical Bayes estimators of the parameter of the Poisson distribution with a conjugate gamma prior under Stein’s loss function. *Journal of Statistical Computation and Simulation, 89*(16), 3061–3074. https://doi.org/10.1080/00949655.2019.1652606
