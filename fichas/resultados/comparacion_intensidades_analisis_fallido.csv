@@ -1,0 +1,5 @@
+anio,sexo,pais,grupo_edad,causa,causa_grupo,muertes,exposicion,caso,orden,alpha_inicial,beta_inicial,alpha_corregido,beta_corregido,aplicable,media_posterior_inicial,media_posterior_corregida
+2018,Hombre,Costa Rica,25-29,XV,"Embarazo, parto y puerperio",0,210403,XV: hombre de 25-29,1,0.18928423185482957,68784.24535432784,1.8674924137965323,195936.00587977853,FALSE,6.779830920090969e-7,0
+2018,Mujer,Costa Rica,25-29,XV,"Embarazo, parto y puerperio",3,203888,XV: mujer de 25-29,2,0.18928423185482957,68784.24535432784,1.8674924137965323,195936.00587977853,TRUE,1.1696402131835854e-5,1.2174087454018754e-5
+2018,Hombre,Costa Rica,0-4,XVI,Afecciones originadas en el periodo perinatal,143,176002,XVI: hombre de 0-4,3,0.009019773092977433,229.2643064211966,116.41342573247233,149513.70114111368,TRUE,8.11484956065666e-4,7.96930608333435e-4
+2018,Hombre,Costa Rica,70-74,XVI,Afecciones originadas en el periodo perinatal,0,58480,XVI: hombre de 70-74,4,0.009019773092977433,229.2643064211966,116.41342573247233,149513.70114111368,FALSE,1.5363457879323001e-7,0

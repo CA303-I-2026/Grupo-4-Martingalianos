@@ -116,6 +116,48 @@ Sebastián Miranda Ramírez — C4H274<br> Benjamín Gutiérrez Padua — C4F813
 
 # 1. Parte de Planificación
 
+## 1.1.1 Carga de datos
+En el repositorio de GitHub, dentro de la carpeta `codigo`, se encuentran los scripts que construyen y limpian la base de datos utilizada en el proyecto. La base de datos limpia se llama `data_centroamerica_FINAL.csv` y se encuentra en la ruta `datos/procesados` del repositorio. Para construirla, se partió de los registros de mortalidad por causa y de la base de exposición poblacional *World Population Prospects*. Primero se filtraron los países de Centroamérica considerados en el proyecto y los años 2015--2018. Luego se estandarizaron las variables necesarias para unir ambas fuentes: año, país, sexo y grupo etario. En el caso de las defunciones, las causas de muerte se agruparon según los grandes capítulos de la ICD-10 identificados con números romanos, en lugar de trabajar con códigos demasiado específicos. Esta decisión permitió reducir la dispersión de los conteos y mantener categorías comparables, como tumores, enfermedades del sistema circulatorio, enfermedades respiratorias, afecciones perinatales y causas externas de mortalidad.
+
+Finalmente, la base de mortalidad y la base de exposición de la WPP se unieron mediante las llaves comunes de año, país, sexo y grupo etario, obteniendo una base en formato largo donde cada fila representa una celda actuarial específica. Esta estructura permite estimar intensidades de mortalidad por causa y transformarlas en probabilidades anuales de decremento $q_x^{(c)}$.
+
+## 1.1.2 Analisis descriptivo de la base de datos
+La base de datos utilizada en esta etapa del proyecto tiene como unidad de análisis una celda definida por año calendario, sexo, país, grupo etario y causa de muerte. En particular, las variables `anio`, `sexo`, `pais` y `grupo_edad` permiten ubicar demográfica y temporalmente a la población expuesta, mientras que `causa` y `causa_grupo` identifican la categoría de muerte según la agrupación general de la ICD-10. La variable `muertes` registra el número de defunciones observadas en cada celda y la variable `exposicion` aproxima la población expuesta al riesgo durante ese año, usualmente interpretada como población a mitad de año.
+
+```{r}
+#| label: tbl-ejemplo-base-final
+#| echo: false
+#| message: false
+#| warning: false
+#| tbl-cap: "Primeras filas de la base final utilizada en el análisis."
+
+library(readr)
+library(dplyr)
+library(knitr)
+library(here)
+
+data_centroamerica_final <- read_csv(
+  here("datos", "procesados", "data_centroamerica_FINAL.csv"),
+  show_col_types = FALSE
+)
+
+data_centroamerica_final %>%
+  select(
+    anio,
+    pais,
+    sexo,
+    grupo_edad,
+    causa,
+    muertes,
+    exposicion
+  ) %>%
+  slice_head(n = 6) %>%
+  kable(
+    digits = 2,
+    format.args = list(big.mark = " ", scientific = FALSE)
+  )
+```
+
 ## 1.2.1. Formulación metodológica del proyecto
 
 La metodología del proyecto se construye alrededor de estimar la probabilidad actuarial de decremento por causa,
@@ -871,9 +913,222 @@ $$
 
 Esta aproximación se justifica por la Ley de los Grandes Números.
 
+## 1.2.4 Implementación metodológica y análisis.
+
+### Enfoque clásico
+
+### Probabilidad de decremento absoluto $_{n}q_{x,t}^{(c)}$
+
+En la gráfica radar se representa la cantidad
+
+$$
+100 \times {}_1\widehat q_{x,t,p,s}^{(c)},
+$$
+
+por lo que los valores se expresan como porcentajes. Esta visualización permite comparar, para una causa fija, un grupo etario específico y un sexo determinado, cómo varía la probabilidad local de decremento entre países y entre años. En consecuencia, el radar no debe interpretarse como una composición causal, ya que no representa
+
+$$
+\widehat{\pi}_{x,t,p,s}^{(c)}
+=
+\frac{
+{}_1\widehat q_{x,t,p,s}^{(c)}
+}{
+\sum_{j=1}^{r}
+{}_1\widehat q_{x,t,p,s}^{(j)}
+},
+$$
+
+sino como una comparación directa de la magnitud absoluta estimada de ${}_1\widehat q_{x,t,p,s}^{(c)}$.
+
+Para el análisis de la evolución global de ${}_1\widehat q_{x,t,p,s}^{(c)}$ para lo cual emplearemos dos análisis: 1) La probabilidad absoluta de decremento por causa. 2) La repartición relativa entre causas competidoras para diferentes intervalos de edad.
+
+Desglosando la participación relativa entre causas competidoras se vio anteriormente que para las causas externas estas cobraban mayor partipación en edades jóvenes y adultas, auspiciado esencialmente por los factores de autolesiones y asaltos, sucede que esta que esta última si se representa para la población de sexo hombre entre edades 20 y 24 puede apreciar que hay acumulación significativa por parte de El Salvador rondando los 0.04% para el año 2015, lo cual supuso una desviación bastante atípica en relación al resto de países en comparación, lo que es más si considera estos mismos para el año 2018 puede evidenciarse una contracción a niveles más estables de la probabildiad local absoluta más que significativa en @fig-radar-causa-externa-hombre.
+
+![Probabilidad local de decremento por causas externas por país.](../../figuras/clasico/radar/06_radar_causas_externas_20-24_hombre.png){#fig-radar-causa-externa-hombre width="80%" fig-align="center"}
+
+Por otro lado en un horizonte vista de dos quinquenios podemos apreciar un patrón bastante similar pero un poco más acentuado para el año 2015 en El Salvador se concentró cerca del 0.05% de este porcentaje en dicha causa, nuevamente, inducido por los distintos factores sociales y políticos del país y evidenciándose la intensidad de la probabilidad de muerte para estas edades adultas y jóvenes en causas externas, ver en @fig-ragar-caus-ext-hombre.
+
+![Probabilidad local de decremento por causas externas por país.](../../figuras/clasico/radar/06_radar_causas_externas_30-34_hombre.png){#fig-ragar-caus-ext-hombre width="80%" fig-align="center"}
+
+### Probabilidad local absoluta de decremento por causa
+
+Este componente del análisis clásico se concentra en la magnitud absoluta de la probabilidad local de decremento por causa. A diferencia de la composición causal, donde se estudia la participación relativa de una causa dentro del total de decrementos, aquí el objeto de interés es directamente
+
+$$
+{}_1\widehat q_{x,t,p,s}^{(c)},
+$$
+
+
+Para analizar la evolución general de ${}_1\widehat q_{x,t,p,s}^{(c)}$, se emplean primero gráficos de línea por grupo etario. Estos permiten estudiar cómo cambia la magnitud absoluta del decremento conforme avanza la edad, antes de pasar a comparaciones puntuales entre países. En particular, las gráficas por edad muestran tres comportamientos centrales. Primero, las afecciones originadas en el periodo perinatal se concentran prácticamente en el intervalo $0$--$4$, lo cual confirma que esta causa solo debe interpretarse dentro de edades tempranas. Segundo, las causas externas presentan mayor relevancia absoluta en edades jóvenes y adultas jóvenes, pero no siguen un patrón creciente con la edad. Tercero, causas crónicas como tumores, enfermedades del sistema circulatorio y enfermedades del sistema respiratorio tienden a adquirir mayor magnitud absoluta en edades avanzadas.
+
+![Probabilidad local de decremento por causa perinatal por edad.](../../figuras/clasico/costa rica/00_q_perinatal_por_edad.png){#fig-q-perinatal-por-edad width="85%" fig-align="center"}
+
+![Probabilidad local absoluta de decremento para causas principales.](../../figuras/clasico/costa rica/01_q_absoluto_top4_2015_2018.png){#fig-q-absoluto-top4 width="90%" fig-align="center"}
+
+![Probabilidad local de decremento por causa principal y edad.](../../figuras/clasico/costa rica/02_q_por_causa_top4.png){#fig-q-por-causa-top4 width="90%" fig-align="center"}
+
+Una vez identificados estos patrones generales, las gráficas radar se utilizan como una herramienta complementaria para comparar países en celdas específicas. En cada radar se fija una causa $c$, un grupo etario $x$ y un sexo $s$, y se compara la cantidad
+
+$$
+100 \times {}_1\widehat q_{x,t,p,s}^{(c)}
+$$
+
+entre países para los años 2015 y 2018. Por esta razón, estas visualizaciones no deben interpretarse como composición causal. No representan
+
+$$
+\widehat{\pi}_{x,t,p,s}^{(c)}
+=
+\frac{
+{}_1\widehat q_{x,t,p,s}^{(c)}
+}{
+\sum_{j=1}^{r}
+{}_1\widehat q_{x,t,p,s}^{(j)}
+},
+$$
+
+sino la magnitud absoluta estimada de la probabilidad local de decremento por causa.
+
+En el caso de causas externas de mortalidad, los radares para hombres de 20--24 y 30--34 años muestran un patrón especialmente marcado en El Salvador. Para hombres de 20--24 años, El Salvador presenta en 2015 el mayor nivel de probabilidad local de decremento por causas externas dentro del conjunto de países comparados, con una reducción visible hacia 2018. Este comportamiento es coherente con la lectura previa de composición causal, donde las causas externas mostraban mayor participación en edades jóvenes y adultas jóvenes, pero aquí el resultado se observa en términos absolutos: no solo aumenta el peso relativo de estas causas, sino que su probabilidad local estimada también se eleva en ciertos países y grupos.
+
+![Probabilidad local de decremento por causas externas en hombres de 20--24 años.](../../figuras/clasico/radar/06_radar_causas_externas_20-24_hombre.png){#fig-radar-causas-externas-20-24-hombre width="80%" fig-align="center"}
+
+El mismo patrón se mantiene, e incluso parece más acentuado, en hombres de 30-34 años. Nuevamente, El Salvador aparece como el país con mayor probabilidad local de decremento por causas externas en 2015, seguido por una contracción clara en 2018. Esta caída no debe describirse como estadísticamente significativa, porque no se están mostrando intervalos de incertidumbre ni pruebas formales. Sin embargo, sí constituye una diferencia visualmente marcada dentro de la comparación descriptiva.
+
+![Probabilidad local de decremento por causas externas en hombres de 30--34 años.](../../figuras/clasico/radar/06_radar_causas_externas_30-34_hombre.png){#fig-radar-causas-externas-30-34-hombre width="80%" fig-align="center"}
+
+Cuando se compara con las mujeres en los mismos grupos etarios, la escala de la probabilidad local de decremento por causas externas es mucho menor. En los radares femeninos de 20--24 y 30--34 años, las diferencias entre países siguen existiendo, pero se ubican en niveles considerablemente más bajos que los observados para hombres. Esto refuerza la idea de que las causas externas no solo tienen una estructura etaria específica, sino también una diferenciación importante por sexo.
+
+![Probabilidad local de decremento por causas externas en mujeres de 20--24 años.](../../figuras/clasico/radar/06_radar_causas_externas_20-24_mujer.png){#fig-radar-causas-externas-20-24-mujer width="80%" fig-align="center"}
+
+![Probabilidad local de decremento por causas externas en mujeres de 30--34 años.](../../figuras/clasico/radar/06_radar_causas_externas_30-34_mujer.png){#fig-radar-causas-externas-30-34-mujer width="80%" fig-align="center"}
+
+Para enfermedades del sistema circulatorio, el radar de hombres de 65--69 años muestra un patrón distinto. En este caso, las probabilidades locales son mayores que las observadas en causas externas para edades jóvenes, lo cual es consistente con la concentración de enfermedades crónicas en edades adultas y adultas mayores. Además, la comparación 2015--2018 no revela un movimiento homogéneo para todos los países: algunos presentan aumentos leves, mientras que otros muestran reducciones o estabilidad. Esto sugiere que la evolución de ${}_1\widehat q_{x,t,p,s}^{(c)}$ para enfermedades circulatorias no puede resumirse como una tendencia regional única. De hecho, este resultado hallado entre la dinámica etaria entre los 65 y 69 años para hombres manifiesta un resultado diferente del señalado por Goerlich de que supervivencia tiende a mejorar con la evolución hacia años más contemporáneos puede visualizar en
+
+![Probabilidad local de decremento por causas externas en mujeres de 30--34 años.](../../figuras/clasico/radar/06_radar_causas_externas_30-34_mujer.png){width="80%" fig-align="center"}
+
+Por tanto, este componente de análisis permite distinguir dos dimensiones del fenómeno. La q absoluta de decremento y la composición causal $\widehat{\pi}_{x,t,p,s}^{(c)}$ responde qué proporción del total de decrementos corresponde a una causa, mientras que la probabilidad local ${}_1\widehat q_{x,t,p,s}^{(c)}$ responde cuál es la magnitud absoluta estimada del decremento por esa causa. En el caso de causas externas, ambas lecturas apuntan en la misma dirección: su relevancia se concentra en edades jóvenes y adultas jóvenes, especialmente en hombres, pero el análisis de ${}_1\widehat q_{x,t,p,s}^{(c)}$ permite identificar con mayor claridad qué países presentan niveles absolutos más altos.
+
+![Probabilidad local de decremento por enfermedades del sistema circulatorio en hombres de 65--69 años.](../../figuras/clasico/radar/06_radar_sistema_circulatorio_65-69_hombre.png){#fig-radar-sistema-circulatorio-65-69-hombre width="80%" fig-align="center"}
+
+Finalmente, los radares para tumores muestran que esta causa adquiere relevancia en edades adultas y avanzadas, aunque con diferencias visibles entre países, años y sexo. En hombres de 60--64 y 70--74 años, los niveles de ${}_1\widehat q_{x,t,p,s}^{(c)}$ son mayores que los observados en edades jóvenes para causas externas, lo cual es coherente con la evolución etaria esperada de causas crónicas. Sin embargo, el patrón no es uniforme: algunos países muestran aumentos entre 2015 y 2018, mientras que otros presentan reducciones. En mujeres, la comparación también evidencia heterogeneidad entre países, especialmente en Belice, donde los cambios entre años son más pronunciados que en otros países. Vea gráficas @fig-radar-tumores-60-64-mujer y @fig-radar-tumores-70-74-mujer para apreciar la evolucion temporal que denota en una diferencia de dos quinqueneos la acumulación de la participación de la causa incrementa más que significativamente para las edades 70-74.
+
+![Probabilidad local de decremento por tumores en hombres de 60--64 años.](../../figuras/clasico/radar/06_radar_tumores_60-64_hombre.png){#fig-radar-tumores-60-64-hombre width="80%" fig-align="center"}
+
+![Probabilidad local de decremento por tumores en mujeres de 60--64 años.](../../figuras/clasico/radar/06_radar_tumores_60-64_mujer.png){#fig-radar-tumores-60-64-mujer width="80%" fig-align="center"}
+
+Puede observar nuevamente en @fig-radar-tumores-70-74-mujer que a diferencia de los señalamientos de Goerlich la supervivencia no mejora para esta causa para el grupo de edad de 70-74 años, incrementando la probabilidad local de muerte respecto a esta causa entre 2015-2018.
+
+![Probabilidad local de decremento por tumores en mujeres de 70--74 años.](../../figuras/clasico/radar/06_radar_tumores_70-74_mujer.png){#fig-radar-tumores-70-74-mujer width="80%" fig-align="center"}
+
+En conjunto, este análisis muestra que la probabilidad local absoluta de decremento permite estudiar una dimensión distinta a la composición causal. Mientras $\widehat{\pi}_{x,t,p,s}^{(c)}$ responde qué proporción del total de decrementos corresponde a una causa, ${}_1\widehat q_{x,t,p,s}^{(c)}$ responde cuál es la magnitud absoluta estimada del decremento por esa causa. Por esta razón, ambos componentes deben leerse de forma complementaria: una causa puede tener alta participación relativa dentro de una celda, pero una probabilidad absoluta baja; del mismo modo, una causa puede mostrar una probabilidad absoluta elevada en edades avanzadas aunque su participación relativa se encuentre compartida con otras causas crónicas.
+
+### Composición causal $\pi$
+
+Un segundo elemento del análisis frecuentista corresponde al estudio de la composición causal. Mientras que ${}*n\widehat q*{x,t,p,s}^{(c)}$ mide la probabilidad local de decremento por la causa $c$, la composición causal permite estudiar el peso relativo de esa causa dentro del conjunto de decrementos observados o estimados para una misma celda demográfica.
+
+Para un país $p$, sexo $s$, grupo etario $x$ y año calendario $t$, se define la composición causal de la causa $c$ como
+
+$$
+\widehat{\pi}_{x,t,p,s}^{(c)}
+=
+\frac{
+{}_n\widehat{q}_{x,t,p,s}^{(c)}
+}{
+\sum_{j=1}^{r} {}_n\widehat{q}_{x,t,p,s}^{(j)}
+}.
+$$
+
+siempre que
+
+$$\sum_{j=1}^{r} {}*n\widehat q*{x,t,p,s}^{(j)} > 0.$$
+
+En esta expresión, ${}*n\widehat q*{x,t,p,s}^{(c)}$ representa la probabilidad clásica estimada de decremento por la causa $c$, mientras que
+
+$$\sum_{j=1}^{r} {}*n\widehat q*{x,t,p,s}^{(j)}$$
+
+representa la probabilidad total estimada de decremento por cualquiera de las causas competidoras consideradas en el modelo.
+
+De esta forma, $\widehat{\pi}_{x,t,p,s}^{(c)}$ puede interpretarse como la proporción de la probabilidad total de decremento que corresponde a la causa $c$ dentro de una celda específica. Equivalentemente, esta cantidad aproxima la probabilidad condicional
+
+$$\widehat{\pi}_{x,t,p,s}^{(c)}
+\approx
+P(J=c \mid T_x \le n),$$
+
+Tal como se había visto anteriormente. Entonces, esta composición causal no nos mide el riesgo absoluto de morir por una causa, sino la participación relativa de dicha causa entre los decrementos estimados para un país, sexo, año y grupo etario dados. Esta distinción es importante: una causa puede tener una alta composición relativa dentro de los fallecimientos de una celda, aunque la probabilidad absoluta de muerte en esa celda sea baja. En consecuencia, podremos estudiar cómo cambia la estructura causal de los decrementos conforme varía la edad, el país, el sexo o el año calendario. Dicho de manera más simple **cómo se reparte causalmente el riesgo estimado**.
+
+Representando gráficamente la composición causal para Costa Rica, se obtiene una lectura descriptiva relevante sobre la forma en que se distribuyen las causas de decremento a lo largo de los intervalos de edad. En particular, @fig-composicion-causal-por-edades-costa-rica permite observar la participación relativa de las principales causas dentro del total de decrementos estimados para cada grupo etario.
+
+En primer lugar, se observa una presencia importante de la causa $II$, correspondiente a tumores. Esta causa mantiene una participación relativamente persistente a lo largo de varios intervalos de edad, con un peso especialmente visible en edades tempranas y adultas. No obstante, debe recordarse que este gráfico no mide el riesgo absoluto de morir por tumores, sino su peso relativo dentro de las causas seleccionadas para cada grupo etario.
+
+En segundo lugar, la causa $IX$, correspondiente a enfermedades del sistema circulatorio, presenta un patrón creciente conforme aumentan los intervalos de edad. Sin embargo, en Costa Rica este crecimiento parece ser más gradual que abrupto, y en edades avanzadas tiende a compartir espacio con otras causas relevantes, como tumores y enfermedades del sistema respiratorio. Esto sugiere que la composición causal en edades mayores no queda dominada exclusivamente por una sola causa, sino que se reparte entre varias causas crónicas de peso importante.
+
+Paralelamente, también se aprecia una mayor participación relativa de la causa $XX$, correspondiente a causas externas de mortalidad, entre edades jóvenes y adultas jóvenes. Este comportamiento es coherente con lo observado en análisis complementarios, donde las causas externas tienden a concentrarse en ciertos grupos etarios específicos. En este sentido, la figura permite identificar que la relevancia de las causas externas no es uniforme a lo largo de toda la vida, sino que se concentra principalmente en edades intermedias tempranas.
+
+Además, aunque la figura representa las cuatro causas con mayor participación relativa global entre los intervalos de edad, se incluye de forma separada la causa $XVI$, correspondiente a afecciones originadas en el periodo perinatal. Esta causa adquiere importancia únicamente en el primer intervalo de edad, $0$--$4$, lo cual es consistente con su naturaleza conceptual y con el dominio de modelación adoptado para esta categoría.
+
+Por otra parte, la causa $X$, correspondiente a enfermedades del sistema respiratorio, muestra un comportamiento no monótono. Su participación relativa es visible en edades tempranas, disminuye en varios intervalos intermedios y vuelve a adquirir mayor presencia en edades avanzadas. Este patrón resulta relevante porque sugiere que las enfermedades respiratorias no se concentran únicamente al inicio o al final de la distribución etaria, sino que su peso relativo cambia de forma diferenciada según el grupo de edad.
+
+Finalmente, es importante señalar que las barras de @fig-composicion-causal-por-edades-costa-rica no necesariamente acumulan el $100%$ de la composición causal total. Esto ocurre porque la visualización muestra únicamente las cuatro causas con mayor participación relativa global, junto con la causa perinatal. Por tanto, la diferencia hasta el $100%$ corresponde a causas no incluidas explícitamente en la figura. En consecuencia, la interpretación del gráfico debe hacerse como una comparación de las principales causas seleccionadas, no como una descomposición exhaustiva de todas las causas de decremento.
+
+![Composición causal promedio por edad: Costa Rica.](../../figuras/clasico/costa rica/04_composicion_promedio_top4_mas_perinatal.png){#fig-composicion-causal-por-edades-costa-rica width="80%" fig-align="center"}
+
+De forma análoga al caso de Costa Rica, se analiza ahora la composición causal para Nicaragua. El objeto representado corresponde a la participación relativa de cada causa dentro del total de decrementos estimados para una misma celda demográfica. Para un país $p$, sexo $s$, año $t$, grupo etario $x$ y causa $c$, esta cantidad se define como
+
+$$\widehat{\pi}_{x,t,p,s}^{(c)}
+=
+\frac{
+{}_n\widehat{q}_{x,t,p,s}^{(c)}
+}{
+\sum_{j=1}^{r} {}_n\widehat{q}_{x,t,p,s}^{(j)}
+}.$$
+
+En los gráficos presentados se resume esta cantidad por grupo etario, promediando sobre las combinaciones de año y sexo disponibles en el análisis clásico. Es decir, para cada grupo etario se observa una versión agregada de la composición causal,
+
+$$\overline{\pi}_{x,p}^{(c)}
+=
+\frac{1}{|\mathcal A|}
+\sum_{(t,s)\in \mathcal A}
+\widehat{\pi}_{x,t,p,s}^{(c)},$$
+
+donde $\mathcal A$ representa el conjunto de combinaciones de año y sexo incluidas en la visualización. Por tanto, el gráfico no debe interpretarse como una probabilidad absoluta de muerte por causa, sino como la forma en que se reparte causalmente el total de decrementos estimados dentro de cada intervalo de edad.
+
+Al observar Nicaragua en @fig-composicion-causal-por-edades-nicaragua, se mantienen algunos patrones generales ya identificados en Costa Rica. La causa $XVI$, correspondiente a afecciones originadas en el periodo perinatal, concentra su participación en el primer intervalo de edad. La causa $XX$, asociada a causas externas de mortalidad, presenta mayor peso relativo en edades jóvenes y adultas jóvenes. Asimismo, la causa $IX$, correspondiente a enfermedades del sistema circulatorio, aumenta su participación conforme avanzan los intervalos de edad.
+
+No obstante, la diferencia más notable respecto a Costa Rica aparece en la causa $II$, correspondiente a tumores. Mientras que en @fig-composicion-causal-por-edades-costa-rica esta causa mostraba una participación amplia y persistente a través de varios grupos etarios, en Nicaragua su peso relativo dentro de las principales causas seleccionadas parece considerablemente menor. Esto no implica necesariamente que el riesgo absoluto por tumores sea bajo, sino que, dentro de la composición causal estimada para Nicaragua, otras causas adquieren una mayor participación relativa en varios tramos de edad.
+
+También resulta relevante el comportamiento de la causa $X$, correspondiente a enfermedades del sistema respiratorio. En Costa Rica, esta causa mostraba un patrón relativamente gradual, con una presencia que disminuía en edades intermedias y volvía a cobrar peso en edades avanzadas. En Nicaragua, en cambio, la evolución de esta participación parece menos suavizada: su peso relativo cambia de manera más irregular conforme aumenta la edad. Esto sugiere una estructura causal menos homogénea entre intervalos etarios, al menos dentro del subconjunto de causas representadas en la figura.
+
+![Composición causal promedio por edad: Nicaragua.](../../figuras/clasico/nicaragua/04_composicion_promedio_top4_mas_perinatal.png){#fig-composicion-causal-por-edades-nicaragua width="80%" fig-align="center"}
+
+Un punto importante en la lectura de esta tabla es que las barras no acumulan necesariamente el $100\%$ de la composición causal. Esto ocurre porque la visualización incluye únicamente las cuatro causas con mayor participación relativa global, junto con la causa perinatal. Si se denota por $\mathcal C_{\mathrm{sel}}$ el conjunto de causas seleccionadas en esa figura, entonces la altura total de cada barra representa
+
+$$\sum_{c\in\mathcal C_{\mathrm{sel}}}
+\overline{\pi}_{x,p}^{(c)},$$
+
+y no necesariamente
+
+$$\sum_{c=1}^{r}
+\overline{\pi}_{x,p}^{(c)}
+=
+1.$$
+
+Por esta razón, en algunos intervalos de edad, especialmente entre edades adultas y adultas mayores, las causas seleccionadas pueden no ocupar una proporción visualmente dominante del total. Esto no significa que exista una única causa omitida que tome toda la relevancia en esos intervalos, sino que la composición restante se distribuye entre varias causas no incluidas en el gráfico principal.
+
+Para verificar esta interpretación, @fig-composicion-causal-por-edades-nicaragua-total muestra la composición causal completa de Nicaragua incorporando todas las causas disponibles. En esta segunda visualización, cada barra sí representa el $100\%$ de la composición causal, por lo que se cumple
+
+$$\sum_{c=1}^{r}
+\overline{\pi}_{x,p}^{(c)}
+=
+1$$
+
+para cada grupo etario $x$. Al comparar ambas figuras, se observa que la menor altura conjunta de las causas principales en ciertos grupos no responde a la aparición dominante de una sola causa adicional, sino a una mayor dispersión de la participación relativa entre causas residuales. Esto refuerza la idea de que, en Nicaragua, la composición causal en varios tramos de edad se encuentra más fragmentada entre distintas categorías, mientras que en edades avanzadas las enfermedades del sistema circulatorio adquieren progresivamente mayor peso relativo.
+
+![Composición causal completa por edad: Nicaragua.](../../figuras/clasico/nicaragua/comp_causal_prima_nic.png){#fig-composicion-causal-por-edades-nicaragua-total width="80%" fig-align="center"}
+
+
 ## 1.2.5. Análisis fallido
 
-#### Estimación bayesiana sin distinguir el dominio de las causas
+#### 1.2.5.1 Estimación bayesiana sin distinguir el dominio de las causas
 
 (En esta sección se retoma el subíndice $s$, correspondiente al sexo en las diversas fórmulas, para hacer claro el punto al cual se hace referencia).
 
@@ -947,7 +1202,7 @@ $$
 
 Las celdas situadas fuera de estos conjuntos dejaron de utilizarse para estimar los hiperparámetros. En cambio, los conteos iguales a cero observados dentro de los conjuntos aplicables se conservaron, pues sí representan información estadística relevante sobre la intensidad de mortalidad.
 
-##### Comparación de la implementación inicial y la corregida
+#####1.2.5.2 Comparación de la implementación inicial y la corregida
 
 Para documentar el problema se reproducen los dos procedimientos utilizados. El primero estima los hiperparámetros con la base completa. El segundo aplica las restricciones previamente definidas a las causas XV y XVI.
 
@@ -1697,6 +1952,603 @@ Para una mujer de `25-29`, la celda permanece dentro del dominio de la causa XV.
 
 En el caso de la causa XVI, la celda del grupo `0-4` permanece dentro del ajuste, pero su media posterior cambia al dejar de utilizarse las edades posteriores para estimar la experiencia colectiva. Por el contrario, la celda de `70-74` queda fuera del dominio adoptado para esta causa y su intensidad corregida se fija en cero.
 
+## 1.3 Construccion de Fichas de Resultados
+
+![Composición causal condicionada al fallecimiento: Costa Rica. Causas externas y enfermedades del sistema circulatorio.](../../figuras/clasico/costa rica/03_composicion_condicionada_grupo_1.png){#fig-composicion-condicionada-costa-rica-grupo-1 width="80%" fig-align="center"}
+
+**Titular:**  
+Dos causas ordenan la mortalidad por edad.
+
+**Nombre del hallazgo/resultado:**  
+Comportamiento etario entre causas externas y enfermedades del sistema circulatorio.
+
+**Resumen en una oración:**  
+Las causas externas dominan edades jóvenes; las circulatorias aumentan en edades avanzadas.
+
+**Método o análisis que lo produjo:**  
+El hallazgo se obtuvo mediante la comparación de la composición causal condicionada al fallecimiento entre países, sexo, año calendario y grupo etario. Para cada celda, esta cantidad se define como
+
+$$
+\widehat{\pi}_{x,t,p,s}^{(c)}
+=
+\frac{
+\widehat{q}_{x,t,p,s}^{(c)}
+}{
+\sum_{j=1}^{r}
+\widehat{q}_{x,t,p,s}^{(j)}
+}.
+$$
+
+Esta medida responde a la pregunta: dado que ocurrió un fallecimiento dentro de la celda, ¿qué proporción corresponde a la causa $c$?
+
+**Evidencia:**  
+Gráficos de composición causal condicionada al fallecimiento de Belice, Costa Rica, El Salvador, Guatemala, Nicaragua y Panamá, para causas externas de mortalidad y enfermedades del sistema circulatorio.
+
+#### Nivel analítico
+
+**Conexión con la pregunta de investigación:**  
+El resultado muestra que la probabilidad de decremento por causa no solo varía en magnitud, sino que también presenta perfiles etarios relativamente consistentes entre países. En casi todos los casos, las causas externas concentran una alta participación dentro de los fallecimientos de hombres jóvenes y adultos jóvenes. En términos de la medida anterior, esto significa que
+
+$$
+\widehat{\pi}_{x,t,p,s}^{(\mathrm{XX})}
+$$
+
+tiende a ser mayor en edades jóvenes, especialmente en hombres, donde $\mathrm{XX}$ representa causas externas de mortalidad. Esta categoría incluye eventos como accidentes de transporte y agresiones, lo que ayuda a entender su peso relativo frente a causas crónicas en edades tempranas. En contraste, las enfermedades del sistema circulatorio muestran el patrón contrario: su participación condicionada aumenta conforme avanza la edad, tanto en hombres como en mujeres. Es decir,
+
+$$
+\widehat{\pi}_{x,t,p,s}^{(\mathrm{IX})}
+$$
+
+tiende a crecer en los grupos etarios avanzados, donde $\mathrm{IX}$ representa enfermedades del sistema circulatorio. Esto permite identificar un relevo causal dentro del ciclo de vida: en edades jóvenes predominan causas asociadas a mortalidad externa, mientras que en edades avanzadas ganan peso causas crónicas y degenerativas. El patrón aparece de forma recurrente en los países centroamericanos graficados, aunque con diferencias de intensidad entre ellos. En particular, el peso relativo de las causas externas en hombres jóvenes es más abrupto que el crecimiento inicial de las circulatorias, lo que muestra que la composición causal no cambia de forma uniforme por edad.
+
+**Contraste con la literatura:**  
+Este hallazgo se relaciona directamente con la ficha de Deshmukh (2012), porque confirma la utilidad del enfoque de decrementos múltiples para interpretar cada causa como un riesgo que compite con los demás dentro de una misma celda. También se conecta con la ficha de Goerlich (2012), ya que la composición por causa permite ver que la mortalidad no se distribuye igual en todos los grupos etarios, sino que cambia su estructura interna con la edad.
+
+**Lo que NO explica este resultado:**  
+Este resultado no explica las razones sociales, sanitarias o epidemiológicas detrás de las diferencias entre países. Tampoco permite concluir que una causa externa tenga mayor riesgo absoluto que una causa circulatoria, porque la medida usada está condicionada al fallecimiento. En otras palabras, $\widehat{\pi}_{x,t,p,s}^{(c)}$ muestra qué proporción ocupa la causa $c$ entre quienes fallecen, pero no cuántas personas mueren por esa causa en términos absolutos. Para eso debe analizarse directamente la probabilidad de decremento por causa,
+
+$$
+\widehat{q}_{x,t,p,s}^{(c)}.
+$$
+
+**Implicación para el siguiente paso:**  
+El siguiente paso es verificar si este relevo causal se mantiene con el enfoque bayesiano. Si el patrón se conserva después de estabilizar las intensidades en celdas con pocos conteos, entonces el resultado puede interpretarse como una estructura robusta del fenómeno y no solo como una fluctuación del enfoque clásico.
+
+#### Titular:
+
+Belice muestra un aumento local de la probabilidad de decremento por enfermedades circulatorias en hombres de 65--69 años.
+
+#### Nombre del hallazgo/resultado:
+
+Variación temporal de la probabilidad local de decremento por enfermedades del sistema circulatorio en hombres de 65--69 años bajo el enfoque clásico.
+
+#### Resumen en una oración:
+
+Para hombres de 65--69 años, Belice presenta un aumento visible de la probabilidad local de decremento por enfermedades del sistema circulatorio entre 2015 y 2018, en contraste con una lectura general de mejora de supervivencia frente a esta causa.
+
+#### Método o análisis que lo produjo:
+
+El resultado se obtuvo a partir del análisis de la probabilidad local absoluta de decremento por la causa $IX$, correspondiente a enfermedades del sistema circulatorio. Para cada país $p$, año $t$, grupo etario $x$ y sexo $s$, se estudió la cantidad
+
+$$
+{}_1\widehat q_{x,t,p,s}^{(IX)}.
+$$
+
+En este caso particular, el análisis se restringió a hombres en el grupo etario 65--69, por lo que el objeto de comparación fue
+
+$$
+{}_1\widehat q_{65-69,t,p,\mathrm{Hombre}}^{(IX)}.
+$$
+
+La estimación parte de la fuerza específica de mortalidad por enfermedades del sistema circulatorio,
+
+$$
+\widehat{\mu}_{65-69,t,p,\mathrm{Hombre}}^{(IX)}
+=
+\frac{
+D_{65-69,t,p,\mathrm{Hombre}}^{(IX)}
+}{
+E_{65-69,t,p,\mathrm{Hombre}}
+},
+$$
+
+donde $D_{65-69,t,p,\mathrm{Hombre}}^{(IX)}$ representa las defunciones registradas por enfermedades del sistema circulatorio y $E_{65-69,t,p,\mathrm{Hombre}}$ representa la exposición aproximada de hombres en la celda correspondiente.
+
+Luego se calcula la fuerza total de decremento,
+
+$$
+\widehat{\mu}_{65-69,t,p,\mathrm{Hombre}}^{(\tau)}
+=
+\sum_{j=1}^{r}
+\widehat{\mu}_{65-69,t,p,\mathrm{Hombre}}^{(j)}.
+$$
+
+Con ello, la probabilidad local anual de decremento por enfermedades del sistema circulatorio se estima mediante
+
+$$
+{}_1\widehat q_{65-69,t,p,\mathrm{Hombre}}^{(IX)}
+=
+\frac{
+\widehat{\mu}_{65-69,t,p,\mathrm{Hombre}}^{(IX)}
+}{
+\widehat{\mu}_{65-69,t,p,\mathrm{Hombre}}^{(\tau)}
+}
+\left(
+1-e^{-\widehat{\mu}_{65-69,t,p,\mathrm{Hombre}}^{(\tau)}}
+\right).
+$$
+
+En la gráfica radar se representa
+
+$$
+100 \times {}_1\widehat q_{65-69,t,p,\mathrm{Hombre}}^{(IX)},
+$$
+
+por lo que los valores se interpretan como porcentajes de probabilidad local absoluta de decremento. Esta visualización no representa composición causal, sino la magnitud absoluta estimada de salida por enfermedades del sistema circulatorio.
+
+Para estudiar el cambio temporal entre 2015 y 2018 se considera la diferencia descriptiva
+
+$$
+\Delta_{\mathrm{tiempo},p,65-69}^{(IX)}
+=
+100
+\left(
+{}_1\widehat q_{65-69,2018,p,\mathrm{Hombre}}^{(IX)}
+-
+{}_1\widehat q_{65-69,2015,p,\mathrm{Hombre}}^{(IX)}
+\right).
+$$
+
+Cuando esta diferencia es positiva, indica que la probabilidad local de decremento por enfermedades del sistema circulatorio aumentó entre 2015 y 2018 para el país correspondiente.
+
+#### Evidencia:
+
+La evidencia principal proviene de la gráfica radar de enfermedades del sistema circulatorio para hombres de 65--69 años. En esta figura, Belice presenta una línea azul correspondiente a 2018 que supera visiblemente a la línea roja de 2015. Por tanto, para esta celda se observa descriptivamente que
+
+$$
+{}_1\widehat q_{65-69,2018,\mathrm{Belice},\mathrm{Hombre}}^{(IX)}
+>
+{}_1\widehat q_{65-69,2015,\mathrm{Belice},\mathrm{Hombre}}^{(IX)}.
+$$
+
+Esto implica que, en Belice, la probabilidad local absoluta estimada de decremento por enfermedades del sistema circulatorio aumentó entre 2015 y 2018 para hombres de 65--69 años. El resultado contrasta con una lectura temporal simple de mejora en supervivencia frente a esta causa, dado que, en esa celda específica, no se observa una reducción sino un incremento.
+
+No obstante, este comportamiento no se reproduce de forma homogénea en todos los países. En la misma visualización, algunos países muestran valores relativamente estables o incluso reducciones leves entre 2015 y 2018. Por ello, el patrón de Belice debe interpretarse como una variación localizada y no como una tendencia regional uniforme.
+
+### Nivel analítico.
+
+#### Conexión con pregunta de investigación.
+
+Este resultado se conecta con la pregunta de investigación porque muestra que la probabilidad de decremento por causa no varía únicamente por edad o por causa, sino también por país y año calendario. En particular, el caso de Belice evidencia que una causa crónica, como las enfermedades del sistema circulatorio, puede presentar aumentos locales incluso en un intervalo temporal corto.
+
+La cantidad analizada,
+
+$$
+{}_1\widehat q_{65-69,t,p,\mathrm{Hombre}}^{(IX)},
+$$
+
+permite estudiar la magnitud absoluta de la salida por enfermedades circulatorias dentro de una celda demográfica específica. Esto complementa el análisis de composición causal, porque no pregunta qué proporción de los decrementos corresponde a la causa $IX$, sino cuál es la probabilidad local estimada de fallecer por dicha causa durante el horizonte anual.
+
+El caso de Belice es relevante porque sugiere que la evolución temporal de las probabilidades de decremento no necesariamente sigue una dirección homogénea entre países. Aunque las enfermedades del sistema circulatorio suelen aumentar con la edad, su comportamiento entre años calendario puede depender de factores locales, condiciones sanitarias, composición poblacional, calidad del registro o variabilidad propia de celdas con menor exposición.
+
+#### Contraste con la literatura.
+
+El contraste con Goerlich Gisbert debe formularse con cautela. En el material revisado, Goerlich señala que, al alcanzar los 65 años de edad, la probabilidad de acabar falleciendo por una enfermedad relacionada con el sistema circulatorio crece ligeramente, especialmente en 1975 y en menor medida en 2008. Esta diferencia entre periodos es interpretada como evidencia de mejoras en la supervivencia frente a este tipo de causas.
+
+El resultado observado para Belice en hombres de 65--69 años se mueve en dirección contraria a esa lectura temporal de mejora. En vez de una reducción entre periodos, la gráfica muestra que
+
+$$
+{}_1\widehat q_{65-69,2018,\mathrm{Belice},\mathrm{Hombre}}^{(IX)}
+>
+{}_1\widehat q_{65-69,2015,\mathrm{Belice},\mathrm{Hombre}}^{(IX)}.
+$$
+
+Es decir, para esta celda específica, la probabilidad local absoluta de decremento por enfermedades del sistema circulatorio aumenta entre 2015 y 2018.
+
+Sin embargo, este contraste no debe interpretarse como una contradicción directa de Goerlich. La diferencia metodológica es central. Goerlich trabaja con tablas de vida de decrementos múltiples, bajo una lógica de generación ficticia y con una comparación de largo plazo. En este trabajo, en cambio, se estima una probabilidad local anual para una celda muy específica: país, año, sexo y grupo etario. Por tanto, el aumento observado en Belice debe entenderse como una variación local de corto o mediano plazo, no como una afirmación general sobre el deterioro estructural de la supervivencia frente a enfermedades circulatorias.
+
+Además, la escala poblacional de Belice puede amplificar cambios observados entre años. En países con menor exposición, variaciones relativamente pequeñas en el número de defunciones pueden producir movimientos visibles en
+
+$$
+\widehat{\mu}_{65-69,t,p,\mathrm{Hombre}}^{(IX)}
+=
+\frac{
+D_{65-69,t,p,\mathrm{Hombre}}^{(IX)}
+}{
+E_{65-69,t,p,\mathrm{Hombre}}
+}.
+$$
+
+Por ello, el resultado debe leerse como una señal descriptiva que requiere verificación adicional, no como una conclusión definitiva sobre la dinámica nacional de mortalidad circulatoria.
+
+#### Lo que NO explica el resultado.
+
+Este resultado no permite afirmar que el aumento observado en Belice sea estadísticamente significativo en sentido inferencial. La gráfica radar muestra una diferencia visual clara entre 2015 y 2018, pero no incorpora intervalos de confianza, errores estándar ni pruebas formales. En consecuencia, la diferencia debe describirse como visualmente marcada o descriptivamente relevante.
+
+Tampoco permite identificar la causa sustantiva del aumento. La categoría $IX$ agrupa distintas enfermedades del sistema circulatorio, incluyendo enfermedades cardíacas, cerebrovasculares y otros trastornos circulatorios. Sin una desagregación interna de la causa, no es posible determinar qué componente específico explica el cambio observado.
+
+Asimismo, el resultado no permite concluir que Belice presente un deterioro general de supervivencia frente a enfermedades circulatorias. La evidencia se limita a hombres de 65--69 años y a la comparación entre 2015 y 2018. Para sostener una afirmación de mayor alcance sería necesario analizar más grupos etarios, ambos sexos, más años calendario y, preferiblemente, intervalos de incertidumbre.
+
+Finalmente, el resultado no debe interpretarse como una probabilidad vitalicia de acabar falleciendo por enfermedades del sistema circulatorio. La cantidad estimada corresponde a una probabilidad local anual dentro de una celda demográfica específica:
+
+$$
+{}_1\widehat q_{65-69,t,p,\mathrm{Hombre}}^{(IX)}.
+$$
+
+#### Implicación para el siguiente paso
+
+El siguiente paso consiste en cuantificar explícitamente la diferencia temporal observada en Belice. Para ello conviene calcular
+
+$$
+\Delta_{\mathrm{tiempo},\mathrm{Belice},65-69}^{(IX)}
+=
+100
+\left(
+{}_1\widehat q_{65-69,2018,\mathrm{Belice},\mathrm{Hombre}}^{(IX)}
+-
+{}_1\widehat q_{65-69,2015,\mathrm{Belice},\mathrm{Hombre}}^{(IX)}
+\right).
+$$
+
+Este cálculo permitiría medir el tamaño exacto del aumento observado en la gráfica radar y compararlo con los cambios correspondientes en los demás países.
+
+También conviene extender el análisis a otros grupos etarios cercanos, por ejemplo 60--64 y 70--74, para verificar si el aumento en Belice es exclusivo del grupo 65--69 o si forma parte de un patrón etario más amplio. En términos generales, esto puede evaluarse mediante
+
+### Nivel descriptivo.
+
+#### Titular:
+
+Belice rompe el patrón temporal esperado en tumores para mujeres de 60--64 años.
+
+#### Nombre del hallazgo/resultado:
+
+Variación etaria y temporal de la probabilidad local de decremento por tumores en mujeres de 60--64 y 70--74 años.
+
+#### Resumen en una oración:
+
+La probabilidad local de decremento por tumores aumenta al pasar de 60--64 a 70--74 años, pero en Belice se observa además un aumento marcado entre 2015 y 2018 para mujeres de 60--64 años.
+
+#### Método o análisis que lo produjo:
+
+El resultado se obtuvo a partir del análisis de la probabilidad local absoluta de decremento por la causa $II$, correspondiente a tumores. Para cada país $p$, año $t$, sexo $s$ y grupo etario $x$, se estudió la cantidad
+
+$$
+{}_1\widehat q_{x,t,p,s}^{(II)}.
+$$
+
+En este caso particular, el análisis se restringió a mujeres, por lo que el objeto de comparación fue
+
+$$
+{}_1\widehat q_{x,t,p,\mathrm{Mujer}}^{(II)}.
+$$
+
+La estimación parte de la fuerza específica de mortalidad por tumores,
+
+$$
+\widehat{\mu}_{x,t,p,\mathrm{Mujer}}^{(II)}
+=
+\frac{
+D_{x,t,p,\mathrm{Mujer}}^{(II)}
+}{
+E_{x,t,p,\mathrm{Mujer}}
+},
+$$
+
+donde $D_{x,t,p,\mathrm{Mujer}}^{(II)}$ representa las defunciones registradas por tumores y $E_{x,t,p,\mathrm{Mujer}}$ representa la exposición aproximada de mujeres en la celda correspondiente.
+
+Luego se calcula la fuerza total de decremento,
+
+$$
+\widehat{\mu}_{x,t,p,\mathrm{Mujer}}^{(\tau)}
+=
+\sum_{j=1}^{r}
+\widehat{\mu}_{x,t,p,\mathrm{Mujer}}^{(j)}.
+$$
+
+Con ello, la probabilidad local anual de decremento por tumores se estima mediante
+
+$$
+{}_1\widehat q_{x,t,p,\mathrm{Mujer}}^{(II)}
+=
+\frac{
+\widehat{\mu}_{x,t,p,\mathrm{Mujer}}^{(II)}
+}{
+\widehat{\mu}_{x,t,p,\mathrm{Mujer}}^{(\tau)}
+}
+\left(
+1-e^{-\widehat{\mu}_{x,t,p,\mathrm{Mujer}}^{(\tau)}}
+\right).
+$$
+
+En las gráficas radar se representa
+
+$$
+100 \times {}_1\widehat q_{x,t,p,\mathrm{Mujer}}^{(II)},
+$$
+
+por lo que la lectura corresponde a porcentajes de probabilidad local absoluta de decremento. Esta cantidad no es una composición causal, sino una probabilidad local estimada por causa.
+
+Para estudiar el cambio etario se compara
+
+$$
+100 \times {}_1\widehat q_{70-74,t,p,\mathrm{Mujer}}^{(II)}
+$$
+
+contra
+
+$$
+100 \times {}_1\widehat q_{60-64,t,p,\mathrm{Mujer}}^{(II)}.
+$$
+
+Para estudiar el cambio temporal dentro de un mismo grupo etario se compara
+
+$$
+100 \times {}_1\widehat q_{x,2018,p,\mathrm{Mujer}}^{(II)}
+$$
+
+contra
+
+$$
+100 \times {}_1\widehat q_{x,2015,p,\mathrm{Mujer}}^{(II)}.
+$$
+
+#### Evidencia:
+
+La primera evidencia se observa al comparar las gráficas radar de mujeres para los grupos 60--64 y 70--74. En el año 2015, el paso de 60--64 a 70--74 muestra un aumento visible de la probabilidad local de decremento por tumores en la mayoría de países. Es decir, para varios países se aprecia que
+
+$$
+{}_1\widehat q_{70-74,2015,p,\mathrm{Mujer}}^{(II)}
+>
+{}_1\widehat q_{60-64,2015,p,\mathrm{Mujer}}^{(II)}.
+$$
+
+Esto indica que, en términos locales, la magnitud absoluta del decremento por tumores es mayor en el grupo 70--74 que en el grupo 60--64. El resultado es consistente con la lógica etaria de las causas crónicas, donde la probabilidad de salida por tumores tiende a adquirir más peso en edades adultas y adultas mayores.
+
+La segunda evidencia aparece en Belice dentro del grupo 60--64. En @fig-radar-tumores-60-64-mujer, la línea correspondiente a 2018 supera claramente a la de 2015 para Belice. Esto implica que, en esa celda específica, se observa
+
+$$
+{}_1\widehat q_{60-64,2018,\mathrm{Belice},\mathrm{Mujer}}^{(II)}
+>
+{}_1\widehat q_{60-64,2015,\mathrm{Belice},\mathrm{Mujer}}^{(II)}.
+$$
+
+Este aumento es visualmente marcado y contrasta con la idea de una reducción temporal simple en la mortalidad por tumores. En otras palabras, para Belice y mujeres de 60--64 años, la probabilidad local absoluta estimada por tumores no disminuye entre 2015 y 2018, sino que aumenta.
+
+En cambio, para el grupo 70--74, @fig-radar-tumores-70-74-mujer muestra una estructura temporal distinta. Allí la línea de 2015 aparece por encima de la de 2018 en varios países, incluido Belice. Por tanto, el patrón observado en Belice para 60--64 no se reproduce de manera idéntica en 70--74. Esto sugiere que el aumento de 2018 en Belice no debe interpretarse como una tendencia general para todas las edades, sino como un comportamiento localizado en una celda demográfica específica.
+
+### Nivel analítico.
+
+#### Conexión con pregunta de investigación.
+
+Este resultado se conecta directamente con la pregunta de investigación porque muestra que la probabilidad de decremento por causa varía simultáneamente por edad, país, sexo y año. La comparación entre 60--64 y 70--74 evidencia una variación etaria: la probabilidad local de decremento por tumores tiende a incrementarse al avanzar hacia edades adultas mayores. Formalmente, esta variación puede representarse mediante
+
+$$
+\Delta_{\mathrm{edad},p,t}^{(II)}
+=
+100
+\left(
+{}_1\widehat q_{70-74,t,p,\mathrm{Mujer}}^{(II)}
+-
+{}_1\widehat q_{60-64,t,p,\mathrm{Mujer}}^{(II)}
+\right).
+$$
+
+Cuando esta diferencia es positiva, indica que la probabilidad local de decremento por tumores es mayor en 70--74 que en 60--64.
+
+Al mismo tiempo, el caso de Belice en 60--64 evidencia una variación temporal localizada. Esta puede expresarse como
+
+$$
+\Delta_{\mathrm{tiempo},\mathrm{Belice},60-64}^{(II)}
+=
+100
+\left(
+{}_1\widehat q_{60-64,2018,\mathrm{Belice},\mathrm{Mujer}}^{(II)}
+-
+{}_1\widehat q_{60-64,2015,\mathrm{Belice},\mathrm{Mujer}}^{(II)}
+\right).
+$$
+
+La gráfica sugiere que esta diferencia es positiva. Por tanto, el hallazgo muestra que el patrón temporal no puede resumirse como una mejora homogénea entre 2015 y 2018. Una misma causa puede aumentar en una celda específica y disminuir o mantenerse estable en otra.
+
+Este resultado es relevante porque separa dos dimensiones que podrían confundirse. Por un lado, existe el aumento por edad, asociado a la mayor presencia de tumores en edades avanzadas. Por otro lado, existe la variación entre años calendario, que puede moverse en dirección distinta según el país y la celda demográfica. El caso de Belice en mujeres de 60--64 años muestra precisamente esa heterogeneidad.
+
+#### Contraste con la literatura.
+
+El contraste con Goerlich Gisbert debe hacerse con cuidado porque el objeto estimado no es idéntico. Goerlich trabaja dentro de tablas de vida de decrementos múltiples y sus indicadores se interpretan en el contexto de una generación ficticia sometida a las condiciones de mortalidad de un periodo. En cambio, este análisis utiliza probabilidades locales anuales por celda demográfica:
+
+$$
+{}_1\widehat q_{x,t,p,s}^{(c)}.
+$$
+
+Goerlich señala que, al condicionar en la supervivencia hasta edades avanzadas, la probabilidad de acabar falleciendo por tumores decrece ligeramente, debido a que la incidencia fundamental de esta causa ocurre antes de los 65 años. Desde esa lectura, una mejora de supervivencia frente a tumores podría asociarse con una reducción temporal en la probabilidad de salida por esta causa.
+
+El resultado observado para Belice en mujeres de 60--64 años se mueve en la dirección contraria a esa lectura general: entre 2015 y 2018, la probabilidad local absoluta estimada por tumores aumenta. Es decir, para esa celda se observa visualmente que
+
+$$
+{}_1\widehat q_{60-64,2018,\mathrm{Belice},\mathrm{Mujer}}^{(II)}
+>
+{}_1\widehat q_{60-64,2015,\mathrm{Belice},\mathrm{Mujer}}^{(II)}.
+$$
+
+No obstante, este contraste no debe interpretarse como una refutación directa de Goerlich. La diferencia central es metodológica. Goerlich analiza probabilidades dentro de una tabla de vida y bajo una lógica acumulada de generación ficticia; aquí se analiza una probabilidad local anual para un país, sexo, año y grupo etario específico. Por tanto, el resultado de Belice debe leerse como una desviación local respecto a la dirección esperada de mejora, no como una contradicción estructural del marco de decrementos múltiples.
+
+Además, el comportamiento de 70--74 muestra que esta desviación no se extiende automáticamente a todos los grupos etarios. En ese grupo, la comparación visual sugiere que 2015 supera a 2018 en varios países. Por ello, la evidencia apunta a una irregularidad específica en mujeres de 60--64 años en Belice, más que a una tendencia general de aumento de tumores para toda la población femenina adulta mayor.
+
+#### Lo que NO explica el resultado.
+
+Este resultado no permite afirmar que el aumento observado en Belice sea estadísticamente significativo en sentido inferencial. La gráfica radar muestra diferencias descriptivas, pero no incorpora intervalos de confianza, errores estándar ni pruebas formales. Por esta razón, el aumento debe describirse como visualmente marcado o descriptivamente relevante, no como una diferencia estadísticamente comprobada.
+
+Tampoco permite identificar la causa sustantiva del aumento. La categoría $II$ agrupa distintos tipos de tumores, de modo que el incremento observado puede estar asociado a subgrupos específicos dentro de la clasificación, como tumores de mama, órganos genitales, vías urinarias, sistema digestivo u otros tumores malignos. Sin una desagregación adicional, no es posible determinar qué componente interno explica el cambio.
+
+Además, el resultado puede estar afectado por la escala poblacional de Belice. Al tratarse de una población más pequeña que la de otros países del conjunto, variaciones moderadas en el número de defunciones pueden generar cambios más visibles en la estimación de
+
+$$
+\widehat{\mu}_{x,t,p,\mathrm{Mujer}}^{(II)}
+=
+\frac{
+D_{x,t,p,\mathrm{Mujer}}^{(II)}
+}{
+E_{x,t,p,\mathrm{Mujer}}
+}.
+$$
+
+Por tanto, el aumento observado puede reflejar un cambio real en la mortalidad por tumores, pero también puede estar amplificado por variabilidad propia de celdas con menor exposición.
+
+Finalmente, el resultado no debe interpretarse como una probabilidad vitalicia de acabar falleciendo por tumores. La cantidad estimada corresponde a una probabilidad local anual dentro de una celda específica, no a una trayectoria acumulada de vida.
+
+#### Implicación para el siguiente paso
+
+El siguiente paso consiste en comparar si este mismo patrón se replica desde el enfoque bayesiano, mara el mismo intervalo de año, edad, sexo y país
+
+### Nivel descriptivo.
+
+#### Titular:
+
+Nicaragua exhibe una composición causal más fragmentada que Costa Rica.
+
+#### Nombre del hallazgo/resultado:
+
+Comparación de la composición causal por edad entre Costa Rica y Nicaragua bajo el enfoque clásico.
+
+#### Resumen en una oración:
+
+La composición causal de Nicaragua se distribuye más entre causas residuales que la de Costa Rica.
+
+#### Método o análisis que lo produjo:
+
+El resultado se obtuvo a partir del cálculo clásico de la probabilidad local de decremento por causa,
+
+$${}_n\widehat{q}_{x,t,p,s}^{(c)}
+=
+\frac{
+\widehat{\mu}_{x,t,p,s}^{(c)}
+}{
+\widehat{\mu}_{x,t,p,s}^{(\tau)}
+}
+\left(
+1-e^{-n\widehat{\mu}_{x,t,p,s}^{(\tau)}}
+\right),$$
+
+donde
+
+$$\widehat{\mu}_{x,t,p,s}^{(\tau)}
+=
+\sum_{j=1}^{r}
+\widehat{\mu}_{x,t,p,s}^{(j)}.$$
+
+A partir de estas probabilidades se construyó la composición causal,
+
+$$\widehat{\pi}_{x,t,p,s}^{(c)}
+=
+\frac{
+{}_n\widehat{q}_{x,t,p,s}^{(c)}
+}{
+\sum_{j=1}^{r} {}_n\widehat{q}_{x,t,p,s}^{(j)}
+},$$
+
+la cual mide la participación relativa de la causa $c$ dentro del total de decrementos estimados para una celda demográfica dada. Posteriormente, para resumir la visualización por grupo etario, se promedió esta composición sobre las combinaciones de año y sexo consideradas:
+
+$$\overline{\pi}_{x,p}^{(c)}
+=
+\frac{1}{|\mathcal A|}
+\sum_{(t,s)\in \mathcal A}
+\widehat{\pi}_{x,t,p,s}^{(c)},$$
+
+donde $\mathcal A$ representa el conjunto de combinaciones de año y sexo incluidas en el análisis.
+
+#### Evidencia:
+
+La evidencia principal corresponde a las visualizaciones de composición causal por edad para Costa Rica y Nicaragua. En @fig-composicion-causal-por-edades-costa-rica se observa una participación persistente de la causa $II$, correspondiente a tumores, junto con una presencia creciente pero relativamente gradual de la causa $IX$, correspondiente a enfermedades del sistema circulatorio. En @fig-composicion-causal-por-edades-nicaragua se observa que, para Nicaragua, las causas seleccionadas explican una menor proporción conjunta en varios intervalos etarios. Esta lectura se complementa con @fig-composicion-causal-por-edades-nicaragua-total, donde se incluyen todas las causas disponibles y cada barra acumula el $100\%$ de la composición causal:
+
+$$\sum_{c=1}^{r}
+\overline{\pi}_{x,p}^{(c)}
+=
+1.$$
+
+La comparación entre el gráfico parcial y el gráfico completo muestra que la menor participación conjunta de las causas principales en Nicaragua no se debe necesariamente al dominio de una única causa omitida, sino a una mayor dispersión entre causas residuales.
+
+### Nivel analítico.
+
+#### Conexión con pregunta de investigación.
+
+Este resultado se conecta directamente con la pregunta de investigación porque permite estudiar patrones de variabilidad en la probabilidad de decremento por causa desde una perspectiva relativa. Mientras que ${}_n\widehat{q}_{x,t,p,s}^{(c)}$ mide la magnitud local del decremento por una causa específica, $\widehat{\pi}_{x,t,p,s}^{(c)}$ permite analizar cómo se reparte causalmente el total de decrementos dentro de cada grupo etario, país, sexo y año. Por tanto, la composición causal complementa el análisis de probabilidades absolutas, mostrando no solo cuánto pesa una causa en términos de riesgo estimado, sino qué lugar ocupa dentro del conjunto de causas competidoras.
+
+En el caso de Costa Rica, la composición causal parece más concentrada en un conjunto estable de causas principales, especialmente tumores, enfermedades circulatorias y enfermedades respiratorias. En Nicaragua, en cambio, la visualización completa sugiere una estructura más fragmentada en varios intervalos de edad, con mayor participación de causas no incluidas entre las cuatro principales del gráfico resumido. Esto sugiere que los patrones de decremento por causa no solo varían en magnitud respecto a las demás causa, sino también en la forma en que se distribuye la estructura causal de la mortalidad.
+
+#### Contraste con la literatura.
+
+El resultado es coherente con la idea general de trabajar las causas de muerte en un marco de decrementos múltiples o riesgos competitivos, donde la causa $c$ no debe interpretarse aisladamente, sino en relación con el conjunto de causas que compiten por producir la salida del estado vivo. En este sentido, la composición causal $\widehat{\pi}_{x,t,p,s}^{(c)}$ se aproxima a una lectura condicionada del tipo
+
+$$P(J=c \mid T_x \le n),$$
+
+donde $J$ representa la causa del decremento y $T_x$ el tiempo futuro de vida desde el grupo etario $x$.
+
+El contraste con los antecedentes tipo Goerlich es parcial. La visualización se inspira en la idea de estudiar cómo se distribuyen las causas dentro de una estructura de mortalidad por edad, pero no reproduce una probabilidad vitalicia acumulada de fallecer eventualmente por una causa. En este trabajo, la composición causal es local por celda etaria y calendario, no una descomposición de toda la trayectoria vital desde el nacimiento. Por tanto, el resultado coincide con la literatura en la utilidad de analizar la mortalidad por causa dentro de un marco de tabla de vida o decrementos múltiples, pero se diferencia en el alcance temporal de la cantidad estimada.
+
+De hecho si profundizamos un poco más en los resultados descritos, en relación con la Investigación hecha por Goerlich (hacer cita y referencia en apa7 correspondiente) señala que halló que "al alcanzar los 65 años de edad, la probabilidad de abar falleciendo de una enfermedad relacionada con el sistema circulatorio crece ligeramente" (cita textual) Nota adicional, aunado a esto Goerlich señalaría que estos resultados son más acentuados en años anteriores, sugiriendo que hay una mejora de superviviencia para la respectiva causa, esto para el caso de Nicaragua es consistente siendo que en el intervalo temporal delimitado la participación de la respectiva causa se ve ligeramente reducida dado que la probabilidad de fallercer debido a dicha causa se ve reducida entre los respectivos años, no obstante esto no es un comportamiento que los diferentes países en conjunto siguen tal como se va a ver a detalle en la siguiente ficha de resultado. \#### Lo que NO explica el resultado.
+
+Este resultado no explica el riesgo absoluto de morir por una causa. Una causa puede tener una participación relativa alta dentro de la composición causal y, aun así, corresponder a una probabilidad absoluta baja si la mortalidad total del grupo etario también es baja. Por esta razón, $\widehat{\pi}_{x,t,p,s}^{(c)}$ no sustituye a ${}_n\widehat{q}_{x,t,p,s}^{(c)}$, sino que lo complementa.
+
+Tampoco permite afirmar, por sí solo, que una causa sea estadísticamente más importante que otra en sentido inferencial, ya que no se están presentando intervalos de confianza ni pruebas de hipótesis. Además, cuando se grafican únicamente las cuatro causas principales más la causa perinatal, las barras no representan el total de la composición causal. En ese caso, la suma representada es
+
+$$\sum_{c\in\mathcal C_{\mathrm{sel}}}
+\overline{\pi}_{x,p}^{(c)},$$
+
+donde $\mathcal C_{\mathrm{sel}}$ es el conjunto de causas seleccionadas, y no necesariamente se cumple que esta suma sea igual a $1$. La visualización completa de Nicaragua corrige este punto al incluir todas las causas disponibles.
+
+#### Contraste con la literatura.
+
+El resultado es coherente con la idea general de trabajar las causas de muerte dentro de un marco de decrementos múltiples o riesgos competitivos. En este enfoque, una causa $c$ no debe interpretarse de manera aislada, sino en relación con el conjunto de causas que compiten por producir la salida del estado vivo. Por esta razón, la composición causal $\widehat{\pi}_{x,t,p,s}^{(c)}$ se interpreta como una medida relativa: no describe el riesgo absoluto de fallecer por una causa, sino la participación de esa causa dentro del total de decrementos estimados para una misma celda demográfica.
+
+En términos probabilísticos, esta lectura puede aproximarse mediante una probabilidad condicionada del tipo
+
+$$P(J=c \mid T_x \le n),$$
+
+donde $J$ representa la causa del decremento y $T_x$ el tiempo futuro de vida desde el grupo etario $x$. Esta interpretación es similar a la presentada por Goerlich Gisbert (2012), quien, al estudiar tablas de vida de decrementos múltiples, analiza la probabilidad de fallecer por una causa determinada condicionada a que la muerte ocurra en un intervalo de edad específico. En particular, el autor señala que el Gráfico 2 presenta la probabilidad de fallecer por una causa dada condicionada a que la muerte se produce en un intervalo etario determinado. Esta idea es conceptualmente análoga al uso de la composición causal por edad en este trabajo, aunque no idéntica en su construcción empírica.
+
+El contraste con Goerlich Gisbert (2012) debe hacerse con cuidado. En su caso, los indicadores se construyen dentro de una tabla de vida de decrementos múltiples y, por tanto, siguen la lógica de una generación sometida a las condiciones de mortalidad de un periodo. En este trabajo, en cambio, la composición causal se calcula de forma local por país, año, sexo y grupo etario. Por tanto, no se está estimando la probabilidad vitalicia de que una persona termine falleciendo por una causa, sino la forma en que se distribuye causalmente la probabilidad total de decremento dentro de una celda específica.
+
+Un punto relevante señalado por Goerlich Gisbert (2012) aparece al analizar la mortalidad por enfermedades del sistema circulatorio. El autor indica que, al condicionar en personas que alcanzan los 65 años, la probabilidad de acabar falleciendo por una enfermedad del sistema circulatorio crece ligeramente, aunque este aumento es más marcado en 1975 que en 2008. Esta reducción relativa en 2008 es interpretada como evidencia de mejoras en la supervivencia frente a este grupo de causas. Además, al analizar la mortalidad condicional por intervalos de edad, Goerlich Gisbert (2012) muestra que, para fallecidos de 65 años o más, la participación de las enfermedades del sistema circulatorio disminuye de forma importante entre 1975 y 2008.
+
+Esta comparación permite formular una lectura útil para los resultados propios, aunque con una diferencia metodológica importante. En el caso de Nicaragua, la composición causal sugiere que las enfermedades del sistema circulatorio adquieren progresivamente mayor peso relativo en edades avanzadas. Sin embargo, esta lectura corresponde a una composición local por grupo etario, no a una probabilidad acumulada de fallecer eventualmente por dicha causa. Por ello, el paralelismo con Goerlich Gisbert (2012) debe entenderse como conceptual: ambos análisis estudian cómo cambia el peso de las causas dentro de una estructura etaria de mortalidad, pero no estiman exactamente la misma cantidad. Una vez delimitada la interpretación de ${}_1\widehat q_{x,t,p,s}^{(c)}$ como probabilidad local absoluta de decremento por causa, el análisis se organiza en dos niveles complementarios. En primer lugar, se estudia la evolución general de esta probabilidad a lo largo de los intervalos de edad mediante gráficos de línea. En segundo lugar, se utilizan gráficos radar para comparar países en celdas demográficas específicas, fijando una causa $c$, un grupo etario $x$ y un sexo $s$.
+
+En este segundo componente, la cantidad representada es
+
+$$
+100 \times {}_1\widehat q_{x,t,p,s}^{(c)},
+$$
+
+por lo que los valores se expresan como porcentajes. A diferencia del análisis de composición causal, esta visualización no muestra la participación relativa de una causa dentro del total de decrementos, sino la magnitud absoluta estimada de la probabilidad local de salida por dicha causa. Por tanto, el radar no representa
+
+$$
+\widehat{\pi}_{x,t,p,s}^{(c)}
+=
+\frac{
+{}_1\widehat q_{x,t,p,s}^{(c)}
+}{
+\sum_{j=1}^{r}
+{}_1\widehat q_{x,t,p,s}^{(j)}
+},
+$$
+
+sino directamente la probabilidad local estimada por causa,
+
+$$
+{}_1\widehat q_{x,t,p,s}^{(c)}.
+$$
+
+Esta distinción es relevante porque una causa puede tener una participación relativa alta dentro de la composición causal y, al mismo tiempo, presentar una probabilidad absoluta baja. En cambio, el análisis de ${}_1\widehat q_{x,t,p,s}^{(c)}$ permite identificar en qué países, edades y sexos la magnitud del decremento por una causa específica es comparativamente mayor.
+
+En el caso de las causas externas de mortalidad, el análisis previo de composición causal mostró que estas adquieren mayor peso relativo en edades jóvenes y adultas jóvenes. Al observar ahora la probabilidad local absoluta, se confirma que esta causa también presenta valores relevantes en esos tramos etarios, especialmente para la población masculina. En particular, para hombres de 20--24 años se observa que El Salvador presenta en 2015 el mayor nivel de ${}_1\widehat q_{x,t,p,s}^{(c)}$ por causas externas dentro del conjunto de países comparados. Este valor se ubica por encima del resto de países y constituye una desviación visualmente marcada respecto al patrón regional.
+
+No obstante, para 2018 se observa una contracción clara de esta probabilidad local en El Salvador. Esta reducción no debe describirse como estadísticamente significativa, dado que no se están presentando intervalos de confianza ni pruebas formales de hipótesis. Sin embargo, desde una lectura descriptiva, sí sugiere una disminución importante en la magnitud absoluta del decremento por causas externas para hombres jóvenes en ese país.
+
+El mismo comportamiento general se aprecia al extender la mirada hacia el grupo de 30--34 años. En este caso, El Salvador vuelve a ocupar una posición destacada en 2015, con una probabilidad local de decremento por causas externas superior a la observada en los demás países. La comparación con 2018 muestra nuevamente una reducción visible, lo cual sugiere que el patrón observado no se limita exclusivamente al grupo de 20--24 años, sino que también aparece en edades adultas jóvenes.
+
+Al contrastar estos resultados con los radares correspondientes a mujeres, la escala de la probabilidad local por causas externas es sustancialmente menor. Si bien se mantienen diferencias entre países y años, los valores femeninos se ubican en niveles más bajos que los masculinos. Esto indica que el comportamiento de las causas externas no solo presenta una estructura etaria diferenciada, sino también una marcada diferenciación por sexo.
+
+En conjunto, los radares de causas externas permiten reforzar una lectura que ya había aparecido en la composición causal, pero ahora desde la magnitud absoluta del riesgo estimado. Las causas externas no solo ocupan una proporción relevante dentro de los decrementos de edades jóvenes, sino que, en ciertos países y grupos específicos, también alcanzan niveles elevados de probabilidad local absoluta. El caso de El Salvador en hombres jóvenes resulta particularmente visible, aunque su interpretación debe mantenerse en el plano descriptivo y no como una afirmación inferencial.
+
 ## 1.4 Ordenamiento de los elementos del reporte
 
 ### 1.4.1. Identificación de los elementos primarios y secundarios
@@ -1732,13 +2584,97 @@ $$ | Distinción entre la probabilidad absoluta de decremento por causa y la dis
 
 \newpage
 
+# 1.5 La Imagen que Cuenta la Historia
+
+![Composición causal promedio por edad: Costa Rica.](../../figuras/clasico/costa rica/04_composicion_promedio_top4_mas_perinatal.png){#fig-composicion-causal-por-edades-costa-rica width="80%" fig-align="center"}
+
+La visualización más poderosa de esta bitácora es el gráfico de composición causal promedio por edad, porque resume la pregunta de investigación del proyecto: No solo estimar cuánto muere la población, sino cómo se distribuye la mortalidad entre causas competitivas. Se elige este gráfico y no otro porque este muestra la estructura promedio de los decrementos, es decir, el peso de cada causa dentro del total de probabilidades de muerte estimadas para cada grupo etario. Desde el enfoque de decrementos múltiples, esto es clave porque una causa no se interpreta de forma aislada, sino en relación con las demás causas que compiten por producir la salida del estado vivo. Alguien que viera solo esta imagen tomaría la decisión de no modelar todas las causas como una general, ya que la composición cambia entre edades tempranas, jóvenes, adultas y avanzadas. Frente a la Bitácora #2, la comprensión del problema cambió porque los datos dejaron de verse únicamente como conteos y pasaron a interpretarse como probabilidades de decremento con una estructura causal interna. El gráfico muestra que la edad no solo modifica el nivel de mortalidad, sino también el tipo de riesgo predominante en cada tramo del ciclo de vida. Si esta imagen fuera la portada del artículo, contaría la historia de una mortalidad que se transforma causalmente con la edad, donde el objetivo no es solo medir el riesgo total, sino descomponerlo para entender qué causas lo conforman. 
+
+\newpage
+
+# 2. Arco Narrativo del Proyecto
+
+El modelo reveló que la mortalidad por causa en Centroamérica no sigue una única trayectoria por edad, sino que se reorganiza según el sexo, el país y la causa considerada, lo que significa que la pregunta de investigación debe responderse tanto desde la magnitud de la probabilidad de decremento como desde la composición causal de los fallecimientos.
+
+# 3. Parte Escrita
+
 # 4. Parte de reflexión
 
 ## Uve de Gowin
 
 ![](../../figuras/Diagrama_V_de_Gowin.png)
 
-## Nuevas fichas de literatura
+\newpage
+
+# Referencias
+
+AAPC Thought Leadership Team. (2025, 3 de marzo). What is ICD-10? AAPC. https://www.aapc.com/resources/what-is-icd-10
+
+Austin, P. C., Steyerberg, E. W., & Putter, H. (2021). Fine-Gray subdistribution hazard models to simultaneously estimate the absolute risk of different event types: Cumulative total failure probability may exceed 1. Statistics in Medicine, 40(19), 4200–4212. https://doi.org/10.1002/sim.9023
+
+Baione, F., & Levantesi, S. (2014). A health insurance pricing model based on prevalence rates: Application to critical illness insurance. Insurance: Mathematics and Economics, 58, 174–184. https://doi.org/10.1016/j.insmatheco.2014.07.005
+
+Baione, F., & Levantesi, S. (2018). Pricing critical illness insurance from prevalence rates: Gompertz versus Weibull. North American Actuarial Journal, 22(2), 270–288. https://doi.org/10.1080/10920277.2017.1397524
+
+Bowers, N. L., Gerber, H. U., Hickman, J. C., Jones, D. A., & Nesbitt, C. J. (1997). Actuarial mathematics (2nd ed.). Society of Actuaries.
+Calazans, J. A., & Queiroz, B. L. (2020). The adult mortality profile by cause of death in 10 Latin American countries (2000–2016). Revista Panamericana de Salud Pública, 44, e1. https://doi.org/10.26633/RPSP.2020.1
+
+Deshmukh, S. (2012). Multiple decrement models in insurance: An introduction using R. Springer. https://doi.org/10.1007/978-81-322-0659-0
+Dirgová, I., & Bilíková, M. (2014). Modelación actuarial del seguro de vida mediante modelos de decremento. Journal of Applied Mathematics, Statistics and Informatics, 10(1). https://doi.org/10.2478/jamsi-2014-0008
+
+Fine, J. P., & Gray, R. J. (1999). A proportional hazards model for the subdistribution of a competing risk. Journal of the American Statistical Association, 94(446), 496–509. https://doi.org/10.1080/01621459.1999.10474144
+
+Goerlich Gisbert, F. J. (2012). Tablas de vida de decrementos múltiples: Mortalidad por causas en España (1975–2008) (Documento de Trabajo No. 1/2012). Fundación BBVA.
+Keyfitz, N., Preston, S. H., & Schoen, R. (1972). Inferring probabilities from rates: Extension to multiple decrement. Scandinavian Actuarial Journal, 1972(1), 1–13. https://doi.org/10.1080/03461238.1972.10404630
+
+Li, J. (2019). A multi-state model for pricing critical illness insurance products [Master’s project, Simon Fraser University].
+Lynch, S. M., & Brown, J. S. (2005). A new approach to estimating life tables with covariates and constructing interval estimates of life table quantities. Sociological Methodology, 35(1), 189–237. https://doi.org/10.1111/j.0081-1750.2006.00168.x
+
+Macdonald, A. S. (1996). An actuarial survey of statistical models for decrement and transition data II: Competing risks, non-parametric and regression models. British Actuarial Journal, 2(2), 429–448. https://doi.org/10.1017/S1357321700003469
+
+Macdonald, A. S., & Richards, S. J. (2025). On contemporary mortality models for actuarial use II: Principles. British Actuarial Journal, 30, e19. https://doi.org/10.1017/S1357321725000133
+
+Makeham, W. M. (1860). On the law of mortality and the construction of annuity tables. Journal of the Institute of Actuaries, 8(6), 301–310. https://doi.org/10.1017/S204616580000126X
+
+Manton, K. G., Woodbury, M. A., Stallard, E., Riggan, W. B., Creason, J. P., & Pellom, A. C. (1989). Empirical Bayes procedures for stabilizing maps of U.S. cancer mortality rates. Journal of the American Statistical Association, 84(407), 637–650. https://doi.org/10.1080/01621459.1989.10478816
+Olivieri, A., & Pitacco, E. (2012). Life tables in actuarial models: From the deterministic setting to a Bayesian approach. AStA Advances in Statistical Analysis, 96, 127–153. https://doi.org/10.1007/s10182-011-0177-y
+
+Orozco Cortés, J. S. (2023). Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas [Tesis de maestría, Universidad Nacional de Colombia].
+Pasaribu, U. S., Husniah, H., Sari, R. R. K. N., & Yanti, A. R. (2019). Pricing critical illness insurance premiums using multiple state continuous Markov chain model. Journal of Physics: Conference Series, 1366(1), 012112. https://doi.org/10.1088/1742-6596/1366/1/012112
+
+Patricio, S. C., & Missov, T. (2024). Makeham mortality models as mixtures: Advancing mortality estimations through competing risks frameworks. Demographic Research, 51, 595–624. https://doi.org/10.4054/DemRes.2024.51.18
+
+Pitacco, E., Denuit, M., Haberman, S., & Olivieri, A. (2009). Modelling longevity dynamics for pensions and annuity business. Oxford University Press. https://doi.org/10.1093/oso/9780199547272.001.0001
+
+Román Sánchez, Y. G., Sánchez Pérez, A. L., & Mendieta Zacarias, I. (2018). Mortalidad por causas en el estado de México, 2000 y 2015. Novedades en Población, 14(28), 64–78.
+
+Schmitt, F. O., Gilardoni, G. L., & Andrade, J. A. A. (2019). A class of flat prior distributions for the Poisson-gamma hierarchical model. *Statistica Neerlandica, 73*(3), 414–433. https://doi.org/10.1111/stan.12176
+
+Schumacher, A. E., McCormick, T. H., Wakefield, J., Chu, Y., Perin, J., Villavicencio, F., Simon, N., & Liu, L. (2022). A flexible Bayesian framework to estimate age- and cause-specific child mortality over time from sample registration data. The Annals of Applied Statistics, 16(1), 124–143. https://doi.org/10.1214/21-AOAS1489
+
+Scott, G. (2026, 24 de abril). Variability: Definition in statistics and finance. Investopedia. https://www.investopedia.com/terms/v/variability.asp
+
+Society of Actuaries. (2016). Experience study calculations. Society of Actuaries.
+
+United Nations, Department of Economic and Social Affairs, Population Division. (2024). World Population Prospects 2024. United Nations. https://population.un.org/wpp/
+
+Wikipedia. (s. f.). Patrón (estructura). Wikipedia. https://es.wikipedia.org/wiki/Patr%C3%B3n_(estructura)
+
+Wolbers, M., Koller, M. T., Stel, V. S., Schaer, B., Jager, K. J., Leffondré, K., & Heinze, G. (2014). Competing risks analyses: Objectives and approaches. European Heart Journal, 35(42), 2936–2941. https://doi.org/10.1093/eurheartj/ehu131
+
+World Health Organization. (2026). About the WHO mortality database. World Health Organization. https://platform.who.int/mortality/about/about-the-who-mortality-database
+
+World Health Organization. (2026). WHO Mortality Database. World Health Organization. https://www.who.int/data/data-collection-tools/who-mortality-database
+
+World Health Organization, Department of Data, Digital Health, Analytics and AI. (2026, 23 de febrero). WHO Mortality Database documentation. World Health Organization.
+
+Zhang, Y.-Y., Wang, Z.-Y., Duan, Z.-M., & Mi, W. (2019). The empirical Bayes estimators of the parameter of the Poisson distribution with a conjugate gamma prior under Stein’s loss function. *Journal of Statistical Computation and Simulation, 89*(16), 3061–3074. https://doi.org/10.1080/00949655.2019.1652606
+
+\newpage
+
+# Anexos
+
+## Anexo 1: Fichas de Literatura
 
 **Título:** *Empirical Bayes Procedures for Stabilizing Maps of U.S. Cancer Mortality Rates*
 
@@ -2070,10 +3006,73 @@ Además, buena parte del artículo se centra en la función de pérdida de Stein
 
 **Síntesis:** El principal aporte de Zhang et al. para el proyecto es la idea de estimar los hiperparámetros de la distribución Gamma utilizando la distribución marginal de los conteos. Esto permite construir una previa a partir de la experiencia observada, en lugar de fijar sus parámetros de forma arbitraria. Los resultados del artículo también respaldan el uso de máxima verosimilitud sobre el método de momentos, aunque advierten que su cálculo es numérico, sensible a los valores iniciales y más costoso computacionalmente. En nuestro caso se adopta esta misma lógica, pero se modifica la verosimilitud para tomar en cuenta que cada celda tiene una exposición diferente.
 
-# Referencias
+## Anexo 2: Preparación
 
-Manton, K. G., Woodbury, M. A., Stallard, E., Riggan, W. B., Creason, J. P., & Pellom, A. C. (1989). Empirical Bayes procedures for stabilizing maps of U.S. cancer mortality rates. *Journal of the American Statistical Association, 84*(407), 637–650. https://doi.org/10.1080/01621459.1989.10478816
+__Rastro de desiciones:__
+A partir de lo trabajado en la bitácora anterior, se mantuvo la decisión de modelar la mortalidad por causa usando la agrupación general de la ICD-10 en números romanos. Esta elección permitió conservar una clasificación reconocible y más general, reducir la dispersión asociada a códigos demasiado específicos y trabajar con una estructura compatible con la base de mortalidad de la WHO. También se decidió interpretar los grupos quinquenales como estratos de edad y no como horizontes de seguimiento de cinco años. Por esta razón, aunque la notación general de decrementos múltiples permite escribir $q_x^{(c)}$, en la aplicación empírica se trabaja con horizonte anual, como se fundamenta en la propuesta metodológica, pues las defunciones y exposiciones están organizadas por año calendario.
 
-Schmitt, F. O., Gilardoni, G. L., & Andrade, J. A. A. (2019). A class of flat prior distributions for the Poisson-gamma hierarchical model. *Statistica Neerlandica, 73*(3), 414–433. https://doi.org/10.1111/stan.12176
+En cuanto al análisis, se descartó trabajar únicamente con tasas centrales de mortalidad, porque estas no muestran directamente la probabilidad actuarial de fallecer por una causa en presencia de causas competidoras. Por ello, se priorizó la tasa de mortalidad por causa fundamentada en Manton et al., estimada a partir del cociente entre defunciones y exposición, para el posterior cálculo de $q_x^{(c)}$. Esto permite observar la magnitud del decremento por causa según edad, sexo, país y año.
 
-Zhang, Y.-Y., Wang, Z.-Y., Duan, Z.-M., & Mi, W. (2019). The empirical Bayes estimators of the parameter of the Poisson distribution with a conjugate gamma prior under Stein’s loss function. *Journal of Statistical Computation and Simulation, 89*(16), 3061–3074. https://doi.org/10.1080/00949655.2019.1652606
+Además, se incorporó el análisis de la composición causal condicionada al fallecimiento, $\pi_x^{(c)}$, porque no basta con conocer la magnitud del riesgo: también interesa estudiar cómo se reparte ese riesgo entre las causas disponibles. Para las visualizaciones, se decidió seleccionar causas principales por país, mantener las causas externas por su relevancia en edades jóvenes y tratar las afecciones perinatales por separado debido a su perfil etario particular. Esta selección afecta únicamente la lectura gráfica, no la construcción de las probabilidades, que sigue utilizando todas las causas disponibles en cada celda.
+
+Finalmente, se optó por conservar el mismo objeto de análisis entre el enfoque clásico y el enfoque bayesiano. Una vez obtenidas las estimaciones de $q_x^{(c)}$ desde ambos enfoques, se aplicarán los mismos criterios de interpretación: análisis de las probabilidades de decremento, comparación por edad, sexo, país y año, y estudio de la composición causal.
+
+__Registro de uso de IA:__ 
+
+#### Consulta 1
+
+**Herramienta:** ChatGPT.
+
+**Prompt:** "Ayúdame a revisar si el horizonte del decremento debe ser anual o quinquenal (o sea, intervalos de 5 años), considerando que los grupos de edad son de cinco años pero los datos están año por año".
+
+**Respuesta de la IA:** Se aclaró que los grupos quinquenales funcionan como estratos de edad, mientras que el horizonte de la probabilidad de decremento debe mantenerse anual porque las defunciones y exposiciones se observan por año calendario. En consecuencia, las probabilidades se interpretan para los años 2015, 2016, 2017 y 2018 de manera independiente.
+
+**Evaluación:** Fue útil para evitar una interpretación incorrecta de ${}_nq_x^{(c)}$ y mantener coherencia entre la estructura de los datos y el objeto actuarial del proyecto.
+
+**Modificaciones:** Se ajustó y fundamentó la redacción de la propuesta metodológica para trabajar con $q_x^{(c)}$ como probabilidad anual asociada a una celda agregada.
+
+**Aprendizaje:** Ahora se distingue claramente entre el estrato etario quinquenal y el horizonte temporal anual utilizado para estimar las probabilidades de decremento.
+
+#### Consulta 2
+
+**Herramienta:** ChatGPT.
+
+**Prompt:** "Revisa la justificación del enfoque clásico y bayesiano y ayúdame a explicar por qué usamos decrementos múltiples en vez de solo tasas centrales de mortalidad".
+
+**Respuesta de la IA:** Se explicó que las tasas centrales de mortalidad estiman intensidades de muerte por causa, mientras que las probabilidades de decremento permiten interpretar directamente el riesgo de fallecer por una causa en presencia de causas competidoras. Además, se mostró cómo la tasa de mortalidad específica puede aproximarse mediante el cociente entre defunciones y exposición, siguiendo la justificación de Manton et al.
+
+**Evaluación:** Fue útil porque ayudó a conectar la estrategia de estimación con la pregunta de investigación.
+
+**Modificaciones:** Se reorganizó la sección metodológica para presentar la secuencia lógica desde los conteos de defunciones $D_x^{(c)}$, pasando por $\widehat{\mu}_x^{(c)}$ y $\widehat{\mu}_x^{(\tau)}$, hasta llegar a $\widehat{q}_x^{(c)}$.
+
+**Aprendizaje:** Se comprendió que la probabilidad de decremento no es únicamente una tasa transformada, sino una medida actuarial que incorpora explícitamente la competencia entre causas.
+
+#### Consulta 3
+
+**Herramienta:** ChatGPT.
+
+**Prompt:** "Ayuda a redactar la diferencia entre la probabilidad de decremento por causa y la composición causal condicionada al fallecimiento".
+
+**Respuesta de la IA:** Se explicó que $\widehat{q}_x^{(c)}$ mide el riesgo absoluto de fallecer por una causa respecto al total de vidas expuestas, mientras que $\widehat{\pi}_x^{(c)}$ mide la participación relativa de una causa dentro del conjunto de fallecimientos observados.
+
+**Evaluación:** Fue útil porque permitió separar dos conceptos que podían confundirse.
+
+**Modificaciones:** Se incorporó una explicación basada en eventos probabilísticos, probabilidad condicional e interpretación verbal de $\widehat{\pi}_x^{(c)}$.
+
+**Aprendizaje:** Se comprendió que una causa puede presentar un riesgo absoluto reducido y, al mismo tiempo, representar una proporción importante dentro de los fallecimientos observados en determinados grupos.
+
+#### Consulta 4
+
+**Herramienta:** ChatGPT.
+
+**Prompt:** "Ayúdame a interpretar cuáles gráficos cuentan mejor la historia del análisis clásico, considerando las probabilidades por causa y la composición causal".
+
+**Respuesta de la IA:** Se sugirió utilizar conjuntamente gráficos de probabilidades de decremento y gráficos de composición causal, ya que ambos ofrecen perspectivas complementarias. Los primeros permiten visualizar la magnitud del riesgo, mientras que los segundos muestran cómo se distribuye dicho riesgo entre las distintas causas de muerte.
+
+**Evaluación:** Fue útil para construir una narrativa coherente en la sección de resultados.
+
+**Modificaciones:** Se redactó una idea central para la interpretación de resultados y se seleccionó una visualización principal para explicar cómo la mortalidad cambia según edad, sexo y causa.
+
+**Aprendizaje:** Se aprendió que la pregunta de investigación no se responde únicamente identificando la causa con mayor mortalidad, sino estudiando cómo cambia la estructura causal del decremento entre grupos etarios, sexos, países y años.
+
+__Audiencia del Proyecto:___ Esta semana, le diría a la audiencia objetivo que los resultados desde el enfoque clásico y bayesuanio  muestran que la probabilidad anual de decremento por causa no cambia únicamente por edad, país, sexo y año, sino también por la forma en que las causas compiten entre sí dentro de cada celda; por tanto, la pregunta de investigación no se responde solo identificando qué causa tiene mayor mortalidad, sino observando cómo el peso absoluto y relativo de cada causa se reorganiza a lo largo del ciclo de vida. 
