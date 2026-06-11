@@ -1732,6 +1732,12 @@ $$ | Distinción entre la probabilidad absoluta de decremento por causa y la dis
 
 \newpage
 
+# 4. Parte de reflexión
+
+## Uve de Gowin
+
+![](../../figuras/Diagrama_V_de_Gowin.png)
+
 ## Nuevas fichas de literatura
 
 **Título:** *Empirical Bayes Procedures for Stabilizing Maps of U.S. Cancer Mortality Rates*
