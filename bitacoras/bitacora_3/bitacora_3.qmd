@@ -315,173 +315,6 @@ $$\widehat{q}_{x,t}^{(c)}
 1-e^{-\widehat{\mu}_{x,t}^{(\tau)}}
 \right).$$
 
-### Análisis de las probabilidades de decremento desde el enfoque clásico
-
-Una vez estimadas las probabilidades clásicas de decremento por causa, se construyen tres análisis derivados: La probabilidad de decremento por causa, la composición causal condicionada al fallecimiento y la concentración causal. Estos análisis constituyen un enfoque probabilísitco que compara entre sí las causas de decremento. Su propósito es responder la pregunta planteada inicialmente; cómo varía la probabilidad de decremento por causa según grupo etario, país, sexo y año calendario.
-
-Inicialmente, el primer análisis gráfico corresponde a la probabilidad de decremento por causa,
-
-$$
-\widehat{q}_{x,t}^{(c)}.
-$$
-
-Esta cantidad mide la magnitud real del riesgo de decremento por causa. En la presentación gráfica se plantea utilizar
-
-$$
-100\widehat{q}_{x,t}^{(c)},
-$$
-
-de manera que el eje vertical pueda interpretarse como porcentaje. Este análisis permite comparar, para cada país y sexo, cómo cambia la probabilidad anual de fallecer por una causa específica entre 2015 y 2018 a lo largo de los grupos etarios.
-
-El segundo análisis corresponde a la composición causal condicionada al fallecimiento. Para una celda fija, la probabilidad total de fallecimiento por cualquier causa es
-
-$$
-\widehat{q}_{x,t}^{(\tau)}
-=
-\sum_{j=1}^{r}
-\widehat{q}_{x,t}^{(j)}.
-$$
-
-A partir de esta cantidad se define la composición causal condicionada al fallecimiento. Para justificarla, considérese, para una celda fija, el evento
-
-$$
-A_c=\{T_{x,t}\leq 1,\ J=c\},
-$$
-
-correspondiente a fallecer durante un horizonte anual por la causa $c$, y el evento
-
-$$
-B=\{T_{x,t}\leq 1\},
-$$
-
-correspondiente a fallecer durante ese mismo horizonte anual por cualquier causa. Por definición,
-
-$$
-P(A_c)=\widehat q_{x,t}^{(c)}.
-$$
-
-Como las causas son mutuamente excluyentes y exhaustivas, el evento $B$ es la unión disjunta de los eventos $A_1,\ldots,A_r$. Por tanto,
-
-$$
-P(B)
-=
-\sum_{j=1}^{r}P(A_j)
-=
-\sum_{j=1}^{r}\widehat q_{x,t}^{(j)}
-=
-\widehat q_{x,t}^{(\tau)}.
-$$
-
-Además, como $A_c\subseteq B$, se tiene $A_c\cap B=A_c$. Así, mediante la definición de probabilidad condicional considere
-
-$$
-{\pi}_{x,t}^{(c)}
-:=
-P(J=c\mid T_{x,t}\leq 1)
-=
-\frac{P(A_c\cap B)}{P(B)}
-=
-\frac{q_{x,t}^{(c)}}
-{\displaystyle\sum_{j=1}^{r} q_{x,t}^{(j)}}.
-$$
-
-Al sustituir las probabilidades desconocidas por sus estimaciones, se obtiene
-
-$$
-\widehat{\pi}_{x,t}^{(c)}
-=
-\frac{\widehat q_{x,t}^{(c)}}
-{\displaystyle\sum_{j=1}^{r}\widehat q_{x,t}^{(j)}}.
-$$
-
-La condición $T_{x,t}\leq 1$ modifica el conjunto de referencia sobre el cual se calcula la probabilidad. Sin condicionar, $q_{x,t}^{(c)}$ considera a todas las vidas pertenecientes a la celda y mide la probabilidad de que una de ellas fallezca por la causa $c$ durante el horizonte anual. En cambio, al condicionar a que $T_{x,t}\leq 1$, se excluyen del conjunto de referencia todas las vidas que sobreviven ese año y se consideran únicamente aquellas que fallecen.
-
-Por tanto,
-
-$$
-\pi_{x,t}^{(c)}
-=
-P(J=c\mid T_{x,t}\leq 1)
-$$
-
-responde a la siguiente pregunta: dado que una vida perteneciente a la celda $(x,t)$ fallece durante el próximo año, ¿cuál es la probabilidad de que ese fallecimiento sea atribuible a la causa $c$?
-
-Así, $\widehat q_{x,t}^{(c)}$ mide un riesgo absoluto respecto de todas las vidas de la celda, mientras que $\widehat{\pi}_{x,t}^{(c)}$ mide una composición causal respecto únicamente de las vidas que fallecen. Por ejemplo, si la probabilidad anual total de fallecimiento es $0.02$ y la probabilidad de fallecer por la causa $c$ es $0.006$, entonces
-
-$$
-\widehat\pi_{x,t}^{(c)}
-=
-\frac{0.006}{0.02}
-=
-0.30.
-$$
-
-Esto no significa que el $30\%$ de las vidas de la celda fallezca por la causa $c$, sino que, entre los fallecimientos ocurridos durante el horizonte anual, el $30\%$ se atribuye probabilísticamente a dicha causa.
-
-Asimismo es importante notar que para una celda fija, las cantidades estimadas $\widehat{\pi}_{x,t}^{(c)}$ forman una distribución de probabilidad sobre las causas, ya que
-
-$$
-\sum_{c=1}^{r}
-\widehat{\pi}_{x,t}^{(c)}
-=
-\sum_{c=1}^{r}
-\frac{
-\widehat{q}_{x,t}^{(c)}
-}{
-\sum_{j=1}^{r}
-\widehat{q}_{x,t}^{(j)}
-}
-=
-1.
-$$
-
-Porque, una vez condicionado a que ocurrió un fallecimiento, la persona necesariamente tuvo que morir por una de las $r$ causas consideradas. Por tanto, las probabilidades condicionadas distribuyen la totalidad de la probabilidad entre las causas.
-
-Esta propiedad justifica el uso de gráficos de composición condicionada, similares en espíritu a los análisis de distribución de causas de muerte por grupo de edad, utilizados por Goerlich (2012, p.36). Sin embargo, para mantener la legibilidad, se propone mostrar únicamente algunas causas seleccionadas. En estos casos, el denominador de $\widehat{\pi}_{x,t}^{(c)}$ continuará incluyendo la suma de las probabilidades de decremento correspondientes a todas las causas, aunque solo se visualicen algunas. Por esta razón, cuando se presenten únicamente causas seleccionadas, las barras visibles no necesariamente sumarían 100%.
-
-El tercer análisis resume la concentración de la composición causal. Dado que $\widehat{\pi}_{x,t}^{(c)}$ define una distribución de probabilidad sobre las causas de muerte, se calcula el índice
-
-$$
-H_{x,t}
-=
-\sum_{c=1}^{r}
-\left(
-\widehat{\pi}_{x,t}^{(c)}
-\right)^2
-=
-\sum_{c=1}^{r}
-\left(
-\frac{
-\widehat{q}_{x,t}^{(c)}
-}{
-\sum_{j=1}^{r}
-\widehat{q}_{x,t}^{(j)}
-}
-\right)^2.
-$$
-
-Este índice es una medida tipo Herfindahl-Simpson aplicada a la composición causal. Su valor se encuentra entre $1/r$ y $1$. Valores altos indican que la mortalidad de la celda está concentrada en pocas causas; valores bajos indican que la mortalidad está más distribuida entre varias causas [@simpson1949; @herfindahl1950; @hirschman1964].
-
-La interpretación probabilística de $H_{x,t}$ es directa. Si se seleccionan dos fallecimientos de manera independiente dentro de la misma celda, y si la probabilidad de que un fallecimiento corresponda a la causa $c$ es $\widehat{\pi}_{x,t}^{(c)}$, entonces la probabilidad de que ambos fallecimientos correspondan a la misma causa es
-
-$$
-\sum_{c=1}^{r}
-\widehat{\pi}_{x,t}^{(c)}
-\widehat{\pi}_{x,t}^{(c)}
-=
-\sum_{c=1}^{r}
-\left(
-\widehat{\pi}_{x,t}^{(c)}
-\right)^2
-=
-H_{x,t}.
-$$
-
-Por tanto, $H_{x,t}$ no se introduce únicamente como un indicador descriptivo, sino como una función de la distribución condicional de causas. En el contexto del proyecto, permite identificar si la mortalidad de un grupo etario está dominada por una causa particular o si se reparte entre múltiples categorías.
-
-En conjunto, los tres análisis cumplen funciones complementarias. La probabilidad absoluta $\widehat{q}_{x,t}^{(c)}$ permite analizar la magnitud del decremento por causa. La composición condicionada $\widehat{\pi}_{x,t}^{(c)}$ permite estudiar la estructura causal de las muertes dentro de cada grupo etario. Finalmente, el índice $H_{x,t}$ resume el grado de concentración de dicha estructura causal. Así, los gráficos utilizados no se plantean como visualizaciones aisladas, sino como representaciones de cantidades probabilísticas derivadas del modelo clásico de decrementos múltiples.
-
-Para efectos de visualización, las causas principales se seleccionan por país. Se incluye la categoría de causas externas de mortalidad debido a su relevancia en edades jóvenes y adultas, y se completan las restantes con las causas de mayor probabilidad promedio de decremento dentro del país. Además, las afecciones originadas en el periodo perinatal se analizan por separado, dado que presentan un perfil etario estructuralmente distinto, concentrado en edades iniciales. Esta selección afecta únicamente la presentación gráfica; los denominadores utilizados en $\widehat{q}_{x,t}^{(\tau)}$, $\widehat{\pi}_{x,t}^{(c)}$ y $H_{x,t}$ se calculan con todas las causas disponibles en cada celda.
 
 ### Enfoque bayesiano
 
@@ -912,6 +745,131 @@ Q_{x,t}^{(c)}
 $$
 
 Esta aproximación se justifica por la Ley de los Grandes Números.
+
+### Análisis de las probabilidades de decremento
+
+Una vez estimadas las probabilidades de decremento por causa desde ambos enfoques, se construyen dos análisis derivados: La probabilidad de decremento por causa y la composición causal condicionada al fallecimiento. Estos análisis constituyen un enfoque probabilísitco que compara entre sí las causas de decremento. Su propósito es responder la pregunta planteada inicialmente; cómo varía la probabilidad de decremento por causa según grupo etario, país, sexo y año calendario.
+
+Inicialmente, el primer análisis gráfico corresponde a la probabilidad de decremento por causa,
+
+$$
+\widehat{q}_{x,t}^{(c)}.
+$$
+
+Esta cantidad mide la magnitud real del riesgo de decremento por causa. En la presentación gráfica se plantea utilizar
+
+$$
+100\widehat{q}_{x,t}^{(c)},
+$$
+
+de manera que el eje vertical pueda interpretarse como porcentaje. Este análisis permite comparar, para cada país y sexo, cómo cambia la probabilidad anual de fallecer por una causa específica entre 2015 y 2018 a lo largo de los grupos etarios.
+
+El segundo análisis corresponde a la composición causal condicionada al fallecimiento. Para una celda fija, la probabilidad total de fallecimiento por cualquier causa es
+
+$$
+\widehat{q}_{x,t}^{(\tau)}
+=
+\sum_{j=1}^{r}
+\widehat{q}_{x,t}^{(j)}.
+$$
+
+A partir de esta cantidad se define la composición causal condicionada al fallecimiento. Para justificarla, considérese, para una celda fija, el evento
+
+$$
+A_c=\{T_{x,t}\leq 1,\ J=c\},
+$$
+
+correspondiente a fallecer durante un horizonte anual por la causa $c$, y el evento
+
+$$
+B=\{T_{x,t}\leq 1\},
+$$
+
+correspondiente a fallecer durante ese mismo horizonte anual por cualquier causa. Por definición,
+
+$$
+P(A_c)=\widehat q_{x,t}^{(c)}.
+$$
+
+Como las causas son mutuamente excluyentes y exhaustivas, el evento $B$ es la unión disjunta de los eventos $A_1,\ldots,A_r$. Por tanto,
+
+$$
+P(B)
+=
+\sum_{j=1}^{r}P(A_j)
+=
+\sum_{j=1}^{r}\widehat q_{x,t}^{(j)}
+=
+\widehat q_{x,t}^{(\tau)}.
+$$
+
+Además, como $A_c\subseteq B$, se tiene $A_c\cap B=A_c$. Así, mediante la definición de probabilidad condicional considere
+
+$$
+{\pi}_{x,t}^{(c)}
+:=
+P(J=c\mid T_{x,t}\leq 1)
+=
+\frac{P(A_c\cap B)}{P(B)}
+=
+\frac{q_{x,t}^{(c)}}
+{\displaystyle\sum_{j=1}^{r} q_{x,t}^{(j)}}.
+$$
+
+Al sustituir las probabilidades desconocidas por sus estimaciones, se obtiene
+
+$$
+\widehat{\pi}_{x,t}^{(c)}
+=
+\frac{\widehat q_{x,t}^{(c)}}
+{\displaystyle\sum_{j=1}^{r}\widehat q_{x,t}^{(j)}}.
+$$
+
+La condición $T_{x,t}\leq 1$ modifica el conjunto de referencia sobre el cual se calcula la probabilidad. Sin condicionar, $q_{x,t}^{(c)}$ considera a todas las vidas pertenecientes a la celda y mide la probabilidad de que una de ellas fallezca por la causa $c$ durante el horizonte anual. En cambio, al condicionar a que $T_{x,t}\leq 1$, se excluyen del conjunto de referencia todas las vidas que sobreviven ese año y se consideran únicamente aquellas que fallecen.
+
+Por tanto,
+
+$$
+\pi_{x,t}^{(c)}
+=
+P(J=c\mid T_{x,t}\leq 1)
+$$
+
+responde a la siguiente pregunta: dado que una vida perteneciente a la celda $(x,t)$ fallece durante el próximo año, ¿cuál es la probabilidad de que ese fallecimiento sea atribuible a la causa $c$?
+
+Así, $\widehat q_{x,t}^{(c)}$ mide un riesgo absoluto respecto de todas las vidas de la celda, mientras que $\widehat{\pi}_{x,t}^{(c)}$ mide una composición causal respecto únicamente de las vidas que fallecen. Por ejemplo, si la probabilidad anual total de fallecimiento es $0.02$ y la probabilidad de fallecer por la causa $c$ es $0.006$, entonces
+
+$$
+\widehat\pi_{x,t}^{(c)}
+=
+\frac{0.006}{0.02}
+=
+0.30.
+$$
+
+Esto no significa que el $30\%$ de las vidas de la celda fallezca por la causa $c$, sino que, entre los fallecimientos ocurridos durante el horizonte anual, el $30\%$ se atribuye probabilísticamente a dicha causa.
+
+Asimismo es importante notar que para una celda fija, las cantidades estimadas $\widehat{\pi}_{x,t}^{(c)}$ forman una distribución de probabilidad sobre las causas, ya que
+
+$$
+\sum_{c=1}^{r}
+\widehat{\pi}_{x,t}^{(c)}
+=
+\sum_{c=1}^{r}
+\frac{
+\widehat{q}_{x,t}^{(c)}
+}{
+\sum_{j=1}^{r}
+\widehat{q}_{x,t}^{(j)}
+}
+=
+1.
+$$
+
+Porque, una vez condicionado a que ocurrió un fallecimiento, la persona necesariamente tuvo que morir por una de las $r$ causas consideradas. Por tanto, las probabilidades condicionadas distribuyen la totalidad de la probabilidad entre las causas.
+
+Esta propiedad justifica el uso de gráficos de composición condicionada, similares en espíritu a los análisis de distribución de causas de muerte por grupo de edad, utilizados por Goerlich (2012, p.36). Sin embargo, para mantener la legibilidad, se propone mostrar únicamente algunas causas seleccionadas. En estos casos, el denominador de $\widehat{\pi}_{x,t}^{(c)}$ continuará incluyendo la suma de las probabilidades de decremento correspondientes a todas las causas, aunque solo se visualicen algunas. Por esta razón, cuando se presenten únicamente causas seleccionadas, las barras visibles no necesariamente sumarían 100%.
+
 
 ## 1.2.4 Implementación metodológica y análisis.
 
@@ -2549,6 +2507,8 @@ Al contrastar estos resultados con los radares correspondientes a mujeres, la es
 
 En conjunto, los radares de causas externas permiten reforzar una lectura que ya había aparecido en la composición causal, pero ahora desde la magnitud absoluta del riesgo estimado. Las causas externas no solo ocupan una proporción relevante dentro de los decrementos de edades jóvenes, sino que, en ciertos países y grupos específicos, también alcanzan niveles elevados de probabilidad local absoluta. El caso de El Salvador en hombres jóvenes resulta particularmente visible, aunque su interpretación debe mantenerse en el plano descriptivo y no como una afirmación inferencial.
 
+\newpage
+
 ## 1.4 Ordenamiento de los elementos del reporte
 
 ### 1.4.1. Identificación de los elementos primarios y secundarios
@@ -2582,6 +2542,21 @@ $$ | Distinción entre la probabilidad absoluta de decremento por causa y la dis
 | Interpretación actuarial de los principales patrones encontrados para $q_{x,t}^{(c)}$. | Posibles implicaciones de los resultados para el estudio de la mortalidad por causa y la identificación de grupos con perfiles particulares. |
 | Conclusiones sobre la variabilidad de la probabilidad de decremento y sobre la comparación entre los enfoques clásico y bayesiano. | Limitaciones relacionadas con la naturaleza agregada de los datos y con la imposibilidad de interpretar las estimaciones como riesgos individuales exactos. |
 
+### 1.4.2. Orden propuesto de los elementos en el reporte final
+
+La tabla anterior permite distinguir cuáles qué elementos sostienen directamente el argumento central del proyecto y cuáles cumplen una función de contexto, respaldo o ampliación. La presente tabla ordena el flujo en el que aparece cda elemento en la construcción metodológica:
+
+| Sección del reporte | Temas a tratar |
+|:-----------------------------------|:-----------------------------------|
+| **Introducción** | 1\. Presentación del problema de investigación: variabilidad de la probabilidad de decremento por causa en países centroamericanos entre 2015 y 2018. **(Primario)** 2. Definición del objeto actuarial central, $q_{x,t}^{(c)}$, como probabilidad anual de decremento por causa. **(Primario)** 3. Justificación de trabajar con grupos etarios, país, sexo, año calendario y causa de muerte. **(Primario)** <br> 4. Contexto general de la WHO Mortality Database como fuente internacional de defunciones por causa. **(Secundario)** <br> 5. Antecedente regional de Calazans y Queiroz (2020) sobre patrones de mortalidad adulta en América Latina. **(Secundario)** |
+| **Marco teórico y antecedentes** | 1\. Teoría de decrementos múltiples y causas competidoras, apoyada en Bowers et al. (1997) y Deshmukh (2012). **(Primario)** <br> 2. Interpretación de la fuerza total de mortalidad como suma de las fuerzas específicas, $\mu_{x,t}^{(\tau)}=\sum_{j=1}^{r}\mu_{x,t}^{(j)}$. **(Primario)** <br> 3. Diferencia entre probabilidad absoluta de decremento por causa y composición causal condicionada al fallecimiento. **(Primario)** <br> 4. Uso de los gráficos de Goerlich (2012) como antecedente para comparar perfiles de mortalidad por edad y causa. **(Primario)** <br> 5. Modelación actuarial mediante modelos de decremento presentada por Dirgová y Bilíková (2014). **(Secundario)** |
+| **Datos y construcción de la base** | 1\. Definición de la unidad de análisis: celda formada por país, sexo, año calendario, grupo etario y causa. **(Primario)** <br> 2. Uso de los conteos de defunciones $D_{x,t}^{(c)}$ provenientes de la WHO Mortality Database. **(Primario)** <br> 3. Uso de la exposición $E_{x,t}$ aproximada mediante población a mitad de año. **(Secundario)** <br> 4. Clasificación de causas mediante grupos amplios de la ICD-10. **(Secundario)** <br> 5. Exclusión de Honduras por falta de observaciones compatibles con el periodo del proyecto. **(Secundario)** |
+| **Metodología clásica** | 1\. Modelo Poisson para los conteos de defunciones, $D_{x,t}^{(c)}\mid \mu_{x,t}^{(c)}\sim \operatorname{Poisson}(E_{x,t}\mu_{x,t}^{(c)})$. **(Primario)** <br> 2. Estimador clásico de la intensidad, $\widehat{\mu}_{x,t}^{(c)}=D_{x,t}^{(c)}/E_{x,t}$. **(Primario)** <br> 3. Transformación de intensidades en probabilidades de decremento mediante $q_{x,t}^{(c)}=\dfrac{\mu_{x,t}^{(c)}}{\mu_{x,t}^{(\tau)}}\left(1-e^{-\mu_{x,t}^{(\tau)}}\right)$. **(Primario)** <br> 4. Supuesto de fuerza constante dentro de cada celda anual y etaria. **(Secundario)** <br> 5. Simulación paramétrica de conteos Poisson para construir intervalos de confianza clásicos. **(Primario)** |
+| **Metodología bayesiana** | 1\. Modelo Poisson--Gamma para las intensidades por causa. **(Primario)** <br> 2. Estimación Empirical Bayes de $\widehat{\alpha}_{p}^{(c)}$ y $\widehat{\beta}_{p}^{(c)}$ usando la idea de Zhang et al. (2019). **(Primario)** <br> 3. Uso de Schmitt et al. (2019) para justificar la marginal binomial negativa del modelo Poisson--Gamma. **(Secundario)** <br> 4. Simulación posterior de intensidades $\mu_{x,t}^{(c,s)}$ para cada causa y celda. **(Primario)** <br> 5. Estimador bayesiano $q_{x,t}^{(c)*}=\dfrac{1}{S}\sum_{s=1}^{S}q_{x,t}^{(c,s)}\approx\mathbb{E}(Q_{x,t}^{(c)}\mid\mathcal{D}_{x,t})$. **(Primario)** <br> 6. Uso de cuantiles posteriores para construir intervalos creíbles. **(Primario)** |
+| **Resultados** | 1\. Resultados sobre cómo cambia $q_{x,t}^{(c)}$ conforme cambia el grupo etario. **(Primario)** <br> 2. Comparación de perfiles de decremento por país, sexo, año y causa de muerte. **(Primario)** <br> 3. Comparación entre $\widehat{q}_{x,t}^{(c)}$ y $q_{x,t}^{(c)*}$ para las mismas celdas. **(Primario)** <br> 4. Identificación de celdas donde el enfoque clásico y el bayesiano producen resultados semejantes. **(Primario)** <br> 5. Análisis de composición causal condicionada al fallecimiento, $\pi_{x,t}^{(c)}=P(J=c\mid T_{x,t}\leq 1)$. **(Primario)** <br> 6. Uso de gráficos de líneas, mapas de calor, radar y tablas resumen para sintetizar los patrones encontrados. **(Secundario)** |
+| **Discusión** | 1\. Interpretación actuarial de los principales patrones encontrados para $q_{x,t}^{(c)}$. **(Primario)** <br> 2. Discusión de las diferencias entre hombres y mujeres según causa de muerte. **(Primario)** <br> 3. Discusión de las diferencias entre países centroamericanos durante 2015--2018. **(Primario)** <br> 4. Tratamiento de conteos nulos, ceros estructurales y celdas fuera del dominio de estimación. **(Primario)** <br> 5. Diferencia interpretativa entre intervalos de confianza clásicos e intervalos creíbles bayesianos. **(Secundario)** |
+| **Conclusiones y limitaciones** | 1\. Conclusiones sobre la variabilidad de la probabilidad de decremento por causa. **(Primario)** <br> 2. Conclusiones sobre la comparación entre enfoque clásico y bayesiano. **(Primario)** <br> 3. Limitaciones por trabajar con datos agregados y no con trayectorias individuales. **(Secundario)** <br> 4. Limitaciones por calidad, cobertura y comparabilidad de los registros de mortalidad entre países. **(Secundario)** <br> 5. Posibles implicaciones para el estudio actuarial de mortalidad por causa en Centroamérica. **(Secundario)** |
+
 \newpage
 
 # 1.5 La Imagen que Cuenta la Historia
@@ -2603,6 +2578,14 @@ El modelo reveló que la mortalidad por causa en Centroamérica no sigue una ún
 ## Uve de Gowin
 
 ![](../../figuras/Diagrama_V_de_Gowin.png)
+
+# 5. Diario de Aprendizaje
+
+1.  Aprendimos que las probabilidades actuariales de decremento por causa no se observan directamente en la base de datos, sino que deben construirse a partir de conteos agregados de defunciones y una medida de exposición poblacional. Esto nos permitió entender mejor cómo las causas de muerte compiten entre sí dentro de una misma celda de análisis, ya que la probabilidad asociada a una causa específica depende también de la intensidad total de mortalidad de las demás causas.
+
+2.  Aprendimos que no siempre puede asumirse una mejora continua de la supervivencia entre distintos años calendario. En periodos cortos o medianos, como el intervalo 2015--2018, los resultados pueden estar sujetos a variaciones temporales, cambios en los registros, fluctuaciones específicas por país o sexo, y comportamientos particulares de ciertas causas de muerte. Por eso, las diferencias entre años deben interpretarse con cautela y no como tendencias estructurales definitivas.
+
+3.  Ademas el enfoque bayesiano no solo produce una estimación puntual alternativa, sino que permite representar explícitamente la incertidumbre alrededor de la probabilidad de decremento. A diferencia del enfoque clásico, donde la estimación depende directamente de la razón entre muertes observadas y exposición, el enfoque bayesiano incorpora información colectiva mediante la distribución previa y actualiza esa información con los datos observados de cada celda. Esto resulta especialmente útil en celdas con pocas muertes o baja exposición, porque evita interpretar como definitivos algunos valores extremos que podrían deberse al azar.
 
 \newpage
 
@@ -3008,7 +2991,7 @@ Además, buena parte del artículo se centra en la función de pérdida de Stein
 
 ## Anexo 2: Preparación
 
-__Rastro de desiciones:__
+### Rastro de desiciones:
 A partir de lo trabajado en la bitácora anterior, se mantuvo la decisión de modelar la mortalidad por causa usando la agrupación general de la ICD-10 en números romanos. Esta elección permitió conservar una clasificación reconocible y más general, reducir la dispersión asociada a códigos demasiado específicos y trabajar con una estructura compatible con la base de mortalidad de la WHO. También se decidió interpretar los grupos quinquenales como estratos de edad y no como horizontes de seguimiento de cinco años. Por esta razón, aunque la notación general de decrementos múltiples permite escribir $q_x^{(c)}$, en la aplicación empírica se trabaja con horizonte anual, como se fundamenta en la propuesta metodológica, pues las defunciones y exposiciones están organizadas por año calendario.
 
 En cuanto al análisis, se descartó trabajar únicamente con tasas centrales de mortalidad, porque estas no muestran directamente la probabilidad actuarial de fallecer por una causa en presencia de causas competidoras. Por ello, se priorizó la tasa de mortalidad por causa fundamentada en Manton et al., estimada a partir del cociente entre defunciones y exposición, para el posterior cálculo de $q_x^{(c)}$. Esto permite observar la magnitud del decremento por causa según edad, sexo, país y año.
@@ -3017,7 +3000,7 @@ Además, se incorporó el análisis de la composición causal condicionada al fa
 
 Finalmente, se optó por conservar el mismo objeto de análisis entre el enfoque clásico y el enfoque bayesiano. Una vez obtenidas las estimaciones de $q_x^{(c)}$ desde ambos enfoques, se aplicarán los mismos criterios de interpretación: análisis de las probabilidades de decremento, comparación por edad, sexo, país y año, y estudio de la composición causal.
 
-__Registro de uso de IA:__ 
+### Registro de uso de IA:
 
 #### Consulta 1
 
@@ -3075,4 +3058,71 @@ __Registro de uso de IA:__
 
 **Aprendizaje:** Se aprendió que la pregunta de investigación no se responde únicamente identificando la causa con mayor mortalidad, sino estudiando cómo cambia la estructura causal del decremento entre grupos etarios, sexos, países y años.
 
-__Audiencia del Proyecto:___ Esta semana, le diría a la audiencia objetivo que los resultados desde el enfoque clásico y bayesuanio  muestran que la probabilidad anual de decremento por causa no cambia únicamente por edad, país, sexo y año, sino también por la forma en que las causas compiten entre sí dentro de cada celda; por tanto, la pregunta de investigación no se responde solo identificando qué causa tiene mayor mortalidad, sino observando cómo el peso absoluto y relativo de cada causa se reorganiza a lo largo del ciclo de vida. 
+### Audiencia del Proyecto:
+
+Esta semana, le diría a la audiencia objetivo que los resultados desde el enfoque clásico y bayesuanio  muestran que la probabilidad anual de decremento por causa no cambia únicamente por edad, país, sexo y año, sino también por la forma en que las causas compiten entre sí dentro de cada celda; por tanto, la pregunta de investigación no se responde solo identificando qué causa tiene mayor mortalidad, sino observando cómo el peso absoluto y relativo de cada causa se reorganiza a lo largo del ciclo de vida. 
+
+\newpage
+
+### Log de Contribuciones
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| results: asis
+
+library(tibble)
+library(knitr)
+
+log_contribuciones <- tribble(
+  ~Integrante, ~Indice, ~Contribucion,
+  
+  "Kevin David Calderón Martínez", "1.1.4", "Análisis de diagnóstico del enfoque frecuente.",
+  "Kevin David Calderón Martínez", "1.2.2", "Revisión de la maqueta del enfoque frecuente.",
+  "Kevin David Calderón Martínez", "1.2.3", "Apoyo en la etapa de validación.",
+  "Kevin David Calderón Martínez", "1.2.4", "Revisión de cuadros, gráficos y algoritmos desde la lectura actuarial.",
+  "Kevin David Calderón Martínez", "1.2.5", "Análisis de fallos del modelo frecuente.",
+  "Kevin David Calderón Martínez", "1.3", "Elaboración de fichas de resultados.",
+  "Kevin David Calderón Martínez", "1.4.1", "Selección y justificación de la imagen que cuenta la historia.",
+  "Kevin David Calderón Martínez", "1.4.2", "Redacción de la articulación del proyecto.",
+  "Kevin David Calderón Martínez", "3", "Apoyo en la parte de escritura.",
+  "Kevin David Calderón Martínez", "Preparación", "Rastro de decisiones, registro de uso de IA y audiencia del proyecto.",
+  
+  "Gabriel de Jesús Chaves Esquivel", "1.1.1", "Apoyo en la carga automática y revisión de la base final.",
+  "Gabriel de Jesús Chaves Esquivel", "1.1.2", "Análisis descriptivo completo de los datos.",
+  "Gabriel de Jesús Chaves Esquivel", "1.1.3", "Diagnóstico del enfoque bayesiano.",
+  "Gabriel de Jesús Chaves Esquivel", "1.2.2", "Prueba de la maqueta del modelo bayesiano.",
+  "Gabriel de Jesús Chaves Esquivel", "1.2.3", "Apoyo en la validación de salidas bayesianas.",
+  "Gabriel de Jesús Chaves Esquivel", "1.2.4", "Elaboración de cuadros, gráficos y salidas descriptivas.",
+  "Gabriel de Jesús Chaves Esquivel", "1.2.5", "Revisión de inconsistencias gráficas y patrones atípicos.",
+  "Gabriel de Jesús Chaves Esquivel", "1.3", "Elaboración de fichas de resultados bayesianos.",
+  "Gabriel de Jesús Chaves Esquivel", "3", "Redacción de secciones de resultados.",
+  "Gabriel de Jesús Chaves Esquivel", "4", "Parte de reflexión y reescritura de la V de Gowin.",
+  
+  "Sebastián Miranda Ramírez", "1.1", "Análisis de modelación.",
+  "Sebastián Miranda Ramírez", "1.1.1", "Carga automática de datos y unión de mortalidad con exposición.",
+  "Sebastián Miranda Ramírez", "1.1.3", "Diagnóstico del enfoque bayesiano.",
+  "Sebastián Miranda Ramírez", "1.2.1", "Escritura de la propuesta metodológica.",
+  "Sebastián Miranda Ramírez", "1.2.3", "Validación formal del modelo bayesiano.",
+  "Sebastián Miranda Ramírez", "1.2.4", "Ajuste de algoritmos de estimación y estructura de código.",
+  "Sebastián Miranda Ramírez", "1.2.5", "Identificación de limitaciones y celdas problemáticas del modelo bayesiano.",
+  "Sebastián Miranda Ramírez", "1.3", "Elaboración de fichas metodológicas y de resultados.",
+  "Sebastián Miranda Ramírez", "1.4", "Ordenamiento técnico de los elementos del reporte.",
+  
+  "Benjamín Gutiérrez Padua", "1.1.4", "Apoyo en el análisis de diagnóstico del enfoque frecuente.",
+  "Benjamín Gutiérrez Padua", "1.2.2", "Apoyo en la maqueta del enfoque frecuente.",
+  "Benjamín Gutiérrez Padua", "1.2.3", "Validación de tablas y resultados del enfoque frecuente.",
+  "Benjamín Gutiérrez Padua", "1.2.4", "Apoyo en cuadros y gráficos asociados al enfoque frecuente.",
+  "Benjamín Gutiérrez Padua", "1.3", "Elaboración de fichas de resultados.",
+  "Benjamín Gutiérrez Padua", "1.4", "Apoyo en el ordenamiento general del reporte.",
+  "Benjamín Gutiérrez Padua", "5", "Redacción del diario de aprendizaje.",
+)
+
+kable(
+  log_contribuciones,
+  format = "pipe",
+  caption = "Log de contribuciones de la bitácora 3",
+  col.names = c("Integrante", "Índice", "Contribución")
+)
+```
