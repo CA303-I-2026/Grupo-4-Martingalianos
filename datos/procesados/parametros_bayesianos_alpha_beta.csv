@@ -7,12 +7,12 @@ Belice,IX,Enfermedades del sistema circulatorio,0.17939174579328157,6.7246267609
 Belice,V-VIII,"Trastornos mentales, enfermedades del sistema nervioso y de los órganos de los sentidos",0.3209615545548054,613.1986456582772
 Belice,X,Enfermedades del sistema respiratorio,0.21893119248900944,19.79654043581748
 Belice,XI,Enfermedades del sistema digestivo,0.3812994007750573,333.60527920422663
-Belice,XII,Enfermedades de la piel y del tejido subcutáneo,0.029718678617005966,62.38424472955056
+Belice,XII,Enfermedades de la piel y del tejido subcutáneo,0.02971867861700596,62.38424472955056
 Belice,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,0.42741775128766135,18319.416514485376
-Belice,XIV,Enfermedades del sistema genitourinario,0.17076426863370875,111.60262121653419
+Belice,XIV,Enfermedades del sistema genitourinario,0.17076426863370875,111.6026212165342
 Belice,XV,"Embarazo, parto y puerperio",1.0882252836141464,52185.41307539595
-Belice,XVI,Afecciones originadas en el periodo perinatal,37.291940276462476,23274.690125581226
-Belice,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.12218625733966805,1962.8797813030362
+Belice,XVI,Afecciones originadas en el periodo perinatal,37.29194027646248,23274.690125581223
+Belice,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.12218625733966804,1962.879781303036
 Belice,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.07819501042873055,44.2073939268513
 Belice,XX,Causas externas de mortalidad,0.9871695097580168,875.5827422725299
 Costa Rica,I,Enfermedades infecciosas y parasitarias,0.4459973590175838,1238.7148764241715
@@ -27,7 +27,7 @@ Costa Rica,XII,Enfermedades de la piel y del tejido subcutáneo,0.14044531994796
 Costa Rica,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,0.3075023960962243,1437.3837047163286
 Costa Rica,XIV,Enfermedades del sistema genitourinario,0.21538878180351817,118.13269623498574
 Costa Rica,XV,"Embarazo, parto y puerperio",1.8674924137965323,195936.00587977853
-Costa Rica,XVI,Afecciones originadas en el periodo perinatal,116.41342573247233,149513.70114111368
+Costa Rica,XVI,Afecciones originadas en el periodo perinatal,116.41342573247232,149513.70114111368
 Costa Rica,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.1875077860976672,4929.732282096925
 Costa Rica,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.24535077255947968,265.39785965895544
 Costa Rica,XX,Causas externas de mortalidad,0.5239909078306921,296.9129232875335
@@ -44,23 +44,23 @@ El Salvador,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,
 El Salvador,XIV,Enfermedades del sistema genitourinario,0.3156382471763207,81.1654986033304
 El Salvador,XV,"Embarazo, parto y puerperio",1.7027351356051308,133362.8136789783
 El Salvador,XVI,Afecciones originadas en el periodo perinatal,31.027516822839488,53280.32892865201
-El Salvador,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.32202118165526455,10079.671183323153
+El Salvador,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.32202118165526455,10079.671183323151
 El Salvador,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.22957948802152217,8.644459598498509
 El Salvador,XX,Causas externas de mortalidad,0.6349707960094612,264.0264492565379
 Guatemala,I,Enfermedades infecciosas y parasitarias,0.3920542630516338,167.9939146744772
 Guatemala,II,Tumores,0.3301210275660026,50.888426499134475
 Guatemala,III,Enfermedades de la sangre y de los órganos hematopoyéticos y ciertos trastornos de la inmunidad,0.3889339840530276,849.4393301905235
 Guatemala,IV,"Enfermedades endocrinas, nutricionales y metabólicas",0.27325537304378866,31.28162177356324
-Guatemala,IX,Enfermedades del sistema circulatorio,0.20565159727009646,5.450200684981955
+Guatemala,IX,Enfermedades del sistema circulatorio,0.2056515972700965,5.450200684981955
 Guatemala,V-VIII,"Trastornos mentales, enfermedades del sistema nervioso y de los órganos de los sentidos",0.3665797942594583,207.48566186855803
 Guatemala,X,Enfermedades del sistema respiratorio,0.2271562172048881,10.478328468860155
-Guatemala,XI,Enfermedades del sistema digestivo,0.3789577771646922,103.93406945490673
+Guatemala,XI,Enfermedades del sistema digestivo,0.3789577771646922,103.93406945490672
 Guatemala,XII,Enfermedades de la piel y del tejido subcutáneo,0.2546233365537916,896.7953667202494
 Guatemala,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,0.2836493648045543,779.177083397051
 Guatemala,XIV,Enfermedades del sistema genitourinario,0.29329143607641456,74.80708849823544
 Guatemala,XV,"Embarazo, parto y puerperio",0.8552211286446156,16103.193822855756
 Guatemala,XVI,Afecciones originadas en el periodo perinatal,41.87175311370694,27145.366570990893
-Guatemala,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.43784119889065387,5995.526156549936
+Guatemala,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.4378411988906538,5995.526156549936
 Guatemala,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.2241341128261898,8.931537247789013
 Guatemala,XX,Causas externas de mortalidad,0.6265847667524483,263.19773248358246
 Nicaragua,I,Enfermedades infecciosas y parasitarias,0.6406329075413526,1651.725966929227
@@ -74,7 +74,7 @@ Nicaragua,XI,Enfermedades del sistema digestivo,0.3256663996902092,101.008022238
 Nicaragua,XII,Enfermedades de la piel y del tejido subcutáneo,0.1908910384138688,650.7284769927821
 Nicaragua,XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,0.532796431563293,8365.196922666495
 Nicaragua,XIV,Enfermedades del sistema genitourinario,0.2704034206086549,56.85214474733451
-Nicaragua,XV,"Embarazo, parto y puerperio",1.4557792864598393,66600.1895896267
+Nicaragua,XV,"Embarazo, parto y puerperio",1.4557792864598391,66600.1895896267
 Nicaragua,XVI,Afecciones originadas en el periodo perinatal,26.27814664517306,17555.39358132048
 Nicaragua,XVII,"Malformaciones congénitas, deformidades y anomalías cromosómicas",0.3024593854435354,4885.352367644685
 Nicaragua,XVIII,"Síntomas, signos y hallazgos anormales no clasificados en otra parte",0.1586036929212552,21.226614661228705
@@ -83,7 +83,7 @@ Panama,I,Enfermedades infecciosas y parasitarias,0.5900857393367094,588.02697009
 Panama,II,Tumores,0.32273103202840897,49.16330428690288
 Panama,III,Enfermedades de la sangre y de los órganos hematopoyéticos y ciertos trastornos de la inmunidad,0.35173217471246826,1543.3216172125778
 Panama,IV,"Enfermedades endocrinas, nutricionales y metabólicas",0.2338889305969322,53.898704519335105
-Panama,IX,Enfermedades del sistema circulatorio,0.18238114467337954,5.930524995880344
+Panama,IX,Enfermedades del sistema circulatorio,0.18238114467337951,5.930524995880344
 Panama,V-VIII,"Trastornos mentales, enfermedades del sistema nervioso y de los órganos de los sentidos",0.276227007971519,113.98751119718776
 Panama,X,Enfermedades del sistema respiratorio,0.2025411937008375,19.726291467468407
 Panama,XI,Enfermedades del sistema digestivo,0.2866400155139761,138.95517432015956

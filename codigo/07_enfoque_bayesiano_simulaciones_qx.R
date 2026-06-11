@@ -69,10 +69,7 @@ simular_q_celda <- function(base_celda, S = 10000, n = 1) {
   tibble(
     causa = base_celda$causa,
     causa_grupo = base_celda$causa_grupo,
-    q_media_posterior = colMeans(q_sim), # Calculamos la media de las q simuladas
-    q_mediana_posterior = apply(q_sim, 2, median),
-    q_li_95 = apply(q_sim, 2, quantile, probs = 0.025),
-    q_ls_95 = apply(q_sim, 2, quantile, probs = 0.975)
+    q_c = colMeans(q_sim), # Calculamos la media de las q simuladas
   )
 }
 
@@ -103,6 +100,6 @@ write_csv(
   here(
     "datos", 
     "procesados", 
-    "q_bayesiano_posterior.csv")
+    "resultados_enfoque_bayesiano.csv")
 )
 
