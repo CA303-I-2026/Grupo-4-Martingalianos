@@ -1,0 +1,231 @@
+---
+title: ""
+format:
+  html: default
+  pdf:
+    include-in-header:
+      text: |
+        \usepackage{graphicx}
+        \usepackage{float}
+        \usepackage{pdflscape}
+        \usepackage{longtable}
+        \usepackage{booktabs}
+        \usepackage{array}
+        \usepackage{eso-pic}
+        \usepackage{xcolor}
+self-contained: true
+editor: visual
+lang: es
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{titlepage}
+\thispagestyle{empty}
+
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{portada.png}%
+  }%
+}
+
+\begin{center}
+
+{\Huge\bfseries Bitácora 4\par}
+
+\vspace{1.1cm}
+
+\textbf{Universidad de Costa Rica}
+
+\vspace{0.5cm}
+
+\textbf{Escuela de Matemática}
+
+\textbf{Departamento de Matemática y Ciencias Actuariales}
+
+\vspace{0.8cm}
+
+\textbf{Proyecto de Investigación}
+
+\vspace{2.2cm}
+
+\begin{minipage}{0.88\textwidth}
+\centering
+{\Large\bfseries
+Análisis del cambio de la probabilidad de decremento ${}_{n}q_{x}^{(c)}$ para grupos etarios por causas de muerte de acuerdo a la clasificación ICD-10 en países de Centroamérica [2015, 2018].
+\par}
+\end{minipage}
+
+\vspace{1.8cm}
+
+\textbf{Integrantes}
+
+\vspace{0.2cm}
+
+\textbf{Sebastián Miranda Ramírez C4H274}
+
+\textbf{Benjamín Gutiérrez Padua C4F813}
+
+\textbf{Kevin David Calderón Martínez C4D511}
+
+\textbf{Gabriel de Jesús Chaves Esquivel C4E273}
+
+\vspace{0.5cm}
+
+\textbf{Profesor}
+
+\vspace{0.3cm}
+
+\textbf{Maikol Solís Chacón}
+
+\vfill
+
+\textbf{2026}
+
+\end{center}
+
+\end{titlepage}
+```
+:::
+
+:::: {.content-visible when-format="html"}
+::: {style="text-align: center; margin-top: 120px;"}
+<b>Universidad de Costa Rica</b><br><br>
+
+<b>Escuela de Matemática</b><br> <b>Departamento de Matemática y Ciencias Actuariales</b><br><br>
+
+<b>Proyecto de Investigación</b><br><br>
+
+<b> Análisis del cambio de la probabilidad de decremento ${}_{n}q_{x}^{(c)}$ para grupos etarios por causas de muerte de acuerdo a la clasificación ICD-10 en países de Centroamérica \[2015, 2018\]. </b><br><br>
+
+<b>Integrantes</b><br><br>
+
+Sebastián Miranda Ramírez — C4H274<br> Benjamín Gutiérrez Padua — C4F813<br> Kevin David Calderón Martínez — C4D511<br> Gabriel de Jesús Chaves Esquivel — C4E273<br><br>
+
+<b>Profesor</b><br> Maikol Solís Chacón<br><br>
+
+<b>2026</b>
+:::
+::::
+
+# 1. Parte de planificación
+
+\newpage
+
+# 2. Parte de escritura (Artículo final)
+
+## Título
+
+## Resumen
+
+## Palabras clave
+
+## Introducción
+
+## Metodología
+
+Antes de presentar el modelo, se aclara una convención de notación. En realidad, la probabilidad estimada depende del grupo etario $x$, año calendario $t$, país $p$, sexo $s$, y causa de muerte $c$, por lo que podría escribirse como $q_{x,t,p,s}^{(c)}$. Sin embargo, para no cargar la lectura, en general se escribirá solo $q_{x,t}^{(c)}$, entendiendo que cada cálculo se realiza dentro de una celda definida también por país y sexo. Solo se retomarán los subíndices $p$ y $s$ cuando sean necesarios para explicar la estimación.
+
+La base final utilizada en el estudio se construyó a partir de registros agregados de defunciones por causa y una medida de exposición poblacional. Las defunciones provienen de la *WHO Mortality Database*, mientras que la exposición se aproximó mediante la población a mitad de año correspondiente al mismo país, sexo, grupo etario y año calendario, la cual se encontró en la *World Population Prospects 2024*. El análisis se restringió al periodo 2015-2018 y a los países centroamericanos con información disponible en la base depurada, los cuales fueron Belice, Costa Rica, El Salvador, Guatemala, Nicaragua y Panamá.
+
+La unidad de análisis no corresponde a individuos observados directamente, sino a una celda agregada por grupo etario y año. Cada celda contiene un número de defunciones $D_{x,t}^{(c)}$ y una exposición $E_{x,t}$. Las causas de muerte se agruparon según capítulos generales de la ICD-10, identificados mediante números romanos, con el fin de trabajar con categorías amplias, identificables, y evitar lidiar con conteos demasiado específicos. El análisis exploratorio de datos (EDA, por sus siglas en inglés) mostró que la mortalidad cambia de forma importante por edad y causa, particularmente las enfermedades del sistema circulatorio concentran defunciones en edades avanzadas, las causas externas (entre ellas agresiones) tienen mayor presencia en hombres jóvenes y algunas causas, como las afecciones perinatales, se ubican casi exclusivamente en edades tempranas. Por ello, se mantuvo la estratificación por grupo etario, causa, país, sexo y año.
+
+El objeto actuarial de interés es la probabilidad anual de decremento por causa,
+
+$$
+q_{x,t}^{(c)} = P(T_{x,t}\leq 1, J=c),
+$$
+
+donde $T_{x,t}$ representa el tiempo futuro de vida de una persona perteneciente al grupo etario $x$ durante el año $t$, y $J$ indica la causa del decremento. Aquí $x$ no se interpreta como una edad exacta individual, sino como el grupo etario completo, por ejemplo de 5-9 años o de 10-14. Además, como se trabaja en un marco de decrementos múltiples, la causa $c$ se interpreta en presencia de las demás causas competidoras.
+
+Se asumió que la fuerza de mortalidad por causa permanece constante dentro de cada celda de observación. Así, si $I_x$ representa el intervalo asociado al grupo etario $x$, entonces para edades exactas $y\in I_x$ y momentos calendario $z\in[t,t+1)$ se toma $\mu_{y,z}^{(c)}=\mu_{x,t}^{(c)}$, donde $\mu_{x,t}^{(c)}$ representa la fuerza de mortalidad por la causa $c$ para la celda definida por grupo etario $x$ y año calendario $t$.
+
+Este supuesto facilita pasar de conteos y exposición a intensidades de mortalidad por causa, y luego transformar esas intensidades en probabilidades anuales de decremento. Esto se hará de manera distinta según el enfoque tomado; clásico o bayesiano. 
+
+En el enfoque clásico, las defunciones por causa se modelan como
+
+$$
+D_{x,t}^{(c)}\mid \mu_{x,t}^{(c)}
+\sim
+\text{Poisson}(E_{x,t}\mu_{x,t}^{(c)}).
+$$
+
+Bajo este modelo, la intensidad específica se estima mediante $\widehat{\mu}_{x,t}^{(c)}=\frac{D_{x,t}^{(c)}}{E_{x,t}}$, el cual corresponde al estimador MLE. Luego se calcula la intensidad total de salida del estado vivo $\widehat{\mu}_{x,t}^{(\tau)}=\sum_{j=1}^{r}\widehat{\mu}_{x,t}^{(j)}$ y la probabilidad anual de decremento por causa se estima, mediante la conocida fórmula, como $\widehat{q}_{x,t}^{(c)} = \frac{\widehat{\mu}_{x,t}^{(c)}}{\widehat{\mu}_{x,t}^{(\tau)}} \left(1-e^{-\widehat{\mu}_{x,t}^{(\tau)}}\right).$
+
+Por otro lado, en el enfoque bayesiano se mantiene el modelo Poisson para los conteos, pero la intensidad se trata como una variable aleatoria positiva:
+
+$$
+D_{x,t}^{(c)}\mid \mu_{x,t}^{(c)}
+\sim
+\text{Poisson}(E_{x,t}\mu_{x,t}^{(c)}),
+\qquad
+\mu_{x,t}^{(c)}\sim \text{Gamma}(\alpha_p^{(c)},\beta_p^{(c)}).
+$$
+
+En esta parte se retoma la notación completa, ya que los hiperparámetros se estiman por país y causa. Para cada país $p$ y causa $c$ se obtiene un par $(\alpha_p^{(c)},\beta_p^{(c)})$ mediante el método Empirical Bayes, usando la información colectiva de las celdas de ese país y esa causa. En términos completos,
+
+$$
+\mu_{x,t,p,s}^{(c)}
+\sim
+\text{Gamma}(\alpha_p^{(c)},\beta_p^{(c)}).
+$$
+
+Los hiperparámetros no se fijan de forma arbitraria, sino que se estiman desde los conteos observados. Para ello se usa la distribución marginal inducida por el modelo Poisson-Gamma, la cual corresponde a una binomial negativay de allí se obtienen $(\alpha_p^{(c)},\beta_p^{(c)})$ mediante estimación MLE. Luego, por conjugación, la posterior de cada intensidad queda dada por
+
+$$
+\mu_{x,t,p,s}^{(c)}
+\mid D_{x,t,p,s}^{(c)},E_{x,t,p,s}
+\sim
+\text{Gamma}
+\left(
+\widehat{\alpha}_p^{(c)}+D_{x,t,p,s}^{(c)},
+\widehat{\beta}_p^{(c)}+E_{x,t,p,s}
+\right).
+$$
+
+En esta etapa también se distinguieron ceros observacionales y celdas fuera del dominio de una causa. Los ceros observacionales se mantuvieron, porque corresponden a causas posibles sin defunciones registradas. En cambio, las celdas fuera del dominio de la causa no se usaron para estimar hiperparámetros ni para simular intensidades. En particular, la causa XV, embarazo, parto y puerperio, se restringió a mujeres en edades reproductivas, eliminando hombres y mujeres muy jóvenes o muy mayores; y la causa XVI, afecciones originadas en el periodo perinatal, se restringió al grupo 0-4, eliminando adultos. 
+
+Como $q_{x,t}^{(c)}$ es una función no lineal de las intensidades, en el enfoque bayesiano no se sustituyeron directamente las medias posteriores en la fórmula clásica, pues eso sería incorrecto ya que la esperanza solo separa funciones lineales. En su lugar, se simularon intensidades posteriores por causa y, en cada simulación $s = 1,...,S$, se calculó
+
+$$
+q_{x,t}^{(c,s)}
+=
+\frac{\mu_{x,t}^{(c,s)}}{\mu_{x,t}^{(\tau,s)}}
+\left(1-e^{-\mu_{x,t}^{(\tau,s)}}\right),
+\qquad
+\mu_{x,t}^{(\tau,s)}
+=
+\sum_{j=1}^{r}\mu_{x,t}^{(j,s)}.
+$$
+
+La estimación bayesiana final para cada causa se obtuvo como la media de las simulaciones:
+
+$$
+q_{x,t}^{(c),*}
+=
+\frac{1}{S}\sum_{s=1}^{S}q_{x,t}^{(c,s)}.
+$$
+
+Finalmente, los resultados se analizaron con dos medidas. La primera corresponde simplemente $q_{x,t}^{(c)}$, que mide el riesgo absoluto estimado de morir por la causa $c$ dentro de la celda $(x,t)$. La segunda fue la composición causal condicionada al fallecimiento $\pi_{x,t}^{(c)}$, la cual se comprueba que cumple lo siguiente: 
+
+$$
+\pi_{x,t}^{(c)}
+=
+P(J=c\mid T_{x,t}\leq 1)
+=
+\frac{q_{x,t}^{(c)}}{\sum_{j=1}^{r}q_{x,t}^{(j)}}.
+$$
+
+La primera medida responde qué tan grande es el riesgo por causa, mientras que la segunda responde cómo se reparte causalmente el total de fallecimientos estimados.
+
+## Resultados
+
+## Conclusiones
+
+## Agradecimientos
+
+## Referencias
