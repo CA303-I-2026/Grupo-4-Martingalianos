@@ -114,6 +114,106 @@ Sebastián Miranda Ramírez — C4H274<br> Benjamín Gutiérrez Padua — C4F813
 
 # 1. Parte de planificación
 
+## Fichas de resultados
+
+### Titular:
+
+Los tumores cuentan con mayor peso relativo en la composición causal femenina en edades adultas de Panamá
+
+### Nombre del hallazgo/resultado:
+
+Diferencia por sexo considerable en la composición causal condicionada al fallecimiento por tumores.
+
+### Resumen en una oración:
+
+En Panamá, la participación relativa de los tumores dentro del total de fallecimiento es más alta en mujeres que en hombres en edades adultas.
+
+### Método o análisis que lo produjo:
+
+Composición causal condicionada al fallecimiento, calculada como la razón entre la probabilidad de decremento por tumores y la suma de las probabilidades de decremento por todas las causas.
+
+### Evidencia:
+
+En el panel de tumores para mujeres se observa una participación relativa cercana o superior al 30% en varios grupos de edad adulta, con valores especialmente altos alrededor de 40-54 años. En hombres, la participación por tumores también es importante, pero se distribuye de forma más moderada y alcanza sus mayores valores en edades más avanzadas.
+
+### Conexión con la pregunta de investigación:
+
+Este resultado nos muestra que la variabilidad de la probabilidad de decremento por causa también depende del sexo, encontrando una fuerte variación, en específico, entre la probabilidad de decremento por tumores en adultos en Panamá, en donde estos ocupan un mayor valor dentro de la composición causal de las mujeres.
+
+### Contraste con la literatura:
+
+Este resultado puede contrastarse principalmente con Calazans y Queiroz (2020), quienes estudian perfiles de mortalidad adulta por causa en países latinoamericanos y muestran que la estructura de la mortalidad por causa no es homogénea entre países, edades y sexos. En ese sentido, el mayor peso relativo de los tumores dentro de los fallecimientos femeninos en Panamá no debe interpretarse como un patrón universal, sino una característica local de la composición causal.
+
+### Lo que NO explica este resultado:
+
+Este gráfico no permite afirmar que las mujeres tengan una probabilidad absoluta mayor de morir por tumores que los hombres.
+
+### Implicación para el siguiente paso:
+
+Conviene contrastar este resultado con el gráfico de probabilidad absoluta de decremento por tumores. Si allí también las mujeres presentan valores mayores en esos grupos etarios, entonces sí podría hablarse de una mayor mortalidad absoluta por tumores.
+
+### Titular:
+
+La mayor participación relativa de tumores en mujeres no implica mayor probabilidad absoluta de decremento
+
+### Nombre del hallazgo/resultado:
+
+Diferencia entre composición causal condicionada y probabilidad absoluta de decremento por sexo en Panamá.
+
+### Resumen en una oración:
+
+Aunque los tumores pesan más dentro de la composición causal femenina en varios grupos adultos, la probabilidad absoluta de decremento por tumores y otras causas crónicas tiende a ser mayor en hombres en edades avanzadas.
+
+### Método o análisis que lo produjo:
+
+El resultado se obtuvo a partir del enfoque bayesiano, usando como estimación principal la media posterior de la probabilidad de decremento por causa. Para cada celda definida por grupo etario, año, país, sexo y causa, esta cantidad se escribe como
+
+$$
+q^{(c),*}_{x,t,p,s}
+\approx
+E\left(Q^{(c)}_{x,t,p,s}\mid \text{datos}\right).
+$$
+
+Primero se analizó la composición causal condicionada al fallecimiento, definida como
+
+$$
+\pi^{(c),*}_{x,t,p,s}
+=
+\frac{
+q^{(c),*}_{x,t,p,s}
+}{
+\sum_j q^{(j),*}_{x,t,p,s}
+}.
+$$
+
+Esta medida indica qué proporción del total de fallecimientos estimados corresponde a la causa (c), una vez que se condiciona a que ocurrió un fallecimiento en la celda. Luego se comparó esa lectura con la probabilidad absoluta de decremento por causa,
+
+$$
+100 \times q^{(c),*}_{x,t,p,s}.
+$$
+
+Esta segunda medida expresa, en porcentaje, la probabilidad estimada de morir por una causa específica dentro de toda la población expuesta de la celda.
+
+### Evidencia:
+
+En el gráfico de composición condicionada, los tumores presentan una participación relativa mayor en mujeres que en hombres en varios grupos etarios adultos de Panamá. Sin embargo, al observar el gráfico de probabilidad absoluta de decremento, la lectura cambia: en edades avanzadas, los hombres muestran valores más altos que las mujeres para las principales causas crónicas, especialmente enfermedades del sistema circulatorio y enfermedades del sistema respiratorio. Para tumores, la diferencia por sexo es menos marcada que en circulatorias y respiratorias, pero en los grupos de mayor edad los hombres también tienden a presentar una probabilidad absoluta mayor. Esto muestra que una causa puede ocupar más peso relativo dentro de los fallecimientos femeninos sin que eso implique necesariamente una mayor probabilidad absoluta de muerte en mujeres.
+
+### Conexión con la pregunta de investigación:
+
+Este resultado responde directamente a la pregunta del proyecto porque muestra que la variabilidad de la probabilidad de decremento por causa no depende únicamente de la edad o del año, sino también del sexo y de la forma en que se mida el fenómeno.
+
+### Contraste con la literatura:
+
+Este hallazgo se relaciona con Goerlich Gisbert (2012), porque su trabajo muestra que la mortalidad por causa debe analizarse diferenciando edad, sexo y causa dentro de un marco de decrementos múltiples. También se conecta con Calazans y Queiroz (2020), quienes señalan que los perfiles de mortalidad adulta por causa en América Latina no son homogéneos entre países ni grupos poblacionales. En este caso, el resultado de Panamá refuerza esa idea: la lectura cambia según se observe la composición causal condicionada o la probabilidad absoluta de decremento. Además, Román Sánchez, Sánchez Pérez y Mendieta Zacarias (2018) sirven como antecedente latinoamericano de que las tablas de decrementos múltiples permiten estudiar diferencias por edad, sexo y causa de muerte.
+
+### Lo que NO explica este resultado:
+
+Este resultado no explica por qué los hombres presentan mayores probabilidades absolutas de decremento en edades avanzadas, ni permite atribuir las diferencias observadas a factores clínicos, sociales o de acceso al sistema de salud. Tampoco prueba que las diferencias entre 2015 y 2018 sean estadísticamente significativas, porque el gráfico no muestra intervalos de incertidumbre ni pruebas formales. Además, el análisis se limita a Panamá y a las causas seleccionadas en la visualización, por lo que no debe generalizarse automáticamente al resto de Centroamérica.
+
+### Implicación para el siguiente paso:
+
+El siguiente paso es contrastar este resultado bayesiano con el enfoque clásico o frecuentista. Si el patrón observado en Panamá también aparece en las estimaciones clásicas, entonces el hallazgo tendría mayor consistencia metodológica. En cambio, si el patrón cambia mucho entre enfoques, habría que revisar si la diferencia se debe a la estabilización bayesiana, a conteos pequeños, a baja exposición en ciertas celdas o a variación propia de los datos observados. También conviene complementar la lectura bayesiana con intervalos posteriores de incertidumbre, para no afirmar como diferencia clara algo que visualmente parece distinto pero podría estar dentro de la variabilidad posterior.
+
 \newpage
 
 # 2. Parte de escritura (Artículo final)
@@ -144,7 +244,7 @@ donde $T_{x,t}$ representa el tiempo futuro de vida de una persona perteneciente
 
 Se asumió que la fuerza de mortalidad por causa permanece constante dentro de cada celda de observación. Así, si $I_x$ representa el intervalo asociado al grupo etario $x$, entonces para edades exactas $y\in I_x$ y momentos calendario $z\in[t,t+1)$ se toma $\mu_{y,z}^{(c)}=\mu_{x,t}^{(c)}$, donde $\mu_{x,t}^{(c)}$ representa la fuerza de mortalidad por la causa $c$ para la celda definida por grupo etario $x$ y año calendario $t$.
 
-Este supuesto facilita pasar de conteos y exposición a intensidades de mortalidad por causa, y luego transformar esas intensidades en probabilidades anuales de decremento. Esto se hará de manera distinta según el enfoque tomado; clásico o bayesiano. 
+Este supuesto facilita pasar de conteos y exposición a intensidades de mortalidad por causa, y luego transformar esas intensidades en probabilidades anuales de decremento. Esto se hará de manera distinta según el enfoque tomado; clásico o bayesiano.
 
 En el enfoque clásico, las defunciones por causa se modelan como
 
@@ -187,7 +287,7 @@ $$
 \right).
 $$
 
-En esta etapa también se distinguieron ceros observacionales y celdas fuera del dominio de una causa. Los ceros observacionales se mantuvieron, porque corresponden a causas posibles sin defunciones registradas. En cambio, las celdas fuera del dominio de la causa no se usaron para estimar hiperparámetros ni para simular intensidades. En particular, la causa XV, embarazo, parto y puerperio, se restringió a mujeres en edades reproductivas, eliminando hombres y mujeres muy jóvenes o muy mayores; y la causa XVI, afecciones originadas en el periodo perinatal, se restringió al grupo 0-4, eliminando adultos. 
+En esta etapa también se distinguieron ceros observacionales y celdas fuera del dominio de una causa. Los ceros observacionales se mantuvieron, porque corresponden a causas posibles sin defunciones registradas. En cambio, las celdas fuera del dominio de la causa no se usaron para estimar hiperparámetros ni para simular intensidades. En particular, la causa XV, embarazo, parto y puerperio, se restringió a mujeres en edades reproductivas, eliminando hombres y mujeres muy jóvenes o muy mayores; y la causa XVI, afecciones originadas en el periodo perinatal, se restringió al grupo 0-4, eliminando adultos.
 
 Como $q_{x,t}^{(c)}$ es una función no lineal de las intensidades, en el enfoque bayesiano no se sustituyeron directamente las medias posteriores en la fórmula clásica, pues eso sería incorrecto ya que la esperanza solo separa funciones lineales. En su lugar, se simularon intensidades posteriores por causa y, en cada simulación $s = 1,...,S$, se calculó
 
@@ -210,7 +310,7 @@ q_{x,t}^{(c),*}
 \frac{1}{S}\sum_{s=1}^{S}q_{x,t}^{(c,s)}.
 $$
 
-Finalmente, los resultados se analizaron con dos medidas. La primera corresponde simplemente $q_{x,t}^{(c)}$, que mide el riesgo absoluto estimado de morir por la causa $c$ dentro de la celda $(x,t)$. La segunda fue la composición causal condicionada al fallecimiento $\pi_{x,t}^{(c)}$, la cual se comprueba que cumple lo siguiente: 
+Finalmente, los resultados se analizaron con dos medidas. La primera corresponde simplemente $q_{x,t}^{(c)}$, que mide el riesgo absoluto estimado de morir por la causa $c$ dentro de la celda $(x,t)$. La segunda fue la composición causal condicionada al fallecimiento $\pi_{x,t}^{(c)}$, la cual se comprueba que cumple lo siguiente:
 
 $$
 \pi_{x,t}^{(c)}
