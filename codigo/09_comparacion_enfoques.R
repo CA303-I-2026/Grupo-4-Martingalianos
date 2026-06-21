@@ -46,34 +46,54 @@ comparacion_q <- clasico %>%
     by = llaves
   ) %>%
   mutate(
-    diferencia = q_bayesiano - q_clasico,
-    diferencia_abs = abs(diferencia),
-    diferencia_relativa = if_else(
-      q_clasico > 0,
-      diferencia_abs / q_clasico,
-      NA_real_
-    )
+    diferencia_q = q_bayesiano - q_clasico,
+    diferencia_abs_q = abs(diferencia_q),
+    
+    # DRAS: diferencia relativa absoluta simétrica
+    # Está entre 0 y 2. Valores cercanos a 0 indican alta coincidencia.
+    dras = if_else(
+      q_clasico + q_bayesiano > 0,
+      2 * diferencia_abs_q / (q_clasico + q_bayesiano),
+      0
+    ),
+    
+    q_clasico_cero = q_clasico == 0
   )
 
-# 4. Resumen general clásico vs bayesiano ---------------------------------
+# 4. Tabla 1: discrepancia entre enfoques por causa ------------------------
 
-resumen_comparacion <- comparacion_q %>%
+tabla_01_discrepancia <- comparacion_q %>%
+  group_by(causa, causa_grupo) %>%
   summarise(
-    celdas_comparables = n(),
-    celdas_dif_menor_0001 = sum(diferencia_abs < 0.0001),
-    proporcion_dif_menor_0001 = mean(diferencia_abs < 0.0001),
-    mediana_diferencia_abs = median(diferencia_abs),
-    media_diferencia_abs = mean(diferencia_abs),
-    max_diferencia_abs = max(diferencia_abs)
+    n_celdas = n(),
+    mediana_dras = median(dras, na.rm = TRUE),
+    p95_dras = quantile(dras, 0.95, na.rm = TRUE),
+    mediana_dif_abs_q = median(diferencia_abs_q, na.rm = TRUE),
+    pct_q_clasico_cero = mean(q_clasico_cero, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(p95_dras)) %>%
+  mutate(
+    mediana_dras = round(mediana_dras, 4),
+    p95_dras = round(p95_dras, 4),
+    mediana_dif_abs_q = round(mediana_dif_abs_q, 8),
+    pct_q_clasico_cero = round(100 * pct_q_clasico_cero, 1)
   )
 
-resumen_comparacion %>%
-  mutate(
-    proporcion_dif_menor_0001 = round(100 * proporcion_dif_menor_0001, 1),
-    mediana_diferencia_abs = round(mediana_diferencia_abs, 8),
-    media_diferencia_abs = round(media_diferencia_abs, 8),
-    max_diferencia_abs = round(max_diferencia_abs, 8)
-  ) %>%
-  kable(
-    caption = "Resumen de comparación entre enfoque clásico y bayesiano"
-  )
+# Versión corta para reporte: no más de 8 filas
+tabla_01_reporte <- tabla_01_discrepancia %>%
+  slice_head(n = 8)
+
+# 5. Guardar tabla para llamarla desde el QMD ------------------------------
+
+write_csv(
+  tabla_01_reporte,
+  here("datos", "procesados", "tabla_01_discrepancia_enfoques.csv")
+)
+
+# 6. Vista rápida en consola -----------------------------------------------
+
+#tabla_01_reporte %>%
+  #kable(
+   # caption = "Tabla 1. Causas ICD-10 con mayor discrepancia entre enfoque clásico y bayesiano"
+  #)

@@ -1,0 +1,9 @@
+causa,causa_grupo,n_celdas,mediana_dras,p95_dras,mediana_dif_abs_q,pct_q_clasico_cero
+III,Enfermedades de la sangre y de los organos hematopoyeticos y ciertos trastornos de la inmunidad,960,0.1498,2,2.62e-6,18.3
+IV,"Enfermedades endocrinas, nutricionales y metabolicas",960,0.013,2,1.75e-6,5.6
+V-VIII,"Trastornos mentales, enfermedades del sistema nervioso y de los organos de los sentidos",960,0.0297,2,2.16e-6,6
+XI,Enfermedades del sistema digestivo,960,0.0153,2,1.83e-6,5.1
+XII,Enfermedades de la piel y del tejido subcutaneo,960,0.1414,2,1.33e-6,36.4
+XIII,Enfermedades del sistema osteomuscular y del tejido conjuntivo,960,0.1622,2,1.86e-6,27.1
+XIV,Enfermedades del sistema genitourinario,960,0.0166,2,1.59e-6,10.8
+XV,"Embarazo, parto y puerperio",216,0.2972,2,3.7e-6,32.4
