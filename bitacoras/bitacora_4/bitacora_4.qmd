@@ -638,6 +638,33 @@ La primera medida responde qué tan grande es el riesgo por causa, mientras que 
 
 ## Resultados
 
+Tal como se ha venido desarrollando el trabajo conforme la estructura metodológica descrita nos permite abordar primeramente la dinámica demográfica que siguen los países delimitados en la región y segundo, considerar dos enfoques distintos en dicho propósito. 
+
+Un hallazgo interesante consistió en la concentración relativa de mortalidad por causa ICD10-1102
+en población joven oriunda de El Salvador, con la medida de exceso delimitada se identificó a los países con mayores excesos para la causa de agresiones, y se pudo observar que para los países que presentaron una desviación mayor a la mediana respecto a la frecuencia de mortalidad se da que El Salvador presenta la mayor acumulación de perecimientos dentro de este conjunto, de hecho la acumulación relativa de El Salvador dentro de estos países que ya excedían la banda fué más que significativa, concentrando  92.6%  de las muertes para esta causa. Este resultado es signifcativo porque a través de un dato se permite construir una noción de la dinámica demográfica del país. 
+
+Por otro lado la medida de exceso permitió discernir que países con mayores excesos no necesariamente suponían aquellos con mayores conteos de defunciones absolutas, sino que por la naturaleza de la construcción de este indicador se obtiene es una medida relativa.
+
+En particular con los datos observados,los estratos con más muertes se concentran sobre todo en edades avanzadas y en causas del sistema circulatorio, especialmente en Guatemala. Eso tiene sentido porque son grupos con mayor volumen de defunciones. Por otro lado el mayor estrato individual por exceso aparece en El Salvador, 2015, hombres de 20-24 años, causa 1102: agresiones, con un exceso de 296 muertes. Tal cómo se había indicado previamente. 
+
+En simultáneo se halló que la causa que mayor acumulación de muertes de manera global entre los países delimitados consiste en la causa del sistema circulatorio, ICD-10 1064, las gráficas de calor mostraron que la mayor cantidad de muertes sucedió entre los grupos etarios entre 85-89 años acumulando cerca de 23,235 muertes.
+
+En términos generales con los países delimitados se obtiene que la probabilidad de decremento por causa manifiesta una dinámica común por perfiles etarios relativamente consistentes entre países. En casi todos los casos, las causas externas concentran una alta participación dentro de los fallecimientos de hombres jóvenes y adultos jóvenes, mientras que las del circulatorio lo hacen en las edades más avanzadas. Esto mismo se traduce en que la medida de composición causal $\pi_{x,t,p,s} ^(XX)$ tiende a ser mayor para $x \in [15,44[$ y para $\pi_{x,t,p,s} ^(IX)$  $x \in [65,+95[$ es grande.
+
+Por otro lado para el periodo delimitado no en todos los casos se observó una mejora de la supervivencia, esto supune un contraste con la literatura estándar, de hecho para el caso de Belice se evidencio que la probabilidad de decremento asociada a la causa del sistema circulatorio incrementó entre los años 2015 y 2018. En particular se dió:  
+${}_{1}\widehat{q}^{(IX)}_{65-69,2018,\text{Belice},\text{Hombre}}>{}_{1}\widehat{q}^{(IX)}_{65-69,2015,\text{Belice},\text{Hombre}}.$ 
+No obstante cabe mencionar que este resultado puede corresponder a una variación asimétrica del corto-mediano plazo.
+
+Simultáneamente también se halló que no todos los países siguen de modo proporcional una misma lógica demográfica, en particular la composición causal de Nicaragua se distribuye más entre causas residuales que la de Costa Rica, este análisis se pudo obtener a través del análisis del compartivo entre la composción causal parcial y completa donde se muestra que la menor participación conjunta de las causas principales en Nicaragua no se debe necesariamente al dominio de una única causa omitida, sino a una mayor dispersión entre causas residuales, a diferencia de otros países como Costa Rica en los que sí se acumulan en ciertas causas conforme aumenta la edad como lo suponen los tumores y las enfermedades del sistema circulatorio.
+
+Por último en lo relativo a las dinámicas demográficas también se halló que un aumento de causas mal definidas o no clasificadas en edades avanzadas de Guatemala.Este hallazgo permite mostrar una forma distinta de variabilidad causal. 
+
+En Guatemala, toma notoriedad una categoría menos específica la de *síntomas y hallazgos no clasificados*. Esto indica que la probabilidad de decremento se puede ver incidida por los sistemas de registro y clasificación de la correspondiente causa de muerte.
+
+En relación a las diferencias entre enfoques 
+
+
+
 ## Conclusiones
 
 ## Agradecimientos
