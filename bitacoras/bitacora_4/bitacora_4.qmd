@@ -558,6 +558,22 @@ Finalmente, las discrepancias observadas entre países, causas y enfoques obliga
 
 
 
+\newpage
+
+## 2.3 Introducción
+
+Al mirar la mortalidad como una sola cifra, se pierde una parte decisiva del fenómeno. Dos poblaciones pueden parecer cercanas en su nivel general de mortalidad y, sin embargo, tener estructuras causales muy distintas. No es lo mismo que las defunciones se concentren en edades avanzadas por enfermedades crónicas a que aparezcan con mayor peso en edades jóvenes por causas externas o condiciones evitables. Por eso, este artículo parte de una idea  central y es que, en mortalidad no solo importa cuánto se muere, también se debe preguntar por qué causas ocurre los decrementos, en qué edades, en qué país y bajo qué estructura por sexo. Esta distinción tiene relevancia social, porque las causas de muerte permiten leer desigualdades demográficas y sanitarias que una tasa agregada deja demasiado planas.
+
+Para estudiar esa estructura se utiliza el marco actuarial de decrementos múltiples. En este marco, una persona parte del estado vivo y puede salir de él por causas mutuamente excluyentes. La base del proyecto tiene justamente esa forma, pues para cada combinación de país, sexo, año y grupo etario se observan defunciones separadas por causa ICD-10 y una exposición común. A partir de esa información se estima la probabilidad anual de decremento por causa, denotada en el artículo como $q_{x,t}^{(c)}$.
+
+Esta forma de plantear el problema se sostiene en la literatura revisada. Calazans y Queiroz (2020) aportan el antecedente regional al mostrar que la mortalidad adulta por causa en América Latina comparte ciertos patrones, pero también cambia entre países, edades y sexos. Román Sánchez et al. (2018) muestran, además, que este enfoque puede usarse en un contexto latinoamericano para estudiar mortalidad por causas. Aun con esos antecedentes, Centroamérica sigue siendo un espacio poco trabajado desde esta combinación de datos por causa, enfoque actuarial y comparación metodológica.
+
+El estudio se delimita a Belice, Costa Rica, El Salvador, Guatemala, Nicaragua y Panamá durante 2015-2018. Se utilizan datos agregados de defunciones y exposición poblacional, organizados por grupo etario, país, sexo, año calendario y causa agrupada según capítulos de la ICD-10. La unidad de análisis es una celda actuarial definida por país, sexo, año, grupo etario y causa. Sobre esa base se comparan un enfoque clásico y uno bayesiano. Esa comparación no es el fin principal, sino una herramienta para leer con más cuidado los patrones de variabilidad, especialmente en celdas con poca exposición o conteos pequeños.
+
+El objetivo del artículo es identificar cómo varía la probabilidad actuarial de decremento por causa según edad, país, sexo y año, distinguiendo entre riesgo absoluto de morir por una causa y composición causal condicionada al fallecimiento. En el fondo, se busca pasar de leer cuántos mueren a entender de qué se muere una población. El artículo presenta, en ese orden, la metodología, los resultados y las conclusiones.
+
+\newpage
+
 # 2.5 Ordenamiento final
 ## Título
 
@@ -566,6 +582,16 @@ Finalmente, las discrepancias observadas entre países, causas y enfoques obliga
 ## Palabras clave
 
 ## Introducción
+
+Al mirar la mortalidad como una sola cifra, se pierde una parte decisiva del fenómeno. Dos poblaciones pueden parecer cercanas en su nivel general de mortalidad y, sin embargo, tener estructuras causales muy distintas. No es lo mismo que las defunciones se concentren en edades avanzadas por enfermedades crónicas a que aparezcan con mayor peso en edades jóvenes por causas externas o condiciones evitables. Por eso, este artículo parte de una idea central y es que, en mortalidad no solo importa cuánto se muere, también se debe preguntar por qué causas ocurre los decrementos, en qué edades, en qué país y bajo qué estructura por sexo. Esta distinción tiene relevancia social, porque las causas de muerte permiten leer desigualdades demográficas y sanitarias que una tasa agregada deja demasiado planas.
+
+Para estudiar esa estructura se utiliza el marco actuarial de decrementos múltiples. En este marco, una persona parte del estado vivo y puede salir de él por causas mutuamente excluyentes. La base del proyecto tiene justamente esa forma, pues para cada combinación de país, sexo, año y grupo etario se observan defunciones separadas por causa ICD-10 y una exposición común. A partir de esa información se estima la probabilidad anual de decremento por causa, denotada en el artículo como $q_{x,t}^{(c)}$.
+
+Esta forma de plantear el problema se sostiene en la literatura revisada. Calazans y Queiroz (2020) aportan el antecedente regional al mostrar que la mortalidad adulta por causa en América Latina comparte ciertos patrones, pero también cambia entre países, edades y sexos. Román Sánchez et al. (2018) muestran, además, que este enfoque puede usarse en un contexto latinoamericano para estudiar mortalidad por causas. Aun con esos antecedentes, Centroamérica sigue siendo un espacio poco trabajado desde esta combinación de datos por causa, enfoque actuarial y comparación metodológica.
+
+El estudio se delimita a Belice, Costa Rica, El Salvador, Guatemala, Nicaragua y Panamá durante 2015-2018. Se utilizan datos agregados de defunciones y exposición poblacional, organizados por grupo etario, país, sexo, año calendario y causa agrupada según capítulos de la ICD-10. La unidad de análisis es una celda actuarial definida por país, sexo, año, grupo etario y causa. Sobre esa base se comparan un enfoque clásico y uno bayesiano. Esa comparación no es el fin principal, sino una herramienta para leer con más cuidado los patrones de variabilidad, especialmente en celdas con poca exposición o conteos pequeños.
+
+El objetivo del artículo es identificar cómo varía la probabilidad actuarial de decremento por causa según edad, país, sexo y año, distinguiendo entre riesgo absoluto de morir por una causa y composición causal condicionada al fallecimiento. En el fondo, se busca pasar de leer cuántos mueren a entender de qué se muere una población. El artículo presenta, en ese orden, la metodología, los resultados y las conclusiones.
 
 ## Metodología
 
