@@ -407,25 +407,43 @@ El siguiente paso es contrastar este resultado bayesiano con el enfoque clásico
 
 \newpage
 
-# 2. Parte de escritura (Artículo final)
-2. Parte de escritura
-2.1.1 Retroalimentación de la Bitácora 3
-	En aras de perfeccionar la escritura realizada en la Bitácora 3, se procede a mencionar las retroalimentaciones realizadas tras su revisión, esto con el fin de ofrecer una versión final de la investigación pulida. 
+# 2. Parte de escritura 
+## 2.1.1 Retroalimentación de la Bitácora 3
+
+En aras de perfeccionar la escritura realizada en la Bitácora 3, se procede a mencionar las retroalimentaciones realizadas tras su revisión, esto con el fin de ofrecer una versión final de la investigación pulida. 
+
 En primera instancia, se corrigió el orden de los subtítulos comprendidos entre las secciones 1.2.1 y 1.2.4, ya que la secuencia anterior no seguía una estructura adecuada de titulación. En segundo lugar, se atendieron distintos errores de codificación en subtítulos y fórmulas, identificados como “typos”. Entre ellos destaca el error presente en la fórmula de la página 72, así como dos errores adicionales en la sección 1.2.5.2, vinculados con la titulación de la página 38. Además, se corrigió otro typo ubicado en la página 53, dentro de una ficha de resultado, específicamente en la sección “Lo que NO explica el resultado”. Finalmente, se añadió la cita que había sido omitida en esa misma página, dentro de la sección “Contraste con la literatura” de la Bitácora anterior. En conjunto, estas modificaciones fortalecen la coherencia formal del documento y reducen errores que podían afectar la lectura o la interpretación metodológica del trabajo. 
+
 También en la parte 3 de Escritura de la Bitácora anterior, se propone una nueva redacción para mejorar la estructurada anteriormente. De esta forma, se añade también a la corrección.
-2.1.2 Corrección de Escritura
-Propuesta Metodológica (Inciso 1.2)
-	A continuación, se reescribe la Bitácora anterior, tomando en cuenta las correcciones anteriores, empezando con definir los puntos 1.2.3 y 1.2.4 de la propuesta metodológica. De esta forma, hay correcta enumeración de subtítulos y detalles de la implementación metodológica en R:
-Implementación Inicial (Inciso 1.2.2)
+
+## 2.1.2 Corrección de Escritura
+
+### Propuesta Metodológica (Inciso 1.2)
+
+A continuación, se reescribe la Bitácora anterior, tomando en cuenta las correcciones anteriores, empezando con definir los puntos 1.2.3 y 1.2.4 de la propuesta metodológica. De esta forma, hay correcta enumeración de subtítulos y detalles de la implementación metodológica en R:
+
+### Implementación Inicial (Inciso 1.2.2)
+
 Para probar la metodología propuesta, se elaboró un programa maqueta en R. Este permitió cargar la base depurada, revisar que las defunciones fueran no negativas y que la exposición poblacional fuera positiva. La base se trabajó en formato largo, donde cada fila representa una celda definida por país, sexo, año, grupo etario y causa de muerte.
-En primer lugar, se implementó el enfoque frecuentista. Para cada celda se calculó la intensidad específica por causa como el cociente entre defunciones y exposición. Luego, se obtuvo la intensidad total sumando las intensidades de todas las causas competidoras. Con estas cantidades se estimó la probabilidad local de decremento por causa bajo el supuesto de fuerza constante dentro de la celda anual. La maqueta es actualmente el script  04_enfoque_clasico.R (Ver repositorio para más detalles) que contiene la implementación total del enfoque clásico. Posteriormente, se incorporó una primera versión del enfoque bayesiano. En este caso, las defunciones se mantuvieron bajo un modelo Poisson, pero la intensidad de mortalidad se trató como una variable aleatoria con distribución Gamma. A partir de esta estructura Poisson-Gamma, se simularon intensidades posteriores mediante rgamma() y, en cada simulación, se transformaron esas intensidades en probabilidades de decremento. La estimación bayesiana se obtuvo como el promedio de las probabilidades simuladas. Tras su implementación completa, la maqueta es actualmente el script 06_enfoque_bayesiano.R y 07_enfoque_bayesiano_simulaciones.R. (Ver repositorio para más detalles). 
+
+En primer lugar, se implementó el enfoque frecuentista. Para cada celda se calculó la intensidad específica por causa como el cociente entre defunciones y exposición. Luego, se obtuvo la intensidad total sumando las intensidades de todas las causas competidoras. Con estas cantidades se estimó la probabilidad local de decremento por causa bajo el supuesto de fuerza constante dentro de la celda anual. La maqueta es actualmente el script `04_enfoque_clasico.R` (Ver repositorio para más detalles) que contiene la implementación total del enfoque clásico. Posteriormente, se incorporó una primera versión del enfoque bayesiano. En este caso, las defunciones se mantuvieron bajo un modelo Poisson, pero la intensidad de mortalidad se trató como una variable aleatoria con distribución Gamma. A partir de esta estructura Poisson-Gamma, se simularon intensidades posteriores mediante `rgamma()` y, en cada simulación, se transformaron esas intensidades en probabilidades de decremento. La estimación bayesiana se obtuvo como el promedio de las probabilidades simuladas. Tras su implementación completa, la maqueta es actualmente el script `06_enfoque_bayesiano.R` y `07_enfoque_bayesiano_simulaciones.R`. (Ver repositorio para más detalles). 
+
 Esta maqueta fue útil para probar funciones, revisar parámetros y detectar errores conceptuales antes de consolidar el modelo final. En particular, permitió identificar problemas en el tratamiento de causas con dominios específicos, como embarazo, parto y puerperio, y afecciones originadas en el periodo perinatal. A partir de esto, se incorporó la distinción entre ceros observacionales y ceros estructurales.
-Validación del modelo y criterios de revisión (Inciso 1.2.3).
+
+### Validación del modelo y criterios de revisión (Inciso 1.2.3)
+
 La validación del modelo se planteó con el objetivo de revisar si las estimaciones obtenidas eran coherentes con la estructura de los datos y con la interpretación actuarial del proyecto. Dado que se trabaja con conteos de defunciones y exposición poblacional, la revisión se centró principalmente en modelos de conteo, intensidades de mortalidad y probabilidades de decremento. Esta parte del trabajo consiste en toda la implementación de la metodología en la base de datos mediante los scripts presentes en la carpeta código del repositorio.
-En el enfoque frecuentista, se revisó la adecuación del modelo Poisson para representar las defunciones observadas. Para ello, se consideró la posible presencia de sobredispersión y la estabilidad de las intensidades estimadas. Esta revisión es importante porque las celdas con baja exposición o pocos fallecimientos pueden producir estimaciones clásicas muy variables.. Tras concluir estabilidad en las intensidades, se procedió a calcular los decrementos; como se dijo en la sección de la implementación inicial, el cálculo de las probabilidades de decremento para el enfoque clásico se encuentra en el script 04_enfoque_clasico.R, posterior a ello, se procede con el análisis de este enfoque, utilizando el análisis de las observaciones y el cálculo de las composiciones causales, además de la creación de los gráficos. Este procedimiento computacional se encuentra disponible en el script 05_analisis_clasico.R (Ver repositorio para más información). En el enfoque bayesiano, la validación se enfocó en las simulaciones posteriores de las intensidades y de las probabilidades de decremento. Como el procedimiento utiliza una simulación directa desde distribuciones Gamma posteriores, no corresponde aplicar diagnósticos como trazas, autocorrelación o R-hat. En su lugar, se revisó la estabilidad de los promedios simulados, la precisión utilizando la Ley de los Grandes Números y la coherencia de los intervalos posteriores. Análogamente, la creación de gráficos y análisis del enfoque bayesiano se encuentra disponible en el script 08_analisis_bayesiano.R (Ver repositorio para más información). Además, se compararon las estimaciones clásicas y bayesianas para observar en qué celdas ambos enfoques producían resultados similares y en cuáles difieren. Se espera que las diferencias sean menores cuando hay alta exposición y suficientes defunciones, y más visibles en celdas con poca información. Esta comparación no busca declarar un enfoque superior, sino entender cómo cambia la estimación al incorporar información colectiva mediante el enfoque bayesiano. Esta información se encuentra disponible en el script 09_comparacion_enfoques.R (Ver repositorio para más información).
+
+En el enfoque frecuentista, se revisó la adecuación del modelo Poisson para representar las defunciones observadas. Para ello, se consideró la posible presencia de sobredispersión y la estabilidad de las intensidades estimadas. Esta revisión es importante porque las celdas con baja exposición o pocos fallecimientos pueden producir estimaciones clásicas muy variables.. Tras concluir estabilidad en las intensidades, se procedió a calcular los decrementos; como se dijo en la sección de la implementación inicial, el cálculo de las probabilidades de decremento para el enfoque clásico se encuentra en el script `04_enfoque_clasico.R`, posterior a ello, se procede con el análisis de este enfoque, utilizando el análisis de las observaciones y el cálculo de las composiciones causales, además de la creación de los gráficos. Este procedimiento computacional se encuentra disponible en el script `05_analisis_clasico.R` (Ver repositorio para más información). 
+
+En el enfoque bayesiano, la validación se enfocó en las simulaciones posteriores de las intensidades y de las probabilidades de decremento. Como el procedimiento utiliza una simulación directa desde distribuciones Gamma posteriores, no corresponde aplicar diagnósticos como trazas, autocorrelación o R-hat. En su lugar, se revisó la estabilidad de los promedios simulados, la precisión utilizando la Ley de los Grandes Números y la coherencia de los intervalos posteriores. Análogamente, la creación de gráficos y análisis del enfoque bayesiano se encuentra disponible en el script `08_analisis_bayesiano.R` (Ver repositorio para más información). 
+
+Además, se compararon las estimaciones clásicas y bayesianas para observar en qué celdas ambos enfoques producían resultados similares y en cuáles difieren. Se espera que las diferencias sean menores cuando hay alta exposición y suficientes defunciones, y más visibles en celdas con poca información. Esta comparación no busca declarar un enfoque superior, sino entender cómo cambia la estimación al incorporar información colectiva mediante el enfoque bayesiano. Esta información se encuentra disponible en el script `09_comparacion_enfoques.R` (Ver repositorio para más información).
+
 Finalmente, se revisó la coherencia sustantiva de los resultados. Por ejemplo, se espera que las afecciones perinatales se concentren en edades tempranas, que las causas externas tengan mayor peso en edades jóvenes y que enfermedades crónicas como tumores, circulatorias y respiratorias aumentan su relevancia en edades adultas y avanzadas, y en efecto, ocurre lo esperado.
-Fichas de resultados (Inciso 1.3)
-	Seguidamente, se reescribe la ficha en donde hubo un error de citación y un typo con la sección “Lo que NO dice el autor”:
+
+### Fichas de Resultados (Inciso 1.3)
+Seguidamente, se reescribe la ficha en donde hubo un error de citación y un typo con la sección “Lo que NO dice el autor”:
 
 #### Titular:
 
@@ -529,7 +547,7 @@ no necesariamente es igual a 1, porque $\mathcal{C}_{sel}$ representa únicament
 #### Implicación para el siguiente paso:
 
 El siguiente paso es complementar esta lectura relativa con el análisis de la probabilidad local absoluta ${}_{1}\widehat{q}^{(c)}_{x,t,p,s}$. Esto permitirá distinguir si la fragmentación causal observada en Nicaragua corresponde únicamente a una redistribución interna entre causas o si también se asocia con diferencias relevantes en la magnitud absoluta del decremento. Además, conviene verificar si esta estructura se mantiene bajo el enfoque bayesiano, especialmente en celdas con baja exposición o conteos pequeños.
-
+# 2.5 Ordenamiento final
 ## Título
 
 ## Resumen
