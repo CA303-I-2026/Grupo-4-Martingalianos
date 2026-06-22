@@ -928,8 +928,6 @@ La primera medida responde qué tan grande es el riesgo por causa, mientras que 
 
 ## Resultados
 
-## Resultados
-
 Tal como se ha venido desarrollando a partir de la estructura metodológica, los resultados se organizan en dos niveles. Primero, se analiza la dinámica demográfica de la mortalidad por causa en los países centroamericanos delimitados, con énfasis en edad, país, sexo y año calendario. Segundo, se comparan las estimaciones obtenidas mediante el enfoque clásico y el enfoque bayesiano, no para decidir cuál enfoque es superior sino para evaluar si los patrones de variabilidad encontrados se mantienen cuando cambia el marco de estimación.
 
 ### Dinámica demográfica de la mortalidad por causa
