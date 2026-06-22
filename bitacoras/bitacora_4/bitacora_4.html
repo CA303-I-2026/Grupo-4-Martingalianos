@@ -2325,9 +2325,10 @@ window.Quarto = {
 </div>
 <section id="parte-de-planificación" class="level1">
 <h1>1. Parte de planificación</h1>
-<p>En este apartado nos vamos a centrar en analizar las variaciones obtenidas en los resultados frecuentista y bayesiano dada su previa implementación metodológica, en la que, se describieron dinámicas demógraficas interesantes, tales como: la concentración absoluta de la <span class="math inline">\(q_{x,t}^{(c)}\)</span> en edades adultas debido a causas externas de mortalidad auspiciado principalmente por la clasificación de agresiones o por otro lado de las vinculadas a la causa perinatal en edades tempranas, y para edades avanzadas el incremento de esta probabilidad en edades avanzadas respecto a causas de enfermedades del sistema circulatorio.</p>
-<p>De esta manera vamos a analizar desde 4 enfoques las variaciones obtenidas en las estimaciones; primeramente observar diferencias absolutas simétricas entre las estimaciones de <span class="math inline">\(q_{x,t}^{(c)}\)</span> por los enfoques, la distancia de variación total entre composiciones causales, la evolución temporal de ambas estimaciones en conjunto y un resumen de la asimetría genral de <span class="math inline">\(q_{x,t}^{(c)}\)</span> validando en simultáneo el porcentaje de coincidencia entre enfoques.</p>
-<p>Primeramente denotar <span class="math inline">\(q_{F}\)</span> y <span class="math inline">\(q_{B}\)</span> las estinamciones de <span class="math inline">\(q_{x,t}^{(c)}\)</span> respectivamente para el enfoque frecuentista y bayesiano, luego considerar que esta notación abrevia una combinación de grupo etario <span class="math inline">\(x\)</span>, año calendario <span class="math inline">\(t\)</span>, país <span class="math inline">\(p\)</span>, sexo <span class="math inline">\(s\)</span>, y causa de muerte <span class="math inline">\(c\)</span>, pero se resume su notación de este modo, así considerar: <span class="math display">\[DRAS_{x,t}^{(c)}
+<section id="parte-iterativa" class="level2">
+<h2 class="anchored" data-anchor-id="parte-iterativa">Parte iterativa</h2>
+<p>En este apartado nos vamos a centrar en analizar las variaciones obtenidas en los resultados frecuentista y bayesiano con mayor detenimiento dado que en anteriores avances se indagó en las particularidades de las dinámicas demógraficas que se manifiestan, tales como: la concentración absoluta de la <span class="math inline">\(q_{x,t}^{(c)}\)</span> en edades adultas debido a causas externas de mortalidad auspiciado principalmente por la clasificación de agresiones o por otro lado de las vinculadas a la causa perinatal en edades tempranas, y para edades avanzadas el incremento de esta probabilidad en edades avanzadas respecto a causas de enfermedades del sistema circulatorio. Posteriormente se concluirá con las 4 fichas de resultados correspondientes a los análisis acumulados.</p>
+<p>De esta manera vamos a analizar las diferencias absolutas simétricas entre las estimaciones de <span class="math inline">\(q_{x,t}^{(c)}\)</span> por los enfoques bayesiano y frecuentista. En este sentido, denotar <span class="math inline">\(q_{F}\)</span> y <span class="math inline">\(q_{B}\)</span> las estinamciones de <span class="math inline">\(q_{x,t}^{(c)}\)</span> respectivamente para el enfoque frecuentista y bayesiano, luego considerar que esta notación abrevia una combinación de grupo etario <span class="math inline">\(x\)</span>, año calendario <span class="math inline">\(t\)</span>, país <span class="math inline">\(p\)</span>, sexo <span class="math inline">\(s\)</span>, y causa de muerte <span class="math inline">\(c\)</span>, pero se resume su notación de este modo, así considerar: <span class="math display">\[DRAS_{x,t}^{(c)}
 =
 \frac{
 2\left|
@@ -2335,7 +2336,9 @@ q_{B,x,t}^{(c)} - q_{F,x,t}^{(c)}
 \right|
 }{
 q_{B,x,t}^{(c)} + q_{F,x,t}^{(c)}
-}.\]</span> Esta métrica nos permite medir la Diferencia Relativa Absoluta Simétrica DRAS para una causa <span class="math inline">\((c)\)</span> cercano a 0 indica valores de coincidencia, cercanos a 2 de discrepancia fuerte entre bloques <span class="math inline">\(q_{x,t}^{(c)}\)</span>. La aplicación de esta métrica se resume en resultados en <a href="#tbl-discrepancia-enfoques" class="quarto-xref">Tabla 1</a> .</p>
+}.
+\]</span></p>
+<p>Esta métrica nos permite medir la Diferencia Relativa Absoluta Simétrica DRAS para una causa <span class="math inline">\((c)\)</span> cercano a 0 indica valores de coincidencia, cercanos a 2 de discrepancia fuerte entre bloques <span class="math inline">\(q_{x,t}^{(c)}\)</span>. La aplicación de esta métrica se resume en resultados en <a href="#tbl-discrepancia-enfoques" class="quarto-xref">Tabla 1</a> .</p>
 <div class="cell">
 <div id="tbl-discrepancia-enfoques" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -2369,7 +2372,7 @@ Tabla 1: Causas ICD-10 con mayor discrepancia entre enfoque clásico y bayesian
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">III</td>
-<td style="text-align: left;">Enfermedades de la sangre y de los organos hematopoyeticos y ciertos trastornos de la inmunidad</td>
+<td style="text-align: left;">Enfermedades de la sangre y de los órganos hematopoyéticos y ciertos trastornos de la inmunidad</td>
 <td style="text-align: right;">960</td>
 <td style="text-align: right;">0.1498</td>
 <td style="text-align: right;">2</td>
@@ -2378,7 +2381,7 @@ Tabla 1: Causas ICD-10 con mayor discrepancia entre enfoque clásico y bayesian
 </tr>
 <tr class="even">
 <td style="text-align: left;">IV</td>
-<td style="text-align: left;">Enfermedades endocrinas, nutricionales y metabolicas</td>
+<td style="text-align: left;">Enfermedades endocrinas, nutricionales y metabólicas</td>
 <td style="text-align: right;">960</td>
 <td style="text-align: right;">0.0130</td>
 <td style="text-align: right;">2</td>
@@ -2387,7 +2390,7 @@ Tabla 1: Causas ICD-10 con mayor discrepancia entre enfoque clásico y bayesian
 </tr>
 <tr class="odd">
 <td style="text-align: left;">V-VIII</td>
-<td style="text-align: left;">Trastornos mentales, enfermedades del sistema nervioso y de los organos de los sentidos</td>
+<td style="text-align: left;">Trastornos mentales, enfermedades del sistema nervioso y de los órganos de los sentidos</td>
 <td style="text-align: right;">960</td>
 <td style="text-align: right;">0.0297</td>
 <td style="text-align: right;">2</td>
@@ -2405,7 +2408,7 @@ Tabla 1: Causas ICD-10 con mayor discrepancia entre enfoque clásico y bayesian
 </tr>
 <tr class="odd">
 <td style="text-align: left;">XII</td>
-<td style="text-align: left;">Enfermedades de la piel y del tejido subcutaneo</td>
+<td style="text-align: left;">Enfermedades de la piel y del tejido subcutáneo</td>
 <td style="text-align: right;">960</td>
 <td style="text-align: right;">0.1414</td>
 <td style="text-align: right;">2</td>
@@ -2446,8 +2449,381 @@ Tabla 1: Causas ICD-10 con mayor discrepancia entre enfoque clásico y bayesian
 </figure>
 </div>
 </div>
-<p>De esta métrica lo que desprendemos es el siguiente análisis, se ha tabulado n_celdas como la cardinalidad del conjunto <span class="math inline">\(n_{\text{celdas}}^{(c)}\)</span>, es decir <span class="math inline">\(\|\{(x,t): q_{B,x,t}^{(c)} \text{ y } q_{F,x,t}^{(c)} \text{ existen}\}|\)</span> luego note que la columna <span class="math inline">\(median(DRAS_{x,t}^{(c)})\)</span> lo que realizamos fue fijar la causa <span class="math inline">\((c)\)</span> y dejar variar <span class="math inline">\(x,t,p,s\)</span> aquellas causas de mayor mediana son donde el enfoque bayesiano modificó más la estimación relativa donde vemos que se manifiesta en una mayor medida para la causa <span class="math inline">\(III\)</span>, pero probabilísticamente notamos que el numerador de <span class="math inline">\(DRAS_{x,t}^{(c)})\)</span> es bastante pequeño acotado por <span class="math inline">\(2.62^{-6}\)</span> y el porcentaje de ceros <span class="math inline">\(pct_q_clasico_cero\)</span> en el clásico permite explicarlo debido a que recordemos que la estimación bayesiana posterior de la fuerza instatánea de mortalidad para la causa <span class="math inline">\((c)\)</span> dadas las observaciones de defunciones viene dada por una Gamma de soporte positivo, es decir la intensidad posterior de mortalidad puede quedar muy pequeña pero no exactamente en cero, en particular cuando la población en exposición es grande.</p>
+<p>De esta métrica lo que desprendemos es el siguiente análisis, se ha tabulado n_celdas como la cardinalidad del conjunto <span class="math inline">\(n_{\text{celdas}}^{(c)}\)</span>, es decir <span class="math inline">\(\|\{(x,t): q_{B,x,t}^{(c)} \text{ y } q_{F,x,t}^{(c)} \text{ existen}\}|\)</span> luego note que la columna <span class="math inline">\(median(DRAS_{x,t}^{(c)})\)</span> lo que realizamos fue fijar la causa <span class="math inline">\((c)\)</span> y dejar variar <span class="math inline">\(x,t,p,s\)</span> aquellas causas de mayor mediana son donde el enfoque bayesiano modificó más la estimación relativa donde vemos que se manifiesta en una mayor medida para la causa <span class="math inline">\(III\)</span>, pero probabilísticamente notamos que el numerador de <span class="math inline">\(DRAS_{x,t}^{(c)})\)</span> es bastante pequeño acotado por <span class="math inline">\(2.62*10^{-6}\)</span> lo cual significa que en sí mismo es un conjunto de medida 0. Y el porcentaje de ceros pct_q_clasico_cero desde el enfoque clásico permite explicar esta discrepancia debido a que recordemos que la estimación bayesiana posterior de la fuerza instatánea de mortalidad para la causa <span class="math inline">\((c)\)</span> dadas las observaciones de defunciones viene se conjuga por una Gamma de soporte positivo, es decir la intensidad posterior de mortalidad puede quedar muy pequeña pero no exactamente en cero, en particular cuando la población en exposición es grande.</p>
+<p>En complemento a este análisis es adecuado comprender la distancia de variación total entre composiciones causales Para esto definimos <span class="math inline">\(D_{\pi}\)</span> que permite comparar el vector completo <span class="math inline">\((\pi^{(1)},\pi^{(2)},..., \pi^{(r)})\)</span> dentro de una misma celda (delimitación por grupo etario <span class="math inline">\(x\)</span>, año calendario <span class="math inline">\(t\)</span>, país <span class="math inline">\(p\)</span>, sexo <span class="math inline">\(s\)</span>, y causa de muerte <span class="math inline">\(c\)</span>) de esta manera buscamos ver si el enfoque bayesiano cambia la forma en que se reparte el total de decrementos por causas. Así definir <span class="math inline">\(D_{\pi,x,t}=\frac{1}{2}\sum_{c=1}^{r}\left|\pi_{B,x,t}^{(c)}-\pi_{F,x,t}^{(c)}\right|\)</span>. Donde $pi_{B} , pi_{F} $ representan respetivamente la composición causal Bayesiana y la Frecuentista. La lectura de esta métrica es bastante directa valores cercanos a 0 indican una baja variabilidad y aquellos otros más altos justo una mayor diferencia. Vease en <a href="#tbl-composicion-causal" class="quarto-xref">Tabla 2</a></p>
+<div class="cell">
+<div id="tbl-composicion-causal" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-composicion-causal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla 2: Celdas con mayor diferencia de composición causal entre enfoques
+</figcaption>
+<div aria-describedby="tbl-composicion-causal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 8%">
+<col style="width: 5%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">pais</th>
+<th style="text-align: right;">anio</th>
+<th style="text-align: left;">sexo</th>
+<th style="text-align: left;">grupo_edad</th>
+<th style="text-align: right;">d_pi</th>
+<th style="text-align: right;">q_total_clasico</th>
+<th style="text-align: right;">q_total_bayesiano</th>
+<th style="text-align: left;">causa_dom_clasico</th>
+<th style="text-align: left;">causa_dom_bayesiano</th>
+<th style="text-align: left;">misma_causa_dominante</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Belice</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: left;">Mujer</td>
+<td style="text-align: left;">5-9</td>
+<td style="text-align: right;">0.4367</td>
+<td style="text-align: right;">0.0001671</td>
+<td style="text-align: right;">0.0003836</td>
+<td style="text-align: left;">XX</td>
+<td style="text-align: left;">XX</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Belice</td>
+<td style="text-align: right;">2016</td>
+<td style="text-align: left;">Mujer</td>
+<td style="text-align: left;">10-14</td>
+<td style="text-align: right;">0.3828</td>
+<td style="text-align: right;">0.0001562</td>
+<td style="text-align: right;">0.0003808</td>
+<td style="text-align: left;">II</td>
+<td style="text-align: left;">XX</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Belice</td>
+<td style="text-align: right;">2018</td>
+<td style="text-align: left;">Mujer</td>
+<td style="text-align: left;">5-9</td>
+<td style="text-align: right;">0.3641</td>
+<td style="text-align: right;">0.0002242</td>
+<td style="text-align: right;">0.0004438</td>
+<td style="text-align: left;">XX</td>
+<td style="text-align: left;">XX</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Belice</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: left;">Hombre</td>
+<td style="text-align: left;">95+</td>
+<td style="text-align: right;">0.3113</td>
+<td style="text-align: right;">0.7019596</td>
+<td style="text-align: right;">0.3829855</td>
+<td style="text-align: left;">IX</td>
+<td style="text-align: left;">IX</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Belice</td>
+<td style="text-align: right;">2016</td>
+<td style="text-align: left;">Hombre</td>
+<td style="text-align: left;">5-9</td>
+<td style="text-align: right;">0.2789</td>
+<td style="text-align: right;">0.0002642</td>
+<td style="text-align: right;">0.0004713</td>
+<td style="text-align: left;">V-VIII</td>
+<td style="text-align: left;">V-VIII</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Belice</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">Mujer</td>
+<td style="text-align: left;">95+</td>
+<td style="text-align: right;">0.2667</td>
+<td style="text-align: right;">0.7106158</td>
+<td style="text-align: right;">0.4559879</td>
+<td style="text-align: left;">IX</td>
+<td style="text-align: left;">IX</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Belice</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: left;">Mujer</td>
+<td style="text-align: left;">10-14</td>
+<td style="text-align: right;">0.2650</td>
+<td style="text-align: right;">0.0002615</td>
+<td style="text-align: right;">0.0004791</td>
+<td style="text-align: left;">XX</td>
+<td style="text-align: left;">XX</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Belice</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">Mujer</td>
+<td style="text-align: left;">10-14</td>
+<td style="text-align: right;">0.2635</td>
+<td style="text-align: right;">0.0002595</td>
+<td style="text-align: right;">0.0004780</td>
+<td style="text-align: left;">XX</td>
+<td style="text-align: left;">XX</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>En <a href="#tbl-composicion-causal" class="quarto-xref">Tabla 2</a> se observa que las mayores distancias de variación total entre composiciones causales se concentran en Belice. Este resultado es metodológicamente coherente, ya que Belice tiene una menor exposición poblacional relativa dentro del conjunto centroamericano, lo cual hace que sus conteos por causa sean más sensibles a variaciones pequeñas. En este contexto, el enfoque clásico puede asignar probabilidades exactamente nulas cuando no se observan defunciones por una causa específica, mientras que el enfoque bayesiano, por el suavizamiento Empirical Bayes, tiende a conservar probabilidades positivas aunque cercanas a cero.</p>
+<p>La mayor diferencia aparece en mujeres de Belice, grupo 5-9, año 2017, con <span class="math inline">\(D_{\pi}=0.4367\)</span>. Esto no significa que una única causa explique por sí sola el 43.67 % de diferencia, sino que aproximadamente esa proporción de la masa de composición causal tendría que redistribuirse para pasar del vector frecuentista al vector bayesiano. En esa celda, ambos enfoques mantienen como causa dominante a <span class="math inline">\(XX\)</span>, correspondiente a causas externas de mortalidad, por lo que la discrepancia no cambia la causa principal, pero sí modifica la distribución relativa del resto de causas.</p>
+<p>El segundo caso, Belice, mujeres de 10-14 años en 2016, es más relevante desde el punto de vista interpretativo, porque la causa dominante cambia de <span class="math inline">\(II\)</span> en el enfoque clásico a <span class="math inline">\(XX\)</span> en el enfoque bayesiano. En este caso, la distancia <span class="math inline">\(D_{\pi}=0.3828\)</span> sí indica una modificación sustantiva en la lectura causal de la celda. Esta diferencia puede explicarse por la combinación de baja exposición, conteos pequeños y suavizamiento bayesiano, factores que hacen que pequeñas diferencias absolutas en <span class="math inline">\(q_{x,t}^{(c)}\)</span> produzcan cambios visibles en la composición causal <span class="math inline">\(\pi_{x,t}^{(c)}\)</span>.</p>
+<p>Por tanto, esta tabla complementa el análisis basado en <span class="math inline">\(DRAS\)</span>: mientras <span class="math inline">\(DRAS\)</span> mostraba diferencias causa por causa en las probabilidades absolutas <span class="math inline">\(q_{x,t}^{(c)}\)</span>, la distancia <span class="math inline">\(D_{\pi}\)</span> permite evaluar si esas diferencias alteran la interpretación del reparto causal dentro de cada celda. En general, las mayores discrepancias no parecen responder a cambios regionales amplios, sino a celdas pequeñas y sensibles, principalmente en Belice.</p>
+</section>
+<section id="fichas-de-resultados-parte-iterativa" class="level2">
+<h2 class="anchored" data-anchor-id="fichas-de-resultados-parte-iterativa">Fichas de resultados parte iterativa</h2>
+<section id="enfoque-frecuentista" class="level3">
+<h3 class="anchored" data-anchor-id="enfoque-frecuentista">Enfoque frecuentista</h3>
+</section>
+</section>
+<section id="nivel-descriptivo" class="level2">
+<h2 class="anchored" data-anchor-id="nivel-descriptivo">Nivel descriptivo</h2>
+<section id="enfoque-frecuentista-1" class="level3">
+<h3 class="anchored" data-anchor-id="enfoque-frecuentista-1">Enfoque frecuentista</h3>
+</section>
+</section>
+<section id="nivel-descriptivo-1" class="level2">
+<h2 class="anchored" data-anchor-id="nivel-descriptivo-1">Nivel descriptivo</h2>
+<section id="titular" class="level3">
+<h3 class="anchored" data-anchor-id="titular">Titular:</h3>
+<p>Discrepancias relativas entre enfoques surgen principalmente por ceros clásicos.</p>
+</section>
+<section id="nombre-del-hallazgoresultado" class="level3">
+<h3 class="anchored" data-anchor-id="nombre-del-hallazgoresultado">Nombre del hallazgo/resultado</h3>
+<p>Diferencia relativa absoluta simétrica entre estimaciones clásicas y bayesianas de <span class="math inline">\(q_{x,t}^{(c)}\)</span>.</p>
+</section>
+<section id="resumen-en-una-oración" class="level3">
+<h3 class="anchored" data-anchor-id="resumen-en-una-oración">Resumen en una oración</h3>
+<p>Las mayores discrepancias relativas aparecen en causas con alta presencia de celdas clásicas iguales a cero.</p>
+</section>
+<section id="método-o-análisis-que-lo-produjo" class="level3">
+<h3 class="anchored" data-anchor-id="método-o-análisis-que-lo-produjo">Método o análisis que lo produjo</h3>
+<p>Se compararon las estimaciones finales de <span class="math inline">\(q_{x,t}^{(c)}\)</span> obtenidas mediante el enfoque clásico y el enfoque bayesiano. Para cada causa <span class="math inline">\((c)\)</span>, se calculó la Diferencia Relativa Absoluta Simétrica,</p>
+<p><span class="math display">\[
+DRAS_{x,t}^{(c)}
+=
+\frac{
+2\left|
+q_{B,x,t}^{(c)}-q_{F,x,t}^{(c)}
+\right|
+}{
+q_{B,x,t}^{(c)}+q_{F,x,t}^{(c)}
+}.
+\]</span></p>
+<p>Posteriormente, para cada causa se resumió la distribución de esta métrica mediante la mediana y el percentil 95. Además, se calculó la mediana de la diferencia absoluta <span class="math inline">\(|q_B-q_F|\)</span> y el porcentaje de celdas donde la estimación clásica fue exactamente cero.</p>
+</section>
+<section id="evidencia" class="level3">
+<h3 class="anchored" data-anchor-id="evidencia">Evidencia</h3>
+<p>Como se observa en <a href="#tbl-discrepancia-enfoques" class="quarto-xref">Tabla 1</a>, varias causas presentan <span class="math inline">\(P95(DRAS)=2\)</span>, lo cual indica discrepancias relativas máximas en la cola superior de las celdas comparadas. Sin embargo, la mediana de <span class="math inline">\(|q_B-q_F|\)</span> se mantiene en valores muy pequeños, por ejemplo del orden de <span class="math inline">\(2.62\times 10^{-6}\)</span> para la causa III. Esto muestra que la separación entre enfoques puede ser grande en términos relativos, pero baja en escala absoluta de probabilidad, lo que indica que la diferencia es en un conjunto de medida 0.</p>
+</section>
+</section>
+<section id="nivel-analítico" class="level2">
+<h2 class="anchored" data-anchor-id="nivel-analítico">Nivel analítico</h2>
+<section id="conexión-con-pregunta-de-investigación" class="level3">
+<h3 class="anchored" data-anchor-id="conexión-con-pregunta-de-investigación">Conexión con pregunta de investigación</h3>
+<p>Este resultado se conecta directamente con la pregunta de investigación, porque permite evaluar si las probabilidades de decremento <span class="math inline">\(q_{x,t}^{(c)}\)</span> cambian de forma sustantiva al pasar del enfoque clásico al bayesiano. En términos generales, la comparación sugiere que ambos enfoques producen lecturas similares en escala absoluta, aunque difieren en celdas específicas donde el enfoque clásico asigna probabilidad nula.</p>
+</section>
+<section id="contraste-con-la-literatura" class="level3">
+<h3 class="anchored" data-anchor-id="contraste-con-la-literatura">Contraste con la literatura</h3>
+<p>El contraste metodológico más adecuado es entre la estimación clásica por máxima verosimilitud y el suavizamiento Empirical Bayes bajo el modelo Poisson-Gamma. En el enfoque clásico, si una celda no registra muertes por una causa, entonces <span class="math inline">\(\widehat{\mu}^{(c)}=D^{(c)}|E=0\)</span>, y por tanto también se obtiene <span class="math inline">\(q_F^{(c)}=0\)</span>. En cambio, en el enfoque Empirical Bayes, la intensidad posterior se obtiene desde una distribución Gamma de soporte positivo; por ello, incluso cuando <span class="math inline">\(D^{(c)}=0\)</span>, la estimación bayesiana puede producir una probabilidad positiva, aunque muy cercana a cero. Esta diferencia es consistente con la idea de estabilización bayesiana de tasas en celdas con conteos bajos o nulos.</p>
+</section>
+<section id="lo-que-no-explica-este-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="lo-que-no-explica-este-resultado">Lo que NO explica este resultado</h3>
+<p>Este resultado no demuestra que un enfoque sea mejor que el otro. La métrica DRAS solo cuantifica discrepancias entre estimaciones finales, pero no mide error frente a un valor verdadero desconocido. Tampoco explica por sí sola las causas demográficas o epidemiológicas detrás de las diferencias observadas.</p>
+</section>
+<section id="implicación-para-el-siguiente-paso" class="level3">
+<h3 class="anchored" data-anchor-id="implicación-para-el-siguiente-paso">Implicación para el siguiente paso</h3>
+<p>El siguiente paso es complementar esta comparación de <span class="math inline">\(q_{x,t}^{(c)}\)</span> con una comparación de la composición causal <span class="math inline">\(\pi_{x,t}^{(c)}\)</span>. Esto permitirá evaluar si las pequeñas diferencias absolutas entre enfoques modifican o no la interpretación sustantiva sobre la participación relativa de cada causa dentro del total de decrementos estimados.</p>
+</section>
+</section>
+<section id="nivel-descriptivo-2" class="level2">
+<h2 class="anchored" data-anchor-id="nivel-descriptivo-2">Nivel descriptivo</h2>
+<section id="titular-1" class="level3">
+<h3 class="anchored" data-anchor-id="titular-1">Titular</h3>
+<p>Belice concentra las mayores diferencias de composición causal.</p>
+</section>
+<section id="nombre-del-hallazgoresultado-1" class="level3">
+<h3 class="anchored" data-anchor-id="nombre-del-hallazgoresultado-1">Nombre del hallazgo/resultado</h3>
+<p>Distancia de variación total entre composiciones causales clásica y bayesiana.</p>
+</section>
+<section id="resumen-en-una-oración-1" class="level3">
+<h3 class="anchored" data-anchor-id="resumen-en-una-oración-1">Resumen en una oración</h3>
+<p>Las mayores diferencias de composición causal aparecen en celdas pequeñas de Belice.</p>
+</section>
+<section id="método-o-análisis-que-lo-produjo-1" class="level3">
+<h3 class="anchored" data-anchor-id="método-o-análisis-que-lo-produjo-1">Método o análisis que lo produjo</h3>
+<p>Se calculó la composición causal condicionada al fallecimiento para cada enfoque,</p>
+<p><span class="math display">\[
+\pi_{x,t}^{(c)}
+=
+\frac{
+q_{x,t}^{(c)}
+}{
+\sum_{j=1}^{r} q_{x,t}^{(j)}
+},
+\]</span></p>
+<p>y luego se comparó el vector completo de composiciones causales mediante la distancia de variación total,</p>
+<p><span class="math display">\[
+D_{\pi,x,t}
+=
+\frac{1}{2}
+\sum_{c=1}^{r}
+\left|
+\pi_{B,x,t}^{(c)}
+-
+\pi_{F,x,t}^{(c)}
+\right|.
+\]</span></p>
+<p>Esta métrica resume cuánto debe redistribuirse la composición causal frecuentista para coincidir con la composición causal bayesiana dentro de una misma celda.</p>
+</section>
+<section id="evidencia-1" class="level3">
+<h3 class="anchored" data-anchor-id="evidencia-1">Evidencia</h3>
+<p>Como se observa en <a href="#tbl-composicion-causal" class="quarto-xref">Tabla 2</a>, las mayores diferencias se concentran en Belice. La celda con mayor distancia corresponde a mujeres de Belice, grupo 5-9, año 2017, con <span class="math inline">\(D_{\pi}=0.4367\)</span>. En este caso, ambos enfoques mantienen como causa dominante a <span class="math inline">\(XX\)</span>, correspondiente a causas externas de mortalidad. El segundo caso corresponde a mujeres de Belice, grupo 10-14, año 2016, con <span class="math inline">\(D_{\pi}=0.3828\)</span>, donde la causa dominante cambia de <span class="math inline">\(II\)</span> en el enfoque clásico a <span class="math inline">\(XX\)</span> en el enfoque bayesiano.</p>
+</section>
+</section>
+<section id="nivel-analítico-1" class="level2">
+<h2 class="anchored" data-anchor-id="nivel-analítico-1">Nivel analítico</h2>
+<section id="conexión-con-pregunta-de-investigación-1" class="level3">
+<h3 class="anchored" data-anchor-id="conexión-con-pregunta-de-investigación-1">Conexión con pregunta de investigación</h3>
+<p>Este resultado permite evaluar si las diferencias entre el enfoque clásico y el bayesiano modifican la interpretación de la mortalidad por causa, no solo en términos de magnitud absoluta de <span class="math inline">\(q_{x,t}^{(c)}\)</span>, sino también en términos de reparto causal. La métrica <span class="math inline">\(D_{\pi,x,t}\)</span> complementa el análisis basado en <span class="math inline">\(DRAS\)</span>, porque muestra si las diferencias causa por causa alteran el vector completo de participación relativa entre causas.</p>
+</section>
+<section id="contraste-con-la-literatura-1" class="level3">
+<h3 class="anchored" data-anchor-id="contraste-con-la-literatura-1">Contraste con la literatura</h3>
+<p>El resultado es coherente con la lógica del enfoque Empirical Bayes Poisson-Gamma utilizado en la estimación bayesiana. En celdas con conteos bajos o nulos, el enfoque clásico puede producir probabilidades exactamente iguales a cero, mientras que el enfoque bayesiano tiende a suavizar la estimación usando información colectiva de la causa y del país. Por ello, en celdas con menor exposición o menor frecuencia de defunciones, pequeñas diferencias absolutas en <span class="math inline">\(q_{x,t}^{(c)}\)</span> pueden traducirse en diferencias visibles en la composición causal <span class="math inline">\(\pi_{x,t}^{(c)}\)</span>.</p>
+</section>
+<section id="lo-que-no-explica-este-resultado-1" class="level3">
+<h3 class="anchored" data-anchor-id="lo-que-no-explica-este-resultado-1">Lo que NO explica este resultado</h3>
+<p>Este resultado no demuestra que el enfoque bayesiano sea mejor que el frecuentista, ni permite afirmar que una de las dos estimaciones sea la verdadera. Tampoco explica por qué causas externas aparecen como dominantes en ciertas celdas de Belice. La tabla solo muestra diferencias en la asignación relativa de la probabilidad de decremento entre causas, no una explicación de dinámica demográfica del proceso.</p>
+</section>
+<section id="implicación-para-el-siguiente-paso-1" class="level3">
+<h3 class="anchored" data-anchor-id="implicación-para-el-siguiente-paso-1">Implicación para el siguiente paso</h3>
+<p>El siguiente paso es sistentizar las diferencias halladas entre el enfoque bayesiano y frecuentista desde un resumen ejecutivo de resultados y determinar que ambas metodológias proporcionan diferentes herramientas de acción para ciertos problemas, y esencialmente corresponderá de las características propias del mismo una decisión del investigador por cuál metodología usar.</p>
+</section>
+<section id="enfoque-bayesiano" class="level3">
+<h3 class="anchored" data-anchor-id="enfoque-bayesiano">Enfoque bayesiano</h3>
+</section>
+</section>
+<section id="fichas-de-resultados" class="level2">
+<h2 class="anchored" data-anchor-id="fichas-de-resultados">Fichas de resultados</h2>
+<section id="titular-2" class="level3">
+<h3 class="anchored" data-anchor-id="titular-2">Titular:</h3>
+<p>Los tumores cuentan con mayor peso relativo en la composición causal femenina en edades adultas de Panamá</p>
+</section>
+<section id="nombre-del-hallazgoresultado-2" class="level3">
+<h3 class="anchored" data-anchor-id="nombre-del-hallazgoresultado-2">Nombre del hallazgo/resultado:</h3>
+<p>Diferencia por sexo considerable en la composición causal condicionada al fallecimiento por tumores.</p>
+</section>
+<section id="resumen-en-una-oración-2" class="level3">
+<h3 class="anchored" data-anchor-id="resumen-en-una-oración-2">Resumen en una oración:</h3>
+<p>En Panamá, la participación relativa de los tumores dentro del total de fallecimiento es más alta en mujeres que en hombres en edades adultas.</p>
+</section>
+<section id="método-o-análisis-que-lo-produjo-2" class="level3">
+<h3 class="anchored" data-anchor-id="método-o-análisis-que-lo-produjo-2">Método o análisis que lo produjo:</h3>
+<p>Composición causal condicionada al fallecimiento, calculada como la razón entre la probabilidad de decremento por tumores y la suma de las probabilidades de decremento por todas las causas.</p>
+</section>
+<section id="evidencia-2" class="level3">
+<h3 class="anchored" data-anchor-id="evidencia-2">Evidencia:</h3>
+<p>En el panel de tumores para mujeres se observa una participación relativa cercana o superior al 30% en varios grupos de edad adulta, con valores especialmente altos alrededor de 40-54 años. En hombres, la participación por tumores también es importante, pero se distribuye de forma más moderada y alcanza sus mayores valores en edades más avanzadas.</p>
+</section>
+<section id="conexión-con-la-pregunta-de-investigación" class="level3">
+<h3 class="anchored" data-anchor-id="conexión-con-la-pregunta-de-investigación">Conexión con la pregunta de investigación:</h3>
+<p>Este resultado nos muestra que la variabilidad de la probabilidad de decremento por causa también depende del sexo, encontrando una fuerte variación, en específico, entre la probabilidad de decremento por tumores en adultos en Panamá, en donde estos ocupan un mayor valor dentro de la composición causal de las mujeres.</p>
+</section>
+<section id="contraste-con-la-literatura-2" class="level3">
+<h3 class="anchored" data-anchor-id="contraste-con-la-literatura-2">Contraste con la literatura:</h3>
+<p>Este resultado puede contrastarse principalmente con Calazans y Queiroz (2020), quienes estudian perfiles de mortalidad adulta por causa en países latinoamericanos y muestran que la estructura de la mortalidad por causa no es homogénea entre países, edades y sexos. En ese sentido, el mayor peso relativo de los tumores dentro de los fallecimientos femeninos en Panamá no debe interpretarse como un patrón universal, sino una característica local de la composición causal.</p>
+</section>
+<section id="lo-que-no-explica-este-resultado-2" class="level3">
+<h3 class="anchored" data-anchor-id="lo-que-no-explica-este-resultado-2">Lo que NO explica este resultado:</h3>
+<p>Este gráfico no permite afirmar que las mujeres tengan una probabilidad absoluta mayor de morir por tumores que los hombres.</p>
+</section>
+<section id="implicación-para-el-siguiente-paso-2" class="level3">
+<h3 class="anchored" data-anchor-id="implicación-para-el-siguiente-paso-2">Implicación para el siguiente paso:</h3>
+<p>Conviene contrastar este resultado con el gráfico de probabilidad absoluta de decremento por tumores. Si allí también las mujeres presentan valores mayores en esos grupos etarios, entonces sí podría hablarse de una mayor mortalidad absoluta por tumores.</p>
+</section>
+<section id="titular-3" class="level3">
+<h3 class="anchored" data-anchor-id="titular-3">Titular:</h3>
+<p>La mayor participación relativa de tumores en mujeres no implica mayor probabilidad absoluta de decremento</p>
+</section>
+<section id="nombre-del-hallazgoresultado-3" class="level3">
+<h3 class="anchored" data-anchor-id="nombre-del-hallazgoresultado-3">Nombre del hallazgo/resultado:</h3>
+<p>Diferencia entre composición causal condicionada y probabilidad absoluta de decremento por sexo en Panamá.</p>
+</section>
+<section id="resumen-en-una-oración-3" class="level3">
+<h3 class="anchored" data-anchor-id="resumen-en-una-oración-3">Resumen en una oración:</h3>
+<p>Aunque los tumores pesan más dentro de la composición causal femenina en varios grupos adultos, la probabilidad absoluta de decremento por tumores y otras causas crónicas tiende a ser mayor en hombres en edades avanzadas.</p>
+</section>
+<section id="método-o-análisis-que-lo-produjo-3" class="level3">
+<h3 class="anchored" data-anchor-id="método-o-análisis-que-lo-produjo-3">Método o análisis que lo produjo:</h3>
+<p>El resultado se obtuvo a partir del enfoque bayesiano, usando como estimación principal la media posterior de la probabilidad de decremento por causa. Para cada celda definida por grupo etario, año, país, sexo y causa, esta cantidad se escribe como</p>
+<p><span class="math display">\[
+q^{(c),*}_{x,t,p,s}
+\approx
+E\left(Q^{(c)}_{x,t,p,s}\mid \text{datos}\right).
+\]</span></p>
+<p>Primero se analizó la composición causal condicionada al fallecimiento, definida como</p>
+<p><span class="math display">\[
+\pi^{(c),*}_{x,t,p,s}
+=
+\frac{
+q^{(c),*}_{x,t,p,s}
+}{
+\sum_j q^{(j),*}_{x,t,p,s}
+}.
+\]</span></p>
+<p>Esta medida indica qué proporción del total de fallecimientos estimados corresponde a la causa (c), una vez que se condiciona a que ocurrió un fallecimiento en la celda. Luego se comparó esa lectura con la probabilidad absoluta de decremento por causa,</p>
+<p><span class="math display">\[
+100 \times q^{(c),*}_{x,t,p,s}.
+\]</span></p>
+<p>Esta segunda medida expresa, en porcentaje, la probabilidad estimada de morir por una causa específica dentro de toda la población expuesta de la celda.</p>
+</section>
+<section id="evidencia-3" class="level3">
+<h3 class="anchored" data-anchor-id="evidencia-3">Evidencia:</h3>
+<p>En el gráfico de composición condicionada, los tumores presentan una participación relativa mayor en mujeres que en hombres en varios grupos etarios adultos de Panamá. Sin embargo, al observar el gráfico de probabilidad absoluta de decremento, la lectura cambia: en edades avanzadas, los hombres muestran valores más altos que las mujeres para las principales causas crónicas, especialmente enfermedades del sistema circulatorio y enfermedades del sistema respiratorio. Para tumores, la diferencia por sexo es menos marcada que en circulatorias y respiratorias, pero en los grupos de mayor edad los hombres también tienden a presentar una probabilidad absoluta mayor. Esto muestra que una causa puede ocupar más peso relativo dentro de los fallecimientos femeninos sin que eso implique necesariamente una mayor probabilidad absoluta de muerte en mujeres.</p>
+</section>
+<section id="conexión-con-la-pregunta-de-investigación-1" class="level3">
+<h3 class="anchored" data-anchor-id="conexión-con-la-pregunta-de-investigación-1">Conexión con la pregunta de investigación:</h3>
+<p>Este resultado responde directamente a la pregunta del proyecto porque muestra que la variabilidad de la probabilidad de decremento por causa no depende únicamente de la edad o del año, sino también del sexo y de la forma en que se mida el fenómeno.</p>
+</section>
+<section id="contraste-con-la-literatura-3" class="level3">
+<h3 class="anchored" data-anchor-id="contraste-con-la-literatura-3">Contraste con la literatura:</h3>
+<p>Este hallazgo se relaciona con Goerlich Gisbert (2012), porque su trabajo muestra que la mortalidad por causa debe analizarse diferenciando edad, sexo y causa dentro de un marco de decrementos múltiples. También se conecta con Calazans y Queiroz (2020), quienes señalan que los perfiles de mortalidad adulta por causa en América Latina no son homogéneos entre países ni grupos poblacionales. En este caso, el resultado de Panamá refuerza esa idea: la lectura cambia según se observe la composición causal condicionada o la probabilidad absoluta de decremento. Además, Román Sánchez, Sánchez Pérez y Mendieta Zacarias (2018) sirven como antecedente latinoamericano de que las tablas de decrementos múltiples permiten estudiar diferencias por edad, sexo y causa de muerte.</p>
+</section>
+<section id="lo-que-no-explica-este-resultado-3" class="level3">
+<h3 class="anchored" data-anchor-id="lo-que-no-explica-este-resultado-3">Lo que NO explica este resultado:</h3>
+<p>Este resultado no explica por qué los hombres presentan mayores probabilidades absolutas de decremento en edades avanzadas, ni permite atribuir las diferencias observadas a factores clínicos, sociales o de acceso al sistema de salud. Tampoco prueba que las diferencias entre 2015 y 2018 sean estadísticamente significativas, porque el gráfico no muestra intervalos de incertidumbre ni pruebas formales. Además, el análisis se limita a Panamá y a las causas seleccionadas en la visualización, por lo que no debe generalizarse automáticamente al resto de Centroamérica.</p>
+</section>
+<section id="implicación-para-el-siguiente-paso-3" class="level3">
+<h3 class="anchored" data-anchor-id="implicación-para-el-siguiente-paso-3">Implicación para el siguiente paso:</h3>
+<p>El siguiente paso es contrastar este resultado bayesiano con el enfoque clásico o frecuentista. Si el patrón observado en Panamá también aparece en las estimaciones clásicas, entonces el hallazgo tendría mayor consistencia metodológica. En cambio, si el patrón cambia mucho entre enfoques, habría que revisar si la diferencia se debe a la estabilización bayesiana, a conteos pequeños, a baja exposición en ciertas celdas o a variación propia de los datos observados. También conviene complementar la lectura bayesiana con intervalos posteriores de incertidumbre, para no afirmar como diferencia clara algo que visualmente parece distinto pero podría estar dentro de la variabilidad posterior.</p>
 <div style="page-break-after: always;"></div>
+</section>
+</section>
 </section>
 <section id="parte-de-escritura-artículo-final" class="level1">
 <h1>2. Parte de escritura (Artículo final)</h1>
@@ -2527,6 +2903,9 @@ P(J=c\mid T_{x,t}\leq 1)
 </section>
 <section id="agradecimientos" class="level2">
 <h2 class="anchored" data-anchor-id="agradecimientos">Agradecimientos</h2>
+</section>
+<section id="anexos" class="level2">
+<h2 class="anchored" data-anchor-id="anexos">Anexos</h2>
 </section>
 <section id="referencias" class="level2">
 <h2 class="anchored" data-anchor-id="referencias">Referencias</h2>

@@ -97,3 +97,81 @@ write_csv(
   #kable(
    # caption = "Tabla 1. Causas ICD-10 con mayor discrepancia entre enfoque clásico y bayesiano"
   #)
+
+# 7. Métrica de composición causal: D_pi ----------------------------------
+
+# Para cada celda demográfica, se calcula primero la composición causal
+# pi_c = q_c / sum_j q_j.
+# Luego se compara el vector completo de composiciones entre enfoques.
+
+comparacion_pi <- comparacion_q %>%
+  group_by(pais, anio, sexo, grupo_edad) %>%
+  mutate(
+    q_total_clasico = sum(q_clasico, na.rm = TRUE),
+    q_total_bayesiano = sum(q_bayesiano, na.rm = TRUE),
+    
+    pi_clasico = if_else(
+      q_total_clasico > 0,
+      q_clasico / q_total_clasico,
+      NA_real_
+    ),
+    
+    pi_bayesiano = if_else(
+      q_total_bayesiano > 0,
+      q_bayesiano / q_total_bayesiano,
+      NA_real_
+    ),
+    
+    diferencia_abs_pi = abs(pi_bayesiano - pi_clasico)
+  ) %>%
+  ungroup()
+
+# 8. Tabla 2: distancia total entre composiciones causales -----------------
+
+tabla_02_composicion <- comparacion_pi %>%
+  group_by(pais, anio, sexo, grupo_edad) %>%
+  summarise(
+    d_pi = 0.5 * sum(diferencia_abs_pi, na.rm = TRUE),
+    q_total_clasico = first(q_total_clasico),
+    q_total_bayesiano = first(q_total_bayesiano),
+    causa_dom_clasico = causa[which.max(pi_clasico)],
+    causa_dom_bayesiano = causa[which.max(pi_bayesiano)],
+    misma_causa_dominante = causa_dom_clasico == causa_dom_bayesiano,
+    .groups = "drop"
+  ) %>%
+  arrange(desc(d_pi)) %>%
+  mutate(
+    d_pi = round(d_pi, 4),
+    q_total_clasico = round(q_total_clasico, 8),
+    q_total_bayesiano = round(q_total_bayesiano, 8),
+    misma_causa_dominante = if_else(
+      misma_causa_dominante,
+      "Sí",
+      "No"
+    )
+  )
+
+# Versión corta para reporte
+tabla_02_reporte <- tabla_02_composicion %>%
+  filter(
+    !is.na(pais),
+    !is.na(anio),
+    !is.na(sexo),
+    !is.na(grupo_edad),
+    !is.na(d_pi)
+  ) %>%
+  slice_head(n = 8)
+
+# 9. Guardar tabla para llamarla desde el QMD ------------------------------
+
+write_csv(
+  tabla_02_reporte,
+  here("datos", "procesados", "tabla_02_composicion_causal.csv")
+)
+
+# 10. Vista rápida en consola ----------------------------------------------
+
+#tabla_02_reporte %>%
+  #kable(
+    #caption = "Celdas con mayor diferencia de composición causal entre enfoques"
+  #)

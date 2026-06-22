@@ -1,0 +1,9 @@
+pais,anio,sexo,grupo_edad,d_pi,q_total_clasico,q_total_bayesiano,causa_dom_clasico,causa_dom_bayesiano,misma_causa_dominante
+Belice,2017,Mujer,5-9,0.4367,1.6711e-4,3.8358e-4,XX,XX,Sí
+Belice,2016,Mujer,10-14,0.3828,1.5618e-4,3.8082e-4,II,XX,No
+Belice,2018,Mujer,5-9,0.3641,2.2419e-4,4.4376e-4,XX,XX,Sí
+Belice,2017,Hombre,95+,0.3113,0.70195963,0.38298552,IX,IX,Sí
+Belice,2016,Hombre,5-9,0.2789,2.6417e-4,4.7131e-4,V-VIII,V-VIII,Sí
+Belice,2015,Mujer,95+,0.2667,0.71061578,0.45598791,IX,IX,Sí
+Belice,2017,Mujer,10-14,0.265,2.6149e-4,4.7912e-4,XX,XX,Sí
+Belice,2015,Mujer,10-14,0.2635,2.5952e-4,4.7798e-4,XX,XX,Sí
