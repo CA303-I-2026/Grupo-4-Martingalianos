@@ -116,10 +116,10 @@ Sebastián Miranda Ramírez — C4H274<br> Benjamín Gutiérrez Padua — C4F813
 # 1. Parte de planificación
 
 ## Parte iterativa
+
 En este apartado nos vamos a centrar en analizar las variaciones obtenidas en los resultados frecuentista y bayesiano con mayor detenimiento dado que en anteriores avances se indagó en las particularidades de las dinámicas demógraficas que se manifiestan, tales como: la concentración absoluta de la $q_{x,t}^{(c)}$ en edades adultas debido a causas externas de mortalidad auspiciado principalmente por la clasificación de agresiones o por otro lado de las vinculadas a la causa perinatal en edades tempranas, y para edades avanzadas el incremento de esta probabilidad en edades avanzadas respecto a causas de enfermedades del sistema circulatorio. Posteriormente se concluirá con las 4 fichas de resultados correspondientes a los análisis acumulados.
 
-De esta manera vamos a analizar las diferencias absolutas simétricas entre las estimaciones de $q_{x,t}^{(c)}$ por los enfoques bayesiano y frecuentista. En este sentido, denotar $q_{F}$ y $q_{B}$ las estinamciones de $q_{x,t}^{(c)}$ respectivamente para el enfoque frecuentista y bayesiano, luego considerar que esta notación abrevia una combinación de grupo etario $x$, año calendario $t$, país $p$, sexo $s$, y causa de muerte $c$, pero se resume su notación de este modo, así considerar: 
-$$DRAS_{x,t}^{(c)}
+De esta manera vamos a analizar las diferencias absolutas simétricas entre las estimaciones de $q_{x,t}^{(c)}$ por los enfoques bayesiano y frecuentista. En este sentido, denotar $q_{F}$ y $q_{B}$ las estinamciones de $q_{x,t}^{(c)}$ respectivamente para el enfoque frecuentista y bayesiano, luego considerar que esta notación abrevia una combinación de grupo etario $x$, año calendario $t$, país $p$, sexo $s$, y causa de muerte $c$, pero se resume su notación de este modo, así considerar: $$DRAS_{x,t}^{(c)}
 =
 \frac{
 2\left|
@@ -128,10 +128,9 @@ q_{B,x,t}^{(c)} - q_{F,x,t}^{(c)}
 }{
 q_{B,x,t}^{(c)} + q_{F,x,t}^{(c)}
 }.
-$$ 
+$$
 
 Esta métrica nos permite medir la Diferencia Relativa Absoluta Simétrica DRAS para una causa $(c)$ cercano a 0 indica valores de coincidencia, cercanos a 2 de discrepancia fuerte entre bloques $q_{x,t}^{(c)}$. La aplicación de esta métrica se resume en resultados en @tbl-discrepancia-enfoques .
-
 
 ```{r}
 #| label: tbl-discrepancia-enfoques
@@ -150,9 +149,7 @@ knitr::kable(
 
 De esta métrica lo que desprendemos es el siguiente análisis, se ha tabulado n_celdas como la cardinalidad del conjunto $n_{\text{celdas}}^{(c)}$, es decir $\|\{(x,t): q_{B,x,t}^{(c)} \text{ y } q_{F,x,t}^{(c)} \text{ existen}\}|$ luego note que la columna $median(DRAS_{x,t}^{(c)})$ lo que realizamos fue fijar la causa $(c)$ y dejar variar $x,t,p,s$ aquellas causas de mayor mediana son donde el enfoque bayesiano modificó más la estimación relativa donde vemos que se manifiesta en una mayor medida para la causa $III$, pero probabilísticamente notamos que el numerador de $DRAS_{x,t}^{(c)})$ es bastante pequeño acotado por $2.62*10^{-6}$ lo cual significa que en sí mismo es un conjunto de medida 0. Y el porcentaje de ceros pct_q_clasico_cero desde el enfoque clásico permite explicar esta discrepancia debido a que recordemos que la estimación bayesiana posterior de la fuerza instatánea de mortalidad para la causa $(c)$ dadas las observaciones de defunciones viene se conjuga por una Gamma de soporte positivo, es decir la intensidad posterior de mortalidad puede quedar muy pequeña pero no exactamente en cero, en particular cuando la población en exposición es grande.
 
-En complemento a este análisis es adecuado comprender la distancia de variación total entre composiciones causales
-Para esto definimos $D_{\pi}$ que permite comparar el vector completo $(\pi^{(1)},\pi^{(2)},..., \pi^{(r)})$ dentro de una misma celda (delimitación por grupo etario $x$, año calendario $t$, país $p$, sexo $s$, y causa de muerte $c$) de esta manera buscamos ver si el enfoque bayesiano cambia la forma en que se reparte el total de decrementos por causas. Así definir $D_{\pi,x,t}=\frac{1}{2}\sum_{c=1}^{r}\left|\pi_{B,x,t}^{(c)}-\pi_{F,x,t}^{(c)}\right|$. Donde $pi_{B} , pi_{F} $  representan respetivamente la composición causal Bayesiana y la Frecuentista. 
-La lectura de esta métrica es bastante directa valores cercanos a 0 indican una baja variabilidad y aquellos otros más altos justo una mayor diferencia. Vease en @tbl-composicion-causal
+En complemento a este análisis es adecuado comprender la distancia de variación total entre composiciones causales Para esto definimos $D_{\pi}$ que permite comparar el vector completo $(\pi^{(1)},\pi^{(2)},..., \pi^{(r)})$ dentro de una misma celda (delimitación por grupo etario $x$, año calendario $t$, país $p$, sexo $s$, y causa de muerte $c$) de esta manera buscamos ver si el enfoque bayesiano cambia la forma en que se reparte el total de decrementos por causas. Así definir $D_{\pi,x,t}=\frac{1}{2}\sum_{c=1}^{r}\left|\pi_{B,x,t}^{(c)}-\pi_{F,x,t}^{(c)}\right|$. Donde \$pi\_{B} , pi\_{F} \$ representan respetivamente la composición causal Bayesiana y la Frecuentista. La lectura de esta métrica es bastante directa valores cercanos a 0 indican una baja variabilidad y aquellos otros más altos justo una mayor diferencia. Vease en @tbl-composicion-causal
 
 ```{r}
 #| label: tbl-composicion-causal
@@ -166,7 +163,6 @@ tabla_02 <- readr::read_csv(
 knitr::kable(tabla_02)
 ```
 
-
 En @tbl-composicion-causal se observa que las mayores distancias de variación total entre composiciones causales se concentran en Belice. Este resultado es metodológicamente coherente, ya que Belice tiene una menor exposición poblacional relativa dentro del conjunto centroamericano, lo cual hace que sus conteos por causa sean más sensibles a variaciones pequeñas. En este contexto, el enfoque clásico puede asignar probabilidades exactamente nulas cuando no se observan defunciones por una causa específica, mientras que el enfoque bayesiano, por el suavizamiento Empirical Bayes, tiende a conservar probabilidades positivas aunque cercanas a cero.
 
 La mayor diferencia aparece en mujeres de Belice, grupo 5-9, año 2017, con $D_{\pi}=0.4367$. Esto no significa que una única causa explique por sí sola el 43.67 % de diferencia, sino que aproximadamente esa proporción de la masa de composición causal tendría que redistribuirse para pasar del vector frecuentista al vector bayesiano. En esa celda, ambos enfoques mantienen como causa dominante a $XX$, correspondiente a causas externas de mortalidad, por lo que la discrepancia no cambia la causa principal, pero sí modifica la distribución relativa del resto de causas.
@@ -175,12 +171,12 @@ El segundo caso, Belice, mujeres de 10-14 años en 2016, es más relevante desde
 
 Por tanto, esta tabla complementa el análisis basado en $DRAS$: mientras $DRAS$ mostraba diferencias causa por causa en las probabilidades absolutas $q_{x,t}^{(c)}$, la distancia $D_{\pi}$ permite evaluar si esas diferencias alteran la interpretación del reparto causal dentro de cada celda. En general, las mayores discrepancias no parecen responder a cambios regionales amplios, sino a celdas pequeñas y sensibles, principalmente en Belice.
 
+## Fichas de resultados parte iterativa
 
-
-
-## Fichas de resultados parte iterativa 
 ### Enfoque frecuentista
+
 ## Nivel descriptivo
+
 ### Enfoque frecuentista
 
 ## Nivel descriptivo
@@ -239,7 +235,7 @@ El siguiente paso es complementar esta comparación de $q_{x,t}^{(c)}$ con una c
 
 ## Nivel descriptivo
 
-### Titular 
+### Titular
 
 Belice concentra las mayores diferencias de composición causal.
 
@@ -281,21 +277,21 @@ $$
 
 Esta métrica resume cuánto debe redistribuirse la composición causal frecuentista para coincidir con la composición causal bayesiana dentro de una misma celda.
 
-### Evidencia 
+### Evidencia
 
 Como se observa en @tbl-composicion-causal, las mayores diferencias se concentran en Belice. La celda con mayor distancia corresponde a mujeres de Belice, grupo 5-9, año 2017, con $D_{\pi}=0.4367$. En este caso, ambos enfoques mantienen como causa dominante a $XX$, correspondiente a causas externas de mortalidad. El segundo caso corresponde a mujeres de Belice, grupo 10-14, año 2016, con $D_{\pi}=0.3828$, donde la causa dominante cambia de $II$ en el enfoque clásico a $XX$ en el enfoque bayesiano.
 
-## Nivel analítico 
+## Nivel analítico
 
 ### Conexión con pregunta de investigación
 
 Este resultado permite evaluar si las diferencias entre el enfoque clásico y el bayesiano modifican la interpretación de la mortalidad por causa, no solo en términos de magnitud absoluta de $q_{x,t}^{(c)}$, sino también en términos de reparto causal. La métrica $D_{\pi,x,t}$ complementa el análisis basado en $DRAS$, porque muestra si las diferencias causa por causa alteran el vector completo de participación relativa entre causas.
 
-### Contraste con la literatura 
+### Contraste con la literatura
 
 El resultado es coherente con la lógica del enfoque Empirical Bayes Poisson-Gamma utilizado en la estimación bayesiana. En celdas con conteos bajos o nulos, el enfoque clásico puede producir probabilidades exactamente iguales a cero, mientras que el enfoque bayesiano tiende a suavizar la estimación usando información colectiva de la causa y del país. Por ello, en celdas con menor exposición o menor frecuencia de defunciones, pequeñas diferencias absolutas en $q_{x,t}^{(c)}$ pueden traducirse en diferencias visibles en la composición causal $\pi_{x,t}^{(c)}$.
 
-### Lo que NO explica este resultado 
+### Lo que NO explica este resultado
 
 Este resultado no demuestra que el enfoque bayesiano sea mejor que el frecuentista, ni permite afirmar que una de las dos estimaciones sea la verdadera. Tampoco explica por qué causas externas aparecen como dominantes en ciertas celdas de Belice. La tabla solo muestra diferencias en la asignación relativa de la probabilidad de decremento entre causas, no una explicación de dinámica demográfica del proceso.
 
@@ -303,7 +299,8 @@ Este resultado no demuestra que el enfoque bayesiano sea mejor que el frecuentis
 
 El siguiente paso es sistentizar las diferencias halladas entre el enfoque bayesiano y frecuentista desde un resumen ejecutivo de resultados y determinar que ambas metodológias proporcionan diferentes herramientas de acción para ciertos problemas, y esencialmente corresponderá de las características propias del mismo una decisión del investigador por cuál metodología usar.
 
-### Enfoque bayesiano 
+### Enfoque bayesiano
+
 ## Fichas de resultados
 
 ### Titular:
@@ -404,15 +401,15 @@ Este resultado no explica por qué los hombres presentan mayores probabilidades 
 
 El siguiente paso es contrastar este resultado bayesiano con el enfoque clásico o frecuentista. Si el patrón observado en Panamá también aparece en las estimaciones clásicas, entonces el hallazgo tendría mayor consistencia metodológica. En cambio, si el patrón cambia mucho entre enfoques, habría que revisar si la diferencia se debe a la estabilización bayesiana, a conteos pequeños, a baja exposición en ciertas celdas o a variación propia de los datos observados. También conviene complementar la lectura bayesiana con intervalos posteriores de incertidumbre, para no afirmar como diferencia clara algo que visualmente parece distinto pero podría estar dentro de la variabilidad posterior.
 
-
 \newpage
 
-# 2. Parte de escritura 
+# 2. Parte de escritura
+
 ## 2.1.1 Retroalimentación de la Bitácora 3
 
-En aras de perfeccionar la escritura realizada en la Bitácora 3, se procede a mencionar las retroalimentaciones realizadas tras su revisión, esto con el fin de ofrecer una versión final de la investigación pulida. 
+En aras de perfeccionar la escritura realizada en la Bitácora 3, se procede a mencionar las retroalimentaciones realizadas tras su revisión, esto con el fin de ofrecer una versión final de la investigación pulida.
 
-En primera instancia, se corrigió el orden de los subtítulos comprendidos entre las secciones 1.2.1 y 1.2.4, ya que la secuencia anterior no seguía una estructura adecuada de titulación. En segundo lugar, se atendieron distintos errores de codificación en subtítulos y fórmulas, identificados como “typos”. Entre ellos destaca el error presente en la fórmula de la página 72, así como dos errores adicionales en la sección 1.2.5.2, vinculados con la titulación de la página 38. Además, se corrigió otro typo ubicado en la página 53, dentro de una ficha de resultado, específicamente en la sección “Lo que NO explica el resultado”. Finalmente, se añadió la cita que había sido omitida en esa misma página, dentro de la sección “Contraste con la literatura” de la Bitácora anterior. En conjunto, estas modificaciones fortalecen la coherencia formal del documento y reducen errores que podían afectar la lectura o la interpretación metodológica del trabajo. 
+En primera instancia, se corrigió el orden de los subtítulos comprendidos entre las secciones 1.2.1 y 1.2.4, ya que la secuencia anterior no seguía una estructura adecuada de titulación. En segundo lugar, se atendieron distintos errores de codificación en subtítulos y fórmulas, identificados como “typos”. Entre ellos destaca el error presente en la fórmula de la página 72, así como dos errores adicionales en la sección 1.2.5.2, vinculados con la titulación de la página 38. Además, se corrigió otro typo ubicado en la página 53, dentro de una ficha de resultado, específicamente en la sección “Lo que NO explica el resultado”. Finalmente, se añadió la cita que había sido omitida en esa misma página, dentro de la sección “Contraste con la literatura” de la Bitácora anterior. En conjunto, estas modificaciones fortalecen la coherencia formal del documento y reducen errores que podían afectar la lectura o la interpretación metodológica del trabajo.
 
 También en la parte 3 de Escritura de la Bitácora anterior, se propone una nueva redacción para mejorar la estructurada anteriormente. De esta forma, se añade también a la corrección.
 
@@ -426,7 +423,7 @@ A continuación, se reescribe la Bitácora anterior, tomando en cuenta las corre
 
 Para probar la metodología propuesta, se elaboró un programa maqueta en R. Este permitió cargar la base depurada, revisar que las defunciones fueran no negativas y que la exposición poblacional fuera positiva. La base se trabajó en formato largo, donde cada fila representa una celda definida por país, sexo, año, grupo etario y causa de muerte.
 
-En primer lugar, se implementó el enfoque frecuentista. Para cada celda se calculó la intensidad específica por causa como el cociente entre defunciones y exposición. Luego, se obtuvo la intensidad total sumando las intensidades de todas las causas competidoras. Con estas cantidades se estimó la probabilidad local de decremento por causa bajo el supuesto de fuerza constante dentro de la celda anual. La maqueta es actualmente el script `04_enfoque_clasico.R` (Ver repositorio para más detalles) que contiene la implementación total del enfoque clásico. Posteriormente, se incorporó una primera versión del enfoque bayesiano. En este caso, las defunciones se mantuvieron bajo un modelo Poisson, pero la intensidad de mortalidad se trató como una variable aleatoria con distribución Gamma. A partir de esta estructura Poisson-Gamma, se simularon intensidades posteriores mediante `rgamma()` y, en cada simulación, se transformaron esas intensidades en probabilidades de decremento. La estimación bayesiana se obtuvo como el promedio de las probabilidades simuladas. Tras su implementación completa, la maqueta es actualmente el script `06_enfoque_bayesiano.R` y `07_enfoque_bayesiano_simulaciones.R`. (Ver repositorio para más detalles). 
+En primer lugar, se implementó el enfoque frecuentista. Para cada celda se calculó la intensidad específica por causa como el cociente entre defunciones y exposición. Luego, se obtuvo la intensidad total sumando las intensidades de todas las causas competidoras. Con estas cantidades se estimó la probabilidad local de decremento por causa bajo el supuesto de fuerza constante dentro de la celda anual. La maqueta es actualmente el script `04_enfoque_clasico.R` (Ver repositorio para más detalles) que contiene la implementación total del enfoque clásico. Posteriormente, se incorporó una primera versión del enfoque bayesiano. En este caso, las defunciones se mantuvieron bajo un modelo Poisson, pero la intensidad de mortalidad se trató como una variable aleatoria con distribución Gamma. A partir de esta estructura Poisson-Gamma, se simularon intensidades posteriores mediante `rgamma()` y, en cada simulación, se transformaron esas intensidades en probabilidades de decremento. La estimación bayesiana se obtuvo como el promedio de las probabilidades simuladas. Tras su implementación completa, la maqueta es actualmente el script `06_enfoque_bayesiano.R` y `07_enfoque_bayesiano_simulaciones.R`. (Ver repositorio para más detalles).
 
 Esta maqueta fue útil para probar funciones, revisar parámetros y detectar errores conceptuales antes de consolidar el modelo final. En particular, permitió identificar problemas en el tratamiento de causas con dominios específicos, como embarazo, parto y puerperio, y afecciones originadas en el periodo perinatal. A partir de esto, se incorporó la distinción entre ceros observacionales y ceros estructurales.
 
@@ -434,15 +431,16 @@ Esta maqueta fue útil para probar funciones, revisar parámetros y detectar err
 
 La validación del modelo se planteó con el objetivo de revisar si las estimaciones obtenidas eran coherentes con la estructura de los datos y con la interpretación actuarial del proyecto. Dado que se trabaja con conteos de defunciones y exposición poblacional, la revisión se centró principalmente en modelos de conteo, intensidades de mortalidad y probabilidades de decremento. Esta parte del trabajo consiste en toda la implementación de la metodología en la base de datos mediante los scripts presentes en la carpeta código del repositorio.
 
-En el enfoque frecuentista, se revisó la adecuación del modelo Poisson para representar las defunciones observadas. Para ello, se consideró la posible presencia de sobredispersión y la estabilidad de las intensidades estimadas. Esta revisión es importante porque las celdas con baja exposición o pocos fallecimientos pueden producir estimaciones clásicas muy variables.. Tras concluir estabilidad en las intensidades, se procedió a calcular los decrementos; como se dijo en la sección de la implementación inicial, el cálculo de las probabilidades de decremento para el enfoque clásico se encuentra en el script `04_enfoque_clasico.R`, posterior a ello, se procede con el análisis de este enfoque, utilizando el análisis de las observaciones y el cálculo de las composiciones causales, además de la creación de los gráficos. Este procedimiento computacional se encuentra disponible en el script `05_analisis_clasico.R` (Ver repositorio para más información). 
+En el enfoque frecuentista, se revisó la adecuación del modelo Poisson para representar las defunciones observadas. Para ello, se consideró la posible presencia de sobredispersión y la estabilidad de las intensidades estimadas. Esta revisión es importante porque las celdas con baja exposición o pocos fallecimientos pueden producir estimaciones clásicas muy variables.. Tras concluir estabilidad en las intensidades, se procedió a calcular los decrementos; como se dijo en la sección de la implementación inicial, el cálculo de las probabilidades de decremento para el enfoque clásico se encuentra en el script `04_enfoque_clasico.R`, posterior a ello, se procede con el análisis de este enfoque, utilizando el análisis de las observaciones y el cálculo de las composiciones causales, además de la creación de los gráficos. Este procedimiento computacional se encuentra disponible en el script `05_analisis_clasico.R` (Ver repositorio para más información).
 
-En el enfoque bayesiano, la validación se enfocó en las simulaciones posteriores de las intensidades y de las probabilidades de decremento. Como el procedimiento utiliza una simulación directa desde distribuciones Gamma posteriores, no corresponde aplicar diagnósticos como trazas, autocorrelación o R-hat. En su lugar, se revisó la estabilidad de los promedios simulados, la precisión utilizando la Ley de los Grandes Números y la coherencia de los intervalos posteriores. Análogamente, la creación de gráficos y análisis del enfoque bayesiano se encuentra disponible en el script `08_analisis_bayesiano.R` (Ver repositorio para más información). 
+En el enfoque bayesiano, la validación se enfocó en las simulaciones posteriores de las intensidades y de las probabilidades de decremento. Como el procedimiento utiliza una simulación directa desde distribuciones Gamma posteriores, no corresponde aplicar diagnósticos como trazas, autocorrelación o R-hat. En su lugar, se revisó la estabilidad de los promedios simulados, la precisión utilizando la Ley de los Grandes Números y la coherencia de los intervalos posteriores. Análogamente, la creación de gráficos y análisis del enfoque bayesiano se encuentra disponible en el script `08_analisis_bayesiano.R` (Ver repositorio para más información).
 
 Además, se compararon las estimaciones clásicas y bayesianas para observar en qué celdas ambos enfoques producían resultados similares y en cuáles difieren. Se espera que las diferencias sean menores cuando hay alta exposición y suficientes defunciones, y más visibles en celdas con poca información. Esta comparación no busca declarar un enfoque superior, sino entender cómo cambia la estimación al incorporar información colectiva mediante el enfoque bayesiano. Esta información se encuentra disponible en el script `09_comparacion_enfoques.R` (Ver repositorio para más información).
 
 Finalmente, se revisó la coherencia sustantiva de los resultados. Por ejemplo, se espera que las afecciones perinatales se concentren en edades tempranas, que las causas externas tengan mayor peso en edades jóvenes y que enfermedades crónicas como tumores, circulatorias y respiratorias aumentan su relevancia en edades adultas y avanzadas, y en efecto, ocurre lo esperado.
 
 ### Fichas de Resultados (Inciso 1.3)
+
 Seguidamente, se reescribe la ficha en donde hubo un error de citación y un typo con la sección “Lo que NO dice el autor”:
 
 #### Titular:
@@ -536,8 +534,7 @@ Este resultado no permite afirmar que Nicaragua tenga necesariamente un mayor ri
 
 Tampoco permite concluir, por sí solo, que la mayor fragmentación observada en Nicaragua responda a diferencias reales en salud, calidad del sistema sanitario o estructura epidemiológica. Parte de esa fragmentación podría estar asociada a diferencias en registro, clasificación de causas, tamaño poblacional o variabilidad propia de las celdas analizadas.
 
-Además, cuando se grafican solo las causas principales, las barras no representan la totalidad de la composición causal. En ese caso,
-$$
+Además, cuando se grafican solo las causas principales, las barras no representan la totalidad de la composición causal. En ese caso, $$
 \sum_{c\in\mathcal{C}_{sel}}
 \overline{\pi}^{(c)}_{x,p}
 $$
@@ -548,21 +545,264 @@ no necesariamente es igual a 1, porque $\mathcal{C}_{sel}$ representa únicament
 
 El siguiente paso es complementar esta lectura relativa con el análisis de la probabilidad local absoluta ${}_{1}\widehat{q}^{(c)}_{x,t,p,s}$. Esto permitirá distinguir si la fragmentación causal observada en Nicaragua corresponde únicamente a una redistribución interna entre causas o si también se asocia con diferencias relevantes en la magnitud absoluta del decremento. Además, conviene verificar si esta estructura se mantiene bajo el enfoque bayesiano, especialmente en celdas con baja exposición o conteos pequeños.
 
+## Parte Escrita (Inciso 3)
+
+El estudio de la mortalidad por causa puede abordarse desde una lectura puramente descriptiva o desde una lectura más técnica. Una primera aproximación consistiría en contar defunciones y observar cuáles causas aparecen con mayor frecuencia en cada país, sexo, año o grupo etario. Esa lectura es útil para conocer la estructura inicial de los datos, pero no es suficiente para responder la pregunta central del proyecto. La lectura adecuada para lograr esto es estimar cómo cambia la probabilidad actuarial de salir del estado vivo por una causa específica, considerando que existen otras causas que compiten por producir el mismo decremento. Por esta razón, el objeto central del trabajo es la probabilidad actuarial de decremento por causa,
+
+$$
+{}_{n}q_{x,t}^{(c)}
+=
+P(T_{x,t}\leq n,\ J=c),
+$$
+
+donde $T_{x,t}$ representa el tiempo futuro de vida de una persona perteneciente al grupo etario $x$ durante el año calendario $t$, y $J$ representa la causa del decremento. Entonces, esta cantidad mide la probabilidad de que una vida expuesta en la celda considerada fallezca dentro del horizonte $n$ por la causa $c$. Aunque el objeto completo del proyecto también depende del país $p$ y del sexo $s$, se escribe de forma simplificada como ${}_{n}q_{x,t}^{(c)}$ para evitar una notación excesivamente pesada (Lo cual viene aclarado en la metodología. Cuando sea necesario, se recupera la forma completa ${}_{n}q_{x,t,p,s}^{(c)}$.
+
+La pregunta de investigación se formula en torno a los patrones de variabilidad de esta probabilidad de decremento por causa en países centroamericanos durante el periodo 2015-2018. Esto implica que la edad, el país, el sexo, el año y la causa de muerte son dimensiones necesarias para interpretar el fenómeno. Una causa puede ser poco relevante en términos agregados y, aun así, tener un peso importante en un grupo específico. De igual forma, una causa puede dominar en edades avanzadas, pero tener poca presencia en edades jóvenes. Por ello, el proyecto no busca una única tasa regional de mortalidad, sino una lectura estratificada del decremento por causa.
+
+La literatura sobre decrementos múltiples permite ubicar esta decisión dentro de un marco actuarial más preciso. Bowers et al. (1997) y Deshmukh (2012) presentan el tratamiento de los decrementos múltiples como una situación en la que una vida puede salir del estado inicial por distintas causas mutuamente excluyentes. En este contexto, cada causa se interpreta como una salida que compite con las demás. Esta idea es fundamental para el proyecto, porque una persona que fallece por tumores ya no puede fallecer en ese mismo intervalo por enfermedades circulatorias, respiratorias o causas externas. Por tanto, la probabilidad de morir por una causa depende tanto de la intensidad de esa causa como de la intensidad total de salida del estado vivo.
+
+Esta interpretación también permite distinguir entre una proporción observada de muertes y una probabilidad de decremento. Una proporción de muertes por causa indica qué parte de las defunciones observadas corresponde a una categoría específica. En contraste, una probabilidad de decremento incorpora la exposición poblacional y la competencia entre más de una causa. Esta diferencia es importante porque los datos disponibles no son trayectorias individuales, sino conteos agregados por país, sexo, año, grupo etario y causa. Por tanto, no basta con dividir muertes por el total de defunciones; se requiere construir una estimación que considere la población expuesta al riesgo.
+
+La base de mortalidad proviene de la WHO Mortality Database, que recopila defunciones clasificadas según la ICD-10. Esta fuente permite trabajar con registros oficiales comparables entre países, aunque con limitaciones propias de las bases agregadas. Para el proyecto, las causas de muerte se agrupan según los capítulos amplios de la ICD-10, identificados con números romanos. Esta decisión reduce la dispersión de códigos demasiado específicos y permite trabajar con categorías interpretables, como tumores, enfermedades del sistema circulatorio, enfermedades respiratorias, afecciones perinatales, embarazo, parto y puerperio, y causas externas de mortalidad. La clasificación amplia también facilita la comparación gráfica y actuarial entre países.
+
+No obstante, la WHO Mortality Database por sí sola no basta para estimar probabilidades actuariales. Los conteos de defunciones deben relacionarse con una medida de exposición poblacional. Por esta razón, se incorpora una base de población, aproximando la exposición $E_{x,t}$ mediante la población a mitad de año correspondiente al mismo país, sexo, grupo etario y año calendario. Pitacco et al. (2009) justifican este tipo de aproximación en modelos de mortalidad con datos agregados, donde la población media del intervalo funciona como una medida razonable de exposición al riesgo. Así, cada celda del análisis queda definida por un conteo de defunciones $D_{x,t}^{(c)}$ y una exposición $E_{x,t}$.
+
+La unidad de análisis del proyecto es, entonces, una celda agregada. Esta celda se define por país, sexo, año calendario, grupo etario y causa de muerte. Esta decisión tiene una consecuencia interpretativa importante: Las estimaciones deben leerse como probabilidades locales asociadas a un grupo etario observado durante un año calendario. Por ejemplo, el grupo 30-34 representa un intervalo etario completo de 5 años. Bajo esta estructura, una persona de 30.2 años y una persona de 34.7 años quedan representadas por la misma intensidad estimada para el grupo, porque la base no permite distinguir el riesgo por edad exacta.
+
+Para conectar la estructura agregada de los datos con el objeto actuarial, se asume que la fuerza de mortalidad por causa es constante dentro de cada celda. Si $I_x$ representa el intervalo etario asociado al grupo $x$, entonces se supone que la intensidad por causa se mantiene constante para las edades dentro de ese intervalo y durante el año calendario observado. En el caso de grupos quinquenales, esta idea puede escribirse como
+
+$$
+\mu_{x+\xi_1,t+\xi_2}^{(c)}
+=
+\mu_{x,t}^{(c)},
+\qquad
+0\leq \xi_1 < 5,\quad 0\leq \xi_2 < 1.
+$$
+
+Este supuesto no significa que la mortalidad real sea idéntica en todas las edades internas del grupo, sino que, dadas las limitaciones de la información disponible, se estima una intensidad promedio para la celda. Además, en la aplicación empírica se fija el horizonte en $n=1$, porque las defunciones y exposiciones están organizadas por año calendario. Por eso, aunque la notación general sea ${}_{n}q_{x,t}^{(c)}$, el análisis principal trabaja con probabilidades anuales de decremento, que se escriben simplemente como
+
+$$
+q_{x,t}^{(c)}
+:=
+{}_{1}q_{x,t}^{(c)}.
+$$
+
+Esta elección evita interpretar los grupos quinquenales como seguimientos de cinco años. Los grupos de edad son estratos observados durante un año, no cohortes individuales seguidas durante todo el intervalo etario. Si se quisiera estimar una probabilidad acumulada a lo largo de varios grupos de edad, sería necesario encadenar probabilidades por tramos. Sin embargo, ese no es el objetivo principal del proyecto. La pregunta de investigación se concentra en comparar patrones locales de decremento por causa según grupo etario, país, sexo y año.
+
+El primer enfoque de estimación es el enfoque clásico o frecuentista. En este enfoque, las defunciones observadas por causa se tratan como una variable aleatoria de conteo. Para cada celda se plantea el modelo
+
+$$
+D_{x,t}^{(c)} \mid \mu_{x,t}^{(c)}
+\sim
+\text{Poisson}\left(E_{x,t}\mu_{x,t}^{(c)}\right).
+$$
+
+Aquí, $D_{x,t}^{(c)}$ representa el número de defunciones observadas por la causa $c$, $E_{x,t}$ representa la exposición poblacional y $\mu_{x,t}^{(c)}$ representa la fuerza o intensidad de mortalidad por esa causa. Esta formulación se apoya en Manton et al. (1989), quienes utilizan modelos Poisson para conteos de defunciones asociados a exposición poblacional. La interpretación es directa: el producto $E_{x,t}\mu_{x,t}^{(c)}$ representa el número esperado de defunciones por la causa $c$ dentro de la celda.
+
+Bajo este modelo, el estimador clásico de la intensidad por máxima verosimilitud es
+
+$$
+\widehat{\mu}_{x,t}^{(c)}
+=
+\frac{D_{x,t}^{(c)}}{E_{x,t}}.
+$$
+
+Esta cantidad puede entenderse como una tasa central o intensidad estimada de mortalidad por causa. Sin embargo, el modelo de decrementos múltiples requiere incorporar el conjunto completo de causas competidoras. Por ello, se define la intensidad total de salida del estado vivo como
+
+$$
+\widehat{\mu}_{x,t}^{(\tau)}
+=
+\sum_{j=1}^{r}
+\widehat{\mu}_{x,t}^{(j)}.
+$$
+
+La notación $(\tau)$ indica la mortalidad total por todas las causas consideradas. Esta suma es el elemento que conecta el estimador clásico con la lógica de decrementos múltiples: la causa $c$ no se analiza como si fuera la única salida posible, sino en relación con las demás causas que también pueden producir la muerte dentro del intervalo.
+
+Luego, bajo el supuesto de fuerza constante dentro de la celda anual, las intensidades se transforman en probabilidades de decremento mediante
+
+$$
+\widehat{q}_{x,t}^{(c)}
+=
+\frac{\widehat{\mu}_{x,t}^{(c)}}
+{\widehat{\mu}_{x,t}^{(\tau)}}
+\left(
+1-e^{-\widehat{\mu}_{x,t}^{(\tau)}}
+\right).
+$$
+
+Esta fórmula, presentada en la literatura de decrementos múltiples, permite obtener la probabilidad anual de morir por la causa $c$ en presencia de causas competidoras. El término $\widehat{\mu}_{x,t}^{(c)} / \widehat{\mu}_{x,t}^{(\tau)}$ distribuye la salida total entre las causas, mientras que $1-e^{-\widehat{\mu}_{x,t}^{(\tau)}}$ representa la probabilidad de salir del estado vivo por cualquier causa durante el horizonte anual. Así, el enfoque clásico convierte conteos y exposición en una probabilidad actuarial local.
+
+El segundo enfoque es el bayesiano. Este enfoque mantiene el mismo modelo de conteo Poisson para las defunciones, pero cambia la forma de tratar la intensidad de mortalidad. En lugar de considerar $\mu_{x,t}^{(c)}$ como un parámetro fijo desconocido, se trata como una variable aleatoria positiva. Para ello, se asigna una distribución Gamma:
+
+$$
+\mu_{x,t}^{(c)}
+\sim
+\text{Gamma}\left(\alpha_{p}^{(c)},\beta_{p}^{(c)}\right),
+$$
+
+donde $\alpha_{p}^{(c)}$ y $\beta_{p}^{(c)}$ representan hiperparámetros asociados a la experiencia colectiva de la causa $c$ en el país $p$. En este punto se recupera explícitamente el subíndice $p$, porque en el enfoque Empirical Bayes los hiperparámetros se estiman por país y causa. La idea es que cada celda conserva su información observada, pero se beneficia de una experiencia colectiva estimada a partir de celdas relacionadas.
+
+La conjugación Poisson-Gamma permite obtener una distribución posterior también Gamma. Para una celda aplicable, se tiene
+
+$$
+\mu_{x,t}^{(c)}
+\mid
+D_{x,t}^{(c)}, E_{x,t}
+\sim
+\text{Gamma}
+\left(
+\widehat{\alpha}_{p}^{(c)} + D_{x,t}^{(c)},
+\widehat{\beta}_{p}^{(c)} + E_{x,t}
+\right).
+$$
+
+Esta estructura es especialmente útil cuando existen celdas con pocos fallecimientos, baja exposición o conteos nulos. En el enfoque clásico, una celda con cero defunciones produce una intensidad estimada igual a cero. En cambio, el enfoque bayesiano puede producir una estimación estabilizada, porque combina la información de la celda con la experiencia colectiva de la causa y el país. Esto no significa inventar defunciones, sino reconocer que un cero observado no siempre implica ausencia absoluta de riesgo.
+
+Los hiperparámetros $\alpha_{p}^{(c)}$ y $\beta_{p}^{(c)}$ se estiman mediante un enfoque Empirical Bayes inspirado en Zhang et al. (2019). En lugar de fijarlos subjetivamente, se estiman a partir de los conteos observados. Para esto se utiliza la distribución marginal de los conteos, que se obtiene al integrar la intensidad latente del modelo Poisson-Gamma. Schmitt et al. (2019) muestran que esta integración conduce a una distribución marginal binomial negativa. De esta manera, la experiencia colectiva se estima mediante máxima verosimilitud marginal, y luego se usa para construir las distribuciones posteriores de las intensidades.
+
+Un aspecto importante del enfoque bayesiano es que la probabilidad de decremento no es una función lineal de las intensidades. En particular,
+
+$$
+Q_{x,t}^{(c)}
+=
+\frac{\mu_{x,t}^{(c)}}
+{\mu_{x,t}^{(\tau)}}
+\left(
+1-e^{-\mu_{x,t}^{(\tau)}}
+\right),
+$$
+
+donde
+
+$$
+\mu_{x,t}^{(\tau)}
+=
+\sum_{j=1}^{r}
+\mu_{x,t}^{(j)}.
+$$
+
+Como la transformación incluye una razón y una función exponencial, no basta con sustituir las medias posteriores de las intensidades dentro de la fórmula clásica. En general,
+
+$$
+E[f(\mu)\mid \text{datos}]
+\neq
+f(E[\mu\mid \text{datos}]).
+$$
+
+Por esta razón, el estimador bayesiano de $Q_{x,t}^{(c)}$ se obtiene mediante simulaciones posteriores. Para cada simulación $k=1,\ldots,S$, se generan intensidades posteriores por causa:
+
+$$
+\mu_{x,t}^{(j,k)}
+\sim
+\text{Gamma}
+\left(
+\widehat{\alpha}_{p}^{(j)} + D_{x,t}^{(j)},
+\widehat{\beta}_{p}^{(j)} + E_{x,t}
+\right),
+\qquad j=1,\ldots,r.
+$$
+
+Luego se calcula la intensidad total simulada,
+
+$$
+\mu_{x,t}^{(\tau,k)}
+=
+\sum_{j=1}^{r}
+\mu_{x,t}^{(j,k)},
+$$
+
+y se transforma cada simulación en una probabilidad de decremento:
+
+$$
+q_{x,t}^{(c,k)}
+=
+\frac{\mu_{x,t}^{(c,k)}}
+{\mu_{x,t}^{(\tau,k)}}
+\left(
+1-e^{-\mu_{x,t}^{(\tau,k)}}
+\right).
+$$
+
+Finalmente, el estimador bayesiano se obtiene como el promedio de las probabilidades simuladas:
+
+$$
+q_{x,t}^{(c),*}
+=
+\frac{1}{S}
+\sum_{k=1}^{S}
+q_{x,t}^{(c,k)}
+\approx
+E\left(Q_{x,t}^{(c)}\mid \mathcal{D}_{x,t}\right).
+$$
+
+Esta aproximación se justifica mediante la Ley de los Grandes Números. Para $S$ suficientemente grande, el promedio de las simulaciones se aproxima a la esperanza posterior de la probabilidad de decremento. Además, las simulaciones permiten construir intervalos creíbles mediante cuantiles de la distribución posterior de $Q_{x,t}^{(c)}$. Esta es una diferencia importante respecto al enfoque clásico: en el caso bayesiano, la incertidumbre no se resume únicamente en una estimación puntual, sino en una distribución posterior de probabilidades.
+
+El enfoque clásico también puede acompañarse de intervalos de incertidumbre. Para ello, se puede utilizar simulación paramétrica de conteos Poisson. La idea consiste en tomar las intensidades estimadas bajo el enfoque clásico, generar conteos simulados de defunciones bajo el modelo Poisson, recalcular intensidades y transformar nuevamente en probabilidades de decremento. Al repetir este procedimiento muchas veces, se obtiene una distribución simulada de $\widehat{q}_{x,t}^{(c)}$, a partir de la cual pueden construirse intervalos de confianza. Esta estrategia permite comparar intervalos clásicos y bayesianos bajo un número común de simulaciones y un mismo nivel de cobertura.
+
+Aun así, la interpretación de los intervalos no es idéntica. Un intervalo de confianza clásico se interpreta a partir del comportamiento repetido del procedimiento de estimación bajo muestras hipotéticas repetidas. En cambio, un intervalo creíble bayesiano se interpreta como un intervalo que contiene una proporción dada de la distribución posterior del parámetro o cantidad estimada, condicionada a los datos observados y al modelo. Esta diferencia interpretativa debe mantenerse clara para evitar presentar ambos intervalos como si fueran equivalentes. En el proyecto, la comparación entre intervalos funciona como una herramienta para revisar estabilidad y sensibilidad, no como una competencia directa entre paradigmas.
+
+Una decisión metodológica central fue distinguir entre ceros observacionales y ceros estructurales. Un cero observacional corresponde a una celda donde la muerte por una causa era posible, pero no se observaron defunciones durante el año considerado. Estos ceros deben mantenerse, porque aportan información sobre la intensidad de mortalidad. En cambio, un cero estructural corresponde a una celda donde la causa no resulta aplicable dentro del dominio definido para el análisis. En esos casos, no tiene sentido tratar el cero como evidencia de baja mortalidad, porque la celda no pertenece al conjunto de riesgo correspondiente.
+
+Esta distinción fue necesaria, por ejemplo, para la causa XV, correspondiente a embarazo, parto y puerperio. Las celdas masculinas no deben usarse para estimar la intensidad de esta causa, porque no representan observaciones válidas de una intensidad pequeña, sino casos fuera del dominio de aplicación. De forma similar, para la causa XVI, correspondiente a afecciones originadas en el periodo perinatal, el análisis se restringe al grupo etario 0-4. Las edades posteriores no deben incorporarse como miles de ceros ordinarios, porque esto distorsiona la experiencia colectiva y podría generar estimaciones artificialmente bajas para la causa en el grupo donde sí corresponde analizarla.
+
+El tratamiento adecuado de estos ceros también explica por qué la metodología no puede reducirse a aplicar fórmulas mecánicamente. La construcción de probabilidades de decremento requiere decisiones actuariales y epidemiológicas sobre qué celdas pertenecen al dominio de cada causa. En este sentido, el modelo no solo estima, sino que también ordena conceptualmente la información. Una mala definición del dominio puede producir resultados imposibles o poco interpretables, como asignar probabilidad positiva de muerte por embarazo, parto y puerperio a hombres, o estimar afecciones perinatales en edades avanzadas.
+
+Una vez estimadas las probabilidades de decremento, el análisis no se limita a comparar valores puntuales de $q_{x,t}^{(c)}$. También se estudia la composición causal condicionada al fallecimiento. Para una celda fija, la composición causal se define como
+
+$$
+\pi_{x,t}^{(c)}
+=
+P(J=c\mid T_{x,t}\leq 1)
+=
+\frac{q_{x,t}^{(c)}}
+{\sum_{j=1}^{r}q_{x,t}^{(j)}}.
+$$
+
+Esta cantidad responde a una pregunta distinta. Mientras $q_{x,t}^{(c)}$ mide el riesgo absoluto de morir por la causa $c$ dentro de toda la población expuesta de la celda, $\pi_{x,t}^{(c)}$ mide la participación relativa de esa causa entre quienes fallecen. Por ejemplo, una causa puede representar una fracción alta de los fallecimientos de un grupo etario, aunque el riesgo absoluto de fallecer en ese grupo sea bajo. Por eso, ambas cantidades son necesarias: una describe magnitud del riesgo y la otra describe estructura causal.
+
+Esta distinción se conecta con los gráficos de Goerlich Gisbert (2012), quien utiliza tablas de decrementos múltiples para analizar cómo se distribuye la mortalidad por causa y edad. El aporte de Goerlich no se toma como una reproducción exacta de nuestro análisis, porque su trabajo se construye desde tablas de vida y con un alcance temporal diferente. Sin embargo, sí sirve como antecedente metodológico para justificar la visualización de la mortalidad por causa dentro de una estructura actuarial. En este proyecto, esa idea se adapta a una lectura local por país, sexo, año y grupo etario, usando probabilidades anuales de decremento y composiciones causales condicionadas.
+
+Los antecedentes latinoamericanos también justifican la relevancia sustantiva del proyecto. Calazans y Queiroz (2020) muestran que existen patrones comunes de mortalidad adulta por causa en América Latina, pero también diferencias entre países. Esta observación es importante porque Centroamérica no debe tratarse como un bloque homogéneo. Aunque los países compartan proximidad regional, sus perfiles de mortalidad pueden diferir por estructura poblacional, condiciones sociales, registro de defunciones, exposición a violencia, transición epidemiológica y composición de causas crónicas. Por esta razón, el proyecto compara países sin asumir de antemano que todos siguen la misma trayectoria.
+
+Los resultados exploratorios ya mostraban que las causas no se distribuyen de manera uniforme a lo largo de la edad. Las enfermedades del sistema circulatorio y los tumores tienden a ganar peso en edades adultas y avanzadas, mientras que las causas externas aparecen con mayor relevancia en edades jóvenes y adultas jóvenes. Las afecciones perinatales se concentran en edades tempranas, especialmente en el grupo 0-4. Esta estructura confirma la necesidad de mantener la edad como eje central del análisis. Si todas las edades se agregaran, se perdería precisamente el patrón que permite interpretar la variabilidad del decremento por causa.
+
+La comparación por sexo también es necesaria. Las causas externas, por ejemplo, suelen mostrar mayor magnitud en hombres jóvenes que en mujeres del mismo grupo etario. En cambio, otras causas pueden presentar diferencias menos abruptas o depender más del grupo de edad que del sexo. Esta diferenciación permite evitar conclusiones excesivamente generales. No basta decir que una causa es relevante en un país; se debe precisar para qué grupo etario, en qué sexo, durante qué año y bajo qué medida: probabilidad absoluta o composición causal.
+
+La comparación entre países permite observar otro nivel de variabilidad. En algunos resultados, El Salvador aparece con valores altos de probabilidad local de decremento por causas externas en hombres jóvenes, especialmente en 2015, con una reducción visible hacia 2018. Este patrón no debe interpretarse automáticamente como una afirmación causal sobre eventos sociales específicos, porque el análisis no incorpora variables explicativas externas ni pruebas de causalidad. Sin embargo, sí señala una diferencia descriptiva importante dentro del marco de decrementos múltiples. En términos actuariales, ciertos grupos pueden tener una salida por causa externa más intensa que sus equivalentes regionales.
+
+En edades avanzadas, los patrones cambian. Las enfermedades del sistema circulatorio, tumores y enfermedades respiratorias adquieren mayor peso. Esto se observa tanto en la probabilidad absoluta como en la composición causal. Sin embargo, el cambio no siempre es homogéneo entre países ni entre años. Algunos países pueden mostrar estabilidad, otros aumentos y otros reducciones. Esta heterogeneidad es relevante porque evita una lectura simple de mejora o deterioro regional. La supervivencia o el decremento por causa no evolucionan necesariamente de forma uniforme en todos los países centroamericanos durante 2015-2018.
+
+La composición causal permite observar una historia complementaria. En Costa Rica, por ejemplo, la composición por edad muestra una participación relativamente persistente de tumores y un aumento progresivo de enfermedades del sistema circulatorio en edades avanzadas. En Nicaragua, en cambio, la composición parece más fragmentada en ciertos grupos etarios, con mayor participación de causas residuales o no incluidas entre las principales del gráfico resumido. Esta diferencia no necesariamente implica que Nicaragua tenga mayor riesgo absoluto de morir por una causa particular; más bien indica que la distribución interna del decremento se reparte de manera distinta entre causas.
+
+La lectura conjunta de $q_{x,t}^{(c)}$ y $\pi_{x,t}^{(c)}$ ayuda a responder mejor la pregunta de investigación. La probabilidad absoluta indica cuánto pesa una causa en términos de riesgo para toda la población expuesta de la celda. La composición causal indica cómo se reparte el total de fallecimientos estimados entre causas. Si ambas medidas se interpretan juntas, se puede distinguir entre una causa con alta participación relativa pero bajo riesgo absoluto, y una causa con riesgo absoluto alto en edades donde la mortalidad total también es elevada. Esta distinción es fundamental para no confundir estructura causal con magnitud de mortalidad.
+
+La comparación entre el enfoque clásico y el bayesiano cumple un papel metodológico adicional. En celdas con alta exposición y suficientes defunciones, se espera que las estimaciones sean semejantes. Esto ocurre porque la información observada domina la estimación. En cambio, en celdas con baja exposición, conteos pequeños o causas poco frecuentes, el enfoque bayesiano puede producir estimaciones más estabilizadas. Esta diferencia no debe interpretarse como que un enfoque sea siempre mejor que el otro, sino como evidencia de que cada enfoque responde de manera distinta a la escasez de información en ciertas celdas.
+
+Por esta razón, las diferencias entre $\widehat{q}_{x,t}^{(c)}$ y $q_{x,t}^{(c),*}$ deben analizarse con cuidado. Una diferencia pequeña sugiere que la estimación es robusta al cambio de enfoque. Una diferencia grande puede indicar sensibilidad a conteos bajos, exposición pequeña, ceros observados o influencia de la experiencia colectiva bayesiana. En ese sentido, la comparación entre enfoques no es un objetivo aislado, sino una herramienta para evaluar la estabilidad de los patrones encontrados.
+
+Las visualizaciones cumplen un papel central en esta articulación. Los gráficos de líneas permiten observar cómo cambia la probabilidad de decremento por causa a lo largo de los grupos etarios. Los mapas de calor ayudan a identificar concentraciones de muertes o excesos descriptivos. Los radares permiten comparar países en celdas específicas, fijando causa, edad y sexo. Finalmente, los gráficos de composición causal permiten observar cómo se reparte el total de decrementos entre causas. Cada gráfico responde a una pregunta distinta, por lo que no deben presentarse como ilustraciones decorativas, sino como evidencia vinculada a una lectura actuarial concreta.
+
+La imagen que mejor resume la historia del proyecto es la composición causal por edad. Esta visualización muestra que la mortalidad no solo aumenta o disminuye con la edad, sino que cambia de naturaleza causal. En edades tempranas aparecen causas propias del inicio de la vida; en edades jóvenes y adultas jóvenes ganan importancia las causas externas; en edades adultas y avanzadas aumentan tumores, enfermedades circulatorias y respiratorias. Esta transición justifica la decisión de no trabajar con una mortalidad agregada, sino con decrementos múltiples por causa.
+
+El proyecto, por tanto, cuenta dos historias que se integran. La primera es la historia de la literatura: los modelos de decrementos múltiples permiten pasar de conteos y tasas a probabilidades actuariales por causa, considerando riesgos competitivos. La segunda es la historia empírica del grupo: al aplicar esta lógica a países centroamericanos entre 2015 y 2018, se observa que la mortalidad por causa no sigue una única trayectoria regional, sino que se reorganiza según edad, sexo, país y causa. La metodología permite unir ambas historias: toma un marco actuarial conocido y lo adapta a datos agregados reales de mortalidad centroamericana.
+
+Esta integración también muestra los límites del análisis. Al trabajar con datos agregados, no se observan trayectorias individuales ni se puede estimar el riesgo exacto de cada persona. Tampoco se puede afirmar claramente por qué una causa aumenta o disminuye en un país. Además, la calidad, cobertura y comparabilidad de los registros de mortalidad pueden variar entre países. La exclusión de Honduras responde precisamente a la falta de observaciones recientes compatibles con el periodo definido para el proyecto. Estas limitaciones no invalidan el análisis, pero sí delimitan su alcance.
+
+En síntesis, la parte escrita del proyecto debe conducir al lector desde la pregunta inicial hasta la solución metodológica y los resultados. La pregunta no se responde identificando simplemente la causa con más muertes, sino estimando probabilidades de decremento por causa y analizando cómo estas cambian entre grupos etarios, países, sexos y años. El enfoque clásico permite construir una estimación directa a partir de defunciones y exposición. El enfoque bayesiano permite estabilizar la estimación en celdas con poca información y trasladar la incertidumbre hasta la probabilidad de decremento. La composición causal, por su parte, permite interpretar el peso relativo de cada causa entre quienes fallecen. En conjunto, estas herramientas muestran que la mortalidad por causa en Centroamérica no es una estructura fija, sino un fenómeno que cambia con la edad, el país, el sexo y el marco de estimación utilizado.
+
 ## 2.2 Conclusiones
 
-La investigación permitió responder la pregunta sobre los patrones de variabilidad de la probabilidad de decremento por causa, $q_{x,t}^{(c)}$, en Centroamérica, excluyendo a Honduras por falta de información compatible con el periodo de estudio, entre 2015 y 2018, a partir de conteos de defunciones de la WHO Mortality Database y exposiciones poblacionales aproximadas mediante la World Population Prospects (WPP). La elección de decrementos múltiples se desprendió directamente de la forma en que estaban organizados los datos: Para cada combinación de país, sexo, año y grupo etario se disponía de defunciones separadas por causa ICD-10 y de una exposición común para la población de esa celda. Con esa estructura, los conteos por causa y la exposición de cada celda se transformaron en probabilidades de decremento por causa, conservando la lectura de causas competidoras propia de un modelo actuarial. Esta lectura se apoya en la teoría de decrementos múltiples desarrollada por Deshmukh (2012) y en la discusión de Keyfitz et al. (1972) sobre el paso de tasas a probabilidades en contextos con varias causas de salida. A partir de los conteos de defunciones y la exposición poblacional, el enfoque clásico permitió construir intensidades y transformarlas en probabilidades locales de decremento, siguiendo la lógica de estimación de tasas discutida por Pitacco et al. (2009) y el uso de conteos Poisson en mortalidad planteado por Manton et al. (1989). El enfoque bayesiano, por su parte, amplió esta estimación al incorporar información colectiva mediante una estructura Poisson-Gamma y una lógica Empirical Bayes, cercana a Zhang et al. (2019), Schmitt et al. (2019) y Nelder y Verrall (1997). En términos generales, los resultados fueron coherentes con lo esperado: Ambos enfoques tendieron a acercarse cuando las celdas tenían suficiente información, mientras que las diferencias se hicieron más visibles en causas poco frecuentes, conteos bajos o celdas con mayor inestabilidad. En términos generales, los resultados fueron coherentes con lo esperado: ambos enfoques tendieron a acercarse cuando las celdas tenían suficiente información, mientras que las diferencias se hicieron más visibles en causas poco frecuentes, conteos bajos o celdas con mayor inestabilidad. Los resultados dejan ver que el grupo etario es una dimensión central del análisis: conforme cambia la edad, también cambia el peso relativo de las causas dentro del decremento estimado. 
+La investigación permitió responder la pregunta sobre los patrones de variabilidad de la probabilidad de decremento por causa, $q_{x,t}^{(c)}$, en Centroamérica, excluyendo a Honduras por falta de información compatible con el periodo de estudio, entre 2015 y 2018, a partir de conteos de defunciones de la WHO Mortality Database y exposiciones poblacionales aproximadas mediante la World Population Prospects (WPP). La elección de decrementos múltiples se desprendió directamente de la forma en que estaban organizados los datos: Para cada combinación de país, sexo, año y grupo etario se disponía de defunciones separadas por causa ICD-10 y de una exposición común para la población de esa celda. Con esa estructura, los conteos por causa y la exposición de cada celda se transformaron en probabilidades de decremento por causa, conservando la lectura de causas competidoras propia de un modelo actuarial. Esta lectura se apoya en la teoría de decrementos múltiples desarrollada por Deshmukh (2012) y en la discusión de Keyfitz et al. (1972) sobre el paso de tasas a probabilidades en contextos con varias causas de salida. A partir de los conteos de defunciones y la exposición poblacional, el enfoque clásico permitió construir intensidades y transformarlas en probabilidades locales de decremento, siguiendo la lógica de estimación de tasas discutida por Pitacco et al. (2009) y el uso de conteos Poisson en mortalidad planteado por Manton et al. (1989). El enfoque bayesiano, por su parte, amplió esta estimación al incorporar información colectiva mediante una estructura Poisson-Gamma y una lógica Empirical Bayes, cercana a Zhang et al. (2019), Schmitt et al. (2019) y Nelder y Verrall (1997). En términos generales, los resultados fueron coherentes con lo esperado: Ambos enfoques tendieron a acercarse cuando las celdas tenían suficiente información, mientras que las diferencias se hicieron más visibles en causas poco frecuentes, conteos bajos o celdas con mayor inestabilidad. En términos generales, los resultados fueron coherentes con lo esperado: ambos enfoques tendieron a acercarse cuando las celdas tenían suficiente información, mientras que las diferencias se hicieron más visibles en causas poco frecuentes, conteos bajos o celdas con mayor inestabilidad. Los resultados dejan ver que el grupo etario es una dimensión central del análisis: conforme cambia la edad, también cambia el peso relativo de las causas dentro del decremento estimado.
 
 Los hallazgos empíricos evidencian que la variabilidad de la mortalidad por causa en Centroamérica se expresa de manera diferenciada según edad, sexo, país, año y causa. La probabilidad absoluta de decremento, $q_{x,t}^{(c)}$, permitió analizar la magnitud local del riesgo por causa dentro de cada celda, mientras que la composición causal condicionada al fallecimiento, $\pi_{x,t}^{(c)}$, permitió estudiar el peso relativo de cada causa entre quienes fallecen. A partir de estas medidas, se observó una dinámica etaria relativamente consistente entre países: las causas externas presentaron mayor participación en hombres jóvenes y adultos jóvenes, especialmente entre los 15 y 44 años, mientras que las enfermedades del sistema circulatorio adquirieron mayor peso en edades avanzadas, principalmente a partir de los 65 años. Este comportamiento se complementa con el análisis de excesos, donde El Salvador concentró el 92.6% de las muertes por agresiones dentro del conjunto de países que superan la mediana de dicha causa. El caso más marcado correspondió a hombres de 20–24 años en 2015, con un exceso de 296 muertes. En contraste, los mayores conteos absolutos de defunciones se ubicaron en edades avanzadas y en enfermedades del sistema circulatorio, especialmente en Guatemala, donde la causa ICD-10 1064 acumuló cerca de 23,235 muertes en el grupo 85–89. También se identificaron diferencias relevantes entre países: Belice presentó un aumento local del decremento por enfermedades circulatorias en hombres de 65–69 años entre 2015 y 2018; Nicaragua mostró una composición causal más dispersa entre causas residuales que Costa Rica; y Guatemala evidenció una mayor presencia de síntomas y hallazgos no clasificados en edades avanzadas. Estos resultados muestran que la variabilidad del decremento combina patrones etarios esperados, concentraciones causales específicas, diferencias nacionales y posibles efectos asociados a los sistemas de registro y clasificación de las defunciones.
 
-Finalmente, las discrepancias observadas entre países, causas y enfoques obligan a cerrar el análisis con cautela. En los resultados clásicos, Belice presentó un aumento local de la probabilidad de decremento por enfermedades del sistema circulatorio en hombres de 65–69 años entre 2015 y 2018, un comportamiento que tensiona la expectativa general de mejora de supervivencia discutida a partir de Goerlich (2012). También se observaron variaciones relevantes en tumores para edades adultas y mayores, como en mujeres de 70–74 años. En El Salvador, las causas externas en hombres jóvenes mostraron niveles elevados en 2015, especialmente en los grupos 20–24 y 30–34, junto con una reducción visible hacia 2018. La comparación entre enfoque clásico y bayesiano mostró diferencias más marcadas en causas con mayor fragilidad estadística o con alta presencia de celdas donde la estimación clásica fue igual a cero, como enfermedades de la sangre, enfermedades de la piel y tejido subcutáneo, enfermedades osteomusculares, enfermedades genitourinarias y embarazo, parto y puerperio. En Belice también aparecieron diferencias de composición causal en edades tempranas y en el grupo 95+, aunque en varios casos la causa dominante se mantuvo estable entre enfoques. Estas discrepancias deben leerse dentro del periodo 2015–2018 y con el nivel de desagregación utilizado en el proyecto. Las principales limitaciones provienen de la naturaleza agregada de los datos, la ausencia de trayectorias individuales, la posible heterogeneidad en la calidad de los registros de mortalidad entre países y el horizonte temporal reducido. Por ello, trabajos futuros deberían ampliar la serie de años, incorporar intervalos de incertidumbre de forma sistemática, revisar con más detalle la calidad demográfica de las exposiciones y evaluar la persistencia de estos patrones con una ventana temporal más amplia. 
-
-
+Finalmente, las discrepancias observadas entre países, causas y enfoques obligan a cerrar el análisis con cautela. En los resultados clásicos, Belice presentó un aumento local de la probabilidad de decremento por enfermedades del sistema circulatorio en hombres de 65–69 años entre 2015 y 2018, un comportamiento que tensiona la expectativa general de mejora de supervivencia discutida a partir de Goerlich (2012). También se observaron variaciones relevantes en tumores para edades adultas y mayores, como en mujeres de 70–74 años. En El Salvador, las causas externas en hombres jóvenes mostraron niveles elevados en 2015, especialmente en los grupos 20–24 y 30–34, junto con una reducción visible hacia 2018. La comparación entre enfoque clásico y bayesiano mostró diferencias más marcadas en causas con mayor fragilidad estadística o con alta presencia de celdas donde la estimación clásica fue igual a cero, como enfermedades de la sangre, enfermedades de la piel y tejido subcutáneo, enfermedades osteomusculares, enfermedades genitourinarias y embarazo, parto y puerperio. En Belice también aparecieron diferencias de composición causal en edades tempranas y en el grupo 95+, aunque en varios casos la causa dominante se mantuvo estable entre enfoques. Estas discrepancias deben leerse dentro del periodo 2015–2018 y con el nivel de desagregación utilizado en el proyecto. Las principales limitaciones provienen de la naturaleza agregada de los datos, la ausencia de trayectorias individuales, la posible heterogeneidad en la calidad de los registros de mortalidad entre países y el horizonte temporal reducido. Por ello, trabajos futuros deberían ampliar la serie de años, incorporar intervalos de incertidumbre de forma sistemática, revisar con más detalle la calidad demográfica de las exposiciones y evaluar la persistencia de estos patrones con una ventana temporal más amplia.
 
 \newpage
 
 ## 2.3 Introducción
 
-Al mirar la mortalidad como una sola cifra, se pierde una parte decisiva del fenómeno. Dos poblaciones pueden parecer cercanas en su nivel general de mortalidad y, sin embargo, tener estructuras causales muy distintas. No es lo mismo que las defunciones se concentren en edades avanzadas por enfermedades crónicas a que aparezcan con mayor peso en edades jóvenes por causas externas o condiciones evitables. Por eso, este artículo parte de una idea  central y es que, en mortalidad no solo importa cuánto se muere, también se debe preguntar por qué causas ocurre los decrementos, en qué edades, en qué país y bajo qué estructura por sexo. Esta distinción tiene relevancia social, porque las causas de muerte permiten leer desigualdades demográficas y sanitarias que una tasa agregada deja demasiado planas.
+Al mirar la mortalidad como una sola cifra, se pierde una parte decisiva del fenómeno. Dos poblaciones pueden parecer cercanas en su nivel general de mortalidad y, sin embargo, tener estructuras causales muy distintas. No es lo mismo que las defunciones se concentren en edades avanzadas por enfermedades crónicas a que aparezcan con mayor peso en edades jóvenes por causas externas o condiciones evitables. Por eso, este artículo parte de una idea central y es que, en mortalidad no solo importa cuánto se muere, también se debe preguntar por qué causas ocurre los decrementos, en qué edades, en qué país y bajo qué estructura por sexo. Esta distinción tiene relevancia social, porque las causas de muerte permiten leer desigualdades demográficas y sanitarias que una tasa agregada deja demasiado planas.
 
 Para estudiar esa estructura se utiliza el marco actuarial de decrementos múltiples. En este marco, una persona parte del estado vivo y puede salir de él por causas mutuamente excluyentes. La base del proyecto tiene justamente esa forma, pues para cada combinación de país, sexo, año y grupo etario se observan defunciones separadas por causa ICD-10 y una exposición común. A partir de esa información se estima la probabilidad anual de decremento por causa, denotada en el artículo como $q_{x,t}^{(c)}$.
 
@@ -574,12 +814,25 @@ El objetivo del artículo es identificar cómo varía la probabilidad actuarial 
 
 \newpage
 
+## 2.4 Resumen
+
+La mortalidad es un componente central para analizar la esperanza de vida; sin embargo, los análisis agregados pueden ocultar diferencias relevantes según causa de muerte, edad, sexo y territorio. En este contexto, el estudio analiza la mortalidad por causa en países de Centroamérica durante 2015–2018, un periodo y espacio con escasos antecedentes específicos desde el enfoque de decrementos múltiples. El objetivo es identificar patrones de variabilidad en la probabilidad de decremento por causa, $q_{x,t}^{(c)}$, según grupo etario, país, sexo, año calendario y categorías de la ICD-10. Para ello, se utilizaron defunciones de la WHO Mortality Database y exposiciones poblacionales de la WPP/Population Database, definiendo como unidad de análisis cada celda país-sexo-año-grupo etario-causa. La probabilidad de decremento por causa se estimó mediante un enfoque clásico, basado en conteos Poisson e intensidades estimadas por exposición, y un enfoque bayesiano Poisson–Gamma con estimación Empirical Bayes de hiperparámetros. Además, se calculó la composición causal condicionada al fallecimiento, $\pi_{x,t}^{(c)}$, para distinguir entre la magnitud absoluta del riesgo y el peso relativo de cada causa entre quienes fallecen, incorporando también el tratamiento de ceros observacionales y estructurales. Los resultados muestran una alta concordancia global entre las estimaciones clásica y bayesiana, aunque con diferencias más visibles en celdas con baja exposición o conteos escasos. También se identificó una mayor relevancia de las causas externas en hombres jóvenes, mientras que las enfermedades del sistema circulatorio adquirieron mayor peso en edades avanzadas, con variaciones específicas entre países. En conjunto, el trabajo muestra que el enfoque de decrementos múltiples permite interpretar la mortalidad centroamericana más allá del volumen total de defunciones, al revelar patrones diferenciados por edad, sexo, país y causa. Como extensión futura, se propone ampliar el periodo de estudio, incorporar más regiones y profundizar en la incertidumbre asociada a las estimaciones bayesianas.
+
+\newpage
+
 # 2.5 Ordenamiento final
+
 ## Título
+
+Probabilidades de decremento múltiple por causa de muerte en Centroamérica, 2015–2018.
 
 ## Resumen
 
+La mortalidad es un componente central para analizar la esperanza de vida; sin embargo, los análisis agregados pueden ocultar diferencias relevantes según causa de muerte, edad, sexo y territorio. En este contexto, el estudio analiza la mortalidad por causa en países de Centroamérica durante 2015–2018, un periodo y espacio con escasos antecedentes específicos desde el enfoque de decrementos múltiples. El objetivo es identificar patrones de variabilidad en la probabilidad de decremento por causa, $q_{x,t}^{(c)}$, según grupo etario, país, sexo, año calendario y categorías de la ICD-10. Para ello, se utilizaron defunciones de la WHO Mortality Database y exposiciones poblacionales de la WPP/Population Database, definiendo como unidad de análisis cada celda país-sexo-año-grupo etario-causa. La probabilidad de decremento por causa se estimó mediante un enfoque clásico, basado en conteos Poisson e intensidades estimadas por exposición, y un enfoque bayesiano Poisson–Gamma con estimación Empirical Bayes de hiperparámetros. Además, se calculó la composición causal condicionada al fallecimiento, $\pi_{x,t}^{(c)}$, para distinguir entre la magnitud absoluta del riesgo y el peso relativo de cada causa entre quienes fallecen, incorporando también el tratamiento de ceros observacionales y estructurales. Los resultados muestran una alta concordancia global entre las estimaciones clásica y bayesiana, aunque con diferencias más visibles en celdas con baja exposición o conteos escasos. También se identificó una mayor relevancia de las causas externas en hombres jóvenes, mientras que las enfermedades del sistema circulatorio adquirieron mayor peso en edades avanzadas, con variaciones específicas entre países. En conjunto, el trabajo muestra que el enfoque de decrementos múltiples permite interpretar la mortalidad centroamericana más allá del volumen total de defunciones, al revelar patrones diferenciados por edad, sexo, país y causa. Como extensión futura, se propone ampliar el periodo de estudio, incorporar más regiones y profundizar en la incertidumbre asociada a las estimaciones bayesianas.
+
 ## Palabras clave
+
+Decrementos múltiples; mortalidad por causa; ICD-10; Centroamérica; estimación bayesiana.
 
 ## Introducción
 
@@ -681,7 +934,7 @@ Tal como se ha venido desarrollando a partir de la estructura metodológica, los
 
 ### Dinámica demográfica de la mortalidad por causa
 
-Un primer hallazgo consistió en la concentración relativa de mortalidad por causa ICD10-1102 en población joven de El Salvador. A partir de la medida de exceso descriptivo, se identificaron los países con mayores excesos para la causa de agresiones y se observó que, dentro del conjunto de países que superaban la banda de referencia, El Salvador concentró aproximadamente el 92.6 % de las muertes asociadas a esta causa. Este resultado es signifcativo porque a través de un dato se permite construir una noción de la dinámica demográfica del país. 
+Un primer hallazgo consistió en la concentración relativa de mortalidad por causa ICD10-1102 en población joven de El Salvador. A partir de la medida de exceso descriptivo, se identificaron los países con mayores excesos para la causa de agresiones y se observó que, dentro del conjunto de países que superaban la banda de referencia, El Salvador concentró aproximadamente el 92.6 % de las muertes asociadas a esta causa. Este resultado es signifcativo porque a través de un dato se permite construir una noción de la dinámica demográfica del país.
 
 La medida de exceso también permitió diferenciar entre volumen absoluto de defunciones y desviación respecto al comportamiento típico de un estrato. En los datos observados, los estratos con mayor número de muertes se concentran principalmente en edades avanzadas y en enfermedades del sistema circulatorio, especialmente en Guatemala. Esto responde, en parte, al mayor volumen poblacional y a la acumulación natural de defunciones en edades mayores. En cambio, el mayor estrato individual por exceso corresponde a El Salvador, en 2015, hombres de 20--24 años, causa 1102: agresiones, con un exceso de 296 muertes. Por tanto, el exceso descriptivo no repite simplemente el análisis de conteos absolutos, sino que permite detectar estratos relativamente atípicos dentro de su propia trayectoria 2015--2018.
 
@@ -719,24 +972,82 @@ En síntesis, la comparación entre enfoques no muestra una ruptura general entr
 
 De esta manera, la comparación clásico-bayesiana cumple una función metodológica concreta separar resultados robustos de los resultados sensibles al método de estimación. El análisis por $DRAS_{x,t}^{(c)}$ muestra que las diferencias absolutas en las probabilidades de decremento son generalmente pequeñas, mientras que la distancia $D_{\pi,x,t}$ evidencia que algunas celdas pueden cambiar su reparto causal interno aun cuando las diferencias absolutas sean reducidas. Esto remarca el énfasis principal del trabajo en estudiar la variabilidad de $q_{x,t,p,s}^{(c)}$ por edad, país, sexo, año y causa, manteniendo explícita la incertidumbre asociada al proceso de estimación.
 
-
 ## Conclusiones
 
 La investigación permitió responder la pregunta sobre los patrones de variabilidad de la probabilidad de decremento por causa, $q_{x,t}^{(c)}$, en Centroamérica entre 2015 y 2018, excluyendo Honduras por falta de información compatible con el periodo de estudio. El análisis se construyó con conteos de defunciones de la WHO Mortality Database y exposiciones poblacionales aproximadas mediante la World Population Prospects (WPP). La estructura de los datos orientó el uso de decrementos múltiples: para cada combinación de país, sexo, año y grupo etario se contaba con defunciones separadas por causa ICD-10 y una exposición común para la celda. Con esa base, los conteos por causa se transformaron en probabilidades de decremento, manteniendo la lectura de causas competidoras propia del modelo actuarial. Esta formulación se apoyó en Deshmukh (2012), Keyfitz et al. (1972), Pitacco et al. (2009) y Manton et al. (1989). El enfoque clásico permitió estimar intensidades y probabilidades locales, mientras que el enfoque bayesiano incorporó información colectiva mediante una estructura Poisson-Gamma y una lógica Empirical Bayes, cercana a Zhang et al. (2019), Schmitt et al. (2019) y Nelder y Verrall (1997). En general, ambos enfoques produjeron resultados cercanos en celdas con suficiente información, con diferencias más visibles en causas poco frecuentes, conteos bajos o combinaciones inestables.
 
-Los hallazgos muestran que la variabilidad de la mortalidad por causa en Centroamérica cambia según edad, sexo, país, año y causa. La probabilidad absoluta de decremento, $q_{x,t}^{(c)}$, permitió analizar la magnitud local del riesgo por causa, mientras que la composición causal condicionada al fallecimiento, $\pi_{x,t}^{(c)}$, permitió estudiar el peso relativo de cada causa entre quienes fallecen. En términos etarios, las causas externas tuvieron mayor participación en hombres jóvenes y adultos jóvenes, especialmente entre los 15 y 44 años, mientras que las enfermedades del sistema circulatorio adquirieron mayor peso a partir de los 65 años. El análisis de excesos reforzó este patrón: El Salvador concentró el 92.6% de las muertes por agresiones dentro del conjunto de países que superan la mediana, con un caso marcado en hombres de 20–24 años en 2015. En contraste, los mayores conteos absolutos se ubican en edades avanzadas y en enfermedades del sistema circulatorio, especialmente en Guatemala. Además, Belice mostró un aumento local del decremento circulatorio en hombres de 65–69 años, Nicaragua presentó una composición causal más dispersa que Costa Rica y Guatemala evidenció mayor presencia de síntomas y hallazgos no clasificados en edades avanzadas. 
+Los hallazgos muestran que la variabilidad de la mortalidad por causa en Centroamérica cambia según edad, sexo, país, año y causa. La probabilidad absoluta de decremento, $q_{x,t}^{(c)}$, permitió analizar la magnitud local del riesgo por causa, mientras que la composición causal condicionada al fallecimiento, $\pi_{x,t}^{(c)}$, permitió estudiar el peso relativo de cada causa entre quienes fallecen. En términos etarios, las causas externas tuvieron mayor participación en hombres jóvenes y adultos jóvenes, especialmente entre los 15 y 44 años, mientras que las enfermedades del sistema circulatorio adquirieron mayor peso a partir de los 65 años. El análisis de excesos reforzó este patrón: El Salvador concentró el 92.6% de las muertes por agresiones dentro del conjunto de países que superan la mediana, con un caso marcado en hombres de 20–24 años en 2015. En contraste, los mayores conteos absolutos se ubican en edades avanzadas y en enfermedades del sistema circulatorio, especialmente en Guatemala. Además, Belice mostró un aumento local del decremento circulatorio en hombres de 65–69 años, Nicaragua presentó una composición causal más dispersa que Costa Rica y Guatemala evidenció mayor presencia de síntomas y hallazgos no clasificados en edades avanzadas.
 
 Finalmente, las discrepancias observadas delimitan el alcance de la interpretación. En los resultados clásicos, Belice presentó un aumento local de la probabilidad de decremento por enfermedades del sistema circulatorio en hombres de 65–69 años entre 2015 y 2018, mientras que los tumores mostraron variaciones relevantes en edades adultas y mayores, como en mujeres de 70–74 años. En El Salvador, las causas externas en hombres jóvenes alcanzaron niveles elevados en 2015, especialmente en los grupos 20–24 y 30–34, con una reducción visible hacia 2018. La comparación entre enfoque clásico y bayesiano mostró diferencias más marcadas en causas con mayor fragilidad estadística o con alta presencia de celdas donde la estimación clásica fue igual a cero, como enfermedades de la sangre, enfermedades de la piel y tejido subcutáneo, enfermedades osteomusculares, enfermedades genitourinarias y embarazo, parto y puerperio. También aparecieron diferencias de composición causal en celdas específicas de Belice, sobre todo en edades tempranas y en el grupo 95+, aunque en varios casos la causa dominante se mantuvo estable entre enfoques. Las principales limitaciones provienen de la naturaleza agregada de los datos, la ausencia de trayectorias individuales, la posible distribución variada en la calidad de los registros de mortalidad entre países y el horizonte temporal reducido. Futuros trabajos podrían ampliar la serie de años, incorporar intervalos de incertidumbre y revisar con mayor detalle la calidad demográfica de las exposiciones.
 
-
 ## Agradecimientos
-## Anexos
+
+Se agradece en primer lugar a todos los profesores que han instruido a cada uno de los integrantes de esta investigación, y se agradece de manera especial al profesor Maikol Solís Chacón por la orientación brindada durante el desarrollo del proyecto y por las observaciones metodológicas realizadas a lo largo de las bitácoras. También se reconoce el apoyo de la Escuela de Matemática de la Universidad de Costa Rica por el marco académico en el que se desarrolló esta investigación. Finalmente se agradece a todas esas personas que de manera directa o indirecta han contribuido a la consolidación de esta investigación, entre estas, amistades, parejas, familia, conocidos y desconocidos. Sin el apoyo de estos y muchos más este trabajo no hubiese sido posible.
+
+## Referencias
+
+AAPC Thought Leadership Team. (2025, 3 de marzo). What is ICD-10? AAPC. https://www.aapc.com/resources/what-is-icd-10
+
+Austin, P. C., Steyerberg, E. W., & Putter, H. (2021). Fine-Gray subdistribution hazard models to simultaneously estimate the absolute risk of different event types: Cumulative total failure probability may exceed 1. Statistics in Medicine, 40(19), 4200–4212. https://doi.org/10.1002/sim.9023
+
+Baione, F., & Levantesi, S. (2014). A health insurance pricing model based on prevalence rates: Application to critical illness insurance. Insurance: Mathematics and Economics, 58, 174–184. https://doi.org/10.1016/j.insmatheco.2014.07.005
+
+Baione, F., & Levantesi, S. (2018). Pricing critical illness insurance from prevalence rates: Gompertz versus Weibull. North American Actuarial Journal, 22(2), 270–288. https://doi.org/10.1080/10920277.2017.1397524
+
+Bowers, N. L., Gerber, H. U., Hickman, J. C., Jones, D. A., & Nesbitt, C. J. (1997). Actuarial mathematics (2nd ed.). Society of Actuaries. Calazans, J. A., & Queiroz, B. L. (2020). The adult mortality profile by cause of death in 10 Latin American countries (2000–2016). Revista Panamericana de Salud Pública, 44, e1. https://doi.org/10.26633/RPSP.2020.1
+
+Deshmukh, S. (2012). Multiple decrement models in insurance: An introduction using R. Springer. https://doi.org/10.1007/978-81-322-0659-0 Dirgová, I., & Bilíková, M. (2014). Modelación actuarial del seguro de vida mediante modelos de decremento. Journal of Applied Mathematics, Statistics and Informatics, 10(1). https://doi.org/10.2478/jamsi-2014-0008
+
+Fine, J. P., & Gray, R. J. (1999). A proportional hazards model for the subdistribution of a competing risk. Journal of the American Statistical Association, 94(446), 496–509. https://doi.org/10.1080/01621459.1999.10474144
+
+Goerlich Gisbert, F. J. (2012). Tablas de vida de decrementos múltiples: Mortalidad por causas en España (1975–2008) (Documento de Trabajo No. 1/2012). Fundación BBVA. Keyfitz, N., Preston, S. H., & Schoen, R. (1972). Inferring probabilities from rates: Extension to multiple decrement. Scandinavian Actuarial Journal, 1972(1), 1–13. https://doi.org/10.1080/03461238.1972.10404630
+
+Li, J. (2019). A multi-state model for pricing critical illness insurance products \[Master’s project, Simon Fraser University\]. Lynch, S. M., & Brown, J. S. (2005). A new approach to estimating life tables with covariates and constructing interval estimates of life table quantities. Sociological Methodology, 35(1), 189–237. https://doi.org/10.1111/j.0081-1750.2006.00168.x
+
+Macdonald, A. S. (1996). An actuarial survey of statistical models for decrement and transition data II: Competing risks, non-parametric and regression models. British Actuarial Journal, 2(2), 429–448. https://doi.org/10.1017/S1357321700003469
+
+Macdonald, A. S., & Richards, S. J. (2025). On contemporary mortality models for actuarial use II: Principles. British Actuarial Journal, 30, e19. https://doi.org/10.1017/S1357321725000133
+
+Makeham, W. M. (1860). On the law of mortality and the construction of annuity tables. Journal of the Institute of Actuaries, 8(6), 301–310. https://doi.org/10.1017/S204616580000126X
+
+Manton, K. G., Woodbury, M. A., Stallard, E., Riggan, W. B., Creason, J. P., & Pellom, A. C. (1989). Empirical Bayes procedures for stabilizing maps of U.S. cancer mortality rates. Journal of the American Statistical Association, 84(407), 637–650. https://doi.org/10.1080/01621459.1989.10478816 Olivieri, A., & Pitacco, E. (2012). Life tables in actuarial models: From the deterministic setting to a Bayesian approach. AStA Advances in Statistical Analysis, 96, 127–153. https://doi.org/10.1007/s10182-011-0177-y
+
+Orozco Cortés, J. S. (2023). Estimación del riesgo de longevidad mediante distribuciones de supervivencia transmutadas \[Tesis de maestría, Universidad Nacional de Colombia\]. Pasaribu, U. S., Husniah, H., Sari, R. R. K. N., & Yanti, A. R. (2019). Pricing critical illness insurance premiums using multiple state continuous Markov chain model. Journal of Physics: Conference Series, 1366(1), 012112. https://doi.org/10.1088/1742-6596/1366/1/012112
+
+Patricio, S. C., & Missov, T. (2024). Makeham mortality models as mixtures: Advancing mortality estimations through competing risks frameworks. Demographic Research, 51, 595–624. https://doi.org/10.4054/DemRes.2024.51.18
+
+Pitacco, E., Denuit, M., Haberman, S., & Olivieri, A. (2009). Modelling longevity dynamics for pensions and annuity business. Oxford University Press. https://doi.org/10.1093/oso/9780199547272.001.0001
+
+Román Sánchez, Y. G., Sánchez Pérez, A. L., & Mendieta Zacarias, I. (2018). Mortalidad por causas en el estado de México, 2000 y 2015. Novedades en Población, 14(28), 64–78.
+
+Schmitt, F. O., Gilardoni, G. L., & Andrade, J. A. A. (2019). A class of flat prior distributions for the Poisson-gamma hierarchical model. Statistica Neerlandica, 73(3), 414–433. https://doi.org/10.1111/stan.12176
+
+Schumacher, A. E., McCormick, T. H., Wakefield, J., Chu, Y., Perin, J., Villavicencio, F., Simon, N., & Liu, L. (2022). A flexible Bayesian framework to estimate age- and cause-specific child mortality over time from sample registration data. The Annals of Applied Statistics, 16(1), 124–143. https://doi.org/10.1214/21-AOAS1489
+
+Scott, G. (2026, 24 de abril). Variability: Definition in statistics and finance. Investopedia. https://www.investopedia.com/terms/v/variability.asp
+
+Society of Actuaries. (2016). Experience study calculations. Society of Actuaries.
+
+United Nations, Department of Economic and Social Affairs, Population Division. (2024). World Population Prospects 2024. United Nations. https://population.un.org/wpp/
+
+Wikipedia. (s. f.). Patrón (estructura). Wikipedia. https://es.wikipedia.org/wiki/Patr%C3%B3n\_(estructura)
+
+Wolbers, M., Koller, M. T., Stel, V. S., Schaer, B., Jager, K. J., Leffondré, K., & Heinze, G. (2014). Competing risks analyses: Objectives and approaches. European Heart Journal, 35(42), 2936–2941. https://doi.org/10.1093/eurheartj/ehu131
+
+World Health Organization. (2026). About the WHO mortality database. World Health Organization. https://platform.who.int/mortality/about/about-the-who-mortality-database
+
+World Health Organization. (2026). WHO Mortality Database. World Health Organization. https://www.who.int/data/data-collection-tools/who-mortality-database
+
+World Health Organization, Department of Data, Digital Health, Analytics and AI. (2026, 23 de febrero). WHO Mortality Database documentation. World Health Organization.
+
+Zhang, Y.-Y., Wang, Z.-Y., Duan, Z.-M., & Mi, W. (2019). The empirical Bayes estimators of the parameter of the Poisson distribution with a conjugate gamma prior under Stein’s loss function. Journal of Statistical Computation and Simulation, 89(16), 3061–3074. https://doi.org/10.1080/00949655.2019.1652606
+
 ## Anexos
 
 ### Tabla resumen de diferencias entre enfoques
 
 | Indicador | Resultado | Interpretación |
-|---|---:|---|
+|----------------------|---------------------------:|----------------------|
 | Celdas comparables entre enfoques | 13,704 | Número total de combinaciones país, año, sexo, grupo etario y causa comparadas. |
 | Celdas con diferencia absoluta menor que 0.0001 | 89.8 % | Proporción de celdas donde el enfoque clásico y el bayesiano producen estimaciones prácticamente alineadas. |
 | Mediana de la diferencia absoluta | 0.000002 | Diferencia típica entre ambas estimaciones de probabilidad de decremento. |
@@ -747,9 +1058,6 @@ Finalmente, las discrepancias observadas delimitan el alcance de la interpretaci
 
 ![Composición de las muertes a través de la edad.](../../figuras/04_g4_original_composicion_edad.png){#fig-composicion-muertes-edad width="100%"}
 
-
 #### Radar de sistema circulatorio en Belice
 
 ![Probabilidad local de decremento por enfermedades del sistema circulatorio en hombres de 65--69 años.](../../figuras/clasico/radar/06_radar_sistema_circulatorio_65-69_hombre.png){#fig-radar-circ-belice-h65-69 width="85%"}
-
-## Referencias
