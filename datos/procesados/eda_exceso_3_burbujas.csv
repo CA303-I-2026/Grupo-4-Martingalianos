@@ -1,0 +1,81 @@
+Pais,Year,sexo,edad_grupo,edad_orden,causa_etiqueta,exceso_abs
+El Salvador,2015,Hombres,20-24,9,1102 · Agresiones,296
+El Salvador,2015,Hombres,25-29,10,1102 · Agresiones,282
+El Salvador,2015,Hombres,35-39,12,1102 · Agresiones,279.5
+El Salvador,2015,Hombres,30-34,11,1102 · Agresiones,278.5
+El Salvador,2015,Hombres,15-19,8,1102 · Agresiones,197.5
+El Salvador,2017,Mujeres,85-89,22,1064 · Sistema circulatorio,149.5
+El Salvador,2016,Hombres,15-19,8,1102 · Agresiones,147.5
+El Salvador,2017,Hombres,85-89,22,1064 · Sistema circulatorio,141.5
+Guatemala,2018,Hombres,90-94,23,1094 · Síntomas y hallazgos no clasificados,141
+El Salvador,2017,Mujeres,90-94,23,1064 · Sistema circulatorio,133
+Guatemala,2018,Mujeres,75-79,20,1094 · Síntomas y hallazgos no clasificados,127.5
+El Salvador,2015,Hombres,40-44,13,1102 · Agresiones,117
+Guatemala,2015,Hombres,0,1,1072 · Sistema respiratorio,108
+Guatemala,2018,Hombres,70-74,19,1094 · Síntomas y hallazgos no clasificados,107
+Guatemala,2018,Mujeres,70-74,19,1051 · Endocrinas y metabólicas,106.5
+El Salvador,2017,Mujeres,80-84,21,1064 · Sistema circulatorio,102
+Guatemala,2018,Mujeres,65-69,18,1094 · Síntomas y hallazgos no clasificados,102
+Guatemala,2015,Hombres,25-29,10,1102 · Agresiones,98
+Guatemala,2018,Mujeres,85-89,22,1094 · Síntomas y hallazgos no clasificados,98
+El Salvador,2016,Hombres,20-24,9,1102 · Agresiones,97
+El Salvador,2017,Hombres,75-79,20,1064 · Sistema circulatorio,94.5
+Guatemala,2018,Mujeres,80-84,21,1094 · Síntomas y hallazgos no clasificados,93.5
+El Salvador,2017,Hombres,80-84,21,1064 · Sistema circulatorio,91.5
+El Salvador,2017,Mujeres,70-74,19,1064 · Sistema circulatorio,89.5
+Guatemala,2018,Hombres,80-84,21,1094 · Síntomas y hallazgos no clasificados,86
+Guatemala,2015,Mujeres,80-84,21,1064 · Sistema circulatorio,82
+Guatemala,2018,Hombres,65-69,18,1094 · Síntomas y hallazgos no clasificados,82
+Costa Rica,2018,Hombres,65-69,18,1026 · Neoplasias,77
+El Salvador,2016,Mujeres,85-89,22,1094 · Síntomas y hallazgos no clasificados,76.5
+Guatemala,2018,Mujeres,90-94,23,1064 · Sistema circulatorio,74.5
+Guatemala,2018,Mujeres,70-74,19,1094 · Síntomas y hallazgos no clasificados,73.5
+El Salvador,2017,Mujeres,95+,24,1064 · Sistema circulatorio,73
+El Salvador,2015,Hombres,45-49,14,1102 · Agresiones,72
+El Salvador,2017,Hombres,60-64,17,1064 · Sistema circulatorio,72
+Guatemala,2018,Hombres,75-79,20,1094 · Síntomas y hallazgos no clasificados,72
+El Salvador,2017,Mujeres,85-89,22,1072 · Sistema respiratorio,71.5
+Guatemala,2017,Hombres,15-19,8,1102 · Agresiones,71
+El Salvador,2015,Mujeres,85-89,22,1064 · Sistema circulatorio,69.5
+Guatemala,2017,Mujeres,85-89,22,1064 · Sistema circulatorio,69.5
+El Salvador,2016,Hombres,25-29,10,1102 · Agresiones,65
+Guatemala,2015,Hombres,20-24,9,1102 · Agresiones,65
+Guatemala,2018,Hombres,85-89,22,1094 · Síntomas y hallazgos no clasificados,63.5
+Guatemala,2018,Hombres,55-59,16,1094 · Síntomas y hallazgos no clasificados,62
+El Salvador,2016,Hombres,30-34,11,1102 · Agresiones,61.5
+Nicaragua,2016,Mujeres,85-89,22,1064 · Sistema circulatorio,61
+Costa Rica,2018,Mujeres,90-94,23,1064 · Sistema circulatorio,60.5
+Guatemala,2018,Hombres,40-44,13,1094 · Síntomas y hallazgos no clasificados,60.5
+El Salvador,2016,Hombres,75-79,20,1094 · Síntomas y hallazgos no clasificados,60
+Guatemala,2016,Hombres,0,1,1001 · Infecciosas y parasitarias,58
+Guatemala,2016,Hombres,1,2,1001 · Infecciosas y parasitarias,58
+El Salvador,2017,Hombres,90-94,23,1064 · Sistema circulatorio,57
+Guatemala,2015,Mujeres,0,1,1072 · Sistema respiratorio,57
+El Salvador,2017,Hombres,95+,24,1064 · Sistema circulatorio,56.5
+El Salvador,2015,Mujeres,75-79,20,1064 · Sistema circulatorio,55
+Guatemala,2017,Mujeres,90-94,23,1064 · Sistema circulatorio,54.5
+Guatemala,2018,Mujeres,90-94,23,1094 · Síntomas y hallazgos no clasificados,54.5
+Guatemala,2017,Hombres,80-84,21,1094 · Síntomas y hallazgos no clasificados,54
+El Salvador,2017,Hombres,70-74,19,1064 · Sistema circulatorio,53.5
+Guatemala,2015,Hombres,40-44,13,1078 · Sistema digestivo,53.5
+Costa Rica,2018,Hombres,60-64,17,1026 · Neoplasias,53
+El Salvador,2015,Mujeres,80-84,21,1064 · Sistema circulatorio,53
+El Salvador,2015,Mujeres,80-84,21,1001 · Infecciosas y parasitarias,52.5
+Guatemala,2018,Hombres,60-64,17,1094 · Síntomas y hallazgos no clasificados,52.5
+El Salvador,2017,Mujeres,75-79,20,1064 · Sistema circulatorio,52
+Guatemala,2018,Hombres,70-74,19,1064 · Sistema circulatorio,52
+Nicaragua,2015,Mujeres,75-79,20,1064 · Sistema circulatorio,52
+El Salvador,2015,Hombres,75-79,20,1064 · Sistema circulatorio,51.5
+Guatemala,2016,Hombres,0,1,1094 · Síntomas y hallazgos no clasificados,51.5
+Nicaragua,2016,Hombres,85-89,22,1064 · Sistema circulatorio,51.5
+Panama,2018,Hombres,70-74,19,1064 · Sistema circulatorio,51.5
+Guatemala,2015,Hombres,80-84,21,1084 · Sistema genitourinario,50
+Guatemala,2017,Hombres,85-89,22,1072 · Sistema respiratorio,48.5
+El Salvador,2018,Hombres,55-59,16,1072 · Sistema respiratorio,48
+Guatemala,2016,Hombres,30-34,11,1102 · Agresiones,47.5
+Guatemala,2016,Hombres,0,1,1072 · Sistema respiratorio,47
+Guatemala,2018,Mujeres,55-59,16,1051 · Endocrinas y metabólicas,46.5
+Nicaragua,2017,Mujeres,65-69,18,1051 · Endocrinas y metabólicas,46.5
+El Salvador,2018,Mujeres,10-14,7,1094 · Síntomas y hallazgos no clasificados,45.5
+Panama,2018,Hombres,75-79,20,1064 · Sistema circulatorio,45.5
+Costa Rica,2018,Hombres,70-74,19,1026 · Neoplasias,45

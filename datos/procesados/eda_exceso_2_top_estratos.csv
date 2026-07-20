@@ -1,0 +1,26 @@
+Pais,Year,sexo,edad_grupo,edad_orden,causa_etiqueta,muertes,base_mediana,exceso_abs
+El Salvador,2015,Hombres,20-24,9,1102 · Agresiones,945,649,296
+El Salvador,2015,Hombres,25-29,10,1102 · Agresiones,717,435,282
+El Salvador,2015,Hombres,35-39,12,1102 · Agresiones,617,337.5,279.5
+El Salvador,2015,Hombres,30-34,11,1102 · Agresiones,645,366.5,278.5
+El Salvador,2015,Hombres,15-19,8,1102 · Agresiones,797,599.5,197.5
+El Salvador,2017,Mujeres,85-89,22,1064 · Sistema circulatorio,855,705.5,149.5
+El Salvador,2016,Hombres,15-19,8,1102 · Agresiones,747,599.5,147.5
+El Salvador,2017,Hombres,85-89,22,1064 · Sistema circulatorio,650,508.5,141.5
+Guatemala,2018,Hombres,90-94,23,1094 · Síntomas y hallazgos no clasificados,464,323,141
+El Salvador,2017,Mujeres,90-94,23,1064 · Sistema circulatorio,650,517,133
+Guatemala,2018,Mujeres,75-79,20,1094 · Síntomas y hallazgos no clasificados,523,395.5,127.5
+El Salvador,2015,Hombres,40-44,13,1102 · Agresiones,401,284,117
+Guatemala,2015,Hombres,0,1,1072 · Sistema respiratorio,938,830,108
+Guatemala,2018,Hombres,70-74,19,1094 · Síntomas y hallazgos no clasificados,456,349,107
+Guatemala,2018,Mujeres,70-74,19,1051 · Endocrinas y metabólicas,596,489.5,106.5
+El Salvador,2017,Mujeres,80-84,21,1064 · Sistema circulatorio,763,661,102
+Guatemala,2018,Mujeres,65-69,18,1094 · Síntomas y hallazgos no clasificados,379,277,102
+Guatemala,2015,Hombres,25-29,10,1102 · Agresiones,581,483,98
+Guatemala,2018,Mujeres,85-89,22,1094 · Síntomas y hallazgos no clasificados,678,580,98
+El Salvador,2016,Hombres,20-24,9,1102 · Agresiones,746,649,97
+El Salvador,2017,Hombres,75-79,20,1064 · Sistema circulatorio,611,516.5,94.5
+Guatemala,2018,Mujeres,80-84,21,1094 · Síntomas y hallazgos no clasificados,646,552.5,93.5
+El Salvador,2017,Hombres,80-84,21,1064 · Sistema circulatorio,630,538.5,91.5
+El Salvador,2017,Mujeres,70-74,19,1064 · Sistema circulatorio,481,391.5,89.5
+Guatemala,2018,Hombres,80-84,21,1094 · Síntomas y hallazgos no clasificados,596,510,86

@@ -37,6 +37,8 @@
 # renv (gestor de paquetes)
 renv/library/
 renv/staging/
+datos/procesados/eda_base_mortalidad.csv
+datos/procesados/eda_base_excesos_y_original.csv
 
 # ==============================================================================
 # Python

@@ -1,0 +1,241 @@
+causa_etiqueta,edad_orden,exceso_abs,edad_grupo
+1001 · Infecciosas y parasitarias,1,258,0
+1001 · Infecciosas y parasitarias,2,134,1
+1001 · Infecciosas y parasitarias,3,45,2
+1001 · Infecciosas y parasitarias,4,36,3
+1001 · Infecciosas y parasitarias,5,22,4
+1001 · Infecciosas y parasitarias,6,47,5-9
+1001 · Infecciosas y parasitarias,7,42,10-14
+1001 · Infecciosas y parasitarias,8,50,15-19
+1001 · Infecciosas y parasitarias,9,67,20-24
+1001 · Infecciosas y parasitarias,10,95,25-29
+1001 · Infecciosas y parasitarias,11,115,30-34
+1001 · Infecciosas y parasitarias,12,123,35-39
+1001 · Infecciosas y parasitarias,13,89,40-44
+1001 · Infecciosas y parasitarias,14,81,45-49
+1001 · Infecciosas y parasitarias,15,100,50-54
+1001 · Infecciosas y parasitarias,16,109,55-59
+1001 · Infecciosas y parasitarias,17,100,60-64
+1001 · Infecciosas y parasitarias,18,121,65-69
+1001 · Infecciosas y parasitarias,19,155,70-74
+1001 · Infecciosas y parasitarias,20,150,75-79
+1001 · Infecciosas y parasitarias,21,141,80-84
+1001 · Infecciosas y parasitarias,22,152,85-89
+1001 · Infecciosas y parasitarias,23,77,90-94
+1001 · Infecciosas y parasitarias,24,40,95+
+1026 · Neoplasias,1,26,0
+1026 · Neoplasias,2,22,1
+1026 · Neoplasias,3,20,2
+1026 · Neoplasias,4,26,3
+1026 · Neoplasias,5,25,4
+1026 · Neoplasias,6,57,5-9
+1026 · Neoplasias,7,42,10-14
+1026 · Neoplasias,8,49,15-19
+1026 · Neoplasias,9,66,20-24
+1026 · Neoplasias,10,64,25-29
+1026 · Neoplasias,11,91,30-34
+1026 · Neoplasias,12,134,35-39
+1026 · Neoplasias,13,149,40-44
+1026 · Neoplasias,14,128,45-49
+1026 · Neoplasias,15,156,50-54
+1026 · Neoplasias,16,215,55-59
+1026 · Neoplasias,17,290,60-64
+1026 · Neoplasias,18,282,65-69
+1026 · Neoplasias,19,215,70-74
+1026 · Neoplasias,20,301,75-79
+1026 · Neoplasias,21,193,80-84
+1026 · Neoplasias,22,202,85-89
+1026 · Neoplasias,23,95,90-94
+1026 · Neoplasias,24,92,95+
+1051 · Endocrinas y metabólicas,1,88,0
+1051 · Endocrinas y metabólicas,2,72,1
+1051 · Endocrinas y metabólicas,3,23,2
+1051 · Endocrinas y metabólicas,4,16,3
+1051 · Endocrinas y metabólicas,5,13,4
+1051 · Endocrinas y metabólicas,6,27,5-9
+1051 · Endocrinas y metabólicas,7,37,10-14
+1051 · Endocrinas y metabólicas,8,30,15-19
+1051 · Endocrinas y metabólicas,9,51,20-24
+1051 · Endocrinas y metabólicas,10,53,25-29
+1051 · Endocrinas y metabólicas,11,55,30-34
+1051 · Endocrinas y metabólicas,12,73,35-39
+1051 · Endocrinas y metabólicas,13,127,40-44
+1051 · Endocrinas y metabólicas,14,108,45-49
+1051 · Endocrinas y metabólicas,15,151,50-54
+1051 · Endocrinas y metabólicas,16,223,55-59
+1051 · Endocrinas y metabólicas,17,258,60-64
+1051 · Endocrinas y metabólicas,18,232,65-69
+1051 · Endocrinas y metabólicas,19,251,70-74
+1051 · Endocrinas y metabólicas,20,231,75-79
+1051 · Endocrinas y metabólicas,21,198,80-84
+1051 · Endocrinas y metabólicas,22,173,85-89
+1051 · Endocrinas y metabólicas,23,114,90-94
+1051 · Endocrinas y metabólicas,24,86,95+
+1064 · Sistema circulatorio,1,64,0
+1064 · Sistema circulatorio,2,28,1
+1064 · Sistema circulatorio,3,12,2
+1064 · Sistema circulatorio,4,13,3
+1064 · Sistema circulatorio,5,7,4
+1064 · Sistema circulatorio,6,25,5-9
+1064 · Sistema circulatorio,7,86,10-14
+1064 · Sistema circulatorio,8,63,15-19
+1064 · Sistema circulatorio,9,54,20-24
+1064 · Sistema circulatorio,10,52,25-29
+1064 · Sistema circulatorio,11,86,30-34
+1064 · Sistema circulatorio,12,129,35-39
+1064 · Sistema circulatorio,13,137,40-44
+1064 · Sistema circulatorio,14,133,45-49
+1064 · Sistema circulatorio,15,189,50-54
+1064 · Sistema circulatorio,16,221,55-59
+1064 · Sistema circulatorio,17,307,60-64
+1064 · Sistema circulatorio,18,332,65-69
+1064 · Sistema circulatorio,19,478,70-74
+1064 · Sistema circulatorio,20,522,75-79
+1064 · Sistema circulatorio,21,591,80-84
+1064 · Sistema circulatorio,22,758,85-89
+1064 · Sistema circulatorio,23,635,90-94
+1064 · Sistema circulatorio,24,416,95+
+1072 · Sistema respiratorio,1,366,0
+1072 · Sistema respiratorio,2,104,1
+1072 · Sistema respiratorio,3,44,2
+1072 · Sistema respiratorio,4,30,3
+1072 · Sistema respiratorio,5,36,4
+1072 · Sistema respiratorio,6,65,5-9
+1072 · Sistema respiratorio,7,71,10-14
+1072 · Sistema respiratorio,8,72,15-19
+1072 · Sistema respiratorio,9,77,20-24
+1072 · Sistema respiratorio,10,60,25-29
+1072 · Sistema respiratorio,11,89,30-34
+1072 · Sistema respiratorio,12,99,35-39
+1072 · Sistema respiratorio,13,81,40-44
+1072 · Sistema respiratorio,14,96,45-49
+1072 · Sistema respiratorio,15,117,50-54
+1072 · Sistema respiratorio,16,160,55-59
+1072 · Sistema respiratorio,17,153,60-64
+1072 · Sistema respiratorio,18,149,65-69
+1072 · Sistema respiratorio,19,204,70-74
+1072 · Sistema respiratorio,20,165,75-79
+1072 · Sistema respiratorio,21,256,80-84
+1072 · Sistema respiratorio,22,340,85-89
+1072 · Sistema respiratorio,23,219,90-94
+1072 · Sistema respiratorio,24,171,95+
+1078 · Sistema digestivo,1,42,0
+1078 · Sistema digestivo,2,41,1
+1078 · Sistema digestivo,3,19,2
+1078 · Sistema digestivo,4,17,3
+1078 · Sistema digestivo,5,14,4
+1078 · Sistema digestivo,6,29,5-9
+1078 · Sistema digestivo,7,22,10-14
+1078 · Sistema digestivo,8,47,15-19
+1078 · Sistema digestivo,9,57,20-24
+1078 · Sistema digestivo,10,67,25-29
+1078 · Sistema digestivo,11,109,30-34
+1078 · Sistema digestivo,12,102,35-39
+1078 · Sistema digestivo,13,144,40-44
+1078 · Sistema digestivo,14,125,45-49
+1078 · Sistema digestivo,15,138,50-54
+1078 · Sistema digestivo,16,155,55-59
+1078 · Sistema digestivo,17,159,60-64
+1078 · Sistema digestivo,18,165,65-69
+1078 · Sistema digestivo,19,190,70-74
+1078 · Sistema digestivo,20,131,75-79
+1078 · Sistema digestivo,21,159,80-84
+1078 · Sistema digestivo,22,175,85-89
+1078 · Sistema digestivo,23,93,90-94
+1078 · Sistema digestivo,24,63,95+
+1084 · Sistema genitourinario,1,43,0
+1084 · Sistema genitourinario,2,15,1
+1084 · Sistema genitourinario,3,11,2
+1084 · Sistema genitourinario,4,12,3
+1084 · Sistema genitourinario,5,12,4
+1084 · Sistema genitourinario,6,31,5-9
+1084 · Sistema genitourinario,7,29,10-14
+1084 · Sistema genitourinario,8,43,15-19
+1084 · Sistema genitourinario,9,36,20-24
+1084 · Sistema genitourinario,10,54,25-29
+1084 · Sistema genitourinario,11,76,30-34
+1084 · Sistema genitourinario,12,62,35-39
+1084 · Sistema genitourinario,13,99,40-44
+1084 · Sistema genitourinario,14,101,45-49
+1084 · Sistema genitourinario,15,144,50-54
+1084 · Sistema genitourinario,16,151,55-59
+1084 · Sistema genitourinario,17,196,60-64
+1084 · Sistema genitourinario,18,159,65-69
+1084 · Sistema genitourinario,19,175,70-74
+1084 · Sistema genitourinario,20,116,75-79
+1084 · Sistema genitourinario,21,159,80-84
+1084 · Sistema genitourinario,22,170,85-89
+1084 · Sistema genitourinario,23,81,90-94
+1084 · Sistema genitourinario,24,64,95+
+1094 · Síntomas y hallazgos no clasificados,1,209,0
+1094 · Síntomas y hallazgos no clasificados,2,79,1
+1094 · Síntomas y hallazgos no clasificados,3,29,2
+1094 · Síntomas y hallazgos no clasificados,4,26,3
+1094 · Síntomas y hallazgos no clasificados,5,26,4
+1094 · Síntomas y hallazgos no clasificados,6,37,5-9
+1094 · Síntomas y hallazgos no clasificados,7,128,10-14
+1094 · Síntomas y hallazgos no clasificados,8,69,15-19
+1094 · Síntomas y hallazgos no clasificados,9,110,20-24
+1094 · Síntomas y hallazgos no clasificados,10,108,25-29
+1094 · Síntomas y hallazgos no clasificados,11,139,30-34
+1094 · Síntomas y hallazgos no clasificados,12,82,35-39
+1094 · Síntomas y hallazgos no clasificados,13,148,40-44
+1094 · Síntomas y hallazgos no clasificados,14,161,45-49
+1094 · Síntomas y hallazgos no clasificados,15,129,50-54
+1094 · Síntomas y hallazgos no clasificados,16,239,55-59
+1094 · Síntomas y hallazgos no clasificados,17,203,60-64
+1094 · Síntomas y hallazgos no clasificados,18,327,65-69
+1094 · Síntomas y hallazgos no clasificados,19,277,70-74
+1094 · Síntomas y hallazgos no clasificados,20,423,75-79
+1094 · Síntomas y hallazgos no clasificados,21,393,80-84
+1094 · Síntomas y hallazgos no clasificados,22,429,85-89
+1094 · Síntomas y hallazgos no clasificados,23,333,90-94
+1094 · Síntomas y hallazgos no clasificados,24,180,95+
+1096 · Accidentes de transporte,1,16,0
+1096 · Accidentes de transporte,2,22,1
+1096 · Accidentes de transporte,3,17,2
+1096 · Accidentes de transporte,4,14,3
+1096 · Accidentes de transporte,5,20,4
+1096 · Accidentes de transporte,6,36,5-9
+1096 · Accidentes de transporte,7,39,10-14
+1096 · Accidentes de transporte,8,65,15-19
+1096 · Accidentes de transporte,9,114,20-24
+1096 · Accidentes de transporte,10,116,25-29
+1096 · Accidentes de transporte,11,160,30-34
+1096 · Accidentes de transporte,12,92,35-39
+1096 · Accidentes de transporte,13,69,40-44
+1096 · Accidentes de transporte,14,56,45-49
+1096 · Accidentes de transporte,15,77,50-54
+1096 · Accidentes de transporte,16,52,55-59
+1096 · Accidentes de transporte,17,64,60-64
+1096 · Accidentes de transporte,18,45,65-69
+1096 · Accidentes de transporte,19,44,70-74
+1096 · Accidentes de transporte,20,52,75-79
+1096 · Accidentes de transporte,21,49,80-84
+1096 · Accidentes de transporte,22,32,85-89
+1096 · Accidentes de transporte,23,17,90-94
+1096 · Accidentes de transporte,24,12,95+
+1102 · Agresiones,1,10,0
+1102 · Agresiones,2,13,1
+1102 · Agresiones,3,10,2
+1102 · Agresiones,4,13,3
+1102 · Agresiones,5,7,4
+1102 · Agresiones,6,23,5-9
+1102 · Agresiones,7,64,10-14
+1102 · Agresiones,8,558,15-19
+1102 · Agresiones,9,618,20-24
+1102 · Agresiones,10,573,25-29
+1102 · Agresiones,11,528,30-34
+1102 · Agresiones,12,458,35-39
+1102 · Agresiones,13,230,40-44
+1102 · Agresiones,14,172,45-49
+1102 · Agresiones,15,96,50-54
+1102 · Agresiones,16,99,55-59
+1102 · Agresiones,17,81,60-64
+1102 · Agresiones,18,50,65-69
+1102 · Agresiones,19,69,70-74
+1102 · Agresiones,20,36,75-79
+1102 · Agresiones,21,22,80-84
+1102 · Agresiones,22,24,85-89
+1102 · Agresiones,23,8,90-94
+1102 · Agresiones,24,6,95+

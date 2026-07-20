@@ -2563,7 +2563,7 @@ Se revisaron los gráficos bayesianos de probabilidad absoluta de decremento por
 
 #### Evidencia:
 
-Este resultado se ve con claridad en ![](../../figuras/bayesiano/nicaragua/01_q_absoluto_top4_2015_2018.png){#fig-composicion-condicionada-costa-rica-grupo-1 width="80%" fig-align="center"} donde las enfermedades del sistema circulatorio crecen de forma muy pronunciada en edades avanzadas y llegan a ser la curva más alta hacia los grupos finales. También aparece en ![](../../figuras/bayesiano/nicaragua/02_q_por_causa_top4.png){#fig-composicion-condicionada-costa-rica-grupo-1 width="80%" fig-align="center"} especialmente en el panel de enfermedades del sistema circulatorio, donde la probabilidad de decremento aumenta aceleradamente conforme sube la edad.
+Este resultado se ve con claridad en ![](../../figuras/Bayesiano/nicaragua/01_q_absoluto_top4_2015_2018.png){#fig-composicion-condicionada-costa-rica-grupo-1 width="80%" fig-align="center"} donde las enfermedades del sistema circulatorio crecen de forma muy pronunciada en edades avanzadas y llegan a ser la curva más alta hacia los grupos finales. También aparece en ![](../../figuras/Bayesiano/nicaragua/02_q_por_causa_top4.png){#fig-composicion-condicionada-costa-rica-grupo-1 width="80%" fig-align="center"} especialmente en el panel de enfermedades del sistema circulatorio, donde la probabilidad de decremento aumenta aceleradamente conforme sube la edad.
 
 ### Nivel analítico
 
@@ -2604,7 +2604,7 @@ Se revisaron los gráficos bayesianos de composición causal condicionada al fal
 
 #### Evidencia:
 
-El primer tramo del resultado se observa en ![](../../figuras/bayesiano/costa%20rica/03_composicion_condicionada_grupo_1.png){#fig-composicion-condicionada-costa-rica-grupo-1 width="80%" fig-align="center"} donde las causas externas tienen una participación muy alta en hombres jóvenes, especialmente entre los grupos 15-19, 20-24 y 25-29. Esto también aparece en ![](../../figuras/bayesiano/costa%20rica/05_concentracion_causal.png){#fig-composicion-condicionada-costa-rica-grupo-1 width="80%" fig-align="center"} donde la línea de hombres presenta un pico fuerte en edades jóvenes, sobre todo alrededor de 20-24 y 25-29. El segundo tramo se observa en ![](../../figuras/bayesiano/costa%20rica/01_q_absoluto_top4_2015_2018.png){#fig-composicion-condicionada-costa-rica-grupo-1 width="80%" fig-align="center"} donde las enfermedades del sistema circulatorio crecen con claridad en edades avanzadas y terminan siendo la causa con mayor probabilidad absoluta en los grupos finales, especialmente desde 85-89, 90-94 y 95+.
+El primer tramo del resultado se observa en ![](../../figuras/Bayesiano/costa%20rica/03_composicion_condicionada_grupo_1.png){#fig-composicion-condicionada-costa-rica-grupo-1 width="80%" fig-align="center"} donde las causas externas tienen una participación muy alta en hombres jóvenes, especialmente entre los grupos 15-19, 20-24 y 25-29. Esto también aparece en ![](../../figuras/Bayesiano/costa%20rica/05_concentracion_causal.png){#fig-composicion-condicionada-costa-rica-grupo-1 width="80%" fig-align="center"} donde la línea de hombres presenta un pico fuerte en edades jóvenes, sobre todo alrededor de 20-24 y 25-29. El segundo tramo se observa en ![](../../figuras/Bayesiano/costa%20rica/01_q_absoluto_top4_2015_2018.png){#fig-composicion-condicionada-costa-rica-grupo-1 width="80%" fig-align="center"} donde las enfermedades del sistema circulatorio crecen con claridad en edades avanzadas y terminan siendo la causa con mayor probabilidad absoluta en los grupos finales, especialmente desde 85-89, 90-94 y 95+.
 
 ### Nivel analítico
 
@@ -2645,7 +2645,7 @@ Se revisaron los gráficos bayesianos de probabilidad absoluta de decremento y d
 
 #### Evidencia:
 
-Este resultado se observa en ![](../../figuras/bayesiano/guatemala/01_q_absoluto_top4_2015_2018.png){#fig-composicion-condicionada-costa-rica-grupo-1 width="80%" fig-align="center"} donde la categoría de síntomas, signos y hallazgos anormales no clasificados aparece entre las causas principales y aumenta con fuerza en edades avanzadas, especialmente en los grupos 85-89, 90-94 y 95+. También se ve en ![](../../figuras/bayesiano/guatemala/03_composicion_condicionada_grupo_2.png){#fig-composicion-condicionada-costa-rica-grupo-1 width="80%" fig-align="center"} donde esta categoría gana participación dentro de la composición causal conforme avanza la edad, tanto en hombres como en mujeres. En los grupos más viejos, su peso se vuelve mucho más visible que en edades jóvenes o medias.
+Este resultado se observa en ![](../../figuras/Bayesiano/guatemala/01_q_absoluto_top4_2015_2018.png){#fig-composicion-condicionada-costa-rica-grupo-1 width="80%" fig-align="center"} donde la categoría de síntomas, signos y hallazgos anormales no clasificados aparece entre las causas principales y aumenta con fuerza en edades avanzadas, especialmente en los grupos 85-89, 90-94 y 95+. También se ve en ![](../../figuras/Bayesiano/guatemala/03_composicion_condicionada_grupo_2.png){#fig-composicion-condicionada-costa-rica-grupo-1 width="80%" fig-align="center"} donde esta categoría gana participación dentro de la composición causal conforme avanza la edad, tanto en hombres como en mujeres. En los grupos más viejos, su peso se vuelve mucho más visible que en edades jóvenes o medias.
 
 ### Nivel analítico
 

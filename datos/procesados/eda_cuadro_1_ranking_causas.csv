@@ -1,0 +1,21 @@
+icd10_code,causa_nombre,causa_etiqueta,muertes_total,exceso_total,estratos_con_muertes,estratos_con_exceso,rank_muertes,rank_exceso,puntaje
+1064,Sistema circulatorio,1064 · Sistema circulatorio,159323,5338,997,487,1,1,2
+1094,Síntomas y hallazgos no clasificados,1094 · Síntomas y hallazgos no clasificados,69649,4284,942,449,4,2,6
+1026,Neoplasias,1026 · Neoplasias,93132,2940,1072,510,2,5,7
+1072,Sistema respiratorio,1072 · Sistema respiratorio,74784,3224,1083,524,3,4,7
+1051,Endocrinas y metabólicas,1051 · Endocrinas y metabólicas,61618,2690,1004,497,5,6,11
+1102,Agresiones,1102 · Agresiones,36356,3768,807,408,8,3,11
+1078,Sistema digestivo,1078 · Sistema digestivo,51794,2263,1002,479,6,8,14
+1084,Sistema genitourinario,1084 · Sistema genitourinario,39694,2039,924,449,7,9,16
+1001,Infecciosas y parasitarias,1001 · Infecciosas y parasitarias,31857,2349,1059,498,9,7,16
+1096,Accidentes de transporte,1096 · Accidentes de transporte,17834,1280,949,458,11,11,22
+1058,Sistema nervioso,1058 · Sistema nervioso,15377,1337,1034,490,12,10,22
+1055,Trastornos mentales y del comportamiento,1055 · Trastornos mentales y del comportamiento,7726,812,616,306,14,12,26
+1092,Condiciones perinatales,1092 · Condiciones perinatales,20894,489,49,25,10,17,27
+1093,Malformaciones congénitas,1093 · Malformaciones congénitas,10895,693,662,325,13,14,27
+1048,Sangre e inmunidad,1048 · Sangre e inmunidad,5058,724,864,417,15,13,28
+1083,Sistema osteomuscular,1083 · Sistema osteomuscular,3662,575,713,344,16,15,31
+1082,Piel y tejido subcutáneo,1082 · Piel y tejido subcutáneo,2650,494.5,628,310,17,16,33
+1087,"Embarazo, parto y puerperio","1087 · Embarazo, parto y puerperio",1723,140,146,69,18,18,36
+1063,Oído y apófisis mastoides,1063 · Oído y apófisis mastoides,30,18,29,22,19,19,38
+1062,Ojo y anexos,1062 · Ojo y anexos,26,16,24,18,20,20,40

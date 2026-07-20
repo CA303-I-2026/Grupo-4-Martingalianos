@@ -642,7 +642,7 @@ tasa_ejemplo <- suma_salvador/sum(suma_belice,suma_costarica,suma_salvador)
 print(tasa_ejemplo)
 ```
 
-Lo que quiere decir que la acumulación porcentual de muertes en El Salvador fue de 92.85112% para las delimitaciones hechas. Esto en sí mismo no es una probabilidad de muerte para la causa asociada 1102, si no más bien un elemento que previo a la modelación nos indica que será sensato esperar que la probabilidad de fallecimiento por decrementos múltiples en específico para la causa i= icd10_1102 será significativamente mayor que la del resto de países muestrados.
+Lo que quiere decir que la acumulación porcentual de muertes en El Salvador fue de 92.59515% para las delimitaciones hechas. Esto en sí mismo no es una probabilidad de muerte para la causa asociada 1102, si no más bien un elemento que previo a la modelación nos indica que será sensato esperar que la probabilidad de fallecimiento por decrementos múltiples en específico para la causa i= icd10_1102 será significativamente mayor que la del resto de países muestrados.
 
 ### Ficha de resultado 1
 
@@ -656,7 +656,7 @@ Lo que quiere decir que la acumulación porcentual de muertes en El Salvador fue
 
 **Método o análisis que lo produjo:** Análisis descriptivo de frecuencias relativas de mortalidad por causa específica, utilizando cohortes delimitadas por país, rango etario y clasificación ICD10. Se consideraron las observaciones correspondientes a la causa ICD10-1102 (asaltos) para edades enteras entre 0 y 25 años, durante el período 2015–2018, calculando posteriormente medidas de tendencia central y desviación respecto a la media para identificar países con intensidades de mortalidad superiores a la mediana observada.
 
-**Evidencia:** Tabla descriptiva de frecuencias relativas por país para la clasificación ICD10-1102; gráfico comparativo de tasas de mortalidad acumuladas para la cohorte 0–25 años en Centroamérica; salida de código correspondiente al cálculo de tasas relativas . En particular, El Salvador presentó una tasa acumulada aproximada de 0.9259515 dentro de las delimitaciones establecidas.
+**Evidencia:** Tabla descriptiva de frecuencias relativas por país para la clasificación ICD10-1102; gráfico comparativo de tasas de mortalidad acumuladas para la cohorte 0–25 años en Centroamérica; salida de código correspondiente al cálculo de tasas relativas. En particular, El Salvador presentó una tasa acumulada aproximada de 0.9259515 dentro de las delimitaciones establecidas.
 
 **Nivel analítico:**
 
