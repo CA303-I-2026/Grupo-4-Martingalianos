@@ -9,11 +9,13 @@
   </p>
 
   <p>
-    <img src="https://img.shields.io/badge/Estado-completo-2E7D32?style=for-the-badge" alt="Estado completo">
-    <img src="https://img.shields.io/badge/Entrega-final%202026--07--09-3C5488?style=for-the-badge" alt="Entrega final 2026-07-09">
-    <img src="https://img.shields.io/badge/Curso-CA0303%20Estad%C3%ADstica%20Actuarial-4DBBD5?style=for-the-badge" alt="Curso CA0303">
-    <img src="https://img.shields.io/badge/R-an%C3%A1lisis%20reproducible-276DC3?style=for-the-badge&logo=r&logoColor=white" alt="R">
-    <img src="https://img.shields.io/badge/Quarto%20%2B%20LaTeX-entregables-75AADB?style=for-the-badge" alt="Quarto y LaTeX">
+    <img src="https://img.shields.io/badge/R-an%C3%A1lisis%20estad%C3%ADstico-276DC3?style=flat-square&logo=r&logoColor=white" alt="R para análisis estadístico">
+    <img src="https://img.shields.io/badge/tidyverse-procesamiento%20de%20datos-1F9E89?style=flat-square&logo=tidyverse&logoColor=white" alt="tidyverse para procesamiento de datos">
+    <img src="https://img.shields.io/badge/ggplot2-visualizaci%C3%B3n-3C5488?style=flat-square&logo=ggplot2&logoColor=white" alt="ggplot2 para visualización">
+    <img src="https://img.shields.io/badge/Actuar%C3%ADa-decrementos%20m%C3%BAltiples-6A1B9A?style=flat-square" alt="Modelos actuariales de decrementos múltiples">
+    <img src="https://img.shields.io/badge/Empirical%20Bayes-modelaci%C3%B3n-8E3B46?style=flat-square" alt="Modelación Empirical Bayes">
+    <img src="https://img.shields.io/badge/Quarto-bit%C3%A1coras-39729E?style=flat-square&logo=quarto&logoColor=white" alt="Bitácoras con Quarto">
+    <img src="https://img.shields.io/badge/LaTeX-informe%20final-008080?style=flat-square&logo=latex&logoColor=white" alt="Informe final con LaTeX">
   </p>
 
   <p>
@@ -23,9 +25,9 @@
 
 ---
 
-## Estado Final
+## Estado del proyecto
 
-Este repositorio queda cerrado como **proyecto completo**. Los resultados definitivos están organizados en:
+Este repositorio reúne el trabajo completo del Grupo 04 - Martingalianos para el curso CA0303 Estadística Actuarial I. El informe y la presentación pueden consultarse directamente en las carpetas de entrega:
 
 | Carpeta | Contenido final | Estado |
 |---|---|---|
@@ -37,18 +39,18 @@ Este repositorio queda cerrado como **proyecto completo**. Los resultados defini
 | Entregable | Archivo |
 |---|---|
 | Informe final | [`proyecto_final/Probabilidades de decremento múltiple por causa de muerte en Centroamérica, 2015-2018.pdf`](<proyecto_final/Probabilidades de decremento múltiple por causa de muerte en Centroamérica, 2015-2018.pdf>) |
-| Informe editable | [`proyecto_final/Probabilidades de decremento múltiple por causa de muerte en Centroamérica, 2015-2018.docx`](<proyecto_final/Probabilidades de decremento múltiple por causa de muerte en Centroamérica, 2015-2018.docx>) |
+| Informe DOCX | [`proyecto_final/Probabilidades de decremento múltiple por causa de muerte en Centroamérica, 2015-2018.docx`](<proyecto_final/Probabilidades de decremento múltiple por causa de muerte en Centroamérica, 2015-2018.docx>) |
 | Presentación final | [`presentacion_final/presentacion_final.pdf`](presentacion_final/presentacion_final.pdf) |
 | Código reproducible final | [`proyecto_final/codigo_final/`](proyecto_final/codigo_final/) |
 | Datos finales | [`proyecto_final/datos_final/`](proyecto_final/datos_final/) |
 
 ---
 
-## Resumen Ejecutivo
+## Resumen ejecutivo
 
-La investigación analiza la mortalidad por causa en **Belice, Costa Rica, El Salvador, Guatemala, Nicaragua y Panamá** durante **2015-2018** desde el marco actuarial de **decrementos múltiples**. La unidad de análisis es la celda definida por país, sexo, año calendario, grupo etario y capítulo de causa de muerte de la ICD-10.
+La investigación analiza la mortalidad por causa en Belice, Costa Rica, El Salvador, Guatemala, Nicaragua y Panamá durante 2015-2018 desde el marco actuarial de decrementos múltiples. La unidad de análisis es la celda definida por país, sexo, año calendario, grupo etario y capítulo de causa de muerte de la ICD-10.
 
-La pregunta central fue:
+La pregunta de investigación fue:
 
 > ¿Qué patrones de variabilidad se pueden estimar en la probabilidad de decremento por categoría de causas de la ICD-10 en países centroamericanos durante 2015-2018?
 
@@ -56,14 +58,14 @@ El proyecto estimó la probabilidad anual de decremento por causa mediante dos e
 
 | Enfoque | Idea central | Uso en el proyecto |
 |---|---|---|
-| Clásico | Conteos Poisson e intensidades estimadas por exposición | Construir probabilidades locales por causa, país, sexo, año y edad |
-| Empirical Bayes | Modelo Poisson-Gamma con hiperparámetros por país y causa | Estabilizar celdas con baja exposición, pocos eventos o ceros observacionales |
+| Clásico | Conteos Poisson e intensidades estimadas por exposición | Construir probabilidades de manera sencilla (esencialmente solo se hace una división) |
+| Bayesiano | Modelo Poisson-Gamma con hiperparámetros por país y causa estimados mediante Empirical Bayes| Estabilizar celdas con baja exposición, pocos eventos o ceros observacionales, para que no den directamente probabilidad 0 |
 
 Además de la probabilidad absoluta de decremento, se calculó la **composición causal condicionada al fallecimiento**, lo que permite separar dos preguntas distintas: qué tan grande es el riesgo por causa y cómo se reparte causalmente la mortalidad entre quienes fallecen.
 
 ---
 
-## Hallazgos Principales
+## Hallazgos principales
 
 | Resultado | Lectura actuarial |
 |---|---|
@@ -146,7 +148,7 @@ La intensidad se modeló con una distribución Gamma:
 \right)
 ```
 
-Los hiperparámetros se estimaron por país y causa mediante máxima verosimilitud marginal. Después de observar los conteos, la posterior quedó dada por:
+Los hiperparámetros se estimaron por país y causa mediante máxima verosimilitud marginal (Empirical Bayes). Después de observar los conteos, la posterior quedó dada por:
 
 ```math
 \mu_{x,t}^{(c)}\mid D_{x,t}^{(c)},E_{x,t}
@@ -162,16 +164,16 @@ La probabilidad bayesiana de decremento se calculó simulando conjuntamente las 
 
 ### Celdas especiales
 
-Los ceros observacionales se conservaron cuando la causa era posible para la celda. Las celdas fuera del dominio de una causa se excluyeron del ajuste correspondiente:
+Los ceros observacionales se conservaron cuando la causa era posible para la celda. Las celdas fuera del dominio de una causa se excluyeron del ajuste correspondiente como sigue:
 
 | Causa | Tratamiento |
 |---|---|
-| XV. Embarazo, parto y puerperio | Solo mujeres en grupos etarios 10-14 a 50-54 |
-| XVI. Afecciones originadas en el periodo perinatal | Solo grupo etario 0-4 |
+| XV. Embarazo, parto y puerperio | Solo consideramos mujeres en grupos etarios 10-14 a 50-54 |
+| XVI. Afecciones originadas en el periodo perinatal | Solo consideramos al grupo etario 0-4 |
 
 ---
 
-## Fuentes de Datos
+## Fuentes de datos
 
 | Componente | Fuente | Uso |
 |---|---|---|
@@ -198,44 +200,35 @@ anio, sexo, pais, grupo_edad, causa, causa_grupo, muertes, exposicion
 
 | Recurso | Uso |
 |---|---|
-| R 4.x | Ejecución del pipeline estadístico |
-| RStudio | Entorno de desarrollo usado por el equipo |
-| Quarto | Renderizado de bitácoras y documentos intermedios |
-| LaTeX | Compilación de entregables en PDF |
+| R 4.5.1 | Versión usada para ejecutar el análisis final |
+| `renv` 1.2.3 | Restauración de las versiones exactas de los paquetes |
+| [Rtools 4.5](https://cran.r-project.org/bin/windows/Rtools/rtools45/rtools.html) | Necesario en Windows  |
+| Quarto | Opcional; necesario para volver a renderizar las bitácoras |
+| LaTeX | Opcional; necesario para producir las versiones PDF de los documentos fuente |
 
-Paquetes usados en los scripts:
+Las versiones de los paquetes y sus dependencias se encuentran en [`renv.lock`](renv.lock). El archivo [`sessionInfo.txt`](sessionInfo.txt) registra la sesión con la que se comprobó el entorno. Entre los paquetes principales están `data.table`, `tidyverse`, `here`, `ggplot2`, `ggsci`, `cowplot`, `knitr` y `kableExtra`.
 
-```r
-readr
-dplyr
-tidyr
-stringr
-purrr
-here
-ggplot2
-ggsci
-cowplot
-scales
-knitr
-```
+### Preparación del entorno
 
-### Orden de ejecución
-
-Los scripts definitivos se encuentran en [`proyecto_final/codigo_final/`](proyecto_final/codigo_final/). Son una copia congelada del pipeline final y conservan rutas de proyecto con `here("datos", ...)` y `here("figuras", ...)`, por lo que deben ejecutarse desde la raíz del repositorio completo:
+Desde la raíz del repositorio:
 
 ```r
-source("proyecto_final/codigo_final/01_limpieza.R")
-source("proyecto_final/codigo_final/02_limpieza_exposicion.R")
-source("proyecto_final/codigo_final/03_graficos.R")
-source("proyecto_final/codigo_final/04_enfoque_clasico.R")
-source("proyecto_final/codigo_final/05_analisis_clasico.R")
-source("proyecto_final/codigo_final/06_enfoque_bayesiano_alpha_beta.R")
-source("proyecto_final/codigo_final/07_enfoque_bayesiano_simulaciones_qx.R")
-source("proyecto_final/codigo_final/08_analisis_bayesiano.R")
-source("proyecto_final/codigo_final/09_comparacion_enfoques.R")
+install.packages("renv")
+renv::restore()
 ```
 
-> Nota de cierre: los scripts originales también permanecen en [`codigo/`](codigo/) como rastro de desarrollo. La carpeta [`proyecto_final/datos_final/`](proyecto_final/datos_final/) guarda el paquete de datos entregado, mientras que el pipeline ejecutable usa las rutas raíz `datos/` y `figuras/` que quedaron en el repositorio.
+
+### Ejecución completa
+
+El análisis se ejecuta con un solo archivo. Primero se prepara la exposición (`01_limpieza_exposicion.R`) y luego se construye la base de mortalidad (`02_limpieza_mortalidad.R`).
+
+```bash
+Rscript ejecutar_analisis.R
+```
+
+La simulación bayesiana utiliza **10,000 iteraciones** y la semilla **122**. Ambos valores pueden modificarse mediante las variables `N_SIM_BAYES` y `SEMILLA_BAYES`; los valores predeterminados son los usados en el análisis final.
+
+El código asociado al informe se conserva en [`proyecto_final/codigo_final/`](proyecto_final/codigo_final/), junto con los datos de la entrega. La carpeta [`codigo/`](codigo/) mantiene la misma versión dentro de la estructura general del curso, con el fin de visibilizar la evolución del trabajo.
 
 ### Productos generados
 
@@ -250,11 +243,14 @@ source("proyecto_final/codigo_final/09_comparacion_enfoques.R")
 
 ---
 
-## Estructura del Repositorio
+## Estructura del repositorio
 
 ```text
 Grupo-4-Martingalianos/
 ├── README.md
+├── ejecutar_analisis.R
+├── renv.lock
+├── sessionInfo.txt
 ├── readme_assets/
 │   ├── hero_martingalianos.gif
 │   └── flujo_metodologico.gif
@@ -268,8 +264,8 @@ Grupo-4-Martingalianos/
 │   ├── bitacora_3/
 │   └── bitacora_4/
 ├── codigo/
-│   ├── 01_limpieza.R
-│   ├── 02_limpieza_exposicion.R
+│   ├── 01_limpieza_exposicion.R
+│   ├── 02_limpieza_mortalidad.R
 │   ├── 03_graficos.R
 │   ├── 04_enfoque_clasico.R
 │   ├── 05_analisis_clasico.R
@@ -287,21 +283,17 @@ Grupo-4-Martingalianos/
 │   ├── presentacion_final.pdf
 │   ├── presentacion_final.tex
 │   └── figuras/
-├── proyecto_final/
-│   ├── Probabilidades de decremento múltiple por causa de muerte en Centroamérica, 2015-2018.pdf
-│   ├── Probabilidades de decremento múltiple por causa de muerte en Centroamérica, 2015-2018.docx
-│   ├── codigo_final/
-│   ├── datos_final/
-│   └── figuras/
-└── referencias/
-    ├── WHO_Mortality_Database_Documentation.pdf
-    ├── WPP2024_Methodology-Report_Final.pdf
-    └── referencias.bib
+└── proyecto_final/
+    ├── Probabilidades de decremento múltiple por causa de muerte en Centroamérica, 2015-2018.pdf
+    ├── Probabilidades de decremento múltiple por causa de muerte en Centroamérica, 2015-2018.docx
+    ├── codigo_final/
+    ├── datos_final/
+    └── figuras/
 ```
 
 ---
 
-## Bitácoras y Trazabilidad
+## Bitácoras y trazabilidad
 
 | Documento | Contenido | Estado |
 |---|---|---|
@@ -314,7 +306,7 @@ Grupo-4-Martingalianos/
 
 ---
 
-## Bibliografía y Fuentes Principales
+## Bibliografía y fuentes principales
 
 La bibliografía completa aparece en el informe final. Esta selección resume los pilares metodológicos, actuariales y de datos usados en el proyecto.
 
@@ -358,21 +350,6 @@ La bibliografía completa aparece en el informe final. Esta selección resume lo
 - Zhang, Y.-Y., Wang, Z.-Y., Duan, Z.-M., & Mi, W. (2019). The empirical Bayes estimators of the parameter of the Poisson distribution with a conjugate gamma prior under Stein's loss function. *Journal of Statistical Computation and Simulation, 89*(16), 3061-3074. https://doi.org/10.1080/00949655.2019.1652606
 
 </details>
-
----
-
-## Criterios de Documentación Aplicados
-
-Este README se dejó como página de cierre del proyecto siguiendo recomendaciones de documentación para repositorios de investigación:
-
-| Guía | Criterio incorporado |
-|---|---|
-| [GitHub Docs: About READMEs](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes) | Explicar qué hace el proyecto, por qué es útil, cómo empezar y quién lo mantiene |
-| [The Turing Way: Reproducible Research](https://book.the-turing-way.org/reproducible-research/reproducible-research/) | Dejar datos, código y resultados conectados para poder rehacer el análisis |
-| [Cornell Data Services: Research Code README](https://data.research.cornell.edu/data-management/sharing/writing-readmes-for-research-code-software/) | Documentar propósito, versión/fecha, estructura, uso, licencia/contacto y reúso |
-| [RSQKit: Creating a Good README](https://everse.software/RSQKit/creating_good_readme) | Incluir reproducción, citación, relación con publicaciones/datasets y requisitos |
-| [Princeton Research Data Service: READMEs for Research Data](https://researchdata.princeton.edu/research-lifecycle-guide/data-acquisition/data-documentation-metadata/readmes-research-data) | Describir agrupaciones lógicas de archivos, fuentes, procesamiento y acceso |
-| [Harvard Biomedical Data Management: README Files](https://datamanagement.hms.harvard.edu/collect-analyze/documentation-metadata/readme-files) | Facilitar que una persona ubique, interprete y reanalice los datos del proyecto |
 
 ---
 

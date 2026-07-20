@@ -1,0 +1,8 @@
+# salidas generadas por Quarto
+*.html linguist-generated=true
+**/*_files/** linguist-vendored
+anteproyecto/presentacion_files/** linguist-vendored
+
+# entregables
+*.pdf linguist-documentation
+*.docx linguist-documentation
