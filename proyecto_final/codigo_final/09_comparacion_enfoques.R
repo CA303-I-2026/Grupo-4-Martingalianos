@@ -5,7 +5,7 @@ library(knitr)
 
 options(scipen = 999)
 
-# 1. Cargar bases ----------------------------------------------------------
+# cargamos los dos resultados
 
 clasico <- read_csv(
   here("datos", "procesados", "resultados_enfoque_clasico.csv"),
@@ -17,7 +17,7 @@ bayesiano <- read_csv(
   show_col_types = FALSE
 )
 
-# 2. Definir llaves de comparación ----------------------------------------
+# llaves que identifican una celda
 
 llaves <- c(
   "pais",
@@ -28,7 +28,7 @@ llaves <- c(
   "causa_grupo"
 )
 
-# 3. Unir solo las celdas comparables -------------------------------------
+# cruzamos únicamente las celdas comparables
 
 comparacion_q <- clasico %>%
   select(
@@ -49,8 +49,7 @@ comparacion_q <- clasico %>%
     diferencia_q = q_bayesiano - q_clasico,
     diferencia_abs_q = abs(diferencia_q),
     
-    # DRAS: diferencia relativa absoluta simétrica
-    # Está entre 0 y 2. Valores cercanos a 0 indican alta coincidencia.
+# DRAS va de 0 a 2; cerca de cero significa mayor coincidencia
     dras = if_else(
       q_clasico + q_bayesiano > 0,
       2 * diferencia_abs_q / (q_clasico + q_bayesiano),
@@ -60,7 +59,7 @@ comparacion_q <- clasico %>%
     q_clasico_cero = q_clasico == 0
   )
 
-# 4. Tabla 1: discrepancia entre enfoques por causa ------------------------
+# discrepancia entre enfoques por causa
 
 tabla_01_discrepancia <- comparacion_q %>%
   group_by(causa, causa_grupo) %>%
@@ -80,29 +79,20 @@ tabla_01_discrepancia <- comparacion_q %>%
     pct_q_clasico_cero = round(100 * pct_q_clasico_cero, 1)
   )
 
-# Versión corta para reporte: no más de 8 filas
+# el informe usa una versión de ocho filas
 tabla_01_reporte <- tabla_01_discrepancia %>%
   slice_head(n = 8)
 
-# 5. Guardar tabla para llamarla desde el QMD ------------------------------
+# guardamos la tabla que lee la bitácora
 
 write_csv(
   tabla_01_reporte,
   here("datos", "procesados", "tabla_01_discrepancia_enfoques.csv")
 )
 
-# 6. Vista rápida en consola -----------------------------------------------
+# una mirada rápida en consola
 
-#tabla_01_reporte %>%
-  #kable(
-   # caption = "Tabla 1. Causas ICD-10 con mayor discrepancia entre enfoque clásico y bayesiano"
-  #)
-
-# 7. Métrica de composición causal: D_pi ----------------------------------
-
-# Para cada celda demográfica, se calcula primero la composición causal
-# pi_c = q_c / sum_j q_j.
-# Luego se compara el vector completo de composiciones entre enfoques.
+# para D_pi comparamos el vector completo pi_c = q_c / sum_j q_j
 
 comparacion_pi <- comparacion_q %>%
   group_by(pais, anio, sexo, grupo_edad) %>%
@@ -126,7 +116,7 @@ comparacion_pi <- comparacion_q %>%
   ) %>%
   ungroup()
 
-# 8. Tabla 2: distancia total entre composiciones causales -----------------
+# distancia total entre composiciones causales
 
 tabla_02_composicion <- comparacion_pi %>%
   group_by(pais, anio, sexo, grupo_edad) %>%
@@ -151,7 +141,7 @@ tabla_02_composicion <- comparacion_pi %>%
     )
   )
 
-# Versión corta para reporte
+# otra vez dejamos ocho filas para el informe
 tabla_02_reporte <- tabla_02_composicion %>%
   filter(
     !is.na(pais),
@@ -162,16 +152,11 @@ tabla_02_reporte <- tabla_02_composicion %>%
   ) %>%
   slice_head(n = 8)
 
-# 9. Guardar tabla para llamarla desde el QMD ------------------------------
+# guardamos la segunda tabla
 
 write_csv(
   tabla_02_reporte,
   here("datos", "procesados", "tabla_02_composicion_causal.csv")
 )
 
-# 10. Vista rápida en consola ----------------------------------------------
-
-#tabla_02_reporte %>%
-  #kable(
-    #caption = "Celdas con mayor diferencia de composición causal entre enfoques"
-  #)
+# una mirada rápida en consola

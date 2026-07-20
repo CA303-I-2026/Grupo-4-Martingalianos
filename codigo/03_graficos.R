@@ -10,16 +10,18 @@ library(readr)
 library(stringr)
 library(tibble)
 
-# 0. Validaciones iniciales
+# revisiones de entrada
 
-if (!exists("data_ca_etiquetada")) {
-  stop("No existe data_ca_etiquetada. Corré primero 01_limpieza.R.")
+ruta_eda <- here("datos", "procesados", "eda_base_mortalidad.csv")
+
+if (!file.exists(ruta_eda)) {
+  stop("No existe eda_base_mortalidad.csv. Corré primero 02_limpieza_mortalidad.R.")
 }
 
 dir.create(here("datos", "procesados"), recursive = TRUE, showWarnings = FALSE)
 dir.create(here("figuras"), recursive = TRUE, showWarnings = FALSE)
 
-# 1. Identidad visual
+# estilo común de las figuras
 
 fuente_figuras <- ifelse(.Platform$OS.type == "windows", "Arial", "sans")
 
@@ -50,7 +52,7 @@ graficos_submartingalianos <- function(base_size = 12, base_family = fuente_figu
 
 theme_set(graficos_submartingalianos())
 
-# 2. Diccionarios
+# etiquetas y colores
 
 dic_causas <- tribble(
   ~icd10_code, ~causa_nombre,
@@ -74,13 +76,6 @@ dic_causas <- tribble(
   1094, "Síntomas y hallazgos no clasificados",
   1096, "Accidentes de transporte",
   1102, "Agresiones"
-)
-
-dic_sexo <- tribble(
-  ~Sex, ~sexo,
-  1, "Hombres",
-  2, "Mujeres",
-  9, "No especificado"
 )
 
 dic_edades <- tribble(
@@ -115,36 +110,13 @@ dic_edades <- tribble(
 edades_validas <- dic_edades %>%
   filter(edad_grupo != "Edad no especificada")
 
-cols_deaths <- intersect(paste0("Deaths", 2:26), names(data_ca_etiquetada))
+# base original en formato tidy
 
-if (length(cols_deaths) == 0) {
-  stop("No se encontraron columnas Deaths2:Deaths26.")
-}
-
-# 3. Base tidy original
-
-data_base <- data_ca_etiquetada %>%
-  mutate(
-    Year = as.integer(as.character(Year)),
-    Sex = as.numeric(as.character(Sex)),
-    icd10_code = as.numeric(icd10_code)
-  ) %>%
-  filter(
-    Year %in% 2015:2018,
-    icd10_code != 1000
-  ) %>%
-  pivot_longer(
-    cols = all_of(cols_deaths),
-    names_to = "intervalo_edad",
-    values_to = "muertes"
-  ) %>%
+data_base <- read_csv(ruta_eda, show_col_types = FALSE) %>%
   left_join(dic_causas, by = "icd10_code") %>%
-  left_join(dic_sexo, by = "Sex") %>%
-  left_join(dic_edades, by = "intervalo_edad") %>%
   mutate(
     muertes = replace_na(muertes, 0),
     causa_nombre = ifelse(is.na(causa_nombre), "Otra categoría ICD-10", causa_nombre),
-    sexo = ifelse(is.na(sexo), paste("Sexo", Sex), sexo),
     causa_etiqueta = paste0(icd10_code, " · ", causa_nombre),
     edad_grupo = factor(edad_grupo, levels = dic_edades$edad_grupo)
   ) %>%
@@ -158,7 +130,7 @@ data_base <- data_ca_etiquetada %>%
     .groups = "drop"
   )
 
-# 4. Exceso descriptivo
+# exceso respecto a la mediana de cada estrato
 
 data_eda <- data_base %>%
   group_by(
@@ -178,7 +150,7 @@ write_csv(
   here("datos", "procesados", "eda_base_excesos_y_original.csv")
 )
 
-# 5. Ranking de causas
+# causas más frecuentes
 
 tabla_causas <- data_eda %>%
   group_by(icd10_code, causa_nombre, causa_etiqueta) %>%
@@ -234,7 +206,7 @@ write_csv(
   here("datos", "procesados", "eda_cuadro_1_ranking_causas.csv")
 )
 
-# 6. Ajustes de leyendas
+# leyendas que se repiten
 
 wrap_lab <- function(x, width = 28) {
   stringr::str_wrap(x, width = width)
@@ -313,7 +285,7 @@ tema_barra_derecha <- theme(
   plot.margin = margin(10, 10, 14, 10)
 )
 
-# 7. Cuadros para datos originales
+# resúmenes de las muertes observadas
 
 original_pais_anio <- data_eda %>%
   group_by(Pais, Year) %>%
@@ -376,7 +348,7 @@ original_top_estratos <- data_plot %>%
   arrange(desc(muertes_total)) %>%
   slice_head(n = 25)
 
-# 8. Cuadros para excesos
+# resúmenes de los excesos
 
 exceso_edad_causa <- data_plot %>%
   group_by(causa_etiqueta, edad_orden) %>%
@@ -419,7 +391,7 @@ exceso_burbujas <- data_plot %>%
   arrange(desc(exceso_abs)) %>%
   slice_head(n = 80)
 
-# 9. Guardar cuadros
+# guardamos los cuadros que usa la bitácora
 
 write_csv(original_pais_anio, here("datos", "procesados", "eda_original_1_pais_anio.csv"))
 write_csv(original_edad_causa, here("datos", "procesados", "eda_original_2_edad_causa.csv"))
@@ -431,9 +403,9 @@ write_csv(exceso_top_estratos, here("datos", "procesados", "eda_exceso_2_top_est
 write_csv(exceso_burbujas, here("datos", "procesados", "eda_exceso_3_burbujas.csv"))
 
 
-# 10. GRÁFICOS SOBRE DATOS ORIGINALES
+# gráficos de las muertes observadas
 
-# G1 Original: país-año
+# muertes por país y año
 g1_original_pais_anio <- original_pais_anio %>%
   mutate(Pais = factor(Pais, levels = paises_graficas)) %>%
   ggplot(aes(x = factor(Year), y = Pais, fill = muertes_total)) +
@@ -455,7 +427,7 @@ g1_original_pais_anio <- original_pais_anio %>%
   ) +
   tema_barra_derecha
 
-# G2 Original: heatmap edad-causa
+# mapa de calor por edad y causa
 g2_original_heatmap_edad_causa <- original_edad_causa %>%
   mutate(causa_etiqueta = fct_reorder(causa_etiqueta, muertes_total, .fun = sum)) %>%
   ggplot(aes(x = edad_grupo, y = causa_etiqueta, fill = muertes_total)) +
@@ -477,7 +449,7 @@ g2_original_heatmap_edad_causa <- original_edad_causa %>%
   tema_barra_derecha +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-# G3 Original: perfil etario
+# perfil por edad
 g3_original_perfil_edad <- original_edad_causa %>%
   ggplot(aes(x = edad_orden, y = muertes_total, color = causa_etiqueta, group = causa_etiqueta)) +
   geom_line(linewidth = 1) +
@@ -503,7 +475,7 @@ g3_original_perfil_edad <- original_edad_causa %>%
   tema_leyenda_causas +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-# G4 Original: composición por edad usando TODAS las causas
+# composición por edad con todas las causas
 g4_original_composicion_edad <- original_composicion_edad_todas %>%
   mutate(causa_etiqueta = factor(causa_etiqueta, levels = causas_todas)) %>%
   ggplot(aes(x = edad_orden, y = peso_causa_edad, fill = causa_etiqueta)) +
@@ -529,7 +501,7 @@ g4_original_composicion_edad <- original_composicion_edad_todas %>%
   tema_leyenda_todas_causas +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-# G5 Original: top estratos
+# estratos con más muertes
 g5_original_top_estratos <- original_top_estratos %>%
   mutate(
     estrato = paste(Pais, Year, sexo, edad_grupo, causa_etiqueta, sep = " · "),
@@ -559,9 +531,9 @@ g5_original_top_estratos <- original_top_estratos %>%
   ) +
   tema_leyenda_causas
 
-# 11. GRÁFICOS SOBRE EXCESOS
+# gráficos de los excesos
 
-# G6 Exceso: heatmap edad-causa
+# mapa de calor por edad y causa
 g6_exceso_heatmap_edad_causa <- exceso_edad_causa %>%
   mutate(causa_etiqueta = fct_reorder(causa_etiqueta, exceso_abs, .fun = sum)) %>%
   ggplot(aes(x = edad_grupo, y = causa_etiqueta, fill = exceso_abs)) +
@@ -583,7 +555,7 @@ g6_exceso_heatmap_edad_causa <- exceso_edad_causa %>%
   tema_barra_derecha +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-# G7 Exceso: perfil etario
+# perfil por edad
 g7_exceso_perfil_edad <- exceso_edad_causa %>%
   ggplot(aes(x = edad_orden, y = exceso_abs, color = causa_etiqueta, group = causa_etiqueta)) +
   geom_line(linewidth = 1) +
@@ -609,7 +581,7 @@ g7_exceso_perfil_edad <- exceso_edad_causa %>%
   tema_leyenda_causas +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-# G8 Exceso: top estratos
+# estratos con mayor exceso
 g8_exceso_top_estratos <- exceso_top_estratos %>%
   mutate(
     estrato = paste(Pais, Year, sexo, edad_grupo, causa_etiqueta, sep = " · "),
@@ -639,7 +611,7 @@ g8_exceso_top_estratos <- exceso_top_estratos %>%
   ) +
   tema_leyenda_causas
 
-# G9 Exceso: burbujas estratos críticos
+# burbujas para los estratos más atípicos
 g9_exceso_burbujas <- exceso_burbujas %>%
   mutate(
     pais_anio = paste(Pais, Year, sep = " · "),
@@ -677,62 +649,7 @@ g9_exceso_burbujas <- exceso_burbujas %>%
   tema_leyenda_causas +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-# 12. Mostrar gráficos
-
-print(g1_original_pais_anio)
-print(g2_original_heatmap_edad_causa)
-print(g3_original_perfil_edad)
-print(g4_original_composicion_edad)
-print(g5_original_top_estratos)
-print(g6_exceso_heatmap_edad_causa)
-print(g7_exceso_perfil_edad)
-print(g8_exceso_top_estratos)
-print(g9_exceso_burbujas)
-
-# 13. Paneles cowplot
-
-panel_eda_original_1 <- cowplot::plot_grid(
-  g1_original_pais_anio,
-  g2_original_heatmap_edad_causa,
-  ncol = 1,
-  labels = c("A", "B"),
-  label_size = 14,
-  align = "v"
-)
-
-panel_eda_original_2 <- cowplot::plot_grid(
-  g3_original_perfil_edad,
-  g4_original_composicion_edad,
-  ncol = 1,
-  labels = c("C", "D"),
-  label_size = 14,
-  align = "v"
-)
-
-panel_eda_excesos <- cowplot::plot_grid(
-  g6_exceso_heatmap_edad_causa,
-  g7_exceso_perfil_edad,
-  ncol = 1,
-  labels = c("F", "G"),
-  label_size = 14,
-  align = "v"
-)
-
-panel_eda_estratos <- cowplot::plot_grid(
-  g5_original_top_estratos,
-  g8_exceso_top_estratos,
-  ncol = 1,
-  labels = c("E", "H"),
-  label_size = 14,
-  align = "v"
-)
-
-print(panel_eda_original_1)
-print(panel_eda_original_2)
-print(panel_eda_excesos)
-print(panel_eda_estratos)
-
-# 14. Guardar gráficos individuales
+# guardamos solo las nueve figuras que aparecen en la bitácora 2
 
 cowplot::save_plot(
   here("figuras", "04_g1_original_pais_anio.png"),
@@ -811,44 +728,6 @@ cowplot::save_plot(
   g9_exceso_burbujas,
   base_width = 16,
   base_height = 10,
-  dpi = 320,
-  bg = "white"
-)
-
-# 15. Guardar paneles
-
-cowplot::save_plot(
-  here("figuras", "04_panel_original_1.png"),
-  panel_eda_original_1,
-  base_width = 15,
-  base_height = 17,
-  dpi = 320,
-  bg = "white"
-)
-
-cowplot::save_plot(
-  here("figuras", "04_panel_original_2.png"),
-  panel_eda_original_2,
-  base_width = 18,
-  base_height = 21,
-  dpi = 320,
-  bg = "white"
-)
-
-cowplot::save_plot(
-  here("figuras", "04_panel_excesos.png"),
-  panel_eda_excesos,
-  base_width = 15,
-  base_height = 17,
-  dpi = 320,
-  bg = "white"
-)
-
-cowplot::save_plot(
-  here("figuras", "04_panel_estratos.png"),
-  panel_eda_estratos,
-  base_width = 16,
-  base_height = 21,
   dpi = 320,
   bg = "white"
 )

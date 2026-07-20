@@ -1,29 +1,49 @@
-# 01_base_centroamerica_final.R
-# Construye mortalidad OMS desde cero y la une con exposicion_limpia.csv
-# Autor: Kevin Calderón / Grupo Martingalianos
-# Fecha: 2026
+# arma la base de mortalidad y la une con la exposición ya limpia
 
 library(data.table)
 library(tidyverse)
 library(here)
 
-# ============================================================
-# 0. RUTAS
-# ============================================================
+# rutas de entrada y salida
 
-ruta_mortalidad <- here("datos", "originales")
+rutas_mortalidad <- c(
+  here("datos", "originales"),
+  here("proyecto_final", "datos_final", "originales")
+)
+
+rutas_catalogo_eda <- c(
+  here("datos", "catalogo_causas_eda.csv"),
+  here("proyecto_final", "datos_final", "catalogo_causas_eda.csv")
+)
+
+archivos_requeridos <- paste0("Morticd10_part", 1:6)
+directorio_completo <- vapply(
+  rutas_mortalidad,
+  function(ruta) all(file.exists(file.path(ruta, archivos_requeridos))),
+  logical(1)
+)
+
+ruta_mortalidad <- rutas_mortalidad[directorio_completo][1]
+ruta_catalogo_eda <- rutas_catalogo_eda[file.exists(rutas_catalogo_eda)][1]
 ruta_salida <- here("datos", "procesados")
 
 dir.create(ruta_salida, recursive = TRUE, showWarnings = FALSE)
 
-# ============================================================
-# 1. CARGAR Y UNIR BASES CRUDAS DE MORTALIDAD ICD-10
-# ============================================================
+# juntamos las seis partes de mortalidad de la OMS
 
-archivos_mortalidad <- file.path(
-  ruta_mortalidad,
-  paste0("Morticd10_part", 1:6)
-)
+if (is.na(ruta_mortalidad)) {
+  stop(
+    "No se encontraron los seis archivos Morticd10_part1 a Morticd10_part6. ",
+    "Se revisaron estas carpetas:\n",
+    paste(rutas_mortalidad, collapse = "\n")
+  )
+}
+
+if (is.na(ruta_catalogo_eda)) {
+  stop("No se encontró catalogo_causas_eda.csv en datos/ ni en proyecto_final/datos_final/.")
+}
+
+archivos_mortalidad <- file.path(ruta_mortalidad, archivos_requeridos)
 
 archivos_faltantes <- archivos_mortalidad[!file.exists(archivos_mortalidad)]
 
@@ -41,9 +61,7 @@ data_all <- data.table::rbindlist(
 ) %>%
   as_tibble()
 
-# ============================================================
-# 2. DEFINIR PAÍSES DE CENTROAMÉRICA EN WHO MORTALITY DATABASE
-# ============================================================
+# países con datos para todo el periodo
 
 paises <- data.frame(
   Country = c(2045, 2140, 2190, 2250, 2280, 2340, 2350),
@@ -58,17 +76,13 @@ paises <- data.frame(
   )
 )
 
-# ============================================================
-# 3. FILTRAR MORTALIDAD OMS DESDE CERO
-# ============================================================
+# filtramos país, años y formato ICD-10
 
 data_ca <- data_all %>%
   filter(Country %in% paises$Country) %>%
   left_join(paises, by = "Country")
 
-# ============================================================
-# 4. CARGAR EXPOSICIÓN LIMPIA YA CREADA
-# ============================================================
+# cargamos la exposición del primer script
 
 exposicion_limpia <- readr::read_csv(
   file.path(ruta_salida, "exposicion_limpia.csv"),
@@ -78,9 +92,7 @@ exposicion_limpia <- readr::read_csv(
 
 llaves <- c("pais", "year", "age_group", "sex")
 
-# ============================================================
-# 5. VALIDAR EXPOSICIÓN
-# ============================================================
+# una revisión rápida antes de unir las bases
 
 duplicados_exposicion <- exposicion_limpia %>%
   count(across(all_of(llaves)), name = "n") %>%
@@ -98,12 +110,9 @@ stopifnot(
   nrow(exposiciones_invalidas) == 0
 )
 
-# ============================================================
-# 6. LLEVAR MORTALIDAD A FORMATO LARGO
-# ============================================================
-# En Frmat == 0:
-# Deaths2,...,Deaths6 corresponden a edades 0,1,2,3,4.
-# Deaths7,...,Deaths25 corresponden a 5-9,...,95+.
+# pasamos las muertes a formato largo
+# en Frmat == 0, Deaths2,...,Deaths6 son las edades 0,1,2,3,4
+# y Deaths7,...,Deaths25 corresponden a 5-9,...,95+
 
 mapa_edades <- setNames(
   c(
@@ -134,6 +143,51 @@ mortalidad_base <- data_ca %>%
       na.rm = FALSE
     )
   )
+
+# esta versión conserva las edades simples que usa el EDA de la bitácora 2
+
+catalogo_eda <- read_csv(
+  ruta_catalogo_eda,
+  col_types = cols(Cause = col_character(), icd10_code = col_double())
+)
+
+stopifnot(!anyDuplicated(catalogo_eda$Cause))
+
+mapa_edades_eda <- tibble(
+  intervalo_edad = paste0("Deaths", 2:25),
+  edad_grupo = c(
+    "0", "1", "2", "3", "4", "5-9", "10-14", "15-19",
+    "20-24", "25-29", "30-34", "35-39", "40-44", "45-49",
+    "50-54", "55-59", "60-64", "65-69", "70-74", "75-79",
+    "80-84", "85-89", "90-94", "95+"
+  ),
+  edad_orden = 1:24
+)
+
+eda_base_mortalidad <- mortalidad_base %>%
+  select(pais, year, sex, Cause, Deaths2:Deaths25) %>%
+  inner_join(catalogo_eda, by = "Cause") %>%
+  pivot_longer(
+    Deaths2:Deaths25,
+    names_to = "intervalo_edad",
+    values_to = "muertes"
+  ) %>%
+  left_join(mapa_edades_eda, by = "intervalo_edad") %>%
+  mutate(
+    sexo = recode(sex, "Male" = "Hombres", "Female" = "Mujeres"),
+    muertes = replace_na(muertes, 0)
+  ) %>%
+  group_by(
+    pais, year, sexo, icd10_code,
+    intervalo_edad, edad_grupo, edad_orden
+  ) %>%
+  summarise(muertes = sum(muertes), .groups = "drop") %>%
+  rename(Pais = pais, Year = year)
+
+write_csv(
+  eda_base_mortalidad,
+  file.path(ruta_salida, "eda_base_mortalidad.csv")
+)
 
 mortalidad_0_4 <- mortalidad_base %>%
   transmute(
@@ -180,16 +234,14 @@ mortalidad_larga <- bind_rows(
   mortalidad_5_mas
 )
 
-# Guardar mortalidad larga filtrada antes de agrupar causas.
+# dejamos una copia antes de agrupar las causas
 write_csv(
   mortalidad_larga,
   file.path(ruta_salida, "mortalidad_larga_centroamerica_2015_2018.csv"),
   na = ""
 )
 
-# ============================================================
-# 7. AGRUPAR CAUSAS ICD-10 EN GRUPOS AMPLIOS
-# ============================================================
+# agrupamos las causas por capítulos de la ICD-10
 
 catalogo_causas <- tribble(
   ~Cause, ~causa_grupo,
@@ -313,11 +365,9 @@ mortalidad_agrupada <- mortalidad_larga %>%
     .after = Cause
   )
 
-# ============================================================
-# 8. AJUSTAR EXPOSICIÓN AL ALCANCE DE MORTALIDAD
-# ============================================================
-# Honduras no aparece en mortalidad para 2015-2018.
-# "Total" no equivale a Sex == 9; el código 9 es sexo desconocido.
+# ajustamos la exposición al alcance de mortalidad
+# Honduras no tiene mortalidad en 2015-2018
+# "Total" no equivale a Sex == 9: el código 9 es sexo desconocido
 
 exposicion_objetivo <- exposicion_limpia %>%
   filter(
@@ -332,9 +382,7 @@ exposicion_objetivo <- exposicion_limpia %>%
     )
   )
 
-# ============================================================
-# 9. VERIFICAR QUE LOS ESTRATOS COINCIDAN
-# ============================================================
+# comprobamos que los estratos calcen antes de unir
 
 estratos_mortalidad <- mortalidad_agrupada %>%
   distinct(across(all_of(llaves)))
@@ -364,9 +412,7 @@ stopifnot(
   nrow(solo_exposicion) == 0
 )
 
-# ============================================================
-# 10. UNIR MORTALIDAD CON EXPOSICIÓN
-# ============================================================
+# unimos mortalidad y exposición
 
 base_unida <- mortalidad_agrupada %>%
   left_join(
@@ -390,9 +436,7 @@ cat(
   "\n"
 )
 
-# ============================================================
-# 11. LIMPIAR NOMBRES FINALES
-# ============================================================
+# nombres finales de países, sexos y edades
 
 base_final <- base_unida %>%
   select(
@@ -421,9 +465,7 @@ base_final <- base_unida %>%
     causa
   )
 
-# ============================================================
-# 12. GUARDAR BASE FINAL
-# ============================================================
+# guardamos la base que usan los modelos
 
 write_csv(
   base_final,

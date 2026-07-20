@@ -1,5 +1,3 @@
-# 05_analisis_clasico.R
-
 library(readr)
 library(dplyr)
 library(tidyr)
@@ -12,9 +10,7 @@ library(ggsci)
 options(scipen = 999)
 
 
-# ---------------------------------------------------------------------------
-# 1. Cargar resultados del enfoque clásico
-# ---------------------------------------------------------------------------
+# cargamos los resultados clásicos
 
 resultados_clasico <- read_csv(
   here("datos", "procesados", "resultados_enfoque_clasico.csv"),
@@ -23,7 +19,7 @@ resultados_clasico <- read_csv(
 )
 
 
-# Solo se contrastan 2015 y 2018
+# para las figuras comparamos el inicio y el cierre del periodo
 
 anios_comparacion <- c(2015, 2018)
 
@@ -31,9 +27,7 @@ resultados_clasico <- resultados_clasico %>%
   filter(anio %in% anios_comparacion)
 
 
-# ---------------------------------------------------------------------------
-# 2. Funciones auxiliares
-# ---------------------------------------------------------------------------
+# funciones cortas para porcentajes y estilo
 
 etiqueta_pct_directa <- function(x, decimales = 2) {
   x_fmt <- format(
@@ -79,9 +73,7 @@ tema_clasico <- function() {
 }
 
 
-# ---------------------------------------------------------------------------
-# 3. Preparar variables generales
-# ---------------------------------------------------------------------------
+# orden y etiquetas que se usan en todas las figuras
 
 orden_edades <- resultados_clasico %>%
   distinct(grupo_edad) %>%
@@ -109,14 +101,8 @@ resultados_clasico <- resultados_clasico %>%
   )
 
 
-# ---------------------------------------------------------------------------
-# 4. Composición causal condicionada al fallecimiento
-# ---------------------------------------------------------------------------
-
-# prop_q = q_c / sum_j q_j
-#
-# El denominador usa TODAS las causas dentro de:
-# anio, pais, sexo, grupo_edad.
+# composición causal dentro de cada celda: prop_q = q_c / sum_j q_j
+# el denominador siempre incluye todas las causas
 
 composicion_causal <- resultados_clasico %>%
   group_by(anio, pais, pais_carpeta, sexo, grupo_edad) %>%
@@ -127,13 +113,7 @@ composicion_causal <- resultados_clasico %>%
   ungroup()
 
 
-# ---------------------------------------------------------------------------
-# 5. Concentración causal
-# ---------------------------------------------------------------------------
-
-# H = sum_c prop_q^2
-#
-# Se calcula con TODAS las causas.
+# concentración causal H = sum_c prop_q^2, también con todas las causas
 
 concentracion_causal <- composicion_causal %>%
   group_by(anio, pais, pais_carpeta, sexo, grupo_edad) %>%
@@ -145,20 +125,8 @@ concentracion_causal <- composicion_causal %>%
   )
 
 
-# ---------------------------------------------------------------------------
-# 6. Selección de causas por país
-# ---------------------------------------------------------------------------
-
-# Regla:
-#
-# Para cada país se seleccionan 4 causas:
-#
-# 1. Causas externas de mortalidad, identificada por causa == "XX"
-#    o por texto en causa_grupo.
-#
-# 2. Las 3 causas restantes con mayor q_c promedio dentro del país.
-#
-# Perinatales se excluye de esta selección porque se grafica aparte.
+# en cada país dejamos causas externas y las otras tres con mayor q promedio
+# la causa perinatal se muestra aparte
 
 obtener_causa_externa_pais <- function(datos_pais) {
   
@@ -241,12 +209,38 @@ seleccionar_top4_promedio_pais <- function(datos_pais) {
 }
 
 
-# ---------------------------------------------------------------------------
-# 7. Gráficos por país
-# ---------------------------------------------------------------------------
+# figuras que sí quedaron citadas en la bitácora 3
+
+figuras_bitacora <- list(
+  "costa rica" = c(
+    "00_q_perinatal_por_edad.png",
+    "01_q_absoluto_top4_2015_2018.png",
+    "02_q_por_causa_top4.png",
+    "03_composicion_condicionada_grupo_1.png",
+    "04_composicion_promedio_top4_mas_perinatal.png"
+  ),
+  "nicaragua" = "04_composicion_promedio_top4_mas_perinatal.png"
+)
+
+guardar_figura <- function(grafico, carpeta, archivo, width, height) {
+  if (!archivo %in% figuras_bitacora[[carpeta]]) {
+    return(invisible(FALSE))
+  }
+
+  ggsave(
+    filename = here("figuras", "clasico", carpeta, archivo),
+    plot = grafico,
+    width = width,
+    height = height,
+    dpi = 300
+  )
+}
+
+# solo procesamos los países que aparecen en esas figuras
 
 paises <- resultados_clasico %>%
   distinct(pais, pais_carpeta) %>%
+  filter(pais_carpeta %in% names(figuras_bitacora)) %>%
   arrange(pais)
 
 
@@ -262,7 +256,7 @@ for (i in seq_len(nrow(paises))) {
     showWarnings = FALSE
   )
   
-  # Limpia gráficos anteriores del análisis clásico.
+  # quitamos versiones anteriores para no mezclar resultados
   
   archivos_previos <- list.files(
     ruta_figuras,
@@ -285,9 +279,7 @@ for (i in seq_len(nrow(paises))) {
     filter(pais == pais_actual)
   
   
-  # -------------------------------------------------------------------------
-  # 7.1 Seleccionar causas principales del país
-  # -------------------------------------------------------------------------
+# causas principales del país
   
   causas_top4_pais <- seleccionar_top4_promedio_pais(datos_pais)
   causa_perinatal_pais <- obtener_causa_perinatal_pais(datos_pais)
@@ -321,8 +313,7 @@ for (i in seq_len(nrow(paises))) {
     )
   
   
-  # Causas para gráfico 4:
-  # top 4 + perinatal.
+# para la composición usamos las cuatro principales más la perinatal
   
   causas_grafico_4 <- causas_top4_pais
   
@@ -342,9 +333,7 @@ for (i in seq_len(nrow(paises))) {
     )
   
   
-  # -------------------------------------------------------------------------
-  # Gráfico 0: q_c perinatal por edad
-  # -------------------------------------------------------------------------
+# q perinatal por edad
   
   if (nrow(datos_pais_perinatal) > 0) {
     
@@ -385,29 +374,13 @@ for (i in seq_len(nrow(paises))) {
       ) +
       tema_clasico()
     
-    ggsave(
-      filename = here("figuras", "clasico", carpeta_pais, "00_q_perinatal_por_edad.png"),
-      plot = grafico_00_perinatal,
-      width = 13,
-      height = 7,
-      dpi = 300
+    guardar_figura(
+      grafico_00_perinatal, carpeta_pais, "00_q_perinatal_por_edad.png", 13, 7
     )
   }
   
   
-  # -------------------------------------------------------------------------
-  # Gráfico 1: q_c absoluto por edad
-  # -------------------------------------------------------------------------
-  #
-  # Este gráfico junta 2015 y 2018 en una sola figura.
-  # Se separa por sexo y por año:
-  #
-  # filas    = sexo
-  # columnas = año
-  #
-  # Dentro de cada panel se muestran las 4 causas seleccionadas.
-  #
-  # Escala: 0% a 40%, saltos de 10%.
+# q absoluto por edad; filas por sexo y columnas por año
   
   grafico_01_q_edad <- datos_pais_top4 %>%
     ggplot(
@@ -438,21 +411,12 @@ for (i in seq_len(nrow(paises))) {
     ) +
     tema_clasico()
   
-  ggsave(
-    filename = here("figuras", "clasico", carpeta_pais, "01_q_absoluto_top4_2015_2018.png"),
-    plot = grafico_01_q_edad,
-    width = 14,
-    height = 8,
-    dpi = 300
+  guardar_figura(
+    grafico_01_q_edad, carpeta_pais, "01_q_absoluto_top4_2015_2018.png", 14, 8
   )
   
   
-  # -------------------------------------------------------------------------
-  # Gráfico 2: q_c por causa
-  # -------------------------------------------------------------------------
-  #
-  # q_c x 100.
-  # Escala: 0% a 30%, saltos de 10%.
+# q por causa, expresada en porcentaje
   
   grafico_02_q_causa <- datos_pais_top4 %>%
     ggplot(
@@ -485,32 +449,12 @@ for (i in seq_len(nrow(paises))) {
     ) +
     tema_clasico()
   
-  ggsave(
-    filename = here("figuras", "clasico", carpeta_pais, "02_q_por_causa_top4.png"),
-    plot = grafico_02_q_causa,
-    width = 14,
-    height = 9,
-    dpi = 300
+  guardar_figura(
+    grafico_02_q_causa, carpeta_pais, "02_q_por_causa_top4.png", 14, 9
   )
   
   
-  # -------------------------------------------------------------------------
-  # Gráfico 3: composición causal condicionada al fallecimiento
-  # -------------------------------------------------------------------------
-  #
-  # prop_q = q_c / sum_j q_j
-  #
-  # Se agrupan las 4 causas seleccionadas de 2 en 2 para que el gráfico sea
-  # legible.
-  #
-  # Se generan:
-  #
-  # 03_composicion_condicionada_grupo_1.png
-  # 03_composicion_condicionada_grupo_2.png
-  #
-  # Dentro de cada gráfico se compara 2015 contra 2018.
-  #
-  # Escala: 0% a 100%, saltos de 25%.
+# composición condicionada; separamos las causas de dos en dos para leerla bien
   
   grupos_causas_03 <- split(
     causas_top4_pais,
@@ -557,34 +501,17 @@ for (i in seq_len(nrow(paises))) {
       ) +
       tema_clasico()
     
-    ggsave(
-      filename = here(
-        "figuras",
-        "clasico",
-        carpeta_pais,
-        paste0("03_composicion_condicionada_grupo_", g, ".png")
-      ),
-      plot = grafico_03_composicion_goerlich,
-      width = 14,
-      height = 8,
-      dpi = 300
+    guardar_figura(
+      grafico_03_composicion_goerlich,
+      carpeta_pais,
+      paste0("03_composicion_condicionada_grupo_", g, ".png"),
+      14,
+      8
     )
   }
   
   
-  # -------------------------------------------------------------------------
-  # Gráfico 4: composición causal promedio por edad
-  # -------------------------------------------------------------------------
-  #
-  # Muestra top 4 causas + perinatal.
-  #
-  # Cada segmento es:
-  #
-  # prop_q = q_c / sum_j q_j
-  #
-  # con denominador de todas las causas.
-  #
-  # Escala: 0% a 100%, saltos de 25%.
+# composición promedio por edad para las causas elegidas
   
   grafico_04_composicion_apilada <- composicion_pais_top4_mas_perinatal %>%
     group_by(grupo_edad, causa_grupo_wrap) %>%
@@ -617,24 +544,16 @@ for (i in seq_len(nrow(paises))) {
     ) +
     tema_clasico()
   
-  ggsave(
-    filename = here("figuras", "clasico", carpeta_pais, "04_composicion_promedio_top4_mas_perinatal.png"),
-    plot = grafico_04_composicion_apilada,
-    width = 14,
-    height = 8,
-    dpi = 300
+  guardar_figura(
+    grafico_04_composicion_apilada,
+    carpeta_pais,
+    "04_composicion_promedio_top4_mas_perinatal.png",
+    14,
+    8
   )
   
   
-  # -------------------------------------------------------------------------
-  # Gráfico 5: concentración causal
-  # -------------------------------------------------------------------------
-  #
-  # H = sum_c prop_q^2
-  #
-  # Se calcula con todas las causas.
-  #
-  # Escala: 0% a 100%, saltos de 25%.
+# concentración causal por edad
   
   grafico_05_concentracion <- concentracion_pais %>%
     ggplot(
@@ -665,11 +584,7 @@ for (i in seq_len(nrow(paises))) {
     ) +
     tema_clasico()
   
-  ggsave(
-    filename = here("figuras", "clasico", carpeta_pais, "05_concentracion_causal.png"),
-    plot = grafico_05_concentracion,
-    width = 14,
-    height = 8,
-    dpi = 300
+  guardar_figura(
+    grafico_05_concentracion, carpeta_pais, "05_concentracion_causal.png", 14, 8
   )
 }

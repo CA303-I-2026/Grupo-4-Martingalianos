@@ -2,7 +2,7 @@ library(readr)
 library(dplyr)
 library(here)
 
-# 1. Cargar la base ---------------------------------------------------------
+# cargamos la base final
 datos <- read_csv(
   here(
     "datos",
@@ -12,7 +12,7 @@ datos <- read_csv(
   show_col_types = FALSE
 )
 
-# Comprobaciones básicas
+# comprobaciones básicas antes de ajustar
 if (any(is.na(datos$muertes)) || any(is.na(datos$exposicion))) {
   stop("Hay valores faltantes en muertes o exposicion.")
 }
@@ -25,15 +25,11 @@ if (any(datos$exposicion <= 0)) {
   stop("La variable exposicion contiene valores menores o iguales a cero.")
 }
 
-# 2. Definir las celdas aplicables -----------------------------------------
-# No se eliminan, en general, las celdas con cero muertes.
-# Solo se excluyen ceros estructurales en dos causas particulares:
+# dejamos los ceros observados y quitamos solo dos casos estructurales
 #
-# XV: Embarazo, parto y puerperio
-#     Se ajusta únicamente con mujeres de 10-14 a 50-54 años.
+# XV: embarazo, parto y puerperio, solo en mujeres de 10-14 a 50-54
 #
-# XVI: Afecciones originadas en el periodo perinatal
-#      Se ajusta únicamente con el grupo 0-4.
+# XVI: afecciones perinatales, solo para el grupo 0-4
 
 edades_maternas <- c(
   "10-14",
@@ -61,13 +57,11 @@ datos_ajuste <- datos %>%
       )
   )
 
-# 3. Log-verosimilitud marginal Poisson-Gamma ------------------------------
+# log-verosimilitud marginal Poisson-Gamma
 # D | mu ~ Poisson(E * mu)
 # mu ~ Gamma(alpha, beta), con beta como parámetro de tasa.
 #
-# Al integrar mu:
-# D ~ Binomial negativa,
-# con size = alpha y media = E * alpha / beta.
+# al integrar mu queda una binomial negativa con media E * alpha / beta
 
 log_verosimilitud <- function(
     log_parametros,
@@ -89,7 +83,7 @@ log_verosimilitud <- function(
   )
 }
 
-# 4. Estimar alpha y beta para un país y una causa --------------------------
+# ajuste de alpha y beta para cada país y causa
 estimar_alpha_beta <- function(base_grupo, llave) {
   muertes_totales  <- sum(base_grupo$muertes)
   exposicion_total <- sum(base_grupo$exposicion)
@@ -139,7 +133,7 @@ estimar_alpha_beta <- function(base_grupo, llave) {
   )
 }
 
-# 5. Estimar los hiperparámetros por país y causa ---------------------------
+# corremos el ajuste para todas las combinaciones
 parametros_bayesianos <- datos_ajuste %>%
   group_by(
     pais,
@@ -158,7 +152,7 @@ parametros_bayesianos <- datos_ajuste %>%
     beta
   )
 
-# 6. Guardar los resultados -------------------------------------------------
+# guardamos los hiperparámetros
 write_csv(
   parametros_bayesianos,
   here(
